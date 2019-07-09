@@ -1,0 +1,34 @@
+$color-1 : #FFFFFF;
+$color-2 : #000000;
+$color-3 : #00c8b5;
+$color-4 : #222c31;
+$color-5 : #394246;
+$color-6 : #f9fafb;
+$color-7 : #90a4ae;
+$color-8 : #707070;
+$color-9 : #F4F4F4;
+$color-10 : #117A73;
+$color-11 : #d9d9d9;
+$color-12 : #2f3c43;
+$color-13 : #4caf50;
+$color-14 : #818181;
+$charcoal-grey: #394246;
+
+
+// Device widths
+$xx-small-phone : '(max-width: 300px)';
+$x-small-phone : '(max-width: 390px)';
+$small-phone : '(max-width: 440px)';
+$phone : '(max-width: 600px)';
+$tablet-portrait : '(max-width: 767px)';
+$tablet-landscape-desktop : '(min-width: 768px) and (max-width: 992px)';
+$all-tablet-phone : '(max-width: 992px)';
+$all-tablet-desktop : '(min-width: 768px)';
+$small-desktop : '(max-width: 1300px)';
+$medium-desktop : '(min-width: 1300px) and (max-width: 1600px)';
+$large-desktop : '(min-width: 1600px)';
+$non-retina : 'screen and (-webkit-max-device-pixel-ratio: 1)';
+$retina : 'screen and (-webkit-min-device-pixel-ratio: 2)';
+
+$font-1 : 'Yekan', 'Tahoma', Arial, Helvetica, sans-serif;
+//$font-2 : 'YekanFa', 'Tahoma', Arial, Helvetica, sans-serif;

@@ -1,0 +1,23 @@
+<wpml-config>
+	<admin-text>
+		<key name="ravis-booking-setting">
+			<key name="contact_url"/>
+			<key name="rating_item">
+				<key name="0"/>
+				<key name="1"/>
+				<key name="2"/>
+				<key name="3"/>
+				<key name="4"/>
+				<key name="5"/>
+				<key name="6"/>
+				<key name="7"/>
+				<key name="8"/>
+				<key name="9"/>
+				<key name="10"/>
+			</key>
+			<key name="wp_email_sender_name"/>
+			<key name="email_admin_tmpl"/>
+			<key name="email_user_tmpl"/>
+		</key>
+	</admin-text>
+</wpml-config>

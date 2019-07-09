@@ -1,0 +1,3297 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: Ravis Booking Plugin\n"
+"POT-Creation-Date: 2018-05-16 16:11+0330\n"
+"PO-Revision-Date: 2018-05-16 16:11+0330\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"Language: en_US\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Poedit 1.7.6\n"
+"X-Poedit-Basepath: ..\n"
+"X-Poedit-SourceCharset: UTF-8\n"
+"X-Poedit-KeywordsList: __;_e;_n:1,2;_x:1,2c;_ex:1,2c;_nx:4c,1,2;esc_attr__;"
+"esc_attr_e;esc_attr_x:1,2c;esc_html__;esc_html_e;esc_html_x:1,2c;_n_noop:1,2;"
+"_nx_noop:3c,1,2;__ngettext_noop:1,2\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Poedit-SearchPath-0: .\n"
+"X-Poedit-SearchPathExcluded-0: *.js\n"
+
+#: inc/ajax.class.php:81
+msgid "Your feedback will be listed after confirmation."
+msgstr ""
+
+#: inc/ajax.class.php:88
+msgid "Please fill all the required fields."
+msgstr ""
+
+#: inc/ajax.class.php:95 inc/ajax.class.php:134 inc/ajax.class.php:172
+#: inc/ajax.class.php:235
+msgid "Something wrong about your request happens."
+msgstr ""
+
+#: inc/ajax.class.php:121 inc/ajax.class.php:159
+msgid "Because of some Database issues, event's booking is not updated now."
+msgstr ""
+
+#: inc/ajax.class.php:127 inc/ajax.class.php:165
+msgid "Event's booking is updated now."
+msgstr ""
+
+#: inc/ajax.class.php:215
+msgid ""
+"Because of some Database issues, your booking was not proceed. Please try "
+"again."
+msgstr ""
+
+#: inc/ajax.class.php:221
+msgid ""
+"Your booking was proceed, it must be confirmed by administration of website."
+msgstr ""
+
+#: inc/ajax.class.php:228
+msgid "Please fill all fields."
+msgstr ""
+
+#: inc/ajax.class.php:354
+msgid "Thanks for rating."
+msgstr ""
+
+#: inc/ajax.class.php:359
+msgid "You are cheating!"
+msgstr ""
+
+#: inc/booking.class.php:263
+msgid "No Room Available"
+msgstr ""
+
+#: inc/booking.class.php:272
+msgid "Please choose the correct information."
+msgstr ""
+
+#: inc/booking.class.php:281 inc/booking.class.php:685
+msgid "Your are cheating!"
+msgstr ""
+
+#: inc/booking.class.php:346
+msgid ""
+"You have already booked, after checking your information, your booking will "
+"be finalized."
+msgstr ""
+
+#: inc/booking.class.php:446
+msgid "Room Booking Invoice"
+msgstr ""
+
+#: inc/booking.class.php:456 inc/booking.class.php:541
+#: inc/booking.class.php:640
+msgid ""
+"Because of some technical issues, your booking was not proceed. Please try "
+"again."
+msgstr ""
+
+#: inc/booking.class.php:464 inc/booking.class.php:549
+#: inc/booking.class.php:648
+msgid "Paypal payment is disabled on your website."
+msgstr ""
+
+#: inc/booking.class.php:506
+msgid "Card number"
+msgstr ""
+
+#: inc/booking.class.php:511
+msgid "CVC"
+msgstr ""
+
+#: inc/booking.class.php:516
+msgid "Expiry date (MM)"
+msgstr ""
+
+#: inc/booking.class.php:519
+msgid "Expiry date (YYYY)"
+msgstr ""
+
+#: inc/booking.class.php:524 inc/booking.class.php:595
+msgid "Submit Payment"
+msgstr ""
+
+#: inc/booking.class.php:590
+msgid "Credit or Debit Card"
+msgstr ""
+
+#: inc/booking.class.php:656
+msgid ""
+"Thanks for your booking, after checking your information, your booking will "
+"be finalized."
+msgstr ""
+
+#: inc/booking.class.php:666
+msgid ""
+"Because of some technical issues, your booking was not successful, please "
+"try again."
+msgstr ""
+
+#: inc/booking.class.php:676
+msgid "Please provide all the required information."
+msgstr ""
+
+#: inc/booking.class.php:712 tpl/admin/booking.php:208
+#: tpl/user-panel/booking.php:167 tpl/user-panel/payment.php:159
+msgid "Room Title"
+msgstr ""
+
+#: inc/booking.class.php:713 inc/shortcode.class.php:2322
+#: inc/shortcode.class.php:2364 inc/shortcode.class.php:2425
+#: tpl/admin/booking.php:209 tpl/booking-notification.php:66
+#: tpl/booking-steps/booking_variables.php:12 tpl/user-panel/booking.php:168
+#: tpl/user-panel/payment.php:160
+msgid "Adult"
+msgstr ""
+
+#: inc/booking.class.php:714 tpl/admin/booking.php:210
+#: tpl/booking-steps/booking_variables.php:15 tpl/user-panel/booking.php:169
+#: tpl/user-panel/payment.php:161
+msgid "Child"
+msgstr ""
+
+#: inc/booking.class.php:715 inc/shortcode.class.php:1356
+#: ravis-booking.php:1055 ravis-booking.php:1322 ravis-booking.php:1397
+#: ravis-booking.php:1444 tpl/admin/booking.php:187 tpl/admin/booking.php:251
+#: tpl/admin/booking.php:273 tpl/admin/booking.php:301
+#: tpl/admin/payment.php:23 tpl/booking-notification.php:74
+#: tpl/booking-steps/booking_variables.php:42 tpl/user-panel/booking.php:147
+#: tpl/user-panel/booking.php:205 tpl/user-panel/booking.php:232
+#: tpl/user-panel/payment.php:19 tpl/user-panel/payment.php:190
+#: tpl/user-panel/payment.php:217
+msgid "Price"
+msgstr ""
+
+#: inc/booking.class.php:716 inc/meta_box.class.php:152
+#: inc/meta_box.class.php:165 inc/meta_box.class.php:271
+#: inc/meta_box.class.php:285 inc/meta_box.class.php:305
+#: inc/meta_box.class.php:319 inc/meta_box.class.php:621
+#: inc/meta_box.class.php:643 tpl/admin/admin.php:566 tpl/admin/admin.php:616
+#: tpl/admin/admin.php:854 tpl/admin/admin.php:887 tpl/admin/admin.php:942
+#: tpl/admin/admin.php:1000 tpl/admin/admin.php:1079 tpl/admin/admin.php:1118
+#: tpl/admin/booking.php:249 tpl/admin/booking.php:272
+#: tpl/admin/booking.php:300 tpl/user-panel/booking.php:204
+#: tpl/user-panel/booking.php:231 tpl/user-panel/payment.php:189
+#: tpl/user-panel/payment.php:216
+msgid "Title"
+msgstr ""
+
+#: inc/booking.class.php:806
+msgid "Your Booking has been confirmed."
+msgstr ""
+
+#: inc/booking.class.php:812
+msgid "New Booking Information was in your website"
+msgstr ""
+
+#: inc/booking.class.php:950
+msgid "guests"
+msgstr ""
+
+#: inc/booking.class.php:954
+msgid "guest"
+msgstr ""
+
+#: inc/booking.class.php:956
+msgid "Rooms :"
+msgstr ""
+
+#: inc/booking.class.php:1070 inc/meta_box.class.php:820
+#: inc/shortcode.class.php:2953
+msgid "Not Available"
+msgstr ""
+
+#: inc/booking.class.php:1084 inc/booking.class.php:1088 ravis-booking.php:913
+msgid "From"
+msgstr ""
+
+#: inc/coupon.class.php:38
+msgid "Coupon is expired."
+msgstr ""
+
+#: inc/coupon.class.php:42
+msgid "Coupon is finished."
+msgstr ""
+
+#: inc/coupon.class.php:49
+msgid "Coupon is applied."
+msgstr ""
+
+#: inc/coupon.class.php:54
+msgid "Invalid Coupon."
+msgstr ""
+
+#: inc/coupon.class.php:59 tpl/booking-steps/booking_variables.php:82
+msgid "Please fill the coupon field."
+msgstr ""
+
+#: inc/coupon.class.php:64
+msgid "Are you cheating?"
+msgstr ""
+
+#: inc/get_info.class.php:661 inc/get_info.class.php:783
+#: inc/meta_box.class.php:704 tpl/admin/payment.php:45
+msgid "Guest"
+msgstr ""
+
+#: inc/get_info.class.php:665 inc/get_info.class.php:674
+#: inc/get_info.class.php:787 inc/get_info.class.php:796
+#: inc/meta_box.class.php:705 inc/meta_box.class.php:712
+#: tpl/admin/admin.php:19
+msgid "Booking"
+msgstr ""
+
+#: inc/get_info.class.php:668 inc/get_info.class.php:790
+#: inc/meta_box.class.php:706 inc/shortcode.class.php:2307
+#: inc/shortcode.class.php:2360 inc/shortcode.class.php:2414
+#: inc/shortcode.class.php:2456 tpl/booking-notification.php:62
+#: tpl/booking-steps/booking_variables.php:11
+msgid "Room"
+msgstr ""
+
+#: inc/get_info.class.php:678 inc/get_info.class.php:800
+#: inc/meta_box.class.php:554 inc/meta_box.class.php:568
+#: inc/meta_box.class.php:711 tpl/admin/booking.php:135
+#: tpl/booking-steps/booking_variables.php:23 tpl/user-panel/booking.php:93
+#: tpl/user-panel/payment.php:123
+msgid "Night"
+msgstr ""
+
+#: inc/get_info.class.php:810 inc/get_info.class.php:812
+#: ravis-booking.php:1392 tpl/booking-steps/booking_variables.php:72
+msgid "Free"
+msgstr ""
+
+#: inc/get_info.class.php:1023 tpl/admin/payment.php:55
+#: tpl/user-panel/payment.php:33
+msgid "Unpaid"
+msgstr ""
+
+#: inc/get_info.class.php:1026 ravis-booking.php:1393 tpl/admin/payment.php:58
+#: tpl/user-panel/payment.php:36
+msgid "Paid"
+msgstr ""
+
+#: inc/get_info.class.php:1029 tpl/admin/payment.php:61
+#: tpl/user-panel/payment.php:39
+msgid "Canceled"
+msgstr ""
+
+#: inc/import.class.php:15
+msgid "Demo Content Import"
+msgstr ""
+
+#: inc/insert_posts.class.php:241 inc/insert_posts.class.php:370
+msgid ""
+"Thanks for submission, your property will be available after confirmation of "
+"administration of website."
+msgstr ""
+
+#: inc/insert_posts.class.php:247 inc/insert_posts.class.php:390
+msgid "Please fill all the required fields"
+msgstr ""
+
+#: inc/insert_posts.class.php:270
+msgid "Email and its confirmation fields are not the same"
+msgstr ""
+
+#: inc/insert_posts.class.php:376
+msgid "Your account is pending now, please be patient to be approved."
+msgstr ""
+
+#: inc/insert_posts.class.php:383
+msgid "You have already registered. Please try another Username or Email."
+msgstr ""
+
+#: inc/meta_box.class.php:114 inc/meta_box.class.php:336
+#: inc/meta_box.class.php:342 inc/meta_box.class.php:350
+#: inc/meta_box.class.php:356 inc/meta_box.class.php:395
+#: inc/meta_box.class.php:401 inc/meta_box.class.php:409
+#: inc/meta_box.class.php:415 inc/meta_box.class.php:425
+#: inc/meta_box.class.php:431 inc/meta_box.class.php:439
+#: inc/meta_box.class.php:445 inc/meta_box.class.php:480
+#: inc/meta_box.class.php:486 inc/meta_box.class.php:494
+#: inc/meta_box.class.php:500 inc/meta_box.class.php:510
+#: inc/meta_box.class.php:516 inc/meta_box.class.php:524
+#: inc/meta_box.class.php:530 inc/meta_box.class.php:622
+#: inc/meta_box.class.php:644
+msgid "Price (number only)"
+msgstr ""
+
+#: inc/meta_box.class.php:129
+msgid "Square Foot (sqft)"
+msgstr ""
+
+#: inc/meta_box.class.php:130
+msgid "Square Meter (m2)"
+msgstr ""
+
+#: inc/meta_box.class.php:131
+msgid "Acre (acre)"
+msgstr ""
+
+#: inc/meta_box.class.php:132
+msgid "Hectare (ha)"
+msgstr ""
+
+#: inc/meta_box.class.php:133
+msgid "Square Kilometre (sqkm)"
+msgstr ""
+
+#: inc/meta_box.class.php:134
+msgid "Square Mile (sqmi)"
+msgstr ""
+
+#: inc/meta_box.class.php:135
+msgid "Square Yard (sqyd)"
+msgstr ""
+
+#: inc/meta_box.class.php:161 inc/meta_box.class.php:280
+#: inc/meta_box.class.php:315 inc/meta_box.class.php:458
+#: inc/meta_box.class.php:564 inc/meta_box.class.php:632
+#: tpl/admin/admin.php:107 tpl/admin/admin.php:420 tpl/admin/admin.php:877
+#: tpl/admin/admin.php:990 tpl/admin/admin.php:1108
+msgid "Add New"
+msgstr ""
+
+#: inc/meta_box.class.php:205 tpl/admin/admin.php:864 tpl/admin/admin.php:897
+#: tpl/admin/admin.php:948 tpl/admin/admin.php:1006
+msgid "Upload Image"
+msgstr ""
+
+#: inc/meta_box.class.php:206 tpl/admin/admin.php:865 tpl/admin/admin.php:898
+#: tpl/admin/admin.php:949 tpl/admin/admin.php:1007
+msgid "Remove Image"
+msgstr ""
+
+#: inc/meta_box.class.php:230
+msgid "Delete image"
+msgstr ""
+
+#: inc/meta_box.class.php:237
+msgid "Add images"
+msgstr ""
+
+#: inc/meta_box.class.php:246
+msgid "Main"
+msgstr ""
+
+#: inc/meta_box.class.php:248 tpl/booking-steps/booking_variables.php:16
+msgid "Extra"
+msgstr ""
+
+#: inc/meta_box.class.php:270 inc/meta_box.class.php:284
+msgid "Icon"
+msgstr ""
+
+#: inc/meta_box.class.php:306 inc/meta_box.class.php:320
+msgid "Value"
+msgstr ""
+
+#: inc/meta_box.class.php:334 inc/meta_box.class.php:393
+#: inc/meta_box.class.php:423 inc/meta_box.class.php:478
+#: inc/meta_box.class.php:508
+msgid "Adult Weekday Price"
+msgstr ""
+
+#: inc/meta_box.class.php:340 inc/meta_box.class.php:399
+#: inc/meta_box.class.php:429 inc/meta_box.class.php:484
+#: inc/meta_box.class.php:514
+msgid "Adult Weekend Price"
+msgstr ""
+
+#: inc/meta_box.class.php:348 inc/meta_box.class.php:407
+#: inc/meta_box.class.php:437 inc/meta_box.class.php:492
+#: inc/meta_box.class.php:522
+msgid "Child Weekday Price"
+msgstr ""
+
+#: inc/meta_box.class.php:354 inc/meta_box.class.php:413
+#: inc/meta_box.class.php:443 inc/meta_box.class.php:498
+#: inc/meta_box.class.php:528
+msgid "Child Weekend Price"
+msgstr ""
+
+#: inc/meta_box.class.php:379 inc/meta_box.class.php:381
+#: inc/meta_box.class.php:464 inc/meta_box.class.php:466
+msgid "Start Date"
+msgstr ""
+
+#: inc/meta_box.class.php:385 inc/meta_box.class.php:387
+#: inc/meta_box.class.php:470 inc/meta_box.class.php:472
+msgid "End Date"
+msgstr ""
+
+#: inc/meta_box.class.php:420 inc/meta_box.class.php:505
+#: ravis-booking.php:1249
+msgid "Extra Guest Price"
+msgstr ""
+
+#: inc/meta_box.class.php:618 inc/meta_box.class.php:640
+#: inc/shortcode.class.php:1467
+msgid "Chef Selection"
+msgstr ""
+
+#: inc/meta_box.class.php:660 ravis-booking.php:997
+msgid "Guest Name"
+msgstr ""
+
+#: inc/meta_box.class.php:661 ravis-booking.php:1015
+msgid "Guest Phone"
+msgstr ""
+
+#: inc/meta_box.class.php:662
+msgid "Guest Count"
+msgstr ""
+
+#: inc/meta_box.class.php:663 inc/shortcode.class.php:1548
+#: inc/shortcode.class.php:1942 ravis-booking.php:956 tpl/admin/booking.php:24
+#: tpl/admin/booking.php:348 tpl/booking-steps/booking_variables.php:52
+#: tpl/user-panel/booking.php:20 widgets/ravis-newsletter.php:43
+msgid "Email"
+msgstr ""
+
+#: inc/meta_box.class.php:664
+msgid "Confirm"
+msgstr ""
+
+#: inc/meta_box.class.php:665
+msgid "Delete"
+msgstr ""
+
+#: inc/meta_box.class.php:678 tpl/admin/booking.php:58
+#: tpl/admin/booking.php:87 tpl/user-panel/booking.php:36
+#: tpl/user-panel/payment.php:57
+msgid "Confirmed"
+msgstr ""
+
+#: inc/meta_box.class.php:678
+msgid "Pending"
+msgstr ""
+
+#: inc/meta_box.class.php:701
+msgid "Price ( number only)"
+msgstr ""
+
+#: inc/meta_box.class.php:702 inc/meta_box.class.php:709
+msgid "Per"
+msgstr ""
+
+#: inc/meta_box.class.php:824 inc/shortcode.class.php:2957
+msgid "Available"
+msgstr ""
+
+#: inc/meta_box.class.php:828 inc/shortcode.class.php:2961
+msgid "Today"
+msgstr ""
+
+#: inc/ravisButtons.php:16
+msgid "Insert"
+msgstr ""
+
+#: inc/ravisButtons.php:20
+msgid "ShortCode : "
+msgstr ""
+
+#: inc/ravisButtons.php:22
+msgid "Select a shortcode"
+msgstr ""
+
+#: inc/ravisButtons.php:23
+msgid "Main Slider"
+msgstr ""
+
+#: inc/ravisButtons.php:24
+msgid "Text Section"
+msgstr ""
+
+#: inc/ravisButtons.php:25 ravis-booking.php:1107 ravis-booking.php:1214
+msgid "Gallery"
+msgstr ""
+
+#: inc/ravisButtons.php:26
+msgid "Gallery Slideshow"
+msgstr ""
+
+#: inc/ravisButtons.php:27
+msgid "Special Rooms"
+msgstr ""
+
+#: inc/ravisButtons.php:28 ravis-booking.php:404
+msgid "Testimonials"
+msgstr ""
+
+#: inc/ravisButtons.php:29 ravis-booking.php:276
+msgid "Hotel Section"
+msgstr ""
+
+#: inc/ravisButtons.php:30 tpl/booking-notification.php:117
+#: tpl/booking-steps/booking_variables.php:76
+msgid "Package"
+msgstr ""
+
+#: inc/ravisButtons.php:31
+msgid "Video Tour"
+msgstr ""
+
+#: inc/ravisButtons.php:32
+msgid "Timeline"
+msgstr ""
+
+#: inc/ravisButtons.php:33 ravis-booking.php:1226
+#: tpl/booking-notification.php:89 tpl/booking-steps/booking_variables.php:74
+msgid "Services"
+msgstr ""
+
+#: inc/ravisButtons.php:34 tpl/admin/admin.php:37
+msgid "Clients"
+msgstr ""
+
+#: inc/ravisButtons.php:35 ravis-booking.php:388
+msgid "Staff"
+msgstr ""
+
+#: inc/ravisButtons.php:36
+msgid "Promo"
+msgstr ""
+
+#: inc/ravisButtons.php:37 tpl/admin/admin.php:31
+msgid "Social Icons"
+msgstr ""
+
+#: inc/ravisButtons.php:38 ravis-booking.php:435
+msgid "Dishes"
+msgstr ""
+
+#: inc/ravisButtons.php:39 ravis-booking.php:451
+msgid "Menu"
+msgstr ""
+
+#: inc/ravisButtons.php:40
+msgid "Testimonial Form"
+msgstr ""
+
+#: inc/ravisButtons.php:41
+msgid "Upcoming Events"
+msgstr ""
+
+#: inc/ravisButtons.php:42
+msgid "Past Events"
+msgstr ""
+
+#: inc/ravisButtons.php:43
+msgid "Other Events"
+msgstr ""
+
+#: inc/ravisButtons.php:44
+msgid "Event Booking"
+msgstr ""
+
+#: inc/ravisButtons.php:45
+msgid "Room Listing"
+msgstr ""
+
+#: inc/ravisButtons.php:46
+msgid "Room Search Form"
+msgstr ""
+
+#: inc/ravisButtons.php:47
+msgid "Other Rooms"
+msgstr ""
+
+#: inc/ravisButtons.php:48
+msgid "Room Rating"
+msgstr ""
+
+#: inc/ravisButtons.php:49
+msgid "Currency Switcher"
+msgstr ""
+
+#: inc/ravisButtons.php:50
+msgid "Contact Section"
+msgstr ""
+
+#: inc/ravisButtons.php:51 ravis-booking.php:1284 ravis-booking.php:1304
+#: ravis-booking.php:1482 tpl/admin/overview.php:3
+msgid "Booking Overview"
+msgstr ""
+
+#: inc/ravisButtons.php:53
+msgid "Please select the shortcode you want to add."
+msgstr ""
+
+#: inc/ravisButtons.php:55
+msgid "This shortcode doesn't have any attributes"
+msgstr ""
+
+#: inc/ravisButtons.php:58 inc/ravisButtons.php:103 inc/ravisButtons.php:184
+#: inc/ravisButtons.php:214 inc/ravisButtons.php:241 inc/ravisButtons.php:263
+#: inc/ravisButtons.php:304 inc/ravisButtons.php:333 inc/ravisButtons.php:358
+#: inc/ravisButtons.php:380 inc/ravisButtons.php:397 inc/ravisButtons.php:414
+#: inc/ravisButtons.php:436 inc/ravisButtons.php:468 inc/ravisButtons.php:506
+#: inc/ravisButtons.php:528 inc/ravisButtons.php:550 inc/ravisButtons.php:562
+#: tpl/admin/admin.php:565 tpl/admin/admin.php:615 tpl/admin/admin.php:853
+#: tpl/admin/admin.php:886 tpl/admin/admin.php:941 tpl/admin/admin.php:999
+#: tpl/admin/admin.php:1078 tpl/admin/admin.php:1117
+msgid "Title : "
+msgstr ""
+
+#: inc/ravisButtons.php:60
+msgid "Add the title text section in this field"
+msgstr ""
+
+#: inc/ravisButtons.php:63 inc/ravisButtons.php:108 inc/ravisButtons.php:189
+#: inc/ravisButtons.php:219 inc/ravisButtons.php:246 inc/ravisButtons.php:268
+#: inc/ravisButtons.php:309 inc/ravisButtons.php:338 inc/ravisButtons.php:363
+#: inc/ravisButtons.php:385 inc/ravisButtons.php:402 inc/ravisButtons.php:419
+#: inc/ravisButtons.php:441 inc/ravisButtons.php:473 inc/ravisButtons.php:511
+#: inc/ravisButtons.php:533 inc/ravisButtons.php:555 inc/ravisButtons.php:567
+msgid "Subtitle : "
+msgstr ""
+
+#: inc/ravisButtons.php:65
+msgid "Add the subtitle text section in this field"
+msgstr ""
+
+#: inc/ravisButtons.php:68
+msgid "Text : "
+msgstr ""
+
+#: inc/ravisButtons.php:70
+msgid "Add main text of this section in this field."
+msgstr ""
+
+#: inc/ravisButtons.php:73
+msgid "Image URL : "
+msgstr ""
+
+#: inc/ravisButtons.php:75
+msgid "If your text section has an image, add its url in this field."
+msgstr ""
+
+#: inc/ravisButtons.php:78
+msgid "Person's Image : "
+msgstr ""
+
+#: inc/ravisButtons.php:80 inc/ravisButtons.php:350
+msgid "Yes"
+msgstr ""
+
+#: inc/ravisButtons.php:81 inc/ravisButtons.php:351
+msgid "No"
+msgstr ""
+
+#: inc/ravisButtons.php:83
+msgid "Select that if the above image is a person image or not."
+msgstr ""
+
+#: inc/ravisButtons.php:86
+msgid "Cite : "
+msgstr ""
+
+#: inc/ravisButtons.php:88
+msgid "Add the cite of text section in this field."
+msgstr ""
+
+#: inc/ravisButtons.php:91
+msgid "Button Text : "
+msgstr ""
+
+#: inc/ravisButtons.php:93
+msgid "If your text section has a button, add its text in this field"
+msgstr ""
+
+#: inc/ravisButtons.php:96
+msgid "Button URL : "
+msgstr ""
+
+#: inc/ravisButtons.php:98
+msgid "If your text section has a button, add its URL in this field"
+msgstr ""
+
+#: inc/ravisButtons.php:105
+msgid "Add the title galler section in this field"
+msgstr ""
+
+#: inc/ravisButtons.php:110
+msgid "Add the subtitle galler section in this field"
+msgstr ""
+
+#: inc/ravisButtons.php:113 inc/ravisButtons.php:206
+msgid "Type : "
+msgstr ""
+
+#: inc/ravisButtons.php:115
+msgid "Grid"
+msgstr ""
+
+#: inc/ravisButtons.php:116 inc/ravisButtons.php:463
+msgid "List"
+msgstr ""
+
+#: inc/ravisButtons.php:118
+msgid "Select which type of gallery you want."
+msgstr ""
+
+#: inc/ravisButtons.php:121 inc/ravisButtons.php:143
+msgid "Image Count : "
+msgstr ""
+
+#: inc/ravisButtons.php:123 inc/ravisButtons.php:145
+msgid "Add how many images you want to show in gallery section."
+msgstr ""
+
+#: inc/ravisButtons.php:126
+msgid "More Button's URL : "
+msgstr ""
+
+#: inc/ravisButtons.php:128
+msgid ""
+"If you want to have more link below the gallery add your gallery's URL in "
+"this field. Leave it blank if you do not need more button."
+msgstr ""
+
+#: inc/ravisButtons.php:133
+msgid "Pre Text : "
+msgstr ""
+
+#: inc/ravisButtons.php:135
+msgid "If you want to show a text above the gallery show, add your text here."
+msgstr ""
+
+#: inc/ravisButtons.php:138 inc/ravisButtons.php:194
+msgid "Post Text : "
+msgstr ""
+
+#: inc/ravisButtons.php:140
+msgid "If you want to show a text below the gallery show, add your text here."
+msgstr ""
+
+#: inc/ravisButtons.php:150
+msgid "Room Count : "
+msgstr ""
+
+#: inc/ravisButtons.php:152
+msgid "Add how many rooms you want to show in this section."
+msgstr ""
+
+#: inc/ravisButtons.php:157 inc/ravisButtons.php:314
+msgid "Background Image : "
+msgstr ""
+
+#: inc/ravisButtons.php:159 inc/ravisButtons.php:316
+msgid "Add the URL of image that you want to show as background."
+msgstr ""
+
+#: inc/ravisButtons.php:162 inc/ravisButtons.php:169 inc/ravisButtons.php:199
+#: inc/ravisButtons.php:256 inc/ravisButtons.php:278 inc/ravisButtons.php:285
+#: inc/ravisButtons.php:297 inc/ravisButtons.php:343 inc/ravisButtons.php:373
+#: inc/ravisButtons.php:407 inc/ravisButtons.php:424 inc/ravisButtons.php:446
+#: inc/ravisButtons.php:483 inc/ravisButtons.php:538
+msgid "Count : "
+msgstr ""
+
+#: inc/ravisButtons.php:164
+msgid "Add how many testimonials you want to show in this section."
+msgstr ""
+
+#: inc/ravisButtons.php:171
+msgid "Add how many sections you want to show in this section."
+msgstr ""
+
+#: inc/ravisButtons.php:176 inc/ravisButtons.php:488
+msgid "Title Type : "
+msgstr ""
+
+#: inc/ravisButtons.php:178 inc/ravisButtons.php:209 inc/ravisButtons.php:490
+msgid "Simple"
+msgstr ""
+
+#: inc/ravisButtons.php:179 inc/ravisButtons.php:491
+msgid "Box"
+msgstr ""
+
+#: inc/ravisButtons.php:181 inc/ravisButtons.php:211 inc/ravisButtons.php:493
+msgid "Select which type of title you want for this section."
+msgstr ""
+
+#: inc/ravisButtons.php:186 inc/ravisButtons.php:191 inc/ravisButtons.php:216
+#: inc/ravisButtons.php:221 inc/ravisButtons.php:243 inc/ravisButtons.php:248
+#: inc/ravisButtons.php:265 inc/ravisButtons.php:270 inc/ravisButtons.php:306
+#: inc/ravisButtons.php:311 inc/ravisButtons.php:335 inc/ravisButtons.php:340
+#: inc/ravisButtons.php:360 inc/ravisButtons.php:365 inc/ravisButtons.php:382
+#: inc/ravisButtons.php:387 inc/ravisButtons.php:399 inc/ravisButtons.php:404
+#: inc/ravisButtons.php:416 inc/ravisButtons.php:421 inc/ravisButtons.php:438
+#: inc/ravisButtons.php:443 inc/ravisButtons.php:470 inc/ravisButtons.php:475
+#: inc/ravisButtons.php:508 inc/ravisButtons.php:513 inc/ravisButtons.php:530
+#: inc/ravisButtons.php:535 inc/ravisButtons.php:552 inc/ravisButtons.php:557
+#: inc/ravisButtons.php:564 inc/ravisButtons.php:569
+msgid "Add the title of this section in this field."
+msgstr ""
+
+#: inc/ravisButtons.php:196
+msgid ""
+"If you want to add any description to be shown above of the packages, add it "
+"in this field."
+msgstr ""
+
+#: inc/ravisButtons.php:201
+msgid "Add how many packages you want to show in this section."
+msgstr ""
+
+#: inc/ravisButtons.php:208
+msgid "2 Columns"
+msgstr ""
+
+#: inc/ravisButtons.php:224 inc/ravisButtons.php:251 inc/ravisButtons.php:273
+#: inc/ravisButtons.php:368 inc/ravisButtons.php:478 inc/ravisButtons.php:572
+msgid "Description : "
+msgstr ""
+
+#: inc/ravisButtons.php:226
+msgid ""
+"If you want to add any description to be shown above of the video, add it in "
+"this field."
+msgstr ""
+
+#: inc/ravisButtons.php:229
+msgid "Background Image URL : "
+msgstr ""
+
+#: inc/ravisButtons.php:231
+msgid "Add the URL of background image in this field."
+msgstr ""
+
+#: inc/ravisButtons.php:234
+msgid "Video URL : "
+msgstr ""
+
+#: inc/ravisButtons.php:236
+msgid "Add the URL of embed code of video in this field."
+msgstr ""
+
+#: inc/ravisButtons.php:253 inc/ravisButtons.php:275 inc/ravisButtons.php:370
+#: inc/ravisButtons.php:480
+msgid ""
+"If you want to add any description to be shown above of the timeline, add it "
+"in this field."
+msgstr ""
+
+#: inc/ravisButtons.php:258 inc/ravisButtons.php:280 inc/ravisButtons.php:287
+#: inc/ravisButtons.php:299 inc/ravisButtons.php:345 inc/ravisButtons.php:375
+#: inc/ravisButtons.php:409 inc/ravisButtons.php:426 inc/ravisButtons.php:448
+#: inc/ravisButtons.php:485 inc/ravisButtons.php:540
+msgid "Add how many items you want to show in this section."
+msgstr ""
+
+#: inc/ravisButtons.php:292
+msgid "Staff IDs : "
+msgstr ""
+
+#: inc/ravisButtons.php:294
+msgid ""
+"If you want to show some specified staff, you just need to add their IDs in "
+"this field in CSV(Comma Separated Value) format."
+msgstr ""
+
+#: inc/ravisButtons.php:321
+msgid "ID : "
+msgstr ""
+
+#: inc/ravisButtons.php:323
+msgid "If you want this section has a unique ID, add your ID in this field."
+msgstr ""
+
+#: inc/ravisButtons.php:326 inc/ravisButtons.php:390 inc/ravisButtons.php:516
+#: inc/ravisButtons.php:579
+msgid "Class : "
+msgstr ""
+
+#: inc/ravisButtons.php:328 inc/ravisButtons.php:392
+msgid "If you want this section has a class, add your class in this field."
+msgstr ""
+
+#: inc/ravisButtons.php:348
+msgid "Post URL : "
+msgstr ""
+
+#: inc/ravisButtons.php:353
+msgid "You can disable/enable more links for the dishes with this option"
+msgstr ""
+
+#: inc/ravisButtons.php:431 inc/ravisButtons.php:453
+msgid "Event ID : "
+msgstr ""
+
+#: inc/ravisButtons.php:433
+msgid "Add the ID of the event that you want to exclude it from the result."
+msgstr ""
+
+#: inc/ravisButtons.php:455
+msgid "Add the ID of the event that you want user book for it in this field."
+msgstr ""
+
+#: inc/ravisButtons.php:460 inc/ravisButtons.php:498
+msgid "Layout : "
+msgstr ""
+
+#: inc/ravisButtons.php:462
+msgid "Gird"
+msgstr ""
+
+#: inc/ravisButtons.php:465
+msgid "Select layout that you want to show the rooms."
+msgstr ""
+
+#: inc/ravisButtons.php:500
+msgid "Horizontal"
+msgstr ""
+
+#: inc/ravisButtons.php:501
+msgid "Vertical"
+msgstr ""
+
+#: inc/ravisButtons.php:503
+msgid "Select layout that search form"
+msgstr ""
+
+#: inc/ravisButtons.php:518
+msgid ""
+"If you want that this section has a specified class, add it in this field."
+msgstr ""
+
+#: inc/ravisButtons.php:523 inc/ravisButtons.php:545 inc/ravisButtons.php:584
+msgid "Room ID : "
+msgstr ""
+
+#: inc/ravisButtons.php:525
+msgid "Add the id of room that you want to exclude it from the result."
+msgstr ""
+
+#: inc/ravisButtons.php:547
+msgid "Add the id of room that you want to show its rating."
+msgstr ""
+
+#: inc/ravisButtons.php:563
+msgid "Contact Us"
+msgstr ""
+
+#: inc/ravisButtons.php:568
+msgid "Do not hesitate to contact me if you have any further questions"
+msgstr ""
+
+#: inc/ravisButtons.php:574
+msgid ""
+"If you want to add any description to be shown above of this section, add it "
+"in this field."
+msgstr ""
+
+#: inc/ravisButtons.php:581
+msgid ""
+"Add class for the calendar container, if you need special class for future "
+"uses."
+msgstr ""
+
+#: inc/ravisButtons.php:586
+msgid ""
+"If you want to show an specific room's availability, put its ID in this "
+"field."
+msgstr ""
+
+#: inc/shortcode.class.php:96
+msgid "There is not any slides here."
+msgstr ""
+
+#: inc/shortcode.class.php:221 inc/shortcode.class.php:237
+msgid "Enlarge"
+msgstr ""
+
+#: inc/shortcode.class.php:268
+msgid "Filters"
+msgstr ""
+
+#: inc/shortcode.class.php:270
+msgid "All"
+msgstr ""
+
+#: inc/shortcode.class.php:281
+msgid "More ..."
+msgstr ""
+
+#: inc/shortcode.class.php:400
+msgid "There is not any special rooms here."
+msgstr ""
+
+#: inc/shortcode.class.php:470
+msgid "There is not any Testimonials here."
+msgstr ""
+
+#: inc/shortcode.class.php:540
+msgid "You have not set any sections for your hotel."
+msgstr ""
+
+#: inc/shortcode.class.php:642 templates/package-archive.php:64
+msgid "Select"
+msgstr ""
+
+#: inc/shortcode.class.php:654
+msgid "There is not any packages here."
+msgstr ""
+
+#: inc/shortcode.class.php:795 inc/shortcode.class.php:1703
+#: inc/shortcode.class.php:1806 inc/shortcode.class.php:1910
+msgid "There is not any events here."
+msgstr ""
+
+#: inc/shortcode.class.php:881
+msgid "There is not any services here."
+msgstr ""
+
+#: inc/shortcode.class.php:932
+msgid "You have not set any client for your hotel."
+msgstr ""
+
+#: inc/shortcode.class.php:1053
+msgid "There is not any staff here."
+msgstr ""
+
+#: inc/shortcode.class.php:1373
+msgid "There is not any dishes here."
+msgstr ""
+
+#: inc/shortcode.class.php:1505
+msgid "There is not any menus here."
+msgstr ""
+
+#: inc/shortcode.class.php:1545
+msgid "Name *"
+msgstr ""
+
+#: inc/shortcode.class.php:1551 inc/shortcode.class.php:1945
+#: tpl/admin/booking.php:23 tpl/admin/booking.php:347
+#: tpl/booking-steps/booking_variables.php:51 tpl/user-panel/booking.php:19
+msgid "Phone"
+msgstr ""
+
+#: inc/shortcode.class.php:1554
+msgid "Your Job"
+msgstr ""
+
+#: inc/shortcode.class.php:1557
+msgid "Testimonial's Title *"
+msgstr ""
+
+#: inc/shortcode.class.php:1560
+msgid "Your Testimonial *"
+msgstr ""
+
+#: inc/shortcode.class.php:1564 tpl/booking-steps/booking_variables.php:81
+msgid "Send"
+msgstr ""
+
+#: inc/shortcode.class.php:1939 tpl/admin/booking.php:22
+#: tpl/admin/booking.php:346
+msgid "Name"
+msgstr ""
+
+#: inc/shortcode.class.php:1948
+msgid "Guests"
+msgstr ""
+
+#: inc/shortcode.class.php:1964 inc/shortcode.class.php:2354
+#: inc/shortcode.class.php:2452 tpl/booking-steps/booking_variables.php:18
+msgid "Book Now"
+msgstr ""
+
+#: inc/shortcode.class.php:2005
+msgid "You have not set any events this form."
+msgstr ""
+
+#: inc/shortcode.class.php:2109 inc/shortcode.class.php:2206
+#: inc/shortcode.class.php:2570 templates/room-archive.php:57
+#: templates/room-archive.php:89
+msgid "Starting from :"
+msgstr ""
+
+#: inc/shortcode.class.php:2120 templates/room-archive.php:100
+msgid "View :"
+msgstr ""
+
+#: inc/shortcode.class.php:2129 templates/room-archive.php:108
+msgid "Room Size :"
+msgstr ""
+
+#: inc/shortcode.class.php:2138 templates/room-archive.php:117
+msgid "Max People :"
+msgstr ""
+
+#: inc/shortcode.class.php:2168 templates/room-archive.php:143
+msgid "Facilities :"
+msgstr ""
+
+#: inc/shortcode.class.php:2176 templates/room-archive.php:150
+#: tpl/admin/booking.php:27
+msgid "More Info"
+msgstr ""
+
+#: inc/shortcode.class.php:2225 inc/shortcode.class.php:2587
+msgid "There is not any rooms here."
+msgstr ""
+
+#: inc/shortcode.class.php:2296 inc/shortcode.class.php:2403
+msgid "Check in"
+msgstr ""
+
+#: inc/shortcode.class.php:2300 inc/shortcode.class.php:2407
+msgid "Check out"
+msgstr ""
+
+#: inc/shortcode.class.php:2308 inc/shortcode.class.php:2309
+#: inc/shortcode.class.php:2310 inc/shortcode.class.php:2311
+#: inc/shortcode.class.php:2415 inc/shortcode.class.php:2416
+#: inc/shortcode.class.php:2417 inc/shortcode.class.php:2418
+#: ravis-booking.php:292 tpl/booking-steps/booking_variables.php:10
+msgid "Rooms"
+msgstr ""
+
+#: inc/shortcode.class.php:2318
+msgid "Room 1"
+msgstr ""
+
+#: inc/shortcode.class.php:2323 inc/shortcode.class.php:2324
+#: inc/shortcode.class.php:2325 inc/shortcode.class.php:2326
+#: inc/shortcode.class.php:2327 inc/shortcode.class.php:2328
+#: inc/shortcode.class.php:2329 inc/shortcode.class.php:2330
+#: inc/shortcode.class.php:2331 inc/shortcode.class.php:2365
+#: inc/shortcode.class.php:2366 inc/shortcode.class.php:2367
+#: inc/shortcode.class.php:2368 inc/shortcode.class.php:2369
+#: inc/shortcode.class.php:2370 inc/shortcode.class.php:2371
+#: inc/shortcode.class.php:2372 inc/shortcode.class.php:2373
+#: inc/shortcode.class.php:2426 inc/shortcode.class.php:2427
+#: inc/shortcode.class.php:2428 inc/shortcode.class.php:2429
+#: inc/shortcode.class.php:2430 inc/shortcode.class.php:2431
+#: inc/shortcode.class.php:2432 inc/shortcode.class.php:2433
+#: inc/shortcode.class.php:2434 tpl/booking-steps/booking_variables.php:13
+msgid "Adults"
+msgstr ""
+
+#: inc/shortcode.class.php:2336 inc/shortcode.class.php:2378
+#: inc/shortcode.class.php:2437 inc/shortcode.class.php:2465
+#: tpl/booking-steps/booking_variables.php:17
+msgid "No Child"
+msgstr ""
+
+#: inc/shortcode.class.php:2337 inc/shortcode.class.php:2338
+#: inc/shortcode.class.php:2339 inc/shortcode.class.php:2340
+#: inc/shortcode.class.php:2341 inc/shortcode.class.php:2342
+#: inc/shortcode.class.php:2343 inc/shortcode.class.php:2344
+#: inc/shortcode.class.php:2345 inc/shortcode.class.php:2346
+#: inc/shortcode.class.php:2379 inc/shortcode.class.php:2380
+#: inc/shortcode.class.php:2381 inc/shortcode.class.php:2382
+#: inc/shortcode.class.php:2383 inc/shortcode.class.php:2384
+#: inc/shortcode.class.php:2385 inc/shortcode.class.php:2386
+#: inc/shortcode.class.php:2387 inc/shortcode.class.php:2388
+#: inc/shortcode.class.php:2438 inc/shortcode.class.php:2439
+#: inc/shortcode.class.php:2440 inc/shortcode.class.php:2441
+#: inc/shortcode.class.php:2442 inc/shortcode.class.php:2443
+#: inc/shortcode.class.php:2444 inc/shortcode.class.php:2445
+#: inc/shortcode.class.php:2446 inc/shortcode.class.php:2447
+#: tpl/booking-notification.php:70 tpl/booking-steps/booking_variables.php:14
+msgid "Children"
+msgstr ""
+
+#: inc/shortcode.class.php:2423
+msgid "Room 1 :"
+msgstr ""
+
+#: inc/shortcode.class.php:2458
+msgid "1 Adult"
+msgstr ""
+
+#: inc/shortcode.class.php:2459
+msgid "2 Adults"
+msgstr ""
+
+#: inc/shortcode.class.php:2460
+msgid "3 Adults"
+msgstr ""
+
+#: inc/shortcode.class.php:2461
+msgid "4 Adults"
+msgstr ""
+
+#: inc/shortcode.class.php:2462
+msgid "5 Adults"
+msgstr ""
+
+#: inc/shortcode.class.php:2466
+msgid "1 Children"
+msgstr ""
+
+#: inc/shortcode.class.php:2467
+msgid "2 Children"
+msgstr ""
+
+#: inc/shortcode.class.php:2468
+msgid "3 Children"
+msgstr ""
+
+#: inc/shortcode.class.php:2469
+msgid "4 Children"
+msgstr ""
+
+#: inc/shortcode.class.php:2470
+msgid "5 Children"
+msgstr ""
+
+#: inc/shortcode.class.php:2618
+msgid "Rating system is not enabled. Please check your settings."
+msgstr ""
+
+#: inc/templater.class.php:36
+msgid "Room Archive"
+msgstr ""
+
+#: inc/templater.class.php:37
+msgid "Guest Book"
+msgstr ""
+
+#: inc/templater.class.php:38
+msgid "Staff Archive"
+msgstr ""
+
+#: inc/templater.class.php:39
+msgid "Package Archive"
+msgstr ""
+
+#: inc/templater.class.php:40
+msgid "Event Archive"
+msgstr ""
+
+#: inc/user.class.php:69
+msgid "Wrong username or password."
+msgstr ""
+
+#: inc/user.class.php:76
+msgid "You are logged in."
+msgstr ""
+
+#: inc/user.class.php:84 inc/user.class.php:152 inc/user.class.php:256
+msgid "Are your cheating?"
+msgstr ""
+
+#: inc/user.class.php:127
+msgid "This username is already registered."
+msgstr ""
+
+#: inc/user.class.php:134
+msgid "This email address is already registered."
+msgstr ""
+
+#: inc/user.class.php:144
+msgid "Thanks for your registration, please check your email."
+msgstr ""
+
+#: inc/user.class.php:225
+msgid "Your information was not updated, please try again."
+msgstr ""
+
+#: inc/user.class.php:240
+msgid "Your information is updated."
+msgstr ""
+
+#: inc/user.class.php:248 tpl/user-panel/profile.php:38
+msgid "Please fill all required fields."
+msgstr ""
+
+#: ravis-booking.php:277
+msgid "Manage the hotel sections in this section."
+msgstr ""
+
+#: ravis-booking.php:293
+msgid "Manage the rooms of hotel."
+msgstr ""
+
+#: ravis-booking.php:303
+msgctxt "Taxonomy plural name"
+msgid "Room Categories"
+msgstr ""
+
+#: ravis-booking.php:304
+msgctxt "Taxonomy singular name"
+msgid "Room Category"
+msgstr ""
+
+#: ravis-booking.php:324
+msgid "Block Dates"
+msgstr ""
+
+#: ravis-booking.php:325
+msgid "Manage the Block Dates."
+msgstr ""
+
+#: ravis-booking.php:340
+msgid "Service"
+msgstr ""
+
+#: ravis-booking.php:341
+msgid "Manage the services that your hotel provide."
+msgstr ""
+
+#: ravis-booking.php:356
+msgid "Packages"
+msgstr ""
+
+#: ravis-booking.php:357
+msgid "Manage Special offer packages."
+msgstr ""
+
+#: ravis-booking.php:372
+msgid "Events"
+msgstr ""
+
+#: ravis-booking.php:373
+msgid "Manage the events which are happening in the Hotel."
+msgstr ""
+
+#: ravis-booking.php:389
+msgid "Manage the staff of hotel."
+msgstr ""
+
+#: ravis-booking.php:405
+msgid "Manage the testimonials which is given by hotel's guests."
+msgstr ""
+
+#: ravis-booking.php:420
+msgid "History Time Line"
+msgstr ""
+
+#: ravis-booking.php:421
+msgid ""
+"These events will be added to \"[ravis-booking-timeline]\" shortcodes that "
+"you can add it to any pages you want."
+msgstr ""
+
+#: ravis-booking.php:436
+msgid "You can manage the dishes of your restaurant in this section."
+msgstr ""
+
+#: ravis-booking.php:452
+msgid "You can manage menu of your restaurant in this section."
+msgstr ""
+
+#: ravis-booking.php:467 tpl/booking-steps/booking_variables.php:79
+msgid "Coupon"
+msgstr ""
+
+#: ravis-booking.php:468
+msgid "You can manage coupon in this section."
+msgstr ""
+
+#: ravis-booking.php:537
+msgid "You are not allowed to be here"
+msgstr ""
+
+#: ravis-booking.php:567
+msgid "Are you sure you want to delete this item?"
+msgstr ""
+
+#: ravis-booking.php:746
+#, php-format
+msgid "I have read and accept the <a href=\"%s\">terms and conditions</a>"
+msgstr ""
+
+#: ravis-booking.php:750 tpl/booking-notification.php:188
+msgid "Reservation Complete"
+msgstr ""
+
+#: ravis-booking.php:751 tpl/booking-notification.php:190
+msgid "Details of your reservation request was sent to your email"
+msgstr ""
+
+#: ravis-booking.php:752 tpl/booking-notification.php:192
+#, php-format
+msgid ""
+"For more information you can contact us via <a href=\"%s\">contact form</a> "
+"of website"
+msgstr ""
+
+#: ravis-booking.php:806
+msgid "Post Setting"
+msgstr ""
+
+#: ravis-booking.php:809 ravis-booking.php:826 ravis-booking.php:1049
+#: ravis-booking.php:1083 ravis-booking.php:1150 ravis-booking.php:1172
+#: ravis-booking.php:1350
+msgid "Subtitle"
+msgstr ""
+
+#: ravis-booking.php:810
+msgid "Add subtitle of the post in this field."
+msgstr ""
+
+#: ravis-booking.php:823
+msgid "Page Setting"
+msgstr ""
+
+#: ravis-booking.php:827
+msgid "Add subtitle of the page in this field."
+msgstr ""
+
+#: ravis-booking.php:832
+msgid "Page ID"
+msgstr ""
+
+#: ravis-booking.php:833
+msgid ""
+"Add your custom ID for using it to change the default style. List of the "
+"default page IDs are <a href=\"#\" target=\"_blank\">here</a>"
+msgstr ""
+
+#: ravis-booking.php:838
+msgid "Page Class"
+msgstr ""
+
+#: ravis-booking.php:839
+msgid ""
+"Add your custom class for using it to change the default style. List of the "
+"default page classes are <a href=\"#\" target=\"_blank\">here</a>"
+msgstr ""
+
+#: ravis-booking.php:844
+msgid "Wide View"
+msgstr ""
+
+#: ravis-booking.php:845
+msgid "If you want to have wide view in this page, please turn this switch on."
+msgstr ""
+
+#: ravis-booking.php:850
+msgid "Breadcrumb Section"
+msgstr ""
+
+#: ravis-booking.php:851
+msgid ""
+"If you want to have breadcrumb in this page, please turn this switch on."
+msgstr ""
+
+#: ravis-booking.php:857
+msgid "Page Breadcrumb Background"
+msgstr ""
+
+#: ravis-booking.php:858
+msgid ""
+"Upload your desired image as page's breadcrumb. Please note that your image "
+"will be shown if you have turned on the \"Breadcrumb Section\" option."
+msgstr ""
+
+#: ravis-booking.php:863
+msgid "Page Breadcrumb Height"
+msgstr ""
+
+#: ravis-booking.php:864
+msgid ""
+"Set the height of breadcrumb in this field. Default value of it is 520px, "
+"leave it blank if you want to use default value."
+msgstr ""
+
+#: ravis-booking.php:869
+msgid "Page Breadcrumb Text"
+msgstr ""
+
+#: ravis-booking.php:870
+msgid "If you want to have text below the title box, add it here."
+msgstr ""
+
+#: ravis-booking.php:910
+msgid "Block Dates Information"
+msgstr ""
+
+#: ravis-booking.php:914
+msgid "Select the block date starting date"
+msgstr ""
+
+#: ravis-booking.php:920
+msgid "To"
+msgstr ""
+
+#: ravis-booking.php:921
+msgid "Select the block date ending date"
+msgstr ""
+
+#: ravis-booking.php:927
+msgid "Select Rooms"
+msgstr ""
+
+#: ravis-booking.php:928
+msgid "Select rooms which is blocked"
+msgstr ""
+
+#: ravis-booking.php:942
+msgid "Additional information"
+msgstr ""
+
+#: ravis-booking.php:945
+msgid "Staff ID"
+msgstr ""
+
+#: ravis-booking.php:950
+msgid "Position"
+msgstr ""
+
+#: ravis-booking.php:951
+msgid ""
+"Add the position of the employee like : \"Manager\", \"Executive Director\" "
+"and etc."
+msgstr ""
+
+#: ravis-booking.php:957
+msgid "Add the email of the employee"
+msgstr ""
+
+#: ravis-booking.php:962
+msgid "Skype"
+msgstr ""
+
+#: ravis-booking.php:963
+msgid "Add the Skype ID of the employee"
+msgstr ""
+
+#: ravis-booking.php:968
+msgid "Facebook"
+msgstr ""
+
+#: ravis-booking.php:969
+msgid "Add the facebook ID of the employee"
+msgstr ""
+
+#: ravis-booking.php:974
+msgid "Twitter"
+msgstr ""
+
+#: ravis-booking.php:975
+msgid "Add the twitter ID of the employee"
+msgstr ""
+
+#: ravis-booking.php:980
+msgid "Google Plus"
+msgstr ""
+
+#: ravis-booking.php:981
+msgid "Add the google plus of the employee"
+msgstr ""
+
+#: ravis-booking.php:994
+msgid "Testimonials Extra information"
+msgstr ""
+
+#: ravis-booking.php:998
+msgid "Put the guest's name in this field"
+msgstr ""
+
+#: ravis-booking.php:1003
+msgid "Guest Job"
+msgstr ""
+
+#: ravis-booking.php:1004
+msgid "Put the guest's job in this field"
+msgstr ""
+
+#: ravis-booking.php:1009
+msgid "Guest Email"
+msgstr ""
+
+#: ravis-booking.php:1010
+msgid "Put the guest's email in this field"
+msgstr ""
+
+#: ravis-booking.php:1016
+msgid "Put the guest's phone in this field"
+msgstr ""
+
+#: ravis-booking.php:1029
+msgid "Timeline Extra information"
+msgstr ""
+
+#: ravis-booking.php:1032 ravis-booking.php:1095 tpl/admin/booking.php:189
+#: tpl/admin/payment.php:22 tpl/user-panel/booking.php:149
+#: tpl/user-panel/payment.php:18
+msgid "Date"
+msgstr ""
+
+#: ravis-booking.php:1033
+msgid "Please add the \"Year\" of the event in this box like : 1984"
+msgstr ""
+
+#: ravis-booking.php:1046
+msgid "Packages Setting"
+msgstr ""
+
+#: ravis-booking.php:1050
+msgid "Add subtitle of the package in this field."
+msgstr ""
+
+#: ravis-booking.php:1056
+msgid "Add price of the package in this field"
+msgstr ""
+
+#: ravis-booking.php:1061
+msgid "Included Items"
+msgstr ""
+
+#: ravis-booking.php:1062
+msgid "Add as much as you need items to this package"
+msgstr ""
+
+#: ravis-booking.php:1075
+msgid "Event Extra information"
+msgstr ""
+
+#: ravis-booking.php:1078
+msgid "Event ID"
+msgstr ""
+
+#: ravis-booking.php:1084
+msgid "Add subtitle of about the event in this field."
+msgstr ""
+
+#: ravis-booking.php:1089 ravis-booking.php:1178
+msgid "Short Description"
+msgstr ""
+
+#: ravis-booking.php:1090
+msgid ""
+"Add some description about the event to be shown in event's box in archive "
+"page."
+msgstr ""
+
+#: ravis-booking.php:1096
+msgid "Select date of the event"
+msgstr ""
+
+#: ravis-booking.php:1101
+msgid "Capacity"
+msgstr ""
+
+#: ravis-booking.php:1102
+msgid "Select how many guests can book for this event"
+msgstr ""
+
+#: ravis-booking.php:1108
+msgid "Manage event's images with this field."
+msgstr ""
+
+#: ravis-booking.php:1113 ravis-booking.php:1328
+msgid "Box Column"
+msgstr ""
+
+#: ravis-booking.php:1114
+msgid ""
+"Select how many columns of archive pages or shortcode must be filled by this "
+"item."
+msgstr ""
+
+#: ravis-booking.php:1132
+msgid "Event Guest List"
+msgstr ""
+
+#: ravis-booking.php:1147
+msgid "Hotel Section Extra information"
+msgstr ""
+
+#: ravis-booking.php:1151
+msgid "Add subtitle of this section in this field."
+msgstr ""
+
+#: ravis-booking.php:1164
+msgid "Room Extra information"
+msgstr ""
+
+#: ravis-booking.php:1167
+msgid "Room ID"
+msgstr ""
+
+#: ravis-booking.php:1173
+msgid "Add a subtitle about the room"
+msgstr ""
+
+#: ravis-booking.php:1179
+msgid ""
+"Add a short description about this room to be shown in the room listing "
+"pages. Do Not use HTML tags."
+msgstr ""
+
+#: ravis-booking.php:1184
+msgid "Room Count"
+msgstr ""
+
+#: ravis-booking.php:1185
+msgid "Add the count of this kind of room in the hotel like : 30"
+msgstr ""
+
+#: ravis-booking.php:1190
+msgid "Room Capacity"
+msgstr ""
+
+#: ravis-booking.php:1191
+msgid ""
+"Set the capacity of the room here. <br> Main Capacity is the capacity of the "
+"room without extra guests. <br> Extra capacity is for rooms in which can be "
+"accepted extra guests."
+msgstr ""
+
+#: ravis-booking.php:1196
+msgid "Minimum Stay"
+msgstr ""
+
+#: ravis-booking.php:1197
+msgid ""
+"Add the minimum stay night for this room like : \"2\". <br> which means that "
+"guests must book this room for 2 or more nights. <br> Leave it blank if the "
+"room doesn't have minimum stay limitation."
+msgstr ""
+
+#: ravis-booking.php:1202 tpl/booking-steps/booking_variables.php:31
+msgid "Room Size"
+msgstr ""
+
+#: ravis-booking.php:1203
+msgid "Add the area of room"
+msgstr ""
+
+#: ravis-booking.php:1208 tpl/booking-steps/booking_variables.php:30
+msgid "View"
+msgstr ""
+
+#: ravis-booking.php:1209
+msgid "Add the view of room, for example: Garden, Sea."
+msgstr ""
+
+#: ravis-booking.php:1215
+msgid "Manage room's images with this field."
+msgstr ""
+
+#: ravis-booking.php:1220 tpl/booking-steps/booking_variables.php:33
+msgid "Facilities"
+msgstr ""
+
+#: ravis-booking.php:1221
+msgid "Add the facilities of this room."
+msgstr ""
+
+#: ravis-booking.php:1227
+msgid "Add the services of this room."
+msgstr ""
+
+#: ravis-booking.php:1240
+msgid "Room Price Setting"
+msgstr ""
+
+#: ravis-booking.php:1243 tpl/booking-steps/booking_variables.php:34
+msgid "Base Price"
+msgstr ""
+
+#: ravis-booking.php:1244
+msgid ""
+"Add base price, the price which is used for main capacity of room, of room "
+"in this field."
+msgstr ""
+
+#: ravis-booking.php:1250
+msgid ""
+"Add base price, the price which is used for extra capacity of room, of room "
+"in this field."
+msgstr ""
+
+#: ravis-booking.php:1255 tpl/admin/admin.php:43
+msgid "Seasonal Price"
+msgstr ""
+
+#: ravis-booking.php:1256
+msgid ""
+"Set the room price based on the date. These prices will override the base "
+"price during the period you set."
+msgstr ""
+
+#: ravis-booking.php:1261 tpl/booking-steps/booking_variables.php:66
+msgid "Discount"
+msgstr ""
+
+#: ravis-booking.php:1262
+msgid ""
+"Set the discount for users who want to book more than specific night, for "
+"example a week or 12 nights. "
+msgstr ""
+
+#: ravis-booking.php:1275
+msgid "Room Setting"
+msgstr ""
+
+#: ravis-booking.php:1278
+msgid "Rating System"
+msgstr ""
+
+#: ravis-booking.php:1279
+msgid "Enable / Disable Rating for rooms"
+msgstr ""
+
+#: ravis-booking.php:1285
+msgid "Enable / Disable Booking Overview Calendar in Rooms"
+msgstr ""
+
+#: ravis-booking.php:1290
+msgid "Special Room"
+msgstr ""
+
+#: ravis-booking.php:1291
+msgid ""
+"Mark this room as a special room to be listed in [ravis-booking-special-"
+"rooms] shortcode"
+msgstr ""
+
+#: ravis-booking.php:1319
+msgid "Dish Extra Information"
+msgstr ""
+
+#: ravis-booking.php:1323
+msgid "Add base price of this dish in this field."
+msgstr ""
+
+#: ravis-booking.php:1329
+msgid "Select how many columns of archive pages must be filled by this item."
+msgstr ""
+
+#: ravis-booking.php:1347
+msgid "Menu Extra Information"
+msgstr ""
+
+#: ravis-booking.php:1351
+msgid "Add a subtitle for this menu to be used in menu shortcode"
+msgstr ""
+
+#: ravis-booking.php:1356
+msgid "Menu Item"
+msgstr ""
+
+#: ravis-booking.php:1357
+msgid "Mange menu items by this section"
+msgstr ""
+
+#: ravis-booking.php:1370
+msgid "Additional Settings"
+msgstr ""
+
+#: ravis-booking.php:1373
+msgid "Load in Shortcode"
+msgstr ""
+
+#: ravis-booking.php:1374
+msgid ""
+"Enable this field if you want this service loads in [ravis-booking-services] "
+"shortcode."
+msgstr ""
+
+#: ravis-booking.php:1380
+msgid "Load in Booking Process"
+msgstr ""
+
+#: ravis-booking.php:1381
+msgid ""
+"Enable this field if you want this service loads in booking process that "
+"users can select it as extra services."
+msgstr ""
+
+#: ravis-booking.php:1386
+msgid "Price Type"
+msgstr ""
+
+#: ravis-booking.php:1387
+msgid "Select if this service is free or paid."
+msgstr ""
+
+#: ravis-booking.php:1398
+msgid "Add price details for your service"
+msgstr ""
+
+#: ravis-booking.php:1404
+msgid "Mandatory"
+msgstr ""
+
+#: ravis-booking.php:1405
+msgid ""
+"Enable this field if you want this service will un-selectable by user during "
+"the booking process. It always will be checked."
+msgstr ""
+
+#: ravis-booking.php:1419
+msgid "Settings"
+msgstr ""
+
+#: ravis-booking.php:1422
+msgid "Description"
+msgstr ""
+
+#: ravis-booking.php:1423
+msgid "Add a short description about this coupon."
+msgstr ""
+
+#: ravis-booking.php:1428
+msgid "Discount Type"
+msgstr ""
+
+#: ravis-booking.php:1429
+msgid ""
+"Select which type of discount you want to set for the total booking price."
+msgstr ""
+
+#: ravis-booking.php:1433 ravis-booking.php:1438
+msgid "Percent"
+msgstr ""
+
+#: ravis-booking.php:1434
+msgid "Fixed Price"
+msgstr ""
+
+#: ravis-booking.php:1439
+msgid ""
+"If you have set Percent for your coupon, you can set the discount's percent "
+"in this field. Please add just a digit"
+msgstr ""
+
+#: ravis-booking.php:1445
+msgid ""
+"If you have set fixed price for your coupon, you can set the fixed discount "
+"in this field. Please add just a digit"
+msgstr ""
+
+#: ravis-booking.php:1450
+msgid "Expire Date"
+msgstr ""
+
+#: ravis-booking.php:1451
+msgid "Set when this coupon will be expired."
+msgstr ""
+
+#: ravis-booking.php:1456
+msgid "Coupon Amount"
+msgstr ""
+
+#: ravis-booking.php:1457
+msgid "Set how many coupon you need to set for this coupon."
+msgstr ""
+
+#: ravis-booking.php:1462
+msgid "Used Coupon"
+msgstr ""
+
+#: ravis-booking.php:1463
+msgid "How many coupon have been used until now."
+msgstr ""
+
+#: ravis-booking.php:1474
+msgid "Ravis Booking"
+msgstr ""
+
+#: ravis-booking.php:1478 tpl/admin/booking.php:16
+msgid "Booking Archive"
+msgstr ""
+
+#: ravis-booking.php:1486 tpl/admin/payment.php:16
+msgid "Payment Archive"
+msgstr ""
+
+#: ravis-booking.php:1806
+msgid "Your options was imported correctly."
+msgstr ""
+
+#: ravis-booking.php:1811
+msgid "Your imported data does not have valid format. It must be JSON code."
+msgstr ""
+
+#: templates/event-archive.php:68
+msgid "There is not any event here."
+msgstr ""
+
+#: templates/guest-book.php:24
+msgid "Share Your Experience"
+msgstr ""
+
+#: templates/guest-book.php:24
+msgid "Let us know your testimonials"
+msgstr ""
+
+#: templates/package-archive.php:47
+msgid "Per Night"
+msgstr ""
+
+#: templates/package-archive.php:75 templates/package-archive.php:86
+msgid "You have not set any packages for your hotel."
+msgstr ""
+
+#: templates/staff-archive.php:102
+msgid "You have not set any staff for your hotel."
+msgstr ""
+
+#: tpl/admin/admin.php:6
+msgid "Ravis Booking Settings"
+msgstr ""
+
+#: tpl/admin/admin.php:16
+msgid "General"
+msgstr ""
+
+#: tpl/admin/admin.php:22
+msgid "Payment"
+msgstr ""
+
+#: tpl/admin/admin.php:25
+msgid "Email Notification"
+msgstr ""
+
+#: tpl/admin/admin.php:28
+msgid "Currency"
+msgstr ""
+
+#: tpl/admin/admin.php:34
+msgid "Slider & Gallery"
+msgstr ""
+
+#: tpl/admin/admin.php:40
+msgid "Membership"
+msgstr ""
+
+#: tpl/admin/admin.php:46
+msgid "Export & Import"
+msgstr ""
+
+#: tpl/admin/admin.php:49
+msgid "Version : "
+msgstr ""
+
+#: tpl/admin/admin.php:56
+msgid "Room Archive Page Layout : "
+msgstr ""
+
+#: tpl/admin/admin.php:58
+msgid "Grid View"
+msgstr ""
+
+#: tpl/admin/admin.php:59
+msgid "List View"
+msgstr ""
+
+#: tpl/admin/admin.php:63
+msgid "Booking URL : "
+msgstr ""
+
+#: tpl/admin/admin.php:67
+msgid "Contact Page URL : "
+msgstr ""
+
+#: tpl/admin/admin.php:71
+msgid "Booking Archive Items Per Page: "
+msgstr ""
+
+#: tpl/admin/admin.php:75
+msgid "Payment Archive Items Per Page: "
+msgstr ""
+
+#: tpl/admin/admin.php:79
+msgid "Room Rating status: "
+msgstr ""
+
+#: tpl/admin/admin.php:86
+msgid "Room Rating Item: "
+msgstr ""
+
+#: tpl/admin/admin.php:120
+msgid "Default Email Sender : "
+msgstr ""
+
+#: tpl/admin/admin.php:124
+msgid "Default Email Sender's Name : "
+msgstr ""
+
+#: tpl/admin/admin.php:133 tpl/admin/admin.php:254 tpl/admin/admin.php:356
+#: tpl/admin/admin.php:467 tpl/admin/admin.php:658 tpl/admin/admin.php:755
+#: tpl/admin/admin.php:822 tpl/admin/admin.php:909 tpl/admin/admin.php:1047
+#: tpl/admin/admin.php:1146 tpl/admin/admin.php:1187
+msgid "Instruction"
+msgstr ""
+
+#: tpl/admin/admin.php:138
+msgid ""
+"\"Room Archive Page Layout\" will be used for \"Room Archive\" page template."
+msgstr ""
+
+#: tpl/admin/admin.php:141
+msgid ""
+"Booking URL is used for booking page that you can modify it. It will be show "
+"in address bar after ? and the default value is \"?ravis-booking\""
+msgstr ""
+
+#: tpl/admin/admin.php:144
+msgid ""
+"You can enable/disable rating system and handle its items in this section."
+msgstr ""
+
+#: tpl/admin/admin.php:147
+msgid ""
+"The contact page's URL will be used in every sections that users need extra "
+"information."
+msgstr ""
+
+#: tpl/admin/admin.php:150
+msgid ""
+"You can manage home many Booking Items and Payments will be shown in your "
+"panel."
+msgstr ""
+
+#: tpl/admin/admin.php:153
+msgid ""
+"By help of \"Default Email Sender\" and \"Default Email Sender's Name\" you "
+"can change the default WordPress email sender and its name. It is used for "
+"sending core feature's notification like registration and etc. The default "
+"email sender of WordPress is \"wordpress@your_domain.com\" and its name is "
+"\"WordPress\"."
+msgstr ""
+
+#: tpl/admin/admin.php:165
+msgid "Room Base Price : "
+msgstr ""
+
+#: tpl/admin/admin.php:172
+msgid "Vat (percent) : "
+msgstr ""
+
+#: tpl/admin/admin.php:176
+msgid "Deposit in Booking Process : "
+msgstr ""
+
+#: tpl/admin/admin.php:183
+msgid "Deposit (percent): "
+msgstr ""
+
+#: tpl/admin/admin.php:187
+msgid "Booking By Email : "
+msgstr ""
+
+#: tpl/admin/admin.php:194
+msgid "Terms & Condition Page URL : "
+msgstr ""
+
+#: tpl/admin/admin.php:219
+msgid "Final Booking Page Title : "
+msgstr ""
+
+#: tpl/admin/admin.php:223
+msgid "Final Booking Page Subtitle : "
+msgstr ""
+
+#: tpl/admin/admin.php:227
+msgid "Final Booking Page Description : "
+msgstr ""
+
+#: tpl/admin/admin.php:231
+msgid "External Booking System : "
+msgstr ""
+
+#: tpl/admin/admin.php:238
+msgid "External Booking URL : "
+msgstr ""
+
+#: tpl/admin/admin.php:242
+msgid "External Booking Send Method : "
+msgstr ""
+
+#: tpl/admin/admin.php:244
+msgid "Post"
+msgstr ""
+
+#: tpl/admin/admin.php:245
+msgid "Get"
+msgstr ""
+
+#: tpl/admin/admin.php:260
+msgid ""
+"If you enable \"Room Base Price\", all of your room's price will be "
+"calculated based on the room's main capacity. It means that the price will "
+"be fixed untill the guest count is more than the main capacity of rooms."
+msgstr ""
+
+#: tpl/admin/admin.php:264
+msgid ""
+"Default value for vat is 8%, if you want to use the default value leave it "
+"blank."
+msgstr ""
+
+#: tpl/admin/admin.php:267
+msgid ""
+"You can enable/disable deposit in the booking process, if you disable it, "
+"all users must pay full price of theri bookings"
+msgstr ""
+
+#: tpl/admin/admin.php:270
+msgid ""
+"Default value of deposit us 20%, so if you want to use the default value "
+"leave it blank."
+msgstr ""
+
+#: tpl/admin/admin.php:273
+msgid ""
+"You can enable/disable booking by email, in booking by email process, users "
+"can book without any payments."
+msgstr ""
+
+#: tpl/admin/admin.php:276
+msgid "Set your email to all payments will be done in your account."
+msgstr ""
+
+#: tpl/admin/admin.php:279
+msgid ""
+"If you set external booking system for your website, all the booking "
+"settings will be ignored and the booking information will send information "
+"to your url"
+msgstr ""
+
+#: tpl/admin/admin.php:282
+msgid ""
+"If you set external booking system for your website, you can set that "
+"booking information will be sent to your URL in Post or Get method."
+msgstr ""
+
+#: tpl/admin/admin.php:294
+msgid "Booking By PayPal : "
+msgstr ""
+
+#: tpl/admin/admin.php:301
+msgid "Paypal Email : "
+msgstr ""
+
+#: tpl/admin/admin.php:305
+msgid "Paypal Action URL : "
+msgstr ""
+
+#: tpl/admin/admin.php:309
+msgid "Paypal Default Currency : "
+msgstr ""
+
+#: tpl/admin/admin.php:311
+msgid "Current Currency"
+msgstr ""
+
+#: tpl/admin/admin.php:321
+msgid "Booking By Paymill : "
+msgstr ""
+
+#: tpl/admin/admin.php:328
+msgid "Paymill Private Key : "
+msgstr ""
+
+#: tpl/admin/admin.php:332
+msgid "Paymill Public Key : "
+msgstr ""
+
+#: tpl/admin/admin.php:336
+msgid "Booking By Stripe : "
+msgstr ""
+
+#: tpl/admin/admin.php:343
+msgid "Stripe Publishable Key : "
+msgstr ""
+
+#: tpl/admin/admin.php:347
+msgid "Stripe Secret Key : "
+msgstr ""
+
+#: tpl/admin/admin.php:361
+msgid ""
+"You can change the action url for payment's form. For testing paypayl use "
+"https://www.sandbox.paypal.com/cgi-bin/webscr and after testing use the real "
+"one : https://www.paypal.com/cgi-bin/webscr"
+msgstr ""
+
+#: tpl/admin/admin.php:364
+msgid ""
+"Do not forget to change https://www.sandbox.paypal.com/cgi-bin/webscr to "
+"https://www.paypal.com/cgi-bin/webscr after your tests."
+msgstr ""
+
+#: tpl/admin/admin.php:367
+msgid ""
+"If you set a default currency for Paypal, total booking price will be "
+"exchanged to this currency before sending to Paypal website."
+msgstr ""
+
+#: tpl/admin/admin.php:370
+msgid ""
+"If you set a \"Current Currency\" default currency for Paypal, total booking "
+"price will calculated based on the user-selected or current currency before "
+"sending to Paypal website."
+msgstr ""
+
+#: tpl/admin/admin.php:373
+msgid ""
+"If you need to have Paymill payments in your booking process, after enabling "
+"its option, you must enter both Private and Public keys in this section. For "
+"further information, you can check this URL : https://developers.paymill.com/"
+"guides/introduction/your-account#2-api-keys"
+msgstr ""
+
+#: tpl/admin/admin.php:376
+msgid ""
+"If you need to have Stripe payments in your booking process, after enabling "
+"its option, you must enter both Publishable and Secter keys in this section. "
+"For further information, you can check this URL : https://stripe.com/docs/"
+"dashboard#api-keys"
+msgstr ""
+
+#: tpl/admin/admin.php:388
+msgid "Email Notification Status : "
+msgstr ""
+
+#: tpl/admin/admin.php:395
+msgid "Email Sender : "
+msgstr ""
+
+#: tpl/admin/admin.php:396
+msgid "email@yourwebsite.com"
+msgstr ""
+
+#: tpl/admin/admin.php:399
+msgid "Email Receiver : "
+msgstr ""
+
+#: tpl/admin/admin.php:433
+msgid "Booking Details For Users : "
+msgstr ""
+
+#: tpl/admin/admin.php:440 tpl/admin/admin.php:475
+msgid "Email Template of Admins : "
+msgstr ""
+
+#: tpl/admin/admin.php:451
+msgid "Email template of users : "
+msgstr ""
+
+#: tpl/admin/admin.php:472
+msgid "Important Note : "
+msgstr ""
+
+#: tpl/admin/admin.php:472
+msgid ""
+"Use an email from your website for email sender. For example if your website "
+"is \"your_website.com\", your email must be something like "
+"\"sender@your_website.com\""
+msgstr ""
+
+#: tpl/admin/admin.php:475 tpl/admin/admin.php:491
+msgid ""
+"For putting extra information in your email, you can use these shortcode to "
+"provide more details about the booking. Here is the list of shortcode that "
+"you can use in this field :"
+msgstr ""
+
+#: tpl/admin/admin.php:491
+msgid "Email Template of Users : "
+msgstr ""
+
+#: tpl/admin/admin.php:507
+msgid "Booking Details For Users :"
+msgstr ""
+
+#: tpl/admin/admin.php:507
+msgid ""
+"If you want your guests receive their booking information you set for the "
+"admins of website, enable this option."
+msgstr ""
+
+#: tpl/admin/admin.php:519
+msgid "Currency Separator : "
+msgstr ""
+
+#: tpl/admin/admin.php:523
+msgid "Space"
+msgstr ""
+
+#: tpl/admin/admin.php:527
+msgid "Currency Decimal : "
+msgstr ""
+
+#: tpl/admin/admin.php:537
+msgid "Currency Decimal Separator : "
+msgstr ""
+
+#: tpl/admin/admin.php:569 tpl/admin/admin.php:619
+msgid "Symbol : "
+msgstr ""
+
+#: tpl/admin/admin.php:570 tpl/admin/admin.php:620
+msgid "Symbol"
+msgstr ""
+
+#: tpl/admin/admin.php:573 tpl/admin/admin.php:623
+msgid "Rate : "
+msgstr ""
+
+#: tpl/admin/admin.php:574 tpl/admin/admin.php:624
+msgid "Rate"
+msgstr ""
+
+#: tpl/admin/admin.php:581 tpl/admin/admin.php:631
+msgid "Check this field if you want to show the currency before its value"
+msgstr ""
+
+#: tpl/admin/admin.php:597 tpl/admin/admin.php:638
+msgid "Set this currency as default currency of your website."
+msgstr ""
+
+#: tpl/admin/admin.php:607
+msgid "Add Currency"
+msgstr ""
+
+#: tpl/admin/admin.php:651
+msgid "Update Currency Rate Now"
+msgstr ""
+
+#: tpl/admin/admin.php:662
+msgid ""
+"In some cases automatic currency updated might have technical issue, in this "
+"circumstances you can set all the currency manually."
+msgstr ""
+
+#: tpl/admin/admin.php:663
+msgid "Update currency button just works for the saved currency."
+msgstr ""
+
+#: tpl/admin/admin.php:664
+msgid "After updating the rates page will be refreshed."
+msgstr ""
+
+#: tpl/admin/admin.php:665
+msgid ""
+"If you don't set the default currency, the first currency will be considered "
+"as the default."
+msgstr ""
+
+#: tpl/admin/admin.php:678
+msgid "Twitter : "
+msgstr ""
+
+#: tpl/admin/admin.php:682
+msgid "Facebook : "
+msgstr ""
+
+#: tpl/admin/admin.php:686
+msgid "Google Plus : "
+msgstr ""
+
+#: tpl/admin/admin.php:690
+msgid "Flickr : "
+msgstr ""
+
+#: tpl/admin/admin.php:694
+msgid "Vimeo : "
+msgstr ""
+
+#: tpl/admin/admin.php:698
+msgid "Youtube : "
+msgstr ""
+
+#: tpl/admin/admin.php:702
+msgid "Pinterest : "
+msgstr ""
+
+#: tpl/admin/admin.php:706
+msgid "Tumblr : "
+msgstr ""
+
+#: tpl/admin/admin.php:710
+msgid "Dribbble : "
+msgstr ""
+
+#: tpl/admin/admin.php:714
+msgid "Digg : "
+msgstr ""
+
+#: tpl/admin/admin.php:718
+msgid "Linkedin : "
+msgstr ""
+
+#: tpl/admin/admin.php:722
+msgid "Blogger : "
+msgstr ""
+
+#: tpl/admin/admin.php:726
+msgid "Skype : "
+msgstr ""
+
+#: tpl/admin/admin.php:730
+msgid "Forrst : "
+msgstr ""
+
+#: tpl/admin/admin.php:734
+msgid "Deviantart : "
+msgstr ""
+
+#: tpl/admin/admin.php:738
+msgid "Yahoo : "
+msgstr ""
+
+#: tpl/admin/admin.php:742
+msgid "Reddit : "
+msgstr ""
+
+#: tpl/admin/admin.php:746
+msgid "Instagram : "
+msgstr ""
+
+#: tpl/admin/admin.php:759
+msgid ""
+"You can add your social network addresses in these fields to be used in "
+"[ravis-booking-social-icons] shortcode."
+msgstr ""
+
+#: tpl/admin/admin.php:760
+msgid "If you do not want to show any icons, leave the field blank."
+msgstr ""
+
+#: tpl/admin/admin.php:771
+msgid "Main Slider : "
+msgstr ""
+
+#: tpl/admin/admin.php:788 tpl/admin/admin.php:811
+msgid "Add / Update Images"
+msgstr ""
+
+#: tpl/admin/admin.php:789 tpl/admin/admin.php:812
+msgid "Clear Images"
+msgstr ""
+
+#: tpl/admin/admin.php:794
+msgid "Gallery : "
+msgstr ""
+
+#: tpl/admin/admin.php:826
+msgid ""
+"You can manage the images of [ravis-booking-main-slider] shortcode in this "
+"section."
+msgstr ""
+
+#: tpl/admin/admin.php:827
+msgid ""
+"In the second item of this page, you can manage the images of [ravis-booking-"
+"gallery] shortcode in this section."
+msgstr ""
+
+#: tpl/admin/admin.php:857 tpl/admin/admin.php:890
+msgid "URL : "
+msgstr ""
+
+#: tpl/admin/admin.php:858 tpl/admin/admin.php:891
+msgid "http://"
+msgstr ""
+
+#: tpl/admin/admin.php:861 tpl/admin/admin.php:894
+msgid "Logo : "
+msgstr ""
+
+#: tpl/admin/admin.php:913
+msgid "You can add as much as client you need in this section."
+msgstr ""
+
+#: tpl/admin/admin.php:914
+msgid ""
+"Clients you add here, will be generated by [ravis-booking-client] shortcode."
+msgstr ""
+
+#: tpl/admin/admin.php:915
+msgid "Please note that you must enter the url of clients with http://"
+msgstr ""
+
+#: tpl/admin/admin.php:945 tpl/admin/admin.php:1003
+msgid "Badge : "
+msgstr ""
+
+#: tpl/admin/admin.php:954 tpl/admin/admin.php:1012
+msgid "Conditions : "
+msgstr ""
+
+#: tpl/admin/admin.php:956 tpl/admin/admin.php:1014
+msgid "Total Booking Price"
+msgstr ""
+
+#: tpl/admin/admin.php:957 tpl/admin/admin.php:1015
+msgid "Total Booking Items"
+msgstr ""
+
+#: tpl/admin/admin.php:958 tpl/admin/admin.php:1016
+msgid "Total Booking Price / Total Booking Items"
+msgstr ""
+
+#: tpl/admin/admin.php:963 tpl/admin/admin.php:971 tpl/admin/admin.php:1021
+#: tpl/admin/admin.php:1029
+msgid "Set the total price of bookings"
+msgstr ""
+
+#: tpl/admin/admin.php:967 tpl/admin/admin.php:976 tpl/admin/admin.php:1025
+#: tpl/admin/admin.php:1034
+msgid "Set the total count of bookings"
+msgstr ""
+
+#: tpl/admin/admin.php:973 tpl/admin/admin.php:1031
+msgid "AND"
+msgstr ""
+
+#: tpl/admin/admin.php:974 tpl/admin/admin.php:1032
+msgid "OR"
+msgstr ""
+
+#: tpl/admin/admin.php:979 tpl/admin/admin.php:1037
+msgid "Discount : "
+msgstr ""
+
+#: tpl/admin/admin.php:1051
+msgid "You can add as much as membership package you need in this section."
+msgstr ""
+
+#: tpl/admin/admin.php:1052
+msgid "In title field you can set a title for your package"
+msgstr ""
+
+#: tpl/admin/admin.php:1053
+msgid ""
+"You can set a badge for your package to be shown in the profile section of "
+"users"
+msgstr ""
+
+#: tpl/admin/admin.php:1054
+msgid ""
+"You can set a condition of your package in these 3 ways: based on Total "
+"Booking Price, Total Booking items and both of them."
+msgstr ""
+
+#: tpl/admin/admin.php:1055
+msgid ""
+"After choosing the condition of package some fields based on your selected "
+"item will be shown that you can set your prices or count of booking item or "
+"both."
+msgstr ""
+
+#: tpl/admin/admin.php:1056
+msgid ""
+"Please note that in all the price and count fields you just need to add "
+"numbers."
+msgstr ""
+
+#: tpl/admin/admin.php:1057
+msgid ""
+"Every packages must have discount, so you must add discount that you have "
+"considered for your package."
+msgstr ""
+
+#: tpl/admin/admin.php:1082 tpl/admin/admin.php:1121
+msgid "Season Type : "
+msgstr ""
+
+#: tpl/admin/admin.php:1084 tpl/admin/admin.php:1123
+msgid "High Season"
+msgstr ""
+
+#: tpl/admin/admin.php:1085 tpl/admin/admin.php:1124
+msgid "Low Season"
+msgstr ""
+
+#: tpl/admin/admin.php:1089 tpl/admin/admin.php:1128
+msgid "Start Date : "
+msgstr ""
+
+#: tpl/admin/admin.php:1090 tpl/admin/admin.php:1094 tpl/admin/admin.php:1129
+#: tpl/admin/admin.php:1133
+msgid "Select a date"
+msgstr ""
+
+#: tpl/admin/admin.php:1093 tpl/admin/admin.php:1132
+msgid "End Date : "
+msgstr ""
+
+#: tpl/admin/admin.php:1097 tpl/admin/admin.php:1136
+msgid "Decrease / Increase Percent : "
+msgstr ""
+
+#: tpl/admin/admin.php:1098 tpl/admin/admin.php:1137
+msgid "Set the percent of decrease / increase"
+msgstr ""
+
+#: tpl/admin/admin.php:1150
+msgid ""
+"Please note that these seasonal prices will override the single room prices. "
+"It means that they have higher priority of room's seasonal prices."
+msgstr ""
+
+#: tpl/admin/admin.php:1151
+msgid "This prices will be applied on all rooms of website."
+msgstr ""
+
+#: tpl/admin/admin.php:1161
+msgid "Export"
+msgstr ""
+
+#: tpl/admin/admin.php:1165
+msgid "Export as JSON file"
+msgstr ""
+
+#: tpl/admin/admin.php:1166
+msgid "Copy to Clipboard"
+msgstr ""
+
+#: tpl/admin/admin.php:1173 tpl/admin/admin.php:1178
+msgid "Import"
+msgstr ""
+
+#: tpl/admin/admin.php:1176
+msgid "Paste the content here."
+msgstr ""
+
+#: tpl/admin/admin.php:1180
+msgid ""
+"WARNING : by importing your data, the current settings will be overwritten."
+msgstr ""
+
+#: tpl/admin/admin.php:1191
+msgid ""
+"Please note that after importing your data, the current settings will be "
+"overwritten."
+msgstr ""
+
+#: tpl/admin/admin.php:1192
+msgid ""
+"The import section accepts JSON content, so please be sure that your content "
+"has correct format."
+msgstr ""
+
+#: tpl/admin/admin.php:1193
+msgid ""
+"After downloading the content, you can open the downloaded file with a "
+"simple text editor."
+msgstr ""
+
+#: tpl/admin/booking.php:21 tpl/admin/booking.php:345
+msgid "ID"
+msgstr ""
+
+#: tpl/admin/booking.php:25 tpl/admin/booking.php:349
+msgid "Check In"
+msgstr ""
+
+#: tpl/admin/booking.php:26 tpl/admin/booking.php:350
+msgid "Check Out"
+msgstr ""
+
+#: tpl/admin/booking.php:28 tpl/admin/booking.php:188 tpl/admin/payment.php:25
+#: tpl/user-panel/booking.php:23 tpl/user-panel/booking.php:148
+#: tpl/user-panel/payment.php:20
+msgid "Status"
+msgstr ""
+
+#: tpl/admin/booking.php:29 tpl/admin/payment.php:26
+msgid "Actions"
+msgstr ""
+
+#: tpl/admin/booking.php:61 tpl/admin/booking.php:88
+#: tpl/user-panel/booking.php:39 tpl/user-panel/payment.php:60
+msgid "Not Confirmed"
+msgstr ""
+
+#: tpl/admin/booking.php:85 tpl/user-panel/booking.php:24
+msgid "More Details"
+msgstr ""
+
+#: tpl/admin/booking.php:91
+msgid "Print"
+msgstr ""
+
+#: tpl/admin/booking.php:100 tpl/user-panel/booking.php:62
+#: tpl/user-panel/payment.php:68
+msgid "Main Information"
+msgstr ""
+
+#: tpl/admin/booking.php:104 tpl/user-panel/booking.php:66
+#: tpl/user-panel/payment.php:72
+msgid "Total Price : "
+msgstr ""
+
+#: tpl/admin/booking.php:108
+msgid "Coupon Discount : "
+msgstr ""
+
+#: tpl/admin/booking.php:114 tpl/user-panel/booking.php:72
+#: tpl/user-panel/payment.php:82
+msgid "Membership Discount : "
+msgstr ""
+
+#: tpl/admin/booking.php:118 tpl/user-panel/booking.php:76
+#: tpl/user-panel/payment.php:86
+msgid "VAT : "
+msgstr ""
+
+#: tpl/admin/booking.php:124 tpl/user-panel/booking.php:82
+#: tpl/user-panel/payment.php:112
+msgid "Check In : "
+msgstr ""
+
+#: tpl/admin/booking.php:128 tpl/user-panel/booking.php:86
+#: tpl/user-panel/payment.php:116
+msgid "Check Out : "
+msgstr ""
+
+#: tpl/admin/booking.php:134 tpl/user-panel/booking.php:92
+#: tpl/user-panel/payment.php:122
+msgid "Duration : "
+msgstr ""
+
+#: tpl/admin/booking.php:135 tpl/booking-steps/booking_variables.php:24
+#: tpl/user-panel/booking.php:93 tpl/user-panel/payment.php:123
+msgid "Nights"
+msgstr ""
+
+#: tpl/admin/booking.php:138 tpl/user-panel/booking.php:96
+#: tpl/user-panel/payment.php:126
+msgid "Weekends : "
+msgstr ""
+
+#: tpl/admin/booking.php:144 tpl/user-panel/booking.php:102
+#: tpl/user-panel/payment.php:132
+msgid "Payment Method : "
+msgstr ""
+
+#: tpl/admin/booking.php:148 tpl/user-panel/booking.php:106
+#: tpl/user-panel/payment.php:136
+msgid "Booking Date : "
+msgstr ""
+
+#: tpl/admin/booking.php:154 tpl/user-panel/booking.php:112
+#: tpl/user-panel/payment.php:142
+msgid "Address : "
+msgstr ""
+
+#: tpl/admin/booking.php:158 tpl/user-panel/booking.php:116
+#: tpl/user-panel/payment.php:146
+msgid "Special Requirements : "
+msgstr ""
+
+#: tpl/admin/booking.php:183 tpl/user-panel/booking.php:143
+msgid "Payment Information"
+msgstr ""
+
+#: tpl/admin/booking.php:203 tpl/user-panel/booking.php:162
+#: tpl/user-panel/payment.php:154
+msgid "Room Information"
+msgstr ""
+
+#: tpl/admin/booking.php:211 tpl/user-panel/booking.php:170
+#: tpl/user-panel/payment.php:162
+msgid "Room Price"
+msgstr ""
+
+#: tpl/admin/booking.php:245
+msgid "Coupon Information"
+msgstr ""
+
+#: tpl/admin/booking.php:250
+msgid "Type"
+msgstr ""
+
+#: tpl/admin/booking.php:267 tpl/user-panel/booking.php:199
+#: tpl/user-panel/payment.php:184
+msgid "Services Information"
+msgstr ""
+
+#: tpl/admin/booking.php:296 tpl/user-panel/booking.php:227
+#: tpl/user-panel/payment.php:212
+msgid "Package Information"
+msgstr ""
+
+#: tpl/admin/payment.php:21
+msgid "Booking ID"
+msgstr ""
+
+#: tpl/admin/payment.php:24
+msgid "User ID"
+msgstr ""
+
+#: tpl/admin/payment.php:42
+msgid "Admin"
+msgstr ""
+
+#: tpl/booking-notification.php:26
+msgid "You have already canceled this invoice."
+msgstr ""
+
+#: tpl/booking-notification.php:36 tpl/booking-steps/booking_variables.php:5
+msgid "Reservation Information"
+msgstr ""
+
+#: tpl/booking-notification.php:41 tpl/booking-steps/booking_variables.php:6
+msgid "Check in :"
+msgstr ""
+
+#: tpl/booking-notification.php:45 tpl/booking-steps/booking_variables.php:7
+msgid "Check out :"
+msgstr ""
+
+#: tpl/booking-notification.php:128 tpl/booking-steps/booking_variables.php:43
+msgid "Rooms & Services"
+msgstr ""
+
+#: tpl/booking-notification.php:147 tpl/booking-steps/booking_variables.php:77
+msgid "Membership Discount"
+msgstr ""
+
+#: tpl/booking-notification.php:156 tpl/booking-steps/booking_variables.php:44
+msgid "Vat"
+msgstr ""
+
+#: tpl/booking-notification.php:165 tpl/booking-steps/booking_variables.php:45
+msgid "Total Price"
+msgstr ""
+
+#: tpl/booking-notification.php:179 tpl/booking-steps/booking_variables.php:19
+msgid "Choose Date"
+msgstr ""
+
+#: tpl/booking-notification.php:180 tpl/booking-steps/booking_variables.php:20
+msgid "Choose Room"
+msgstr ""
+
+#: tpl/booking-notification.php:181 tpl/booking-steps/booking_variables.php:21
+msgid "Make a Reservation"
+msgstr ""
+
+#: tpl/booking-notification.php:182 tpl/booking-steps/booking_variables.php:22
+msgid "Confirmation"
+msgstr ""
+
+#: tpl/booking-notification.php:202 tpl/booking-notification.php:227
+msgid "There is not any booking information available with this criteria."
+msgstr ""
+
+#: tpl/booking-notification.php:213
+msgid "You have already paid this invoice."
+msgstr ""
+
+#: tpl/booking-notification.php:220
+msgid "Thanks for your try, you canceled your booking"
+msgstr ""
+
+#: tpl/booking-steps/booking_variables.php:8
+msgid "Choose a date"
+msgstr ""
+
+#: tpl/booking-steps/booking_variables.php:9
+msgid "Duration"
+msgstr ""
+
+#: tpl/booking-steps/booking_variables.php:25
+msgid "Please select your check-in and check-out dates."
+msgstr ""
+
+#: tpl/booking-steps/booking_variables.php:26
+msgid "Please select at least one room to book."
+msgstr ""
+
+#: tpl/booking-steps/booking_variables.php:27
+msgid "Edit"
+msgstr ""
+
+#: tpl/booking-steps/booking_variables.php:28
+msgid "Starting from"
+msgstr ""
+
+#: tpl/booking-steps/booking_variables.php:29
+msgid "Price Breakdown"
+msgstr ""
+
+#: tpl/booking-steps/booking_variables.php:32
+msgid "Max People"
+msgstr ""
+
+#: tpl/booking-steps/booking_variables.php:35
+msgid "Nights (Weekday)"
+msgstr ""
+
+#: tpl/booking-steps/booking_variables.php:36
+msgid "Nights (Weekend)"
+msgstr ""
+
+#: tpl/booking-steps/booking_variables.php:37
+msgid "Total"
+msgstr ""
+
+#: tpl/booking-steps/booking_variables.php:38
+msgid "vat is not included yet"
+msgstr ""
+
+#: tpl/booking-steps/booking_variables.php:39
+msgid "Select This Room"
+msgstr ""
+
+#: tpl/booking-steps/booking_variables.php:40
+msgid "Please try other dates, room count and guest for a room."
+msgstr ""
+
+#: tpl/booking-steps/booking_variables.php:41
+msgid ""
+"Check-in and Check-out dates can not be the same. Please check your selected "
+"dates"
+msgstr ""
+
+#: tpl/booking-steps/booking_variables.php:46
+msgid "Full Payment"
+msgstr ""
+
+#: tpl/booking-steps/booking_variables.php:47
+msgid "Deposit"
+msgstr ""
+
+#: tpl/booking-steps/booking_variables.php:48
+msgid "Pay the rest on arrival"
+msgstr ""
+
+#: tpl/booking-steps/booking_variables.php:49 tpl/user-panel/booking.php:17
+msgid "First Name"
+msgstr ""
+
+#: tpl/booking-steps/booking_variables.php:50 tpl/user-panel/booking.php:18
+msgid "Last Name"
+msgstr ""
+
+#: tpl/booking-steps/booking_variables.php:53
+msgid "Address"
+msgstr ""
+
+#: tpl/booking-steps/booking_variables.php:54
+msgid "Special Requirements"
+msgstr ""
+
+#: tpl/booking-steps/booking_variables.php:55
+msgid "Book By Email"
+msgstr ""
+
+#: tpl/booking-steps/booking_variables.php:56
+msgid "Book and Pay By :"
+msgstr ""
+
+#: tpl/booking-steps/booking_variables.php:57
+msgid "PayPal"
+msgstr ""
+
+#: tpl/booking-steps/booking_variables.php:58
+msgid "Paymill"
+msgstr ""
+
+#: tpl/booking-steps/booking_variables.php:59
+msgid "Skrill"
+msgstr ""
+
+#: tpl/booking-steps/booking_variables.php:60
+msgid "Stripe"
+msgstr ""
+
+#: tpl/booking-steps/booking_variables.php:61
+msgid "Please fill the \"First Name\" field."
+msgstr ""
+
+#: tpl/booking-steps/booking_variables.php:62
+msgid "Please fill the \"Last Name\" field."
+msgstr ""
+
+#: tpl/booking-steps/booking_variables.php:63
+msgid "Please fill the \"Email\" field with a valid email."
+msgstr ""
+
+#: tpl/booking-steps/booking_variables.php:64
+msgid "Please fill the \"Phone\" field."
+msgstr ""
+
+#: tpl/booking-steps/booking_variables.php:65
+msgid "Please accept terms & condition."
+msgstr ""
+
+#: tpl/booking-steps/booking_variables.php:67
+msgid "Off"
+msgstr ""
+
+#: tpl/booking-steps/booking_variables.php:68
+msgid "Optional Services"
+msgstr ""
+
+#: tpl/booking-steps/booking_variables.php:69
+msgid "Please select services you want to have in your staying."
+msgstr ""
+
+#: tpl/booking-steps/booking_variables.php:70
+msgid "Mandatory Services"
+msgstr ""
+
+#: tpl/booking-steps/booking_variables.php:71
+msgid "The below services will be added in your booking automatically."
+msgstr ""
+
+#: tpl/booking-steps/booking_variables.php:73
+msgid "Edit Room"
+msgstr ""
+
+#: tpl/booking-steps/booking_variables.php:75
+msgid "Go To Next Step"
+msgstr ""
+
+#: tpl/booking-steps/booking_variables.php:78
+msgid "or"
+msgstr ""
+
+#: tpl/booking-steps/booking_variables.php:80
+msgid "Add Your Coupon"
+msgstr ""
+
+#: tpl/booking-steps/booking_variables.php:83
+msgid "You have already use this coupon."
+msgstr ""
+
+#: tpl/user-panel/booking.php:21
+msgid "Check-in"
+msgstr ""
+
+#: tpl/user-panel/booking.php:22
+msgid "Check-out"
+msgstr ""
+
+#: tpl/user-panel/booking.php:55
+msgid "More"
+msgstr ""
+
+#: tpl/user-panel/booking.php:253 tpl/user-panel/payment.php:238
+msgid "You have not booked any rooms in our hotel."
+msgstr ""
+
+#: tpl/user-panel/payment.php:21
+msgid "Booking Information"
+msgstr ""
+
+#: tpl/user-panel/payment.php:52
+msgid "Booking Info"
+msgstr ""
+
+#: tpl/user-panel/payment.php:76
+msgid "Status : "
+msgstr ""
+
+#: tpl/user-panel/payment.php:92
+msgid "First Name : "
+msgstr ""
+
+#: tpl/user-panel/payment.php:96
+msgid "Last Name : "
+msgstr ""
+
+#: tpl/user-panel/payment.php:102
+msgid "Phone : "
+msgstr ""
+
+#: tpl/user-panel/payment.php:106
+msgid "Email : "
+msgstr ""
+
+#: tpl/user-panel/profile.php:10
+msgid "Personal Information"
+msgstr ""
+
+#: tpl/user-panel/profile.php:18
+msgid "First Name* :"
+msgstr ""
+
+#: tpl/user-panel/profile.php:22
+msgid "Last Name* :"
+msgstr ""
+
+#: tpl/user-panel/profile.php:26
+msgid "Phone :"
+msgstr ""
+
+#: tpl/user-panel/profile.php:30
+msgid "Email* :"
+msgstr ""
+
+#: tpl/user-panel/profile.php:34
+msgid "Address :"
+msgstr ""
+
+#: tpl/user-panel/profile.php:41
+msgid "Save"
+msgstr ""
+
+#: tpl/user-panel/profile.php:47
+msgid "Additional Information"
+msgstr ""
+
+#: tpl/user-panel/profile.php:68
+msgid "Total Booking Price :"
+msgstr ""
+
+#: tpl/user-panel/profile.php:77
+msgid "Total Booking Item :"
+msgstr ""
+
+#: widgets/ravis-newsletter.php:18
+msgid "Ravis Newsletter"
+msgstr ""
+
+#: widgets/ravis-newsletter.php:19
+msgid "Show newsletter subscription form."
+msgstr ""
+
+#: widgets/ravis-newsletter.php:45
+msgid "Subscribe Now"
+msgstr ""
+
+#: widgets/ravis-newsletter.php:66
+msgid "Please add a valid email"
+msgstr ""
+
+#: widgets/ravis-newsletter.php:95
+msgid "Newsletter"
+msgstr ""
+
+#: widgets/ravis-newsletter.php:99
+msgid "Title:"
+msgstr ""
+
+#: widgets/ravis-newsletter.php:103
+msgid "Newsletter description:"
+msgstr ""
+
+#: widgets/ravis-newsletter.php:107
+msgid "Download the subscriber's email"
+msgstr ""
+
+#: widgets/ravis-newsletter.php:160
+msgid "You have already subscribed."
+msgstr ""
+
+#: widgets/ravis-newsletter.php:170
+msgid "Thanks for your subscription."
+msgstr ""
+
+#: widgets/ravis-newsletter.php:187
+msgid "Email was not added!"
+msgstr ""
+
+#: widgets/ravis-newsletter.php:194
+msgid "Please add a valid email format"
+msgstr ""

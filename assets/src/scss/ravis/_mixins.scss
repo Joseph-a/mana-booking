@@ -1,0 +1,121 @@
+// Responsive Mixins
+
+// Media Generator
+@mixin respond-to($media) {
+	@media #{$media}{
+		@content;
+	}
+}
+
+// For XX Small Phone ( Portrait )
+@mixin for-xx-small-phone {
+	@include respond-to($xx-small-phone) {
+		@content;
+	}
+}
+
+
+// For X Small Phone ( Portrait )
+@mixin for-x-small-phone {
+	@include respond-to($x-small-phone) {
+		@content;
+	}
+}
+
+// For Small Phone ( Portrait )
+@mixin for-small-phone {
+	@include respond-to($small-phone) {
+		@content;
+	}
+}
+
+// For Phone ( Portrait and Landscape )
+@mixin for-phone {
+	@include respond-to($phone) {
+		@content;
+	}
+}
+
+// For Tablet( Portrait Only )
+@mixin for-tablet {
+	@include respond-to($tablet-portrait) {
+		@content;
+	}
+}
+
+// For Tablet ( Tablet and Portrait Desktop  )
+@mixin for-tablet-land {
+	@include respond-to($tablet-landscape-desktop) {
+		@content;
+	}
+}
+
+// For All Tablets and Phones
+@mixin for-all-tablet-phone {
+	@include respond-to($all-tablet-phone) {
+		@content;
+	}
+}
+
+// For All Desktops ( All Desktop  )
+@mixin for-all-desktop {
+	@include respond-to($all-desktop) {
+		@content;
+	}
+}
+
+// For All Tablet and Desktop
+@mixin for-all-tablet-desktop {
+	@include respond-to($all-tablet-desktop) {
+		@content;
+	}
+}
+
+// For Desktop ( Small Desktop  )
+@mixin for-small-desktop {
+	@include respond-to($small-desktop) {
+		@content;
+	}
+}
+
+// For Desktop ( Large Desktop  )
+@mixin for-medium-desktop {
+	@include respond-to($medium-desktop) {
+		@content;
+	}
+}
+
+// For Desktop ( Large Desktop  )
+@mixin for-desktop {
+	@include respond-to($large-desktop) {
+		@content;
+	}
+}
+
+// For Retina Desplay ( Large Desktop  )
+@mixin for-retina {
+	@include respond-to($retina) {
+		@content;
+	}
+}
+
+
+// Placeholder
+
+@mixin input-placeholder {
+	&.placeholder {
+		@content;
+	}
+	&:-moz-placeholder {
+		@content;
+	}
+	&::-moz-placeholder {
+		@content;
+	}
+	&:-ms-input-placeholder {
+		@content;
+	}
+	&::-webkit-input-placeholder {
+		@content;
+	}
+}
