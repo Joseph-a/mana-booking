@@ -1,0 +1,38 @@
+@media print {
+	@page {
+		size : landscape
+	}
+	html.wp-toolbar {
+		padding-top : 0;
+	}
+	body {
+		&.ravis-booking_page_ravis-booking-archive {
+			font-size : 10pt;
+			#wpfooter, #adminmenumain, #adminmenuwrap, #wpadminbar, #ravis-booking-booking-archive .wrap h1, .ravis-pagination-box {
+				display : none;
+			}
+			#ravis-booking-booking-archive .wrap table td, #ravis-booking-booking-archive .wrap table th {
+				&.booking-more, &.booking-status, &.booking-actions {
+					display : none;
+				}
+			}
+			#wpcontent, #wpfooter, #wpbody-content {
+
+				margin-left : 0;
+				padding     : 0;
+			}
+			#ravis-booking-booking-archive {
+				> .wrap {
+					padding : 0;
+					margin  : 0;
+				}
+			}
+			#booking-archive-tbl {
+				display : none;
+			}
+			#booking-archive-tbl-virtual {
+				display : block;
+			}
+		}
+	}
+}

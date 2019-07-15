@@ -718,8 +718,8 @@
 					
 					// Booking Overview Calendar
 					case 'overview_calendar':
-						wp_enqueue_script( 'moment-js', RAVIS_BOOKING_JS_PATH . 'moment.min.js', array ( 'jquery' ), RAVIS_BOOKING_VERSION, true );
-						wp_enqueue_script( 'fullcalendar-js', RAVIS_BOOKING_JS_PATH . 'fullcalendar.min.js', array (
+						wp_enqueue_script( 'moment-js',RAVIS_BOOKING_ASSETS_LIBS . '/js/moment.min.js', array ( 'jquery' ), RAVIS_BOOKING_VERSION, true );
+						wp_enqueue_script( 'fullcalendar-js',RAVIS_BOOKING_ASSETS_LIBS . '/js/fullcalendar.min.js', array (
 							'jquery',
 							'moment-js'
 						), RAVIS_BOOKING_VERSION, true );
@@ -732,7 +732,7 @@
 								require( RAVIS_BOOKING_PATH . '/assets/js/locales.php' );
 							}
 							$web_current_locale = isset( $plugin_locales[ get_locale() ] ) ? $plugin_locales[ get_locale() ] : 'en';
-							wp_enqueue_script( 'fullcalendar-locales-js', RAVIS_BOOKING_JS_PATH . 'locale/' . $web_current_locale . '.js', array ( 'jquery' ), RAVIS_BOOKING_VERSION, true );
+							wp_enqueue_script( 'fullcalendar-locales-js',RAVIS_BOOKING_ASSETS_LIBS . '/js/locale/' . $web_current_locale . '.js', array ( 'jquery' ), RAVIS_BOOKING_VERSION, true );
 							
 						}
 						$inline_locale_script = '

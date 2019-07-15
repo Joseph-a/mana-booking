@@ -1,0 +1,19 @@
+#event-booking-list {
+    .confirm-item {
+        cursor: pointer;
+        display: inline-block;
+        @include square(20px);
+        background: darken($color-1, 10%);
+        border-radius: 50%;
+        &.confirmed {
+            background: $color-7;
+        }
+    }
+    .delete-item {
+        cursor: pointer;
+        i {
+            color: $color-6;
+            font-size: 1.9em;
+        }
+    }
+}

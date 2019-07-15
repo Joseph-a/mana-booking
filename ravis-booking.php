@@ -33,19 +33,24 @@
 		define( 'RAVIS_BOOKING_BASE_URL', esc_url( plugin_dir_url( __FILE__ ) ) );
 	}
 
+	if ( ! defined( 'RAVIS_BOOKING_ASSETS_LIBS' ) )
+	{
+		define( 'RAVIS_BOOKING_ASSETS_LIBS', RAVIS_BOOKING_BASE_URL . 'assets/libs/' );
+	}
+	
 	if ( ! defined( 'RAVIS_BOOKING_IMG_PATH' ) )
 	{
-		define( 'RAVIS_BOOKING_IMG_PATH', RAVIS_BOOKING_BASE_URL . 'assets/img/' );
+		define( 'RAVIS_BOOKING_IMG_PATH', RAVIS_BOOKING_ASSETS_LIBS . '/img/' );
 	}
 
 	if ( ! defined( 'RAVIS_BOOKING_JS_PATH' ) )
 	{
-		define( 'RAVIS_BOOKING_JS_PATH', RAVIS_BOOKING_BASE_URL . 'assets/js/' );
+		define( 'RAVIS_BOOKING_JS_PATH', RAVIS_BOOKING_BASE_URL . 'assets/dist/js/' );
 	}
 
 	if ( ! defined( 'RAVIS_BOOKING_CSS_PATH' ) )
 	{
-		define( 'RAVIS_BOOKING_CSS_PATH', RAVIS_BOOKING_BASE_URL . 'assets/css/' );
+		define( 'RAVIS_BOOKING_CSS_PATH', RAVIS_BOOKING_BASE_URL . 'assets/dist/css/' );
 	}
 
 	if ( ! defined( 'RAVIS_BOOKING_BASE' ) )
@@ -128,20 +133,6 @@
 
 	/**
 	 * ------------------------------------------------------------------------------------------
-	 *  Get Pages URL
-	 * ------------------------------------------------------------------------------------------
-	 */
-	require_once RAVIS_BOOKING_INCLUDES . 'get_pages.class.php';
-
-	/**
-	 * ------------------------------------------------------------------------------------------
-	 *  Add Posts Class ( Properties, Agents and etc )
-	 * ------------------------------------------------------------------------------------------
-	 */
-	require_once RAVIS_BOOKING_INCLUDES . 'insert_posts.class.php';
-
-	/**
-	 * ------------------------------------------------------------------------------------------
 	 *  Currency Class
 	 * ------------------------------------------------------------------------------------------
 	 */
@@ -167,13 +158,6 @@
 	 * ------------------------------------------------------------------------------------------
 	 */
 	require_once RAVIS_BOOKING_INCLUDES . 'user.class.php';
-
-	/**
-	 * ------------------------------------------------------------------------------------------
-	 *  Import Demo Content Class
-	 * ------------------------------------------------------------------------------------------
-	 */
-	require_once RAVIS_BOOKING_INCLUDES . 'import.class.php';
 
 	/**
 	 * ------------------------------------------------------------------------------------------
@@ -376,13 +360,13 @@
 
 		public function ravis_booking_register_scripts( $hook )
 		{
-			wp_enqueue_style( 'custom-admin-style', RAVIS_BOOKING_CSS_PATH . 'admin.css' );
+			wp_enqueue_style( 'custom-admin-style', RAVIS_BOOKING_CSS_PATH . 'admin.build.css' );
 			wp_enqueue_style( 'jquery-ui-custom', RAVIS_BOOKING_CSS_PATH . 'jquery-ui.min.css' );
 
 			wp_enqueue_script( 'jquery-ui-datepicker' );
 			wp_enqueue_script( 'jquery-ui-tabs' );
 
-			wp_enqueue_script( 'ravis-booking-admin-js', RAVIS_BOOKING_JS_PATH . 'admin.min.js', array ( 'jquery' ), RAVIS_BOOKING_VERSION, true );
+			wp_enqueue_script( 'ravis-booking-admin-js', RAVIS_BOOKING_JS_PATH . 'admin.build.js', array ( 'jquery' ), RAVIS_BOOKING_VERSION, true );
 			$admin_js_var_array = array (
 				'ajaxurl'      => esc_url( admin_url( 'admin-ajax.php' ) ),
 				'plg_base'     => RAVIS_BOOKING_BASE_URL,
@@ -1046,8 +1030,8 @@
 
 		public function ravis_booking_overview()
 		{
-			wp_enqueue_script( 'moment-js', RAVIS_BOOKING_JS_PATH . 'moment.min.js', array ( 'jquery' ), RAVIS_BOOKING_VERSION, true );
-			wp_enqueue_script( 'fullcalendar-js', RAVIS_BOOKING_JS_PATH . 'fullcalendar.min.js', array (
+			wp_enqueue_script( 'moment-js', RAVIS_BOOKING_ASSETS_LIBS . '/js/moment.min.js', array ( 'jquery' ), RAVIS_BOOKING_VERSION, true );
+			wp_enqueue_script( 'fullcalendar-js', RAVIS_BOOKING_ASSETS_LIBS . '/js/fullcalendar.min.js', array (
 				'jquery',
 				'moment-js',
 			), RAVIS_BOOKING_VERSION, true );
@@ -1061,7 +1045,7 @@
 				}
 
 				$web_current_locale = isset( $plugin_locales[ get_locale() ] ) ? $plugin_locales[ get_locale() ] : 'en';
-				wp_enqueue_script( 'fullcalendar-locales-js', RAVIS_BOOKING_JS_PATH . 'locale/' . $web_current_locale . '.js', array ( 'jquery' ), RAVIS_BOOKING_VERSION, true );
+				wp_enqueue_script( 'fullcalendar-locales-js', RAVIS_BOOKING_ASSETS_LIBS . '/js/locale/' . $web_current_locale . '.js', array ( 'jquery' ), RAVIS_BOOKING_VERSION, true );
 			}
 
 			$inline_locale_script = '

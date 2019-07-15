@@ -1,0 +1,166 @@
+.ravis-booking-switch {
+    min-width: 170px;
+    display: block;
+    margin-bottom: 10px;
+    input {
+        display: none;
+    }
+    .switcher {
+        @include size(50px, 20px);
+        background: $color-1;
+        border: 2px solid darken($color-1, 25%);
+        position: relative;
+        display: block;
+        transition: all .3s ease;
+        &:before {
+            display: block;
+            content: '';
+            position: absolute;
+            right: 1px;
+            top: 1px;
+            @include size(25px, 18px);
+            background: darken($color-1, 25%);
+            transition: all .3s ease;
+        }
+    }
+    > input {
+        &:checked {
+            + .switcher {
+                border-color: $color-3;
+                &:before {
+                    transform: translateX(-23px);
+                    background: $color-3;
+                }
+            }
+        }
+    }
+    + .description {
+        margin-left: 0 !important;
+    }
+}
+
+// Ravis Check Box
+.ravis-checkbox {
+    input {
+        display: none;
+    }
+    label {
+        padding-left: 30px;
+        position: relative;
+        cursor: pointer;
+        line-height: 45px;
+        margin: 0;
+        display: block;
+        font-weight: normal;
+        //a{
+        //    color: $color-3;
+        //    transition: all .3s ease;
+        //    &:hover{
+        //        color: $color-1;
+        //    }
+        //}
+        span {
+            @include square(17px);
+            background: $color-1;
+            border: 1px solid $color-3;
+            position: absolute;
+            left: 1px;
+            top: 14px;
+            &:before {
+                font-family: "dashicons";
+                content: "\f147";
+                position: absolute;
+                left: -4px;
+                top: 0;
+                display: none;
+                color: $color-3;
+                font-size: 1.8em;
+                line-height: 18px;
+            }
+        }
+        > input {
+            &:checked {
+                + span:before {
+                    display: block;
+                }
+            }
+        }
+    }
+}
+
+// Ravis Radio box
+.ravis-radiobox {
+    input {
+        display: none;
+    }
+    label {
+        padding-left: 30px;
+        position: relative;
+        cursor: pointer;
+        line-height: 45px;
+        margin: 0;
+        display: block;
+        font-weight: normal;
+        //a{
+        //    color: $color-3;
+        //    transition: all .3s ease;
+        //    &:hover{
+        //        color: $color-1;
+        //    }
+        //}
+        span {
+            @include square(17px);
+            background: $color-1;
+            border: 1px solid $color-3;
+            position: absolute;
+            left: 1px;
+            top: 14px;
+            border-radius:50%;
+            &:before {
+                content: "";
+                position: absolute;
+                left: 3px;
+                top: 3px;
+                display: none;
+                background: $color-3;
+                border-radius:50%;
+                @include square(11px);
+            }
+        }
+        > input {
+            &:checked {
+                + span:before {
+                    display: block;
+                }
+            }
+        }
+    }
+}
+
+.ravis-box {
+    border: 1px solid $color-3;
+    padding: 30px;
+    margin-bottom: 10px;
+    &:last-child {
+        margin-bottom: 0;
+    }
+}
+
+.ravis-info-box {
+    border: 1px solid $color-3;
+    .header {
+        background: $color-3;
+        color: $color-1;
+        padding: 0 15px;
+        line-height: 50px;
+        font-size: 1.2em;
+        text-transform: uppercase;
+    }
+    .content {
+        background: $color-1;
+        padding: 20px;
+        font-size: 1.1em;
+        line-height: 30px;
+        word-break: break-word;
+    }
+}
