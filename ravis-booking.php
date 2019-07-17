@@ -735,6 +735,16 @@
 			 *  Room Meta Boxes
 			 * ------------------------------------------------------------------------------------------
 			 */
+			$room_meta_box_prefix = 'ravis_booking_room_new_';
+			$room_meta_box_title  = esc_html__( 'Room Extra information New', 'ravis-booking' );
+			$room_meta_box_items  = array (
+				array (
+					'id'    => $room_meta_box_prefix . 'meta_info',
+					'type'  => 'general_room_settings',
+				)
+			);
+			$rooms_meta_box_obj   = new Ravis_booking_meta_boxes( $room_meta_box_items, $room_meta_box_prefix, $room_meta_box_title, 'rooms' );
+			
 			$room_meta_box_prefix = 'ravis_booking_room_';
 			$room_meta_box_title  = esc_html__( 'Room Extra information', 'ravis-booking' );
 			$room_meta_box_items  = array (

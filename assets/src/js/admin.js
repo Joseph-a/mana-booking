@@ -1,4 +1,5 @@
 "use strict";
+import "./react/room-meta";
 
 jQuery.fn.digits = function()
 {

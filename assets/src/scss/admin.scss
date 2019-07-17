@@ -12,6 +12,8 @@ $color-4: set-preset-color($preset-id, 4);
 $color-5: set-preset-color($preset-id, 5);
 $color-6: set-preset-color($preset-id, 6);
 $color-7: set-preset-color($preset-id, 7);
+$color-8: set-preset-color($preset-id, 8);
+$color-9: set-preset-color($preset-id, 9);
 
 @import "inc/social-font-icon";
 @import "inc/elements";
@@ -23,3 +25,7 @@ $color-7: set-preset-color($preset-id, 7);
 @import "inc/booking-archive";
 @import "inc/fullcalendar";
 @import "inc/print";
+
+@import "sections/room-settings";
+
+

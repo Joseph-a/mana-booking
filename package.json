@@ -34,20 +34,16 @@
 		"webpack-cli": "^3.3.4"
 	},
 	"dependencies": {
+		"@wordpress/editor": "^9.4.0",
+		"@wordpress/i18n": "^3.5.0",
 		"axios": "^0.18.1",
-		"highcharts": "^7.1.2",
-		"highcharts-react-official": "^2.2.2",
-		"jalali-moment": "^3.3.2",
 		"jquery": "^3.4.1",
 		"moment": "^2.24.0",
-		"moment-jalaali": "^0.8.3",
 		"moment-locales-webpack-plugin": "^1.0.7",
 		"qs": "^6.7.0",
 		"react": "^16.8.6",
 		"react-dom": "^16.8.6",
 		"react-image-gallery": "^0.8.17",
-		"react-infinite-scroller": "^1.2.4",
-		"react-persian-calendar-date-picker": "^1.0.2",
 		"react-render-html": "^0.6.0",
 		"react-select": "^2.4.4",
 		"uglifyjs-webpack-plugin": "^2.1.3"
