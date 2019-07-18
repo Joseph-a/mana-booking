@@ -28,9 +28,18 @@ export const roomSettings = [ {
 				value: ""
 			},
 			{
-				label: __( '', 'ravis-booking' ),
+				label: __( 'Size Unit', 'ravis-booking' ),
 				type: 'select',
-				value: ""
+				value: "",
+				options: [
+					{ value: "sqft", label: __( "Square Foot (sqft)" ) },
+					{ value: "m2", label: __( "Square Meter (m2)" ) },
+					{ value: "acre", label: __( "Acre (acre)" ) },
+					{ value: "ha", label: __( "Hectare (ha)" ) },
+					{ value: "sqkm", label: __( "Square Kilometer (sqkm)" ) },
+					{ value: "sqmi", label: __( "Square Mile (sqmi)" ) },
+					{ value: "sqyd", label: __( "Square Yard (sqyd)" ) }
+				]
 			},
 			{
 				label: __( 'View', 'ravis-booking' ),
