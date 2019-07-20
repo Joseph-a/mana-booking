@@ -48,7 +48,7 @@ export const roomSettings = [ {
 			},
 			{
 				label: __( 'Gallery', 'ravis-booking' ),
-				type: 'text',
+				type: 'gallery',
 				value: []
 			},
 			{

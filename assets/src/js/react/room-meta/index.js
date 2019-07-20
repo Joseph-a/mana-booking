@@ -1,4 +1,5 @@
-import React, { Component } from 'react'
+import React, { Component } from 'react';
+import ReactDOM from 'react-dom';
 import { __ } from '@wordpress/i18n';
 import { roomSettings } from './settings'
 import Tabs from './tabs'
@@ -50,9 +51,6 @@ export default class RoomMetaData extends Component {
         )
     }
 }
-
-
-
 
 const signalApiReader = document.getElementById("ravis-room-setting-info-box");
 ReactDOM.render(<RoomMetaData />, signalApiReader);

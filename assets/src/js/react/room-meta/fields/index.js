@@ -22,7 +22,7 @@ export default class Fields extends Component {
     fieldSwitcher = (info) => {
         let returnVal;
         switch (info.type) {
-            
+
             // TextArea Field
             case ('textarea'):
                 returnVal = <BaseControl>
@@ -55,6 +55,27 @@ export default class Fields extends Component {
                 />;
                 break;
 
+            // Gallery Field
+            case ('gallery'):
+                returnVal = <BaseControl>
+                    <label className="components-base-control__label">{info.label}</label>
+                    <Button onClick={(e) => {
+                            e.preventDefault();
+                    
+                            const slideshow_frame = wp.media({ multiple: true });
+                    
+                            // slideshow_frame.on('select', () => {
+                            //     const selection = slideshow_frame.state().get('selection');
+                    
+                            //     selection.map((attachment) => {
+                            //         console.log(attachment);
+                            //     });            
+                            // });
+                            slideshow_frame.open();
+
+                    }}>Select Image</Button>
+                </BaseControl>;
+                break;
         }
 
         return returnVal;

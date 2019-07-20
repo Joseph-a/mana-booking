@@ -1,6 +1,4 @@
-import React from 'react';
 import Fields from './fields';
-
 
 const Tabs = ( props ) => {
 	return (
