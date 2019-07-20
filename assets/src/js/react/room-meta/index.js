@@ -5,25 +5,30 @@ import { roomSettings } from './settings'
 import Tabs from './tabs'
 
 export default class RoomMetaData extends Component {
-    constructor(props) {
-        super(props);
-        this.state = {
-            roomSettings,
-            activeTab: 0
-        }
-    }
+	constructor( props ) {
+		super( props );
 
-    onFieldChanged = (val, ii, i) => {
-        let roomSettingsN = [...this.state.roomSettings];
-        roomSettingsN[i]['value'][ii]['value'] = val;
-        this.setState({
-            roomSettings: roomSettingsN
-        })
-    }
-    render() {
-        const { roomSettings, activeTab } = this.state;
-        return (
-            <div className="room-settings-tabular">
+		const savedSetting = document.getElementById( 'ravis_booking_room_new_meta_info' ).value;
+
+		this.state = {
+			roomSettings: savedSetting ? JSON.parse( savedSetting ) : roomSettings,
+			activeTab: 0
+		}
+	}
+
+	onFieldChanged = ( val, ii, i ) => {
+		let roomSettingsN = [ ...this.state.roomSettings ];
+		roomSettingsN[ i ][ 'value' ][ ii ][ 'value' ] = val;
+		this.setState( {
+			roomSettings: roomSettingsN
+		} )
+
+		document.getElementById( 'ravis_booking_room_new_meta_info' ).value = JSON.stringify( this.state.roomSettings );
+	}
+	render() {
+		const { roomSettings, activeTab } = this.state;
+		return (
+			<div className="room-settings-tabular">
                 <div className="tab-container">
                     {
                         roomSettings.map((item, index) => {
@@ -48,9 +53,11 @@ export default class RoomMetaData extends Component {
                     }
                 </div>
             </div>
-        )
-    }
+		)
+	}
 }
 
-const signalApiReader = document.getElementById("ravis-room-setting-info-box");
-ReactDOM.render(<RoomMetaData />, signalApiReader);
+const signalApiReader = document.getElementById( "ravis-room-setting-info-box" );
+if ( signalApiReader ) {
+	ReactDOM.render( <RoomMetaData />, signalApiReader );
+}

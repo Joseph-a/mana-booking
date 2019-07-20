@@ -1,7 +1,7 @@
 import { __ } from '@wordpress/i18n';
 
 export const roomSettings = [ {
-		label: __( 'Basic Information' ),
+		label: __( 'Basic Information', 'ravis-booking' ),
 		value: [ {
 				label: __( 'Short Description', 'ravis-booking' ),
 				type: 'textarea',
@@ -47,28 +47,46 @@ export const roomSettings = [ {
 				value: ""
 			},
 			{
-				label: __( 'Gallery', 'ravis-booking' ),
-				type: 'gallery',
-				value: []
-			},
-			{
 				label: __( 'Facilities', 'ravis-booking' ),
-				type: 'text',
+				type: 'facility',
 				value: []
 			},
 			{
 				label: __( 'Services', 'ravis-booking' ),
-				type: 'text',
+				type: 'service',
 				value: []
 			}
 		]
 	},
 	{
-		label: __( 'Price Information' ),
+		label: __( 'Price Information', 'ravis-booking' ),
 		value: "2222"
 	},
 	{
+		label: __( 'Gallery', 'ravis-booking' ),
+		value: [ {
+			label: __( 'Gallery', 'ravis-booking' ),
+			type: 'gallery',
+			value: []
+		} ]
+	},
+	{
 		label: __( 'Settings' ),
-		value: "3333"
+		value: [ {
+				label: __( 'Rating System', 'ravis-booking' ),
+				type: 'toggle',
+				value: false
+			},
+			{
+				label: __( 'Booking Overview', 'ravis-booking' ),
+				type: 'toggle',
+				value: false
+			},
+			{
+				label: __( 'Special Room', 'ravis-booking' ),
+				type: 'toggle',
+				value: false
+			},
+		]
 	},
 ];

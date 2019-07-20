@@ -37,7 +37,7 @@
 	{
 		define( 'RAVIS_BOOKING_ASSETS_LIBS', RAVIS_BOOKING_BASE_URL . 'assets/libs/' );
 	}
-	
+
 	if ( ! defined( 'RAVIS_BOOKING_IMG_PATH' ) )
 	{
 		define( 'RAVIS_BOOKING_IMG_PATH', RAVIS_BOOKING_ASSETS_LIBS . '/img/' );
@@ -744,7 +744,7 @@
 				)
 			);
 			$rooms_meta_box_obj   = new Ravis_booking_meta_boxes( $room_meta_box_items, $room_meta_box_prefix, $room_meta_box_title, 'rooms' );
-			
+
 			$room_meta_box_prefix = 'ravis_booking_room_';
 			$room_meta_box_title  = esc_html__( 'Room Extra information', 'ravis-booking' );
 			$room_meta_box_items  = array (
