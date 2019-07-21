@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
 import { __ } from '@wordpress/i18n';
-import { roomSettings } from './settings'
-import Tabs from './tabs'
+import { roomSettings } from './settings';
+import Tabs from './tabs';
 
 export default class RoomMetaData extends Component {
 	constructor( props ) {
@@ -17,7 +17,7 @@ export default class RoomMetaData extends Component {
 	}
 
 	onFieldChanged = ( val, ii, i ) => {
-		let roomSettingsN = [ ...this.state.roomSettings ];
+        let roomSettingsN = [ ...this.state.roomSettings ];
 		roomSettingsN[ i ][ 'value' ][ ii ][ 'value' ] = val;
 		this.setState( {
 			roomSettings: roomSettingsN

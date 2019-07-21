@@ -1,177 +1,125 @@
 import React, { Component } from 'react';
 import { __ } from '@wordpress/i18n';
 
-import {
-	Modal,
-	ButtonGroup,
-	ToggleControl,
-	PanelBody,
-	RangeControl,
-	SelectControl,
-	TextControl,
-	Button,
-	BaseControl
-} from "@wordpress/components";
-
+import SimpleRepeater from './simple-repeater';
+import Capacity from './capacity';
+import Gallery from './gallery';
+import Price from './price';
 
 export default class Fields extends Component {
-	constructor( props ) {
-		super( props );
-	}
+    constructor(props) {
+        super(props);
+    }
 
-	fieldSwitcher = ( info ) => {
-		let returnVal;
-		switch ( info.type ) {
+    fieldSwitcher = (info) => {
+        let returnVal;
+        switch (info.type) {
 
-			// TextArea Field
-			case ( 'textarea' ):
-				returnVal = <BaseControl>
-                    <label className="components-base-control__label">{info.label}</label>
-                    <textarea
-                        placeholder={info.label}
-                        value={info.value}
-                        onChange={e => this.props.onFieldChanged(e.target.value)}
-                    ></textarea>
-                </BaseControl>;
-				break;
-
-				// Select Field
-			case ( 'select' ):
-				returnVal = <SelectControl
-                    label={info.label}
+            // TextArea Field
+            case ('textarea'):
+                returnVal = <textarea
+                    placeholder={info.label}
                     value={info.value}
-                    options={info.options}
-                    onChange={val => this.props.onFieldChanged(val)}
+                    onChange={e => this.props.onFieldChanged(e.target.value)}
+                ></textarea>;
+                break;
+
+            // Select Field
+            case ('select'):
+                returnVal = <select value={info.value} onChange={e => this.props.onFieldChanged(e.target.value)}>
+                    {
+                        info.options.map((item, index) => <option key={index} value={item.value}>{item.label}</option>)
+                    }
+                </select>
+                break;
+
+            // Text Field
+            case ('text'):
+                returnVal = <input
+                    type="text"
+                    placeholder={info.label}
+                    value={info.value}
+                    onChange={val => this.props.onFieldChanged(val.target.value)}
+                />;
+                break;
+            // number Field
+            case ('number'):
+                returnVal = <input
+                    type="number"
+                    placeholder={info.label}
+                    value={info.value}
+                    onChange={val => this.props.onFieldChanged(val.target.value)}
+                />;
+                break;
+
+            // Toggle Field
+            case ('toggle'):
+                returnVal = <input
+                    type="checkbox"
+                    checked={info.value}
+                    onChange={val => {
+                        this.props.onFieldChanged(val.target.checked);
+                    }}
                 />
-				break;
+                break;
 
-				// Text Field
-			case ( 'text' ):
-				returnVal = <TextControl
-                    label={info.label}
-                    placeholder={info.label}
-                    value={info.value}
-                    onChange={val => this.props.onFieldChanged(val)}
-                />;
-				break;
+            // Capacity Field
+            case ('capacity'):
+                returnVal = <Capacity info={info} {...this.props} />
+                break;
 
-				// Toggle Field
-			case ( 'toggle' ):
-				returnVal = <ToggleControl
-                    label={info.label}
-                    placeholder={info.label}
-                    checked={ info.value === true }
-                    onChange={val => this.props.onFieldChanged(val)}
-                />;
-				break;
+            // Facility Field
+            case ('facility'):
+                const facilityFields = [
+                    { field: 'icon', type: 'text', title: __('Icon', 'ravis-booking') },
+                    { field: 'title', type: 'text', title: __('Title', 'ravis-booking') }
+                ]
+                returnVal = <SimpleRepeater fields={facilityFields} info={info} {...this.props} />;
+                break;
 
-				// Facility Field
-			case ( 'facility' ):
-				const facilityInputChanges = ( val, name, index ) => {
-					let newVal = [ ...info.value ];
-					newVal[ index ][ name ] = val;
-					this.props.onFieldChanged( newVal );
-				}
 
-				returnVal = <BaseControl>
+            // Services Field
+            case ('service'):
+                    const serviceFields = [
+                        { field: 'title', type: 'text', title: __('Title', 'ravis-booking') },
+                        { field: 'value', type: 'text', title: __('Value', 'ravis-booking') }
+                    ]
+                    returnVal = <SimpleRepeater fields={serviceFields} info={info} {...this.props} />;
+                break;
+
+            // Discount Field
+            case ('discount'):
+                    const discountFields = [
+                        { field: 'night', type: 'number', title: __('Night', 'ravis-booking') },
+                        { field: 'percent', type: 'number', title: __('%', 'ravis-booking') }
+                    ]
+                    returnVal = <SimpleRepeater fields={discountFields} info={info} {...this.props} />;
+                break;
+
+            // Gallery Field
+            case ('gallery'):
+                returnVal = <Gallery info={info} {...this.props} />
+                break;
+            
+                // Price Fields
+            case ('price'):
+                returnVal = <Price info={info} {...this.props} />
+                break;
+        }
+
+        return (
+            <div className="field-row">
                 <label className="components-base-control__label">{info.label}</label>
-                {
-                    info.value.map((item, index) =>{
-                        return (
-                            <div className="facility-row" key={index}>
-                                <input type="text" value={item.icon} placeholder={__('Icon', 'ravis-booking')} onChange={e=>facilityInputChanges(e.target.value, 'icon', index)}/>
-                                <input type="text" value={item.title} placeholder={__('Title', 'ravis-booking')} onChange={e=>facilityInputChanges(e.target.value, 'title', index)}/>
-                                <div
-                                    onClick={() =>{
-                                        const newVal = [...info.value];
-                                        newVal.splice(index, 1);
-                                        this.props.onFieldChanged(newVal);
-                                    }}
-                                    className="remove-item"
-                                >X</div>
-                            </div>
-                        )
-                    })
-                }
-                <Button
-                    onClick={()=>{
-                        const newVal = [...info.value, {icon:'', title:''}];
-                        this.props.onFieldChanged(newVal);
-                    }}
-                    className="button button-primary button-large"
-                >{__('Add New', 'ravis-booking')}</Button>
-            </BaseControl>;
-				break;
-
-
-				// Services Field
-			case ( 'service' ):
-				const serviceInputChanges = ( val, name, index ) => {
-					let newVal = [ ...info.value ];
-					newVal[ index ][ name ] = val;
-					this.props.onFieldChanged( newVal );
-				}
-
-				returnVal = <BaseControl>
-                <label className="components-base-control__label">{info.label}</label>
-                {
-                    info.value.map((item, index) =>{
-                        return (
-                            <div className="service-row" key={index}>
-                                <input type="text" value={item.title} placeholder={__('Title', 'ravis-booking')} onChange={e=>serviceInputChanges(e.target.value, 'title', index)}/>
-                                <input type="text" value={item.value} placeholder={__('Value', 'ravis-booking')} onChange={e=>serviceInputChanges(e.target.value, 'value', index)}/>
-                                <div
-                                    onClick={() =>{
-                                        const newVal = [...info.value];
-                                        newVal.splice(index, 1);
-                                        this.props.onFieldChanged(newVal);
-                                    }}
-                                    className="remove-item"
-                                >X</div>
-                            </div>
-                        )
-                    })
-                }
-                <Button
-                    onClick={()=>{
-                        const newVal = [...info.value, {title:'', value:'',}];
-                        this.props.onFieldChanged(newVal);
-                    }}
-                    className="button button-primary button-large"
-                >{__('Add New', 'ravis-booking')}</Button>
-            </BaseControl>;
-				break;
-
-				// Gallery Field
-			case ( 'gallery' ):
-				returnVal = <BaseControl>
-                    <label className="components-base-control__label">{info.label}</label>
-                    <Button onClick={(e) => {
-                            e.preventDefault();
-
-                            const slideshow_frame = wp.media({ multiple: true });
-
-                            // slideshow_frame.on('select', () => {
-                            //     const selection = slideshow_frame.state().get('selection');
-
-                            //     selection.map((attachment) => {
-                            //         console.log(attachment);
-                            //     });
-                            // });
-                            slideshow_frame.open();
-
-                    }}>Select Image</Button>
-                </BaseControl>;
-				break;
-		}
-
-		return returnVal;
-	}
-	render() {
-		return (
-			<div className="field-row">
+                <div className="value-box">{returnVal}</div>
+                <div className="desc-box">{info.desc}</div>
+            </div>
+        );
+    }
+    render() {
+        return (
+            <div className="field-row">
                 {this.fieldSwitcher(this.props.info)}
             </div>
-		)
-	}
+        )
+    }
 }

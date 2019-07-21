@@ -745,77 +745,6 @@
 			);
 			$rooms_meta_box_obj   = new Ravis_booking_meta_boxes( $room_meta_box_items, $room_meta_box_prefix, $room_meta_box_title, 'rooms' );
 
-			$room_meta_box_prefix = 'ravis_booking_room_';
-			$room_meta_box_title  = esc_html__( 'Room Extra information', 'ravis-booking' );
-			$room_meta_box_items  = array (
-				array (
-					'label' => esc_html__( 'Room ID', 'ravis-booking' ),
-					'id'    => $room_meta_box_prefix . 'id',
-					'type'  => 'id',
-				),
-				array (
-					'label' => esc_html__( 'Subtitle', 'ravis-booking' ),
-					'desc'  => esc_html__( 'Add a subtitle about the room', 'ravis-booking' ),
-					'id'    => $room_meta_box_prefix . 'subtitle',
-					'type'  => 'text',
-				),
-				array (
-					'label' => esc_html__( 'Short Description', 'ravis-booking' ),
-					'desc'  => esc_html__( 'Add a short description about this room to be shown in the room listing pages. Do Not use HTML tags.', 'ravis-booking' ),
-					'id'    => $room_meta_box_prefix . 'short_desc',
-					'type'  => 'textarea',
-				),
-				array (
-					'label' => esc_html__( 'Room Count', 'ravis-booking' ),
-					'desc'  => esc_html__( 'Add the count of this kind of room in the hotel like : 30', 'ravis-booking' ),
-					'id'    => $room_meta_box_prefix . 'count',
-					'type'  => 'number',
-				),
-				array (
-					'label' => esc_html__( 'Room Capacity', 'ravis-booking' ),
-					'desc'  => __( 'Set the capacity of the room here. <br> Main Capacity is the capacity of the room without extra guests. <br> Extra capacity is for rooms in which can be accepted extra guests.', 'ravis-booking' ),
-					'id'    => $room_meta_box_prefix . 'capacity',
-					'type'  => 'capacity',
-				),
-				array (
-					'label' => esc_html__( 'Minimum Stay', 'ravis-booking' ),
-					'desc'  => __( 'Add the minimum stay night for this room like : "2". <br> which means that guests must book this room for 2 or more nights. <br> Leave it blank if the room doesn\'t have minimum stay limitation.', 'ravis-booking' ),
-					'id'    => $room_meta_box_prefix . 'min_stay',
-					'type'  => 'number',
-				),
-				array (
-					'label' => esc_html__( 'Room Size', 'ravis-booking' ),
-					'desc'  => esc_html__( 'Add the area of room', 'ravis-booking' ),
-					'id'    => $room_meta_box_prefix . 'room_size',
-					'type'  => 'area',
-				),
-				array (
-					'label' => esc_html__( 'View', 'ravis-booking' ),
-					'desc'  => esc_html__( 'Add the view of room, for example: Garden, Sea.', 'ravis-booking' ),
-					'id'    => $room_meta_box_prefix . 'room_view',
-					'type'  => 'text',
-				),
-				array (
-					'label' => esc_html__( 'Gallery', 'ravis-booking' ),
-					'desc'  => esc_html__( 'Manage room\'s images with this field.', 'ravis-booking' ),
-					'id'    => $room_meta_box_prefix . 'gallery',
-					'type'  => 'gallery',
-				),
-				array (
-					'label' => esc_html__( 'Facilities', 'ravis-booking' ),
-					'desc'  => esc_html__( 'Add the facilities of this room.', 'ravis-booking' ),
-					'id'    => $room_meta_box_prefix . 'facilities',
-					'type'  => 'facility',
-				),
-				array (
-					'label' => esc_html__( 'Services', 'ravis-booking' ),
-					'desc'  => esc_html__( 'Add the services of this room.', 'ravis-booking' ),
-					'id'    => $room_meta_box_prefix . 'service',
-					'type'  => 'service',
-				),
-			);
-			$rooms_meta_box_obj   = new Ravis_booking_meta_boxes( $room_meta_box_items, $room_meta_box_prefix, $room_meta_box_title, 'rooms' );
-
 			/**
 			 * ------------------------------------------------------------------------------------------
 			 *  Room Price Meta Boxes
@@ -850,35 +779,6 @@
 				),
 			);
 			$room_price_meta_box_obj    = new Ravis_booking_meta_boxes( $room_price_meta_box_items, $room_price_meta_box_prefix, $room_price_meta_box_title, 'rooms' );
-
-			/**
-			 * ------------------------------------------------------------------------------------------
-			 *  Room Settings Meta Boxes
-			 * ------------------------------------------------------------------------------------------
-			 */
-			$room_setting_meta_box_prefix = 'ravis_booking_room_setting_';
-			$room_setting_meta_box_title  = esc_html__( 'Room Setting', 'ravis-booking' );
-			$room_setting_meta_box_items  = array (
-				array (
-					'label' => esc_html__( 'Rating System', 'ravis-booking' ),
-					'desc'  => esc_html__( 'Enable / Disable Rating for rooms', 'ravis-booking' ),
-					'id'    => $room_setting_meta_box_prefix . 'rating',
-					'type'  => 'switch',
-				),
-				array (
-					'label' => esc_html__( 'Booking Overview', 'ravis-booking' ),
-					'desc'  => esc_html__( 'Enable / Disable Booking Overview Calendar in Rooms', 'ravis-booking' ),
-					'id'    => $room_setting_meta_box_prefix . 'booking_overview',
-					'type'  => 'switch',
-				),
-				array (
-					'label' => esc_html__( 'Special Room', 'ravis-booking' ),
-					'desc'  => esc_html__( 'Mark this room as a special room to be listed in [ravis-booking-special-rooms] shortcode', 'ravis-booking' ),
-					'id'    => $room_setting_meta_box_prefix . 'special_room',
-					'type'  => 'switch',
-				),
-			);
-			$room_setting_meta_box_obj    = new Ravis_booking_meta_boxes( $room_setting_meta_box_items, $room_setting_meta_box_prefix, $room_setting_meta_box_title, 'rooms', 'side', 'default' );
 
 			/**
 			 * ------------------------------------------------------------------------------------------
