@@ -1,6 +1,9 @@
 import React, { Component } from 'react';
 import { __ } from '@wordpress/i18n';
 
+import 'react-dates/initialize';
+import { DateRangePicker } from 'react-dates';
+
 import SimpleRepeater from './simple-repeater';
 import Capacity from './capacity';
 import Gallery from './gallery';
@@ -9,6 +12,11 @@ import Price from './price';
 export default class Fields extends Component {
     constructor(props) {
         super(props);
+        this.state = {
+            startDate: null,
+            endDate: null,
+            focusedInput: null,
+        };
     }
 
     fieldSwitcher = (info) => {
@@ -80,30 +88,43 @@ export default class Fields extends Component {
 
             // Services Field
             case ('service'):
-                    const serviceFields = [
-                        { field: 'title', type: 'text', title: __('Title', 'ravis-booking') },
-                        { field: 'value', type: 'text', title: __('Value', 'ravis-booking') }
-                    ]
-                    returnVal = <SimpleRepeater fields={serviceFields} info={info} {...this.props} />;
+                const serviceFields = [
+                    { field: 'title', type: 'text', title: __('Title', 'ravis-booking') },
+                    { field: 'value', type: 'text', title: __('Value', 'ravis-booking') }
+                ]
+                returnVal = <SimpleRepeater fields={serviceFields} info={info} {...this.props} />;
                 break;
 
             // Discount Field
             case ('discount'):
-                    const discountFields = [
-                        { field: 'night', type: 'number', title: __('Night', 'ravis-booking') },
-                        { field: 'percent', type: 'number', title: __('%', 'ravis-booking') }
-                    ]
-                    returnVal = <SimpleRepeater fields={discountFields} info={info} {...this.props} />;
+                const discountFields = [
+                    { field: 'night', type: 'number', title: __('Night', 'ravis-booking') },
+                    { field: 'percent', type: 'number', title: __('%', 'ravis-booking') }
+                ]
+                returnVal = <SimpleRepeater fields={discountFields} info={info} {...this.props} />;
                 break;
 
             // Gallery Field
             case ('gallery'):
                 returnVal = <Gallery info={info} {...this.props} />
                 break;
-            
-                // Price Fields
+
+            // Price Fields
             case ('price'):
                 returnVal = <Price info={info} {...this.props} />
+                break;
+
+            // Date Fields
+            case ('date'):
+                returnVal = <DateRangePicker
+                    startDateId="startDate"
+                    endDateId="endDate"
+                    startDate={this.state.startDate}
+                    endDate={this.state.endDate}
+                    onDatesChange={({ startDate, endDate }) => { this.setState({ startDate, endDate }) }}
+                    focusedInput={this.state.focusedInput}
+                    onFocusChange={(focusedInput) => { this.setState({ focusedInput }) }}
+                />
                 break;
         }
 
