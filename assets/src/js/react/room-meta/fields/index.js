@@ -23,50 +23,55 @@ export default class Fields extends Component {
 
 			// TextArea Field
 			case ( 'textarea' ):
-				returnVal = <textarea
-                    placeholder={info.label}
-                    value={info.value}
-                    onChange={e => this.props.onFieldChanged(e.target.value)}
-                ></textarea>;
+				returnVal = 
+                    <textarea
+                        placeholder={info.label}
+                        value={info.value}
+                        onChange={e => this.props.onFieldChanged(e.target.value)}
+                    ></textarea>;
 				break;
 
 				// Select Field
 			case ( 'select' ):
-				returnVal = <select value={info.value} onChange={e => this.props.onFieldChanged(e.target.value)}>
-                    {
-                        info.options.map((item, index) => <option key={index} value={item.value}>{item.label}</option>)
-                    }
-                </select>
+				returnVal = 
+                    <select value={info.value} onChange={e => this.props.onFieldChanged(e.target.value)}>
+                        {
+                            info.options.map((item, index) => <option key={index} value={item.value}>{item.label}</option>)
+                        }
+                    </select>
 				break;
 
 				// Text Field
 			case ( 'text' ):
-				returnVal = <input
-                    type="text"
-                    placeholder={info.label}
-                    value={info.value}
-                    onChange={val => this.props.onFieldChanged(val.target.value)}
-                />;
+				returnVal = 
+                    <input
+                        type="text"
+                        placeholder={info.label}
+                        value={info.value}
+                        onChange={val => this.props.onFieldChanged(val.target.value)}
+                    />;
 				break;
 				// number Field
 			case ( 'number' ):
-				returnVal = <input
-                    type="number"
-                    placeholder={info.label}
-                    value={info.value}
-                    onChange={val => this.props.onFieldChanged(val.target.value)}
-                />;
+				returnVal = 
+                    <input
+                        type="number"
+                        placeholder={info.label}
+                        value={info.value}
+                        onChange={val => this.props.onFieldChanged(val.target.value)}
+                    />;
 				break;
 
 				// Toggle Field
 			case ( 'toggle' ):
-				returnVal = <input
-                    type="checkbox"
-                    checked={info.value}
-                    onChange={val => {
-                        this.props.onFieldChanged(val.target.checked);
-                    }}
-                />
+				returnVal = 
+                    <input
+                        type="checkbox"
+                        checked={info.value}
+                        onChange={val => {
+                            this.props.onFieldChanged(val.target.checked);
+                        }}
+                    />
 				break;
 
 				// Capacity Field
@@ -109,7 +114,15 @@ export default class Fields extends Component {
 
 				// Price Fields
 			case ( 'price' ):
-				returnVal = <Price info={info} {...this.props} />
+                returnVal = 
+                    <Price 
+                        {...this.props} 
+                        info={info.value} 
+                        onPriceChanged={(newPrice)=>{
+                            this.props.onFieldChanged( newPrice );
+                        }}
+
+                    />
 				break;
 
 				// Seasonal Price Fields
