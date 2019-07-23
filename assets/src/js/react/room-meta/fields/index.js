@@ -1,146 +1,136 @@
 import React, { Component } from 'react';
 import { __ } from '@wordpress/i18n';
 
-import 'react-dates/initialize';
-import { DateRangePicker } from 'react-dates';
-
 import SimpleRepeater from './simple-repeater';
 import Capacity from './capacity';
 import Gallery from './gallery';
 import Price from './price';
+import SeasonalPrice from './seasonal-price';
 
 export default class Fields extends Component {
-    constructor(props) {
-        super(props);
-        this.state = {
-            startDate: null,
-            endDate: null,
-            focusedInput: null,
-        };
-    }
+	constructor( props ) {
+		super( props );
+		this.state = {
+			startDate: null,
+			endDate: null,
+			focusedInput: null,
+		};
+	}
 
-    fieldSwitcher = (info) => {
-        let returnVal;
-        switch (info.type) {
+	fieldSwitcher = ( info ) => {
+		let returnVal;
+		switch ( info.type ) {
 
-            // TextArea Field
-            case ('textarea'):
-                returnVal = <textarea
+			// TextArea Field
+			case ( 'textarea' ):
+				returnVal = <textarea
                     placeholder={info.label}
                     value={info.value}
                     onChange={e => this.props.onFieldChanged(e.target.value)}
                 ></textarea>;
-                break;
+				break;
 
-            // Select Field
-            case ('select'):
-                returnVal = <select value={info.value} onChange={e => this.props.onFieldChanged(e.target.value)}>
+				// Select Field
+			case ( 'select' ):
+				returnVal = <select value={info.value} onChange={e => this.props.onFieldChanged(e.target.value)}>
                     {
                         info.options.map((item, index) => <option key={index} value={item.value}>{item.label}</option>)
                     }
                 </select>
-                break;
+				break;
 
-            // Text Field
-            case ('text'):
-                returnVal = <input
+				// Text Field
+			case ( 'text' ):
+				returnVal = <input
                     type="text"
                     placeholder={info.label}
                     value={info.value}
                     onChange={val => this.props.onFieldChanged(val.target.value)}
                 />;
-                break;
-            // number Field
-            case ('number'):
-                returnVal = <input
+				break;
+				// number Field
+			case ( 'number' ):
+				returnVal = <input
                     type="number"
                     placeholder={info.label}
                     value={info.value}
                     onChange={val => this.props.onFieldChanged(val.target.value)}
                 />;
-                break;
+				break;
 
-            // Toggle Field
-            case ('toggle'):
-                returnVal = <input
+				// Toggle Field
+			case ( 'toggle' ):
+				returnVal = <input
                     type="checkbox"
                     checked={info.value}
                     onChange={val => {
                         this.props.onFieldChanged(val.target.checked);
                     }}
                 />
-                break;
+				break;
 
-            // Capacity Field
-            case ('capacity'):
-                returnVal = <Capacity info={info} {...this.props} />
-                break;
+				// Capacity Field
+			case ( 'capacity' ):
+				returnVal = <Capacity info={info} {...this.props} />
+				break;
 
-            // Facility Field
-            case ('facility'):
-                const facilityFields = [
-                    { field: 'icon', type: 'text', title: __('Icon', 'ravis-booking') },
-                    { field: 'title', type: 'text', title: __('Title', 'ravis-booking') }
-                ]
-                returnVal = <SimpleRepeater fields={facilityFields} info={info} {...this.props} />;
-                break;
+				// Facility Field
+			case ( 'facility' ):
+				const facilityFields = [
+					{ field: 'icon', type: 'text', title: __( 'Icon', 'ravis-booking' ) },
+					{ field: 'title', type: 'text', title: __( 'Title', 'ravis-booking' ) }
+				]
+				returnVal = <SimpleRepeater fields={facilityFields} info={info} {...this.props} />;
+				break;
 
 
-            // Services Field
-            case ('service'):
-                const serviceFields = [
-                    { field: 'title', type: 'text', title: __('Title', 'ravis-booking') },
-                    { field: 'value', type: 'text', title: __('Value', 'ravis-booking') }
-                ]
-                returnVal = <SimpleRepeater fields={serviceFields} info={info} {...this.props} />;
-                break;
+				// Services Field
+			case ( 'service' ):
+				const serviceFields = [
+					{ field: 'title', type: 'text', title: __( 'Title', 'ravis-booking' ) },
+					{ field: 'value', type: 'text', title: __( 'Value', 'ravis-booking' ) }
+				]
+				returnVal = <SimpleRepeater fields={serviceFields} info={info} {...this.props} />;
+				break;
 
-            // Discount Field
-            case ('discount'):
-                const discountFields = [
-                    { field: 'night', type: 'number', title: __('Night', 'ravis-booking') },
-                    { field: 'percent', type: 'number', title: __('%', 'ravis-booking') }
-                ]
-                returnVal = <SimpleRepeater fields={discountFields} info={info} {...this.props} />;
-                break;
+				// Discount Field
+			case ( 'discount' ):
+				const discountFields = [
+					{ field: 'night', type: 'number', title: __( 'Night', 'ravis-booking' ) },
+					{ field: 'percent', type: 'number', title: __( '%', 'ravis-booking' ) }
+				]
+				returnVal = <SimpleRepeater fields={discountFields} info={info} {...this.props} />;
+				break;
 
-            // Gallery Field
-            case ('gallery'):
-                returnVal = <Gallery info={info} {...this.props} />
-                break;
+				// Gallery Field
+			case ( 'gallery' ):
+				returnVal = <Gallery info={info} {...this.props} />
+				break;
 
-            // Price Fields
-            case ('price'):
-                returnVal = <Price info={info} {...this.props} />
-                break;
+				// Price Fields
+			case ( 'price' ):
+				returnVal = <Price info={info} {...this.props} />
+				break;
 
-            // Date Fields
-            case ('date'):
-                returnVal = <DateRangePicker
-                    startDateId="startDate"
-                    endDateId="endDate"
-                    startDate={this.state.startDate}
-                    endDate={this.state.endDate}
-                    onDatesChange={({ startDate, endDate }) => { this.setState({ startDate, endDate }) }}
-                    focusedInput={this.state.focusedInput}
-                    onFocusChange={(focusedInput) => { this.setState({ focusedInput }) }}
-                />
-                break;
-        }
+				// Seasonal Price Fields
+			case ( 'seasonal-price' ):
+				returnVal = <SeasonalPrice info={info} {...this.props}/>
+				break;
+		}
 
-        return (
-            <div className="field-row">
+		return (
+			<div className="field-row">
                 <label className="components-base-control__label">{info.label}</label>
                 <div className="value-box">{returnVal}</div>
                 <div className="desc-box">{info.desc}</div>
             </div>
-        );
-    }
-    render() {
-        return (
-            <div className="field-row">
+		);
+	}
+	render() {
+		return (
+			<div className="field-row">
                 {this.fieldSwitcher(this.props.info)}
             </div>
-        )
-    }
+		)
+	}
 }

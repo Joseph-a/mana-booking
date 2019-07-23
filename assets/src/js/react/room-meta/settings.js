@@ -72,8 +72,7 @@ export const roomSettings = [ {
 	},
 	{
 		label: __( 'Price Information', 'ravis-booking' ),
-		value: [
-			{
+		value: [ {
 				label: __( 'Base Price', 'ravis-booking' ),
 				type: 'price',
 				value: {},
@@ -84,6 +83,12 @@ export const roomSettings = [ {
 				type: 'price',
 				value: {},
 				desc: __( 'Add base price, the price which is used for extra capacity of room, of room in this field.', 'ravis-booking' )
+			},
+			{
+				label: __( 'Seasonal Price', 'ravis-booking' ),
+				type: 'seasonal-price',
+				value: {},
+				desc: __( 'Set the room price based on the date. These prices will override the base price during the period you set.', 'ravis-booking' )
 			},
 			{
 				label: __( 'Discount', 'ravis-booking' ),

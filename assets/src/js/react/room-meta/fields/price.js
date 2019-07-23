@@ -1,14 +1,14 @@
 import React from 'react'
 import { __ } from '@wordpress/i18n';
 
-const BasePrice = (props) => {
-    const { info } = props;
-    const capacityGenerator = (val, type, day) => {
-        const newVal = { ...info.value, [type]: { ...info.value[type], [day]: val } };
-        props.onFieldChanged(newVal);
-    }
-    return (
-        <div className="base-price-row">
+const BasePrice = ( props ) => {
+	const { info } = props;
+	const priceGenerator = ( val, type, day ) => {
+		const newVal = { ...info.value, [ type ]: { ...info.value[ type ], [ day ]: val } };
+		props.onFieldChanged( newVal );
+	}
+	return (
+		<div className="base-price-row">
             <div className="adult-row">
                 <div className="weekday">
                     <div className="title">{__('Adult Weekday Price', 'ravis-booking')}</div>
@@ -16,7 +16,7 @@ const BasePrice = (props) => {
                         type="number"
                         placeholder={__('Price (number only)', 'ravis-booking')}
                         value={info.value.main}
-                        onChange={val => capacityGenerator(val.target.value, 'adult', 'weekday')}
+                        onChange={val => priceGenerator(val.target.value, 'adult', 'weekday')}
                     />
                 </div>
                 <div className="weekday">
@@ -25,7 +25,7 @@ const BasePrice = (props) => {
                         type="number"
                         placeholder={__('Price (number only)', 'ravis-booking')}
                         value={info.value.extra}
-                        onChange={val => capacityGenerator(val.target.value, 'adult', 'weekend')}
+                        onChange={val => priceGenerator(val.target.value, 'adult', 'weekend')}
                     />
                 </div>
             </div>
@@ -36,7 +36,7 @@ const BasePrice = (props) => {
                         type="number"
                         placeholder={__('Price (number only)', 'ravis-booking')}
                         value={info.value.main}
-                        onChange={val => capacityGenerator(val.target.value, 'child', 'weekday')}
+                        onChange={val => priceGenerator(val.target.value, 'child', 'weekday')}
                     />
                 </div>
                 <div className="weekday">
@@ -45,12 +45,12 @@ const BasePrice = (props) => {
                         type="number"
                         placeholder={__('Price (number only)', 'ravis-booking')}
                         value={info.value.extra}
-                        onChange={val => capacityGenerator(val.target.value, 'child', 'weekend')}
+                        onChange={val => priceGenerator(val.target.value, 'child', 'weekend')}
                     />
                 </div>
             </div>
         </div>
-    )
+	)
 }
 
 export default BasePrice
