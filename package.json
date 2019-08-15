@@ -36,6 +36,7 @@
 	"dependencies": {
 		"@wordpress/i18n": "^3.5.0",
 		"axios": "^0.18.1",
+		"deepmerge": "^4.0.0",
 		"jquery": "^3.4.1",
 		"moment": "^2.24.0",
 		"moment-locales-webpack-plugin": "^1.0.7",

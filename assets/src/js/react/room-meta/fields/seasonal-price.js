@@ -14,16 +14,9 @@ export default class SeasonalPrice extends Component {
 
     outputGenerator = (index, field, val) => {
         const { info } = this.props;
-        let newVal;
-        if (field === 'field') {
-            newVal = { ...info.value, [index]: { ...info.value[index], [field]: val } };
-        } else {
-            newVal = val;
-        }
+        let newVal = { ...info.value, [index]: { ...info.value[index], [field]: val } };
 
-        // console.log(newVal);
-
-        // props.onFieldChanged(newVal);
+        this.props.onFieldChanged(newVal);
     }
 
     priceRow = (seasonPrice, index) => {
@@ -42,7 +35,7 @@ export default class SeasonalPrice extends Component {
                 </div>
                 <Price
                     {...this.props}
-                    info={seasonPrice}
+                    priceInfo={seasonPrice}
                     onPriceChanged={(newPrice) => {
                         console.log(newPrice)
                         this.outputGenerator(index, 'main', newPrice)
@@ -51,7 +44,7 @@ export default class SeasonalPrice extends Component {
                 <div className="extra-guest-separator">{__('Extra Guest Price', 'ravis-booking')}</div>
                 <Price
                     {...this.props}
-                    info={seasonPrice}
+                    priceInfo={seasonPrice}
                     onPriceChanged={(newPrice) => {
                         this.outputGenerator(index, 'extra', newPrice)
                     }}
@@ -65,7 +58,7 @@ export default class SeasonalPrice extends Component {
         return (
             <div className="seasonal-price-main-container">
                 {
-                    info.value.map((item, index) => this.priceRow(item, index))
+                    Object.values(info.value).map((item, index) => this.priceRow(item, index))
                 }
                 <button
                     className="button button-primary button-large"
@@ -81,7 +74,7 @@ export default class SeasonalPrice extends Component {
                                 child: { weekday: '', weekend: '' }
                             },
                         }
-                        const newVal = [...info.value, rawVal];
+                        const newVal = { ...info.value, rawVal };
                         console.log(newVal);
 
                         this.props.onFieldChanged(newVal);

@@ -117,7 +117,7 @@ export default class Fields extends Component {
                 returnVal = 
                     <Price 
                         {...this.props} 
-                        info={info.value} 
+                        priceInfo={info.value} 
                         onPriceChanged={(newPrice)=>{
                             this.props.onFieldChanged( newPrice );
                         }}

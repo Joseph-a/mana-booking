@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import { __ } from '@wordpress/i18n';
+import deepmerge from 'deepmerge';
 
 
 export default class BasePrice extends Component {
@@ -8,25 +9,24 @@ export default class BasePrice extends Component {
         super(props);
         this.state = {
             info: {
-                main: {
-                    adult: { weekday: '', weekend: '' },
-                    child: { weekday: '', weekend: '' }
-                },
-                extra: {
-                    adult: { weekday: '', weekend: '' },
-                    child: { weekday: '', weekend: '' }
-                }
+                adult: { weekday: '', weekend: '' },
+                child: { weekday: '', weekend: '' }
             }
         }
     }
 
     priceGenerator = (val, type, day) => {
+        const { info } = this.state;
         const newVal = { ...info, [type]: { ...info[type], [day]: val } };
-        props.onPriceChanged(newVal);
+
+        this.props.onPriceChanged(newVal);
+        this.setState({
+            info: newVal
+        })
     }
 
     render() {
-        const {info} = this.state;
+        const { info } = this.state;
         return (
             <div className="base-price-row">
                 <div className="adult-row">
@@ -56,7 +56,7 @@ export default class BasePrice extends Component {
                             type="number"
                             placeholder={__('Price (number only)', 'ravis-booking')}
                             value={info.main}
-                            onChange={val => priceGenerator(val.target.value, 'child', 'weekday')}
+                            onChange={val => this.priceGenerator(val.target.value, 'child', 'weekday')}
                         />
                     </div>
                     <div className="weekday">
@@ -65,7 +65,7 @@ export default class BasePrice extends Component {
                             type="number"
                             placeholder={__('Price (number only)', 'ravis-booking')}
                             value={info.extra}
-                            onChange={val => priceGenerator(val.target.value, 'child', 'weekend')}
+                            onChange={val => this.priceGenerator(val.target.value, 'child', 'weekend')}
                         />
                     </div>
                 </div>

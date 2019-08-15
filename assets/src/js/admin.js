@@ -9,15 +9,6 @@ jQuery.fn.digits = function()
 	} )
 };
 
-function copyToClipboard( element )
-{
-	var $temp = jQuery( "<input>" );
-	jQuery( "body" ).append( $temp );
-	$temp.val( jQuery( element ).text() ).select();
-	document.execCommand( "copy" );
-	$temp.remove();
-}
-
 function downloadInnerHtml( filename, elId, mimeType )
 {
 	var elHtml = document.getElementById( elId ).value;
@@ -29,7 +20,7 @@ function downloadInnerHtml( filename, elId, mimeType )
 	link.click();
 }
 
-jQuery( document ).ready( function( $ )
+jQuery( document ).ready( function( )
 {
 
 	jQuery( "#tabs" ).tabs();
@@ -45,7 +36,7 @@ jQuery( document ).ready( function( $ )
 			fieldIndex = jQuery( '.custom_repeatable li' ).length;
 
 		var firstField = jQuery( this ).closest( 'td' ).find( '.custom_repeatable' ).append( field );
-		firstField.find( 'li' ).last().find( 'input' ).each( function( index )
+		firstField.find( 'li' ).last().find( 'input' ).each( function( )
 		{
 			var _this = jQuery( this );
 			if ( _this.hasClass( 'multiple-name' ) )
@@ -223,7 +214,7 @@ jQuery( document ).ready( function( $ )
 			fieldIndex = fieldContainer.find( '.currency-box' ).length;
 
 		var firstField = fieldContainer.append( field );
-		firstField.find( '.currency-box' ).last().find( 'input' ).each( function( index )
+		firstField.find( '.currency-box' ).last().find( 'input' ).each( function( )
 		{
 			var _this = jQuery( this );
 			if ( !_this.is( ':radio' ) )
@@ -244,7 +235,7 @@ jQuery( document ).ready( function( $ )
 		jQuery( this ).parent().remove();
 		return false;
 	} );
-	jQuery( '.currency-default' ).find( 'input[type="radio"]' ).on( 'click', function( e )
+	jQuery( '.currency-default' ).find( 'input[type="radio"]' ).on( 'click', function( )
 	{
 		jQuery( this ).parents( '.currency-box' ).addClass( 'default' ).siblings().removeClass( 'default' );
 	} );
@@ -265,7 +256,7 @@ jQuery( document ).ready( function( $ )
 
 		if ( fieldLength > 0 )
 		{
-			fieldContainer.find( 'li' ).each( function( index )
+			fieldContainer.find( 'li' ).each( function( )
 			{
 				var _this_li = jQuery( this ),
 					itemIndex = ( _this_li.children( 'input' ).attr( 'name' ) ).replace( 'ravis-booking-setting[rating_item][', '' ),
@@ -280,7 +271,7 @@ jQuery( document ).ready( function( $ )
 		}
 
 		fieldContainer.append( field );
-		fieldContainer.find( 'li' ).last().find( 'input' ).each( function( index )
+		fieldContainer.find( 'li' ).last().find( 'input' ).each( function( )
 		{
 			var _this = jQuery( this ),
 				fieldName = _this.data( 'name' );
@@ -319,7 +310,7 @@ jQuery( document ).ready( function( $ )
 			var dataReturn = JSON.parse( data ),
 				currencyItems = jQuery( '#tabs-3' ).find( '.currency-box-active' );
 
-			currencyItems.each( function( index, val )
+			currencyItems.each( function( index )
 			{
 				var rateBox = jQuery( this ).find( '.currency-rate' );
 				rateBox.val( dataReturn[ index ] );
@@ -352,7 +343,7 @@ jQuery( document ).ready( function( $ )
 
 			wp.media.view.Settings.Gallery = wp.media.view.Settings.Gallery.extend(
 			{
-				template: function( view )
+				template: function( )
 				{
 					return;
 				}
@@ -406,7 +397,7 @@ jQuery( document ).ready( function( $ )
 
 		var firstField = fieldContainer.append( field );
 
-		firstField.find( '.client-box' ).last().find( 'input' ).each( function( index )
+		firstField.find( '.client-box' ).last().find( 'input' ).each( function( )
 		{
 			var _this = jQuery( this );
 			_this.attr( 'name', "ravis-booking-setting[client][" + fieldIndex + "][" + _this.data( 'name' ) + "]" );
@@ -420,7 +411,7 @@ jQuery( document ).ready( function( $ )
 		jQuery( this ).parent().remove();
 		return false;
 	} );
-	jQuery( '.client-default' ).find( 'input[type="radio"]' ).on( 'click', function( e )
+	jQuery( '.client-default' ).find( 'input[type="radio"]' ).on( 'click', function( )
 	{
 		jQuery( this ).parents( '.client-box' ).addClass( 'default' ).siblings().removeClass( 'default' );
 	} );
@@ -534,7 +525,7 @@ jQuery( document ).ready( function( $ )
 			fieldIndex = _this.siblings( '.custom_repeatable' ).find( 'li' ).length;
 
 		var firstField = _this.closest( 'td' ).find( '.custom_repeatable' ).append( field );
-		firstField.find( 'li' ).last().find( 'input' ).each( function( index )
+		firstField.find( 'li' ).last().find( 'input' ).each( function( )
 		{
 			var _this = jQuery( this ),
 				inputName = _this.data( 'name' );
@@ -694,7 +685,7 @@ jQuery( document ).ready( function( $ )
 	 */
 
 	var membershipSwitcher = jQuery( '.membership-condition-switcher' );
-	membershipSwitcher.each( function( index )
+	membershipSwitcher.each( function( )
 	{
 		var _this = jQuery( this ),
 			parentBox = _this.parents( '.membership-package-box' ),
@@ -758,12 +749,12 @@ jQuery( document ).ready( function( $ )
 
 		var firstField = fieldContainer.append( field );
 
-		firstField.find( '.membership-package-box' ).last().find( 'input' ).each( function( index )
+		firstField.find( '.membership-package-box' ).last().find( 'input' ).each( function( )
 		{
 			var _this = jQuery( this );
 			_this.attr( 'name', "ravis-booking-setting[membership][" + fieldIndex + "][" + _this.data( 'name' ) + "]" );
 		} );
-		firstField.find( '.membership-package-box' ).last().find( 'select' ).each( function( index )
+		firstField.find( '.membership-package-box' ).last().find( 'select' ).each( function( )
 		{
 			var _this = jQuery( this );
 			_this.attr( 'name', "ravis-booking-setting[membership][" + fieldIndex + "][" + _this.data( 'name' ) + "]" );
@@ -908,7 +899,7 @@ jQuery( document ).ready( function( $ )
 
 		var firstField = fieldContainer.append( field );
 
-		firstField.find( '.season-package-box' ).last().find( 'input' ).each( function( index )
+		firstField.find( '.season-package-box' ).last().find( 'input' ).each( function( )
 		{
 			var _this = jQuery( this );
 			_this.attr( 'name', "ravis-booking-setting[seasonal_price][" + fieldIndex + "][" + _this.data( 'name' ) + "]" );
@@ -940,7 +931,7 @@ jQuery( document ).ready( function( $ )
 				} );
 			}
 		} );
-		firstField.find( '.season-package-box' ).last().find( 'select' ).each( function( index )
+		firstField.find( '.season-package-box' ).last().find( 'select' ).each( function( )
 		{
 			var _this = jQuery( this );
 			_this.attr( 'name', "ravis-booking-setting[seasonal_price][" + fieldIndex + "][" + _this.data( 'name' ) + "]" );
