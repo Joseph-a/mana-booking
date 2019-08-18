@@ -16,10 +16,13 @@ export default class RavisDateRangPicker extends Component {
         }
     }
     componentDidUpdate = (prevState) => {
-        if (this.state.startDate !== prevState.startDate || this.state.endDate !== prevState.endDate) {
+        const startDate = this.state.startDate ? this.state.startDate.format('DD-MM-YYYY') : null,
+            endDate = this.state.endDate ? this.state.endDate.format('DD-MM-YYYY') : null;
 
-            let newVal = [this.state.startDate.format('DD-MM-YYYY')];
-            if(this.state.endDate) newVal.push(this.state.endDate.format('DD-MM-YYYY'));
+        if (startDate !== prevState.startDate || endDate !== prevState.endDate) {
+
+            let newVal = [startDate];
+            if (this.state.endDate) newVal.push(endDate);
 
             this.props.onDateChange(newVal);
         }
@@ -33,9 +36,9 @@ export default class RavisDateRangPicker extends Component {
                 endDateId={`endDate_${randId}`}
                 startDate={this.state.startDate}
                 endDate={this.state.endDate}
-                onDatesChange={({ startDate, endDate }) => { this.setState({ startDate, endDate }) }}
+                onDatesChange={({ startDate, endDate }) => this.setState({ startDate, endDate })}
                 focusedInput={this.state.focusedInput}
-                onFocusChange={(focusedInput) => { this.setState({ focusedInput }) }}
+                onFocusChange={(focusedInput) => this.setState({ focusedInput })}
                 displayFormat="DD-MM-YYYY"
                 noBorder={true}
                 small={true}

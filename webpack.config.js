@@ -76,6 +76,7 @@ module.exports = {
 		"./assets/dist/js/index.build": path.resolve("assets/src/js/index.js"),
 		"./assets/dist/js/admin.build": path.resolve("assets/src/js/admin.js"),
 		"./assets/dist/js/blocks.build": path.resolve("assets/src/js/blocks.js"),
+		"./assets/dist/js/front.build": path.resolve("assets/src/js/front.js"),
 	},
 	mode: process.env.MODE,
 	output: {

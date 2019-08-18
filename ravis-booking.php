@@ -747,41 +747,6 @@
 
 			/**
 			 * ------------------------------------------------------------------------------------------
-			 *  Room Price Meta Boxes
-			 * ------------------------------------------------------------------------------------------
-			 */
-			$room_price_meta_box_prefix = 'ravis_booking_room_price_';
-			$room_price_meta_box_title  = esc_html__( 'Room Price Setting', 'ravis-booking' );
-			$room_price_meta_box_items  = array (
-				array (
-					'label' => esc_html__( 'Base Price', 'ravis-booking' ),
-					'desc'  => esc_html__( 'Add base price, the price which is used for main capacity of room, of room in this field.', 'ravis-booking' ),
-					'id'    => $room_price_meta_box_prefix . 'base_price',
-					'type'  => 'room_price',
-				),
-				array (
-					'label' => esc_html__( 'Extra Guest Price', 'ravis-booking' ),
-					'desc'  => esc_html__( 'Add base price, the price which is used for extra capacity of room, of room in this field.', 'ravis-booking' ),
-					'id'    => $room_price_meta_box_prefix . 'extra_price',
-					'type'  => 'room_price',
-				),
-				array (
-					'label' => esc_html__( 'Seasonal Price', 'ravis-booking' ),
-					'desc'  => esc_html__( 'Set the room price based on the date. These prices will override the base price during the period you set.', 'ravis-booking' ),
-					'id'    => $room_price_meta_box_prefix . 'seasonal_price',
-					'type'  => 'seasonal_room_price',
-				),
-				array (
-					'label' => esc_html__( 'Discount', 'ravis-booking' ),
-					'desc'  => esc_html__( 'Set the discount for users who want to book more than specific night, for example a week or 12 nights. ', 'ravis-booking' ),
-					'id'    => $room_price_meta_box_prefix . 'discount',
-					'type'  => 'price_discount',
-				),
-			);
-			$room_price_meta_box_obj    = new Ravis_booking_meta_boxes( $room_price_meta_box_items, $room_price_meta_box_prefix, $room_price_meta_box_title, 'rooms' );
-
-			/**
-			 * ------------------------------------------------------------------------------------------
 			 *  Room Booking Overview Meta Boxes
 			 * ------------------------------------------------------------------------------------------
 			 */

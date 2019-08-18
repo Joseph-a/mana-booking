@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
+import deepmerge from 'deepmerge';
 import { __ } from '@wordpress/i18n';
 import { roomSettings } from './settings';
 import Tabs from './tabs';
@@ -17,10 +18,11 @@ export default class RoomMetaData extends Component {
 	}
 
 	onFieldChanged = ( val, ii, i ) => {
-        let roomSettingsN = [ ...this.state.roomSettings ];
-		roomSettingsN[ i ][ 'value' ][ ii ][ 'value' ] = val;
-		this.setState( {
-			roomSettings: roomSettingsN
+        let roomSettings = [ ...this.state.roomSettings ];
+        roomSettings[ i ][ 'value' ][ ii ][ 'value' ] = val;
+
+        this.setState( {
+			roomSettings
 		} )
 
 		document.getElementById( 'ravis_booking_room_new_meta_info' ).value = JSON.stringify( this.state.roomSettings );
@@ -49,7 +51,7 @@ export default class RoomMetaData extends Component {
                 </div>
                 <div className="tab-content">
                     {
-                        roomSettings.map((item, index) => index === activeTab && <Tabs key={index} onFieldChanged={(v, a) => this.onFieldChanged(v, a, index)} tabInfo={item.value} />)
+                        roomSettings.map((item, index) => index === activeTab && <Tabs settingInfo={roomSettings} key={index} onFieldChanged={(v, a) => this.onFieldChanged(v, a, index)} tabInfo={item.value} />)
                     }
                 </div>
             </div>

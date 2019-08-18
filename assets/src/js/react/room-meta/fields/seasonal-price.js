@@ -20,6 +20,7 @@ export default class SeasonalPrice extends Component {
     }
 
     priceRow = (seasonPrice, index) => {
+
         return (
             <div className="base-price-row" key={index}>
                 <div className="date-row">
@@ -37,7 +38,6 @@ export default class SeasonalPrice extends Component {
                     {...this.props}
                     priceInfo={seasonPrice}
                     onPriceChanged={(newPrice) => {
-                        console.log(newPrice)
                         this.outputGenerator(index, 'main', newPrice)
                     }}
                 />
@@ -55,10 +55,12 @@ export default class SeasonalPrice extends Component {
 
     render() {
         const { info } = this.props;
+        const rowInfo = typeof info.value === 'object' ?  Object.values(info.value) : info.value;
+
         return (
             <div className="seasonal-price-main-container">
                 {
-                    Object.values(info.value).map((item, index) => this.priceRow(item, index))
+                    rowInfo.map((item, index) => this.priceRow(item, index))
                 }
                 <button
                     className="button button-primary button-large"
@@ -74,8 +76,7 @@ export default class SeasonalPrice extends Component {
                                 child: { weekday: '', weekend: '' }
                             },
                         }
-                        const newVal = { ...info.value, rawVal };
-                        console.log(newVal);
+                        const newVal = [ ...info.value, rawVal ];
 
                         this.props.onFieldChanged(newVal);
                     }}
