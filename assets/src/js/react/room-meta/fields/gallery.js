@@ -5,20 +5,22 @@ const Gallery = (props) => {
     const { info } = props;
     return (
         <div className="gallery-main-container">
-            <div className="gallery-images-list">
-                {
-                    info.value.map(item => {
-                        const imgInfo = wp.media.attachment(item);
-                        return (
-                            <div className="img-box" key={imgInfo.id}>
-                                <img src={imgInfo.attributes.sizes.thumbnail.url} alt={imgInfo.attributes.name} />
-                            </div>
-                        )
-                    })
-                }
-                <div className="image-box"></div>
-            </div>
-            <button onClick={(e) => {
+            {
+                info.value.length > 0 &&
+                <div className="gallery-images-list">
+                    {
+                        info.value.map(item => {
+                            const imgInfo = wp.media.attachment(item);
+                            return (
+                                <div className="img-box" key={imgInfo.id}>
+                                    <img src={imgInfo.attributes.sizes.thumbnail.url} alt={imgInfo.attributes.name} />
+                                </div>
+                            )
+                        })
+                    }
+                </div>
+            }
+            <button className="button button-primary" onClick={(e) => {
                 e.preventDefault();
                 let mediaUploader = window.wp.media({
                     frame: 'select',
@@ -48,7 +50,7 @@ const Gallery = (props) => {
                 });
                 mediaUploader.open();
             }}>{__('Select Image', 'ravis-property')}</button>
-            <button onClick={() => props.onFieldChanged([])}>{__('Remove Images', 'ravis-booking')}</button>
+            <button className="button button-danger" onClick={() => props.onFieldChanged([])}>{__('Remove Images', 'ravis-booking')}</button>
         </div>
     )
 }

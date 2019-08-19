@@ -1,15 +1,18 @@
 import React, { Component } from 'react'
 import { __ } from '@wordpress/i18n';
+import deepmerge from 'deepmerge';
+
 
 export default class BasePrice extends Component {
 
     constructor(props) {
         super(props);
+        let initialInfo = {
+            adult: { weekday: '', weekend: '' },
+            child: { weekday: '', weekend: '' }
+        }
         this.state = {
-            info: {
-                adult: { weekday: '', weekend: '' },
-                child: { weekday: '', weekend: '' }
-            }
+            info: deepmerge(initialInfo, props.priceInfo)
         }
     }
 
@@ -28,41 +31,43 @@ export default class BasePrice extends Component {
         return (
             <div className="base-price-row">
                 <div className="adult-row">
+                    <div className="box-title">{__('Adult', 'ravis-booking')}</div>
                     <div className="weekday">
-                        <div className="title">{__('Adult Weekday Price', 'ravis-booking')}</div>
+                        <div className="title">{__('Weekday', 'ravis-booking')}</div>
                         <input
                             type="number"
                             placeholder={__('Price (number only)', 'ravis-booking')}
-                            value={info.main}
+                            value={info.adult.weekday}
                             onChange={val => this.priceGenerator(val.target.value, 'adult', 'weekday')}
                         />
                     </div>
                     <div className="weekday">
-                        <div className="title">{__('Adult Weekend Price', 'ravis-booking')}</div>
+                        <div className="title">{__('Weekend', 'ravis-booking')}</div>
                         <input
                             type="number"
                             placeholder={__('Price (number only)', 'ravis-booking')}
-                            value={info.extra}
+                            value={info.adult.weekend}
                             onChange={val => this.priceGenerator(val.target.value, 'adult', 'weekend')}
                         />
                     </div>
                 </div>
                 <div className="child-row">
+                    <div className="box-title">{__('Child', 'ravis-booking')}</div>
                     <div className="weekday">
-                        <div className="title">{__('Child Weekday Price', 'ravis-booking')}</div>
+                        <div className="title">{__('Weekday', 'ravis-booking')}</div>
                         <input
                             type="number"
                             placeholder={__('Price (number only)', 'ravis-booking')}
-                            value={info.main}
+                            value={info.child.weekday}
                             onChange={val => this.priceGenerator(val.target.value, 'child', 'weekday')}
                         />
                     </div>
                     <div className="weekday">
-                        <div className="title">{__('Child Weekend Price', 'ravis-booking')}</div>
+                        <div className="title">{__('Weekend', 'ravis-booking')}</div>
                         <input
                             type="number"
                             placeholder={__('Price (number only)', 'ravis-booking')}
-                            value={info.extra}
+                            value={info.child.weekend}
                             onChange={val => this.priceGenerator(val.target.value, 'child', 'weekend')}
                         />
                     </div>

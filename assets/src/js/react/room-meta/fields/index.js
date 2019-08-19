@@ -65,13 +65,16 @@ export default class Fields extends Component {
 				// Toggle Field
 			case ( 'toggle' ):
 				returnVal = 
-                    <input
-                        type="checkbox"
-                        checked={info.value}
-                        onChange={val => {
-                            this.props.onFieldChanged(val.target.checked);
-                        }}
-                    />
+						<label className="toggle-box">
+							<input
+								type="checkbox"
+								checked={info.value}
+								onChange={val => {
+									this.props.onFieldChanged(val.target.checked);
+								}}
+							/>
+							<span></span>
+						</label>
 				break;
 
 				// Capacity Field
@@ -132,18 +135,27 @@ export default class Fields extends Component {
 		}
 
 		return (
-			<div className="field-row">
-                <label className="components-base-control__label">{info.label}</label>
-                <div className="value-box">{returnVal}</div>
-                <div className="desc-box">{info.desc}</div>
+			<div className={`field-row ${info.type}`}>
+				<label className="components-base-control__label">
+					{info.label}
+					{
+						info.desc && info.type !== 'toggle' &&
+						<div className="more-details-box">
+							<i className={`dashicons dashicons-info`}></i>
+							<div className="desc-box">{info.desc}</div>			
+						</div>
+					}
+				</label>
+                <div className="value-box">{returnVal}</div> 
+				{
+					info.type === 'toggle' && <div className="desc-box">{info.desc}</div>
+				}				
             </div>
 		);
 	}
 	render() {
 		return (
-			<div className="field-row">
-                {this.fieldSwitcher(this.props.info)}
-            </div>
+			this.fieldSwitcher(this.props.info)
 		)
 	}
 }

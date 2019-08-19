@@ -10,12 +10,16 @@ const Capacity = (props) => {
         <div className="capacity-row">
             <input
                 type="number"
+                min="0"
+                step="1"
                 placeholder={info.label}
                 value={info.value.main}
                 onChange={val => capacityGenerator(val.target.value, 'main')}
             /> +
             <input
                 type="number"
+                min="0"
+                step="1"
                 placeholder={info.label}
                 value={info.value.extra}
                 onChange={val => capacityGenerator(val.target.value, 'extra')}

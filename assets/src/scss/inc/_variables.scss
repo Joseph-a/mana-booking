@@ -1,7 +1,7 @@
 $presets :
         //color1 color2  color3  color4  color5  color6  color7
-        #FFFFFF #000000 #007eba #222222 #969696 #d9534f #5cb85c #764ba2 #667eea,
-        #FFFFFF #000000 #03B744 #02043d #969696 #d9534f #5cb85c #764ba2 #667eea
+        #FFFFFF #000000 #27bec5 #d1d1d1 #dff2f8 #d9534f #5cb85c #764ba2 #667eea #8e8e8e,
+        #FFFFFF #000000 #03B744 #02043d #969696 #d9534f #5cb85c #764ba2 #667eea #8e8e8e
 ;
 
 
@@ -25,5 +25,5 @@ $font-1: 		'Open Sans',Arial, Helvetica, sans-serif;
 $font-2: 		'Playfair Display',Arial, Helvetica, sans-serif;
 $font-3: 		'Great Vibes',Arial, Helvetica, sans-serif;
 
-$general-gradient : linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+$color-3 : linear-gradient(135deg, #667eea 0%, #764ba2 100%);
 $general-transition : all .5s ease;

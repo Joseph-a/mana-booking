@@ -13,7 +13,7 @@ const SimpleRepeater = (props) => {
             {
                 info.value.map((item, index) => {
                     return (
-                        <div className="repeater-row" key={index}>
+                        <div className={`repeater-row box-${fields.length}`} key={index}>
                             {
                                 fields.map((field, i) => {
                                     return (
@@ -34,7 +34,7 @@ const SimpleRepeater = (props) => {
                                     props.onFieldChanged(newVal);
                                 }}
                                 className="remove-item"
-                            >X</div>
+                            ><i className="dashicons dashicons-no-alt"></i></div>
                         </div>
                     )
                 })

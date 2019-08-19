@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
-import deepmerge from 'deepmerge';
 import { __ } from '@wordpress/i18n';
 import { roomSettings } from './settings';
 import Tabs from './tabs';
@@ -9,7 +8,7 @@ export default class RoomMetaData extends Component {
 	constructor( props ) {
 		super( props );
 
-		const savedSetting = document.getElementById( 'ravis_booking_room_new_meta_info' ).value;
+		const savedSetting = document.getElementById( 'ravis_booking_room_meta_info' ).value;
 
 		this.state = {
 			roomSettings: savedSetting ? JSON.parse( savedSetting ) : roomSettings,
@@ -25,7 +24,7 @@ export default class RoomMetaData extends Component {
 			roomSettings
 		} )
 
-		document.getElementById( 'ravis_booking_room_new_meta_info' ).value = JSON.stringify( this.state.roomSettings );
+		document.getElementById( 'ravis_booking_room_meta_info' ).value = JSON.stringify( this.state.roomSettings );
 	}
 	render() {
 		const { roomSettings, activeTab } = this.state;

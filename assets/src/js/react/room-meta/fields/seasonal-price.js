@@ -21,6 +21,7 @@ export default class SeasonalPrice extends Component {
 
     priceRow = (seasonPrice, index) => {
 
+        // TODO : Adding remove button to the base prices
         return (
             <div className="base-price-row" key={index}>
                 <div className="date-row">
@@ -36,7 +37,7 @@ export default class SeasonalPrice extends Component {
                 </div>
                 <Price
                     {...this.props}
-                    priceInfo={seasonPrice}
+                    priceInfo={seasonPrice.main}
                     onPriceChanged={(newPrice) => {
                         this.outputGenerator(index, 'main', newPrice)
                     }}
@@ -44,7 +45,7 @@ export default class SeasonalPrice extends Component {
                 <div className="extra-guest-separator">{__('Extra Guest Price', 'ravis-booking')}</div>
                 <Price
                     {...this.props}
-                    priceInfo={seasonPrice}
+                    priceInfo={seasonPrice.extra}
                     onPriceChanged={(newPrice) => {
                         this.outputGenerator(index, 'extra', newPrice)
                     }}
@@ -55,7 +56,7 @@ export default class SeasonalPrice extends Component {
 
     render() {
         const { info } = this.props;
-        const rowInfo = typeof info.value === 'object' ?  Object.values(info.value) : info.value;
+        const rowInfo = typeof info.value === 'object' ? Object.values(info.value) : info.value;
 
         return (
             <div className="seasonal-price-main-container">
@@ -76,7 +77,7 @@ export default class SeasonalPrice extends Component {
                                 child: { weekday: '', weekend: '' }
                             },
                         }
-                        const newVal = [ ...info.value, rawVal ];
+                        const newVal = typeof info.value === 'object' ? [...Object.values(info.value), rawVal] : [...info.value, rawVal];
 
                         this.props.onFieldChanged(newVal);
                     }}

@@ -1,45 +1,338 @@
 .room-settings-tabular {
     @include clearfix;
-    margin-top: 15px;
+    margin: 40px 20px 20px;
 
     .tab-container,
     .tab-content {
         box-sizing: border-box;
-        float: left;
+        // float: left;
     }
 
     .tab-container {
-        width: 15%;
-        margin-top: 20px;
+        // width: 15%;
+        // margin-top: 20px;
+        border-radius: 5px 5px 0 0;
+        background: $color-1;
+        display: table;
+        width: 100%;
+        text-align: center;
 
         .tab {
+            display: table-cell;
+            width: 25%;
             cursor: pointer;
-            text-transform: uppercase;
-            background: $color-1;
             padding: 10px;
-            margin-bottom: 10px;
-            line-height: 30px;
-            border-radius: 5px 0 0 5px;
-            box-shadow: 0 0 10px rgba($color-2, 0.2);
+            line-height: 40px;
             transition: $general-transition;
-            font-weight: 600;
-            color: darken($color-1, 40%);
+            color: $color-4;
+            font-size: 20px;
+            font-weight: 300;
+            border-bottom: 2px solid $color-4;
 
             &.active {
-                letter-spacing: 1px;
-                background: $general-gradient;
-                color: $color-1;
+                border-bottom-color: $color-3;
+                color: $color-3;
             }
         }
     }
 
     .tab-content {
-        width: 85%;
+        // width: 85%;
         background: $color-1;
-        padding: 10px;
+        padding: 30px;
         min-height: 250px;
-        border: 3px solid darken($color-1, 5%);
-        box-shadow: 0 0 0 3px $color-1;
+        // border: 3px solid darken($color-1, 5%);
+        // box-shadow: 0 0 0 3px $color-1;
+        border-radius: 0 0 5px 5px;
+
+        .tab-content-container {
+            border: 2px solid $color-4;
+            background: rgba($color-4, .2);
+            border-radius: 5px;
+            padding: 30px;
+
+            .field-row {
+                border-bottom: 1px solid $color-1;
+                padding: 20px 0;
+
+                &:last-child {
+                    border-bottom: 0;
+                }
+
+                >label {
+                    color: $color-10;
+                    font-size: 16px;
+                    line-height: 40px;
+                    width: 150px;
+                    display: block;
+                    float: left;
+                }
+
+                .value-box {
+                    margin-left: 200px;
+
+                    textarea,
+                    input[type=text],
+                    input[type=number],
+                    select {
+                        background: $color-1;
+                        @include size(200px, 40px);
+                        padding: 10px;
+                        border: 1px solid $color-4;
+                        box-shadow: none;
+                        outline: none;
+                    }
+
+                    textarea {
+                        @include size(100%, 250px);
+                    }
+
+                    .button {
+                        border: 0;
+                        height: auto;
+                        padding: 5px 30px;
+                        box-shadow: none;
+                        text-shadow: none;
+                        text-transform: uppercase;
+
+                        &.button-primary {
+                            background: $color-3;
+                        }
+
+                        &.button-danger {
+                            background: $color-6;
+                            color: $color-1;
+                        }
+                    }
+
+                    .repeater-row {
+                        display: table;
+                        width: 100%;
+                        margin-bottom: 20px;
+
+                        input,
+                        div {
+                            display: table-cell;
+                            vertical-align: middle;
+                        }
+
+                        .remove-item {
+                            color: $color-6;
+                            width: 2%;
+                            cursor: pointer;
+
+                            i {
+                                line-height: 20px;
+                                font-size: 34px;
+                            }
+                        }
+
+                        &.box-2 {
+                            input {
+                                width: 49%;
+                            }
+                        }
+                    }
+                }
+
+                &.toggle {
+
+                    .value-box,
+                    .desc-box {
+                        display: inline-block;
+                        vertical-align: middle;
+                        line-height: 40px;
+                    }
+
+                    .value-box {
+                        margin-left: 0;
+                    }
+
+                    .desc-box {
+                        font-size: 14px;
+                        line-height: 25px;
+                        margin-left: 15px;
+                    }
+                }
+            }
+        }
+    }
+}
+
+
+// More Detail Info Box
+.more-details-box {
+    position: relative;
+    display: inline-block;
+    vertical-align: top;
+    margin-left: 5px;
+
+    i {
+        color: $color-3;
+    }
+
+    .desc-box {
+        position: absolute;
+        left: 30px;
+        top: -30px;
+        background: $color-3;
+        padding: 15px;
+        width: 250px;
         border-radius: 5px;
+        color: $color-1;
+        font-size: 14px;
+        line-height: 25px;
+        opacity: 0;
+        visibility: hidden;
+        transition: $general-transition;
+        box-shadow: 0 0 15px rgba($color-2, .2);
+    }
+
+    &:hover {
+        .desc-box {
+            opacity: 1;
+            visibility: visible;
+        }
+    }
+}
+
+// Toggle Box
+.toggle-box {
+    position: relative;
+    display: inline-block;
+    @include size(60px, 34px);
+
+    input {
+        opacity: 0;
+        width: 0;
+        height: 0;
+
+        &:checked+span {
+            background-color: $color-3;
+
+            &:before {
+                transform: translateX(26px);
+            }
+        }
+
+        &:focus+span {
+            box-shadow: 0 0 1px $color-3;
+        }
+    }
+
+    span {
+        position: absolute;
+        cursor: pointer;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background-color: $color-4;
+        transition: $general-transition;
+        border-radius: 34px;
+
+        &:before {
+            position: absolute;
+            content: "";
+            @include square(26px);
+            left: 4px;
+            bottom: 4px;
+            background-color: $color-1;
+            transition: $general-transition;
+            border-radius: 50%;
+        }
+    }
+}
+
+// Gallery
+
+.gallery-main-container {
+    .gallery-images-list {
+        margin-bottom: 30px;
+
+        .img-box {
+            display: inline-block;
+            margin: 5px;
+
+            img {
+                border-radius: 5px;
+                border: 5px solid $color-1;
+            }
+        }
+    }
+
+    button {
+        margin: 0 10px !important;
+    }
+}
+
+
+
+// Price Fields
+.base-price-row {
+    @include clearfix;
+    text-align: center;
+    .adult-row,.child-row {
+        display: inline-block;
+        width: 47%;
+        border: 1px solid rgba($color-4, .5);
+        background: $color-1;
+        border-radius: 5px;
+        margin: 10px;
+        padding: 30px;
+        position: relative;
+        .box-title{
+            color: $color-1;
+            background: $color-3;
+            font-size: 18px;
+            margin: -31px -31px 20px;
+            text-align: center;
+            padding: 10px;
+            border-radius: 5px 5px 0 0;
+        }
+
+        .weekday,
+        .weekday {
+            .title {
+                line-height: 40px;
+                width: 100px;
+                display: inline-block;
+            }
+
+            input {
+                width: 230px !important;
+            }
+        }
+    }
+    .date-row {
+        text-align: center;
+        background: $color-3;
+        margin: -5px -5px 5px;
+        padding: 10px;
+        border-radius: 5px 5px 0 0;
+        .DateInput{
+            width: auto;
+        }
+        .DateRangePickerInput, .DateInput{
+            background: none;
+        }
+    }
+
+    .extra-guest-separator {
+        text-align: center;
+        color: $color-3;
+        margin: -20px 30px 0;   
+        font-size: 1.3em;
+        padding: 10px 0;
+        background: rgba($color-4, .2);        
+    }
+}
+
+.seasonal-price-main-container{
+    .base-price-row{
+        background: $color-1;
+        padding: 5px;
+        border-radius: 5px;
+        margin-bottom: 20px;
     }
 }
