@@ -316,6 +316,19 @@
         .DateRangePickerInput, .DateInput{
             background: none;
         }
+        .remove-item{
+            @include square(40px);
+            background: $color-6;
+            float: right;
+            color: $color-1;
+            border-radius: 5px;
+            cursor: pointer;
+            i{
+                font-size: 2em;
+                margin-left: -5px;
+                line-height: 40px;
+            }
+        }
     }
 
     .extra-guest-separator {

@@ -20,6 +20,7 @@ export default class SeasonalPrice extends Component {
     }
 
     priceRow = (seasonPrice, index) => {
+        const { info } = this.props;
 
         // TODO : Adding remove button to the base prices
         return (
@@ -34,6 +35,17 @@ export default class SeasonalPrice extends Component {
                             this.outputGenerator(index, 'date', newDate)
                         }}
                     />
+
+                        <div
+                            onClick={() => {
+                                const newVal = [...info.value];
+                                newVal.splice(index, 1);
+                                this.props.onFieldChanged(newVal);
+                            }}
+                            className="remove-item"
+                        >
+                            <i className="dashicons dashicons-no-alt"></i>
+                        </div>
                 </div>
                 <Price
                     {...this.props}
