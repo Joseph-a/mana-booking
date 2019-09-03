@@ -1,8 +1,6 @@
 import { __ } from '@wordpress/i18n';
 
-export const roomSettings = [ {
-		label: __( 'Basic Information', 'ravis-booking' ),
-		icon: 'dashicons-admin-generic',
+export const blockDatesSettings = [ {
 		value: [ {
 				label: __( 'Short Description', 'ravis-booking' ),
 				type: 'textarea',
@@ -70,67 +68,5 @@ export const roomSettings = [ {
 				desc: __( 'Add the services of this room.', 'ravis-booking' )
 			}
 		]
-	},
-	{
-		label: __( 'Price Information', 'ravis-booking' ),
-		icon: 'dashicons-clipboard',
-		value: [ {
-				label: __( 'Base Price', 'ravis-booking' ),
-				type: 'price',
-				value: {},
-				desc: __( 'Add base price, the price which is used for main capacity of room, of room in this field.', 'ravis-booking' )
-			},
-			{
-				label: __( 'Extra Guest Price', 'ravis-booking' ),
-				type: 'price',
-				value: {},
-				desc: __( 'Add base price, the price which is used for extra capacity of room, of room in this field.', 'ravis-booking' )
-			},
-			{
-				label: __( 'Seasonal Price', 'ravis-booking' ),
-				type: 'seasonal-price',
-				value: [],
-				desc: __( 'Set the room price based on the date. These prices will override the base price during the period you set.', 'ravis-booking' )
-			},
-			{
-				label: __( 'Discount', 'ravis-booking' ),
-				type: 'discount',
-				value: [],
-				desc: __( 'Add the discount of this room.', 'ravis-booking' )
-			}
-		]
-	},
-	{
-		label: __( 'Gallery', 'ravis-booking' ),
-		icon: 'dashicons-format-gallery',
-		value: [ {
-			label: __( 'Gallery', 'ravis-booking' ),
-			type: 'gallery',
-			value: [],
-			desc: __( 'Manage room\'s images with this field.', 'ravis-booking' )
-		} ]
-	},
-	{
-		label: __( 'Settings' ),
-		icon: 'dashicons-admin-settings',
-		value: [ {
-				label: __( 'Rating System', 'ravis-booking' ),
-				type: 'toggle',
-				value: false,
-				desc: __( 'Enable / Disable Rating for rooms', 'ravis-booking' )
-			},
-			{
-				label: __( 'Booking Overview', 'ravis-booking' ),
-				type: 'toggle',
-				value: false,
-				desc: __( 'Enable / Disable Booking Overview Calendar in Rooms', 'ravis-booking' )
-			},
-			{
-				label: __( 'Special Room', 'ravis-booking' ),
-				type: 'toggle',
-				value: false,
-				desc: __( 'Mark this room as a special room to be listed in [ravis-booking-special-rooms] shortcode', 'ravis-booking' )
-			},
-		]
-	},
+	}
 ];

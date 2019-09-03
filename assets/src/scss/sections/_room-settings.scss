@@ -29,9 +29,22 @@
             font-weight: 300;
             border-bottom: 2px solid $color-4;
 
+            i{
+                display: inline-block;
+                vertical-align: middle;
+                @include square(40px);
+                background: $color-4;
+                color: $color-1;
+                border-radius: 50%;
+                margin-right: 20px;
+                line-height: 40px;
+            }
             &.active {
                 border-bottom-color: $color-3;
                 color: $color-3;
+                i{
+                    background: $color-3;
+                }
             }
         }
     }
@@ -39,21 +52,21 @@
     .tab-content {
         // width: 85%;
         background: $color-1;
-        padding: 30px;
-        min-height: 250px;
+        // padding: 30px;
+        // min-height: 250px;
         // border: 3px solid darken($color-1, 5%);
         // box-shadow: 0 0 0 3px $color-1;
         border-radius: 0 0 5px 5px;
 
         .tab-content-container {
-            border: 2px solid $color-4;
+            // border: 2px solid $color-4;
             background: rgba($color-4, .2);
-            border-radius: 5px;
+            // border-radius: 5px;
             padding: 30px;
 
             .field-row {
                 border-bottom: 1px solid $color-1;
-                padding: 20px 0;
+                padding: 15px 0;
 
                 &:last-child {
                     border-bottom: 0;
@@ -108,7 +121,7 @@
                     .repeater-row {
                         display: table;
                         width: 100%;
-                        margin-bottom: 20px;
+                        margin-bottom: 15px;
 
                         input,
                         div {

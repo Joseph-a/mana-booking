@@ -2,6 +2,7 @@
     border: 0;
     box-shadow: none;
     margin-bottom: 20px;
+    padding: 10px;
     > .handlediv {
         position: relative;
         // color: $color-1;
@@ -21,7 +22,7 @@
         border-bottom: 0;
     }
     .inside {
-        // margin: -1px 0 0 !important;
+        margin: 10px 0 !important;
         padding-top: 1px;
         background: $color-5;
         // border: 1px solid $color-3;

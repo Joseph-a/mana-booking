@@ -46,12 +46,15 @@
 			// Use nonce for verification
 			echo '<input type="hidden" name="' . $this->meta_box_post_type . '_meta_box_nonce" value="' . esc_attr( wp_create_nonce( basename( __FILE__ ) ) ) . '" />';
 			
-			if($this->meta_box_fields[0]['type'] === 'general_room_settings'){
+			if(
+				$this->meta_box_fields[0]['type'] === 'room_settings' ||
+				$this->meta_box_fields[0]['type'] === 'block_date_settings'
+			){
 				$field = $this->meta_box_fields[0];
 				$meta = get_post_meta( $post->ID, $field['id'], true );
 				echo '
 					<input type="hidden" name="' . esc_attr( $field['id'] ) . '" id="' . esc_attr( $field['id'] ) . '" value="' . esc_attr( $meta ) . '" size="40" />
-					<div id="ravis-room-setting-info-box"></div>						
+					<div id="ravis-'. str_replace('_', '-', $this->meta_box_fields[0]['type']) .'-info-box"></div>						
 				';
 			} else {
 				// Begin the field table and loop

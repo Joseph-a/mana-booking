@@ -729,6 +729,16 @@
 				),
 			);
 			$block_dates_meta_box_obj    = new Ravis_booking_meta_boxes( $block_dates_meta_box_items, $block_dates_meta_box_prefix, $block_dates_meta_box_title, 'block_dates' );
+			
+			$block_dates_meta_n_box_prefix = 'ravis_booking_block_dates_n_';
+			$block_dates_meta_n_box_title  = esc_html__( 'Block Date Information', 'ravis-booking' );
+			$block_dates_meta_n_box_items  = array (
+				array (
+					'id'    => $block_dates_meta_box_prefix . 'meta_info',
+					'type'  => 'block_date_settings',
+				)
+			);
+			$block_dates_meta_n_box_obj    = new Ravis_booking_meta_boxes( $block_dates_meta_n_box_items, $block_dates_meta_n_box_prefix, $block_dates_meta_n_box_title, 'block_dates' );
 
 			/**
 			 * ------------------------------------------------------------------------------------------
@@ -740,7 +750,7 @@
 			$room_meta_box_items  = array (
 				array (
 					'id'    => $room_meta_box_prefix . 'meta_info',
-					'type'  => 'general_room_settings',
+					'type'  => 'room_settings',
 				)
 			);
 			$rooms_meta_box_obj   = new Ravis_booking_meta_boxes( $room_meta_box_items, $room_meta_box_prefix, $room_meta_box_title, 'rooms' );

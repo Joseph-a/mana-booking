@@ -22,7 +22,6 @@ export default class SeasonalPrice extends Component {
     priceRow = (seasonPrice, index) => {
         const { info } = this.props;
 
-        // TODO : Adding remove button to the base prices
         return (
             <div className="base-price-row" key={index}>
                 <div className="date-row">

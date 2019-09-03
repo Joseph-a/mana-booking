@@ -85,6 +85,9 @@ module.exports = {
 		path: path.resolve(__dirname),
 		filename: "[name].js", // [name] = './assets/dist/blocks.build' as defined above.
 	},
+	resolve: {
+		extensions: ['.json', '.jsx', '.js']
+	},
 	optimization: {
 		minimizer: [
 			new UglifyJSPlugin({
