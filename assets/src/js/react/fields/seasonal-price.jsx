@@ -35,16 +35,16 @@ export default class SeasonalPrice extends Component {
                         }}
                     />
 
-                        <div
-                            onClick={() => {
-                                const newVal = [...info.value];
-                                newVal.splice(index, 1);
-                                this.props.onFieldChanged(newVal);
-                            }}
-                            className="remove-item"
-                        >
-                            <i className="dashicons dashicons-no-alt"></i>
-                        </div>
+                    <div
+                        onClick={() => {
+                            const newVal = Object.values(info.value);
+                            newVal.splice(index, 1);
+                            this.props.onFieldChanged(newVal);
+                        }}
+                        className="remove-item"
+                    >
+                        <i className="dashicons dashicons-no-alt"></i>
+                    </div>
                 </div>
                 <Price
                     {...this.props}

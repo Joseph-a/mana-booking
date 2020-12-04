@@ -11,7 +11,7 @@ export default class RoomMetaData extends Component {
         const savedSetting = document.getElementById('mana_booking_room_meta_info').value;
 
         this.state = {
-            roomSettings: savedSetting ? { ...JSON.parse(savedSetting), ...roomSettings } : roomSettings,
+            roomSettings: savedSetting ? { ...roomSettings, ...JSON.parse(savedSetting) } : roomSettings,
             activeTab: 0
         }
     }

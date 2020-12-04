@@ -1,29 +1,36 @@
-$presets :
-        //color1 color2  color3  color4  color5  color6  color7
-        #FFFFFF #000000 #27bec5 #d1d1d1 #dff2f8 #d9534f #5cb85c #764ba2 #667eea #8e8e8e,
-        #FFFFFF #000000 #03B744 #02043d #969696 #d9534f #5cb85c #764ba2 #667eea #8e8e8e
-;
+$presets : //color1 color2  color3  color4  color5  color6  color7
+#FFFFFF #000000 #11779b #d1d1d1 #8cc740 #d9534f #5cb85c #764ba2 #667eea #8e8e8e,
+#FFFFFF #000000 #03B744 #02043d #969696 #d9534f #5cb85c #764ba2 #667eea #8e8e8e;
 
 
 // Device widths
-$xx-small-phone: 			'(max-width: 300px)';
-$x-small-phone: 			'(max-width: 390px)';
-$small-phone: 				'(max-width: 440px)';
-$phone: 					'(max-width: 600px)';
-$tablet-portrait: 			'(max-width: 767px)';
-$tablet-landscape-desktop: 	'(min-width: 768px) and (max-width: 992px)';
-$all-tablet-phone:			'(max-width: 992px)';
-$small-desktop: 			'(max-width: 1200px)';
-$large-desktop: 			'(min-width: 1200px)';
-$non-retina: 				'screen and (-webkit-max-device-pixel-ratio: 1)';
-$retina: 					'screen and (-webkit-min-device-pixel-ratio: 2)';
+$xx-small-phone: '(max-width: 300px)';
+$x-small-phone: '(max-width: 390px)';
+$small-phone: '(max-width: 440px)';
+$phone: '(max-width: 600px)';
+$tablet-portrait: '(max-width: 767px)';
+$tablet-landscape-desktop: '(min-width: 768px) and (max-width: 992px)';
+$all-tablet-phone: '(max-width: 992px)';
+$small-desktop: '(max-width: 1200px)';
+$large-desktop: '(min-width: 1200px)';
+$non-retina: 'screen and (-webkit-max-device-pixel-ratio: 1)';
+$retina: 'screen and (-webkit-min-device-pixel-ratio: 2)';
 
 // Fonts and Sizes
 $html-default-font-size: 12px;
 
-$font-1: 		'Open Sans',Arial, Helvetica, sans-serif;
-$font-2: 		'Playfair Display',Arial, Helvetica, sans-serif;
-$font-3: 		'Great Vibes',Arial, Helvetica, sans-serif;
+$font-1: 'Open Sans',
+Arial,
+Helvetica,
+sans-serif;
+$font-2: 'Playfair Display',
+Arial,
+Helvetica,
+sans-serif;
+$font-3: 'Great Vibes',
+Arial,
+Helvetica,
+sans-serif;
 
 $color-3 : linear-gradient(135deg, #667eea 0%, #764ba2 100%);
 $general-transition : all .5s ease;

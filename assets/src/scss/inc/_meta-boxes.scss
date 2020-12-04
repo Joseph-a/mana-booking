@@ -3,7 +3,8 @@
     box-shadow: none;
     margin-bottom: 20px;
     padding: 10px;
-    > .handlediv {
+
+    >.handlediv {
         position: relative;
         // color: $color-1;
         z-index: 111;
@@ -11,7 +12,8 @@
         //     color: $color-1;
         // }
     }
-    > h2 {
+
+    >h2 {
         // background: $color-5;
         // line-height: 20px !important;
         // text-transform: uppercase;
@@ -21,39 +23,50 @@
         // border-bottom: 4px solid $color-1 !important;
         border-bottom: 0;
     }
+
     .inside {
-        margin: 10px 0 !important;
-        padding-top: 1px;
-        background: $color-5;
-        // border: 1px solid $color-3;
+        margin: 0 !important;
+        // background: $color-5;
+        padding: 0;
         border: 0;
-        border-radius: 5px;
+
         .form-table {
-            input[type="text"], input[type="number"], input[type="url"], input[type="email"], textarea, select {
+
+            input[type="text"],
+            input[type="number"],
+            input[type="url"],
+            input[type="email"],
+            textarea,
+            select {
                 background: $color-1;
                 box-shadow: none;
                 border: 1px solid darken($color-1, 10%);
                 min-width: 300px;
                 height: 40px;
                 vertical-align: middle;
+
                 // padding: 5px;
                 &.small {
                     min-width: 100px;
                 }
-                &[readonly]{
+
+                &[readonly] {
                     border: 0;
                 }
-                &.highlighted{
+
+                &.highlighted {
                     font-size: 1.1em;
-                color: $color-3;
-                font-weight: bold;
+                    color: $color-3;
+                    font-weight: bold;
                 }
             }
+
             textarea {
                 height: 100px;
             }
+
             .button {
-                border-radius:0;
+                border-radius: 0;
                 border: 0;
                 box-shadow: none;
                 padding: 4px 25px;
@@ -66,32 +79,41 @@
                 background: $color-3;
                 text-shadow: none;
             }
+
             .description {
                 display: inline-block;
                 vertical-align: middle;
                 margin-left: 10px;
             }
+
             .custom_repeatable {
                 @include clearfix;
                 margin-bottom: 10px;
+
                 li {
                     position: relative;
-                    > span, a {
+
+                    >span,
+                    a {
                         display: block;
                         position: absolute;
                     }
+
                     .input-containers {
                         display: table;
                         margin-right: 40px;
                         width: calc(100% - 40px);
+
                         .input-box {
                             display: table-cell;
                             vertical-align: middle;
+
                             input {
                                 width: 100%;
                                 min-width: 0;
                                 border-right: 0;
                             }
+
                             &:last-child {
                                 input {
                                     border-right: 1px solid darken($color-1, 10%);
@@ -99,11 +121,13 @@
                             }
                         }
                     }
+
                     a {
                         &:hover {
                             text-decoration: none;
                         }
                     }
+
                     .repeatable-remove {
                         color: red;
                         top: 10px;
@@ -113,41 +137,51 @@
                         background: $color-1;
                         border: 1px solid rgba(red, .1);
                         text-align: center;
+
                         i {
                             line-height: 38px;
                         }
                     }
+
                     &.single {
-                        > span, a {
+
+                        >span,
+                        a {
                             position: initial;
                             display: inline-block;
                             vertical-align: middle;
                             margin-left: -4px;
                         }
+
                         .input-containers {
                             vertical-align: middle;
                             display: inline-block;
                             margin-right: 0;
                             width: 300px;
+
                             .input-box {
                                 display: block;
                             }
                         }
                     }
+
                     &.services {
 
-                        > span, a {
+                        >span,
+                        a {
                             position: initial;
                             display: inline-block;
                             vertical-align: middle;
                             margin-left: -4px;
                         }
+
                         .input-containers {
                             @include clearfix;
                             vertical-align: middle;
                             display: inline-block;
                             margin-right: 0;
                             width: 500px;
+
                             .input-box {
                                 display: block;
                                 width: 50%;
@@ -163,16 +197,20 @@
                         background: darken($color-1, 5%);
                         padding: 15px 20px 20px;
                         margin: 0 10px 10px 0;
+
                         .repeatable-remove {
                             top: 0;
                             @include square(28px);
+
                             i {
                                 line-height: 28px;
                             }
                         }
+
                         .extra-box {
                             margin-top: 20px;
-                            > .title {
+
+                            >.title {
                                 background: $color-1;
                                 text-align: center;
                                 border: 1px solid $color-3;
@@ -190,27 +228,35 @@
                             display: inline-block;
                             margin-right: 0;
                             width: 550px;
+
                             .input-box {
                                 display: block;
                                 float: left;
+
                                 &.title-box {
                                     width: calc(70% - 40px);
                                 }
+
                                 &.price-box {
                                     width: 30%;
                                 }
+
                                 &.chief-selection {
                                     @include size(40px, 41px);
                                     margin-right: -1px;
                                     position: relative;
+
                                     label {
                                         display: block;
                                         text-align: center;
+
                                         input {
                                             display: none;
+
                                             &:checked {
-                                                + .bg {
+                                                +.bg {
                                                     background: $color-3;
+
                                                     i {
                                                         display: inline-block;
                                                         color: $color-1;
@@ -218,25 +264,29 @@
                                                         @include square(auto);
                                                         line-height: 40px;
                                                     }
-                                                    + .text {
-                                                        opacity:1;
+
+                                                    +.text {
+                                                        opacity: 1;
                                                         visibility: visible;
                                                     }
                                                 }
                                             }
                                         }
+
                                         .bg {
                                             position: absolute;
                                             @include square(100%);
                                             top: 0;
                                             left: 0;
                                             background: darken($color-1, 10%);
-                                            transition:all .3s ease;
+                                            transition: all .3s ease;
                                             text-align: center;
+
                                             i {
                                                 display: none;
                                             }
                                         }
+
                                         .text {
                                             position: absolute;
                                             right: 103%;
@@ -245,20 +295,22 @@
                                             line-height: 40px;
                                             background: $color-3;
                                             color: $color-1;
-                                            transition:all .3s ease;
-                                            opacity:0;
+                                            transition: all .3s ease;
+                                            opacity: 0;
                                             visibility: hidden;
                                             display: block;
                                             font-size: .9em;
                                             white-space: nowrap;
                                             padding: 0 15px;
                                         }
+
                                         &:hover {
                                             .bg {
                                                 background: darken($color-1, 10%);
                                             }
+
                                             .text {
-                                                opacity:1;
+                                                opacity: 1;
                                                 visibility: visible;
                                             }
                                         }
@@ -266,12 +318,15 @@
                                 }
                             }
                         }
-                        > span, a {
+
+                        >span,
+                        a {
                             position: initial;
                             display: inline-block;
                             vertical-align: middle;
                             margin-left: -5px;
                         }
+
                         .menu-item-remove {
                             color: red;
                             top: 10px;
@@ -281,17 +336,20 @@
                             background: $color-1;
                             border: 1px solid rgba(red, .1);
                             text-align: center;
+
                             i {
                                 line-height: 38px;
                             }
                         }
                     }
+
                     .sort {
                         top: 10px;
                         left: 0;
                     }
                 }
             }
+
             .price-separated-container {
                 margin-left: 10px;
                 font-size: 1.3em;
@@ -299,36 +357,44 @@
                 font-weight: bold;
                 display: inline-block;
                 vertical-align: middle;
+
                 .unit {
                     margin-right: 3px;
                 }
             }
+
             .room-id-box {
                 font-size: 1.1em;
                 color: $color-3;
                 font-weight: bold;
             }
+
             .capacity-field-container {
                 input {
                     display: inline-block;
                     vertical-align: middle;
                     min-width: 0;
                     width: 130px;
+
                     &:first-child {
                         margin-right: 10px;
                     }
+
                     &:last-child {
                         margin-left: 10px;
                     }
                 }
             }
+
             // Mana image Slide Show
             .clearfix {
                 @include clearfix;
             }
+
             .mana_slideshow_wrapper {
                 .slideshow_images {
                     margin: 0;
+
                     li {
                         float: left;
                         width: 155px;
@@ -336,11 +402,13 @@
                         background: darken($color-1, 5%);
                         padding: 5px;
                         position: relative;
+
                         img {
                             width: 100%;
                             height: auto;
                             display: block;
                         }
+
                         a {
                             position: absolute;
                             top: 0;
@@ -366,14 +434,17 @@
                             margin: 0 10px 10px 0;
                             padding: 10px 20px 10px 10px;
                             background: darken($color-1, 5%);
+
                             a {
                                 position: initial;
                                 float: left;
                                 margin-right: 10px;
                             }
+
                             &.img-box {
                                 padding: 10px;
                                 width: 155px;
+
                                 a {
                                     position: absolute;
                                     top: 0;
@@ -394,22 +465,27 @@
                     }
                 }
             }
+
             .base-room-price {
                 .row {
                     @include clearfix;
                     width: 500px;
                     max-width: 100%;
+
                     .price-box {
                         width: 50%;
                         float: left;
+
                         .title {
                             //font-weight: bold;
                             line-height: 30px;
                         }
+
                         .input-container {
                             &:last-child {
                                 margin-left: -1px;
                             }
+
                             input {
                                 min-width: 0;
                                 width: 100%;
@@ -418,8 +494,11 @@
                     }
                 }
             }
+
             tr {
-                &.price-type, &.paid-service {
+
+                &.price-type,
+                &.paid-service {
                     display: none;
                 }
             }
