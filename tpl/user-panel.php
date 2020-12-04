@@ -4,8 +4,8 @@
 		wp_redirect( home_url() );
 	}
 	get_header();
-	$ravis_booking_user_obj = new Ravis_booking_user();
-	$ravis_booking_user_obj->automatic_profile_updater();
+	$mana_booking_user_obj = new Mana_booking_user();
+	$mana_booking_user_obj->automatic_profile_updater();
 ?>
 	<div id="user-panel-main-container">
 		<div class="inner-container container">

@@ -1,12 +1,12 @@
 <?php
 
-    class Ravis_booking_get_info
+    class Mana_booking_get_info
     {
-        public $ravis_options;
+        public $mana_options;
 
         public function __construct()
         {
-            $this->ravis_options = get_option('ravis-booking-setting');
+            $this->mana_options = get_option('mana-booking-setting');
         }
 
         /**
@@ -40,7 +40,7 @@
          */
         public static function booking_page_url()
         {
-            $plugin_option = get_option('ravis-booking-setting');
+            $plugin_option = get_option('mana-booking-setting');
 
             if (!empty($plugin_option['external_booking']))
             {
@@ -48,7 +48,7 @@
             }
             else
             {
-                $booking_page_url = home_url() . '/?' . (!empty($plugin_option['booking_url']) ? $plugin_option['booking_url'] : 'ravis-booking');
+                $booking_page_url = home_url() . '/?' . (!empty($plugin_option['booking_url']) ? $plugin_option['booking_url'] : 'mana-booking');
             }
 
             return $booking_page_url;
@@ -62,14 +62,14 @@
         public function room_info($p_id, $check_in = null, $check_out = null, $duration = null, $adult = null, $child = null, $language = null)
         {
             $room_info     = array();
-            $p_id          = Ravis_booking_get_info::translated_post_id($p_id);
+            $p_id          = Mana_booking_get_info::translated_post_id($p_id);
 
             /**
              * ------------------------------------------------------------------------------------------
              *  Basic Details
              * ------------------------------------------------------------------------------------------
              */
-            $room_meta_box_prefix           = 'ravis_booking_room_';
+            $room_meta_box_prefix           = 'mana_booking_room_';
             $room_info['id']                = $p_id;
             $room_info['title']             = get_the_title($p_id);
             $room_info['subtitle']          = get_post_meta($p_id, $room_meta_box_prefix . 'subtitle', true);
@@ -134,9 +134,9 @@
              *  Room Price
              * ------------------------------------------------------------------------------------------
              */
-            $currency_info               = new Ravis_booking_currency();
+            $currency_info               = new Mana_booking_currency();
             $room_info['price']['unit']  = $currency_info->get_current_currency();
-            $room_price_meta_box_prefix  = 'ravis_booking_room_price_';
+            $room_price_meta_box_prefix  = 'mana_booking_room_price_';
             $room_info['price_unit']     = $room_info['price']['unit']['symbol'];
             $init_base_price             = get_post_meta($p_id, $room_price_meta_box_prefix . 'base_price', true);
             $init_extra_price            = get_post_meta($p_id, $room_price_meta_box_prefix . 'extra_price', true);
@@ -324,7 +324,7 @@
 
                     $room_info['booking_price'][ $check_in_time->format('Y-m-d') ] = $one_day_val;
 
-                    if (!empty($this->ravis_options['room_base_price']))
+                    if (!empty($this->mana_options['room_base_price']))
                     {
                         if (!empty($weekend))
                         {
@@ -429,8 +429,8 @@
              *  Rating info
              * ------------------------------------------------------------------------------------------
              */
-            $room_rating_info = get_post_meta($p_id, 'ravis_booking_room_rating', true);
-            $rating_items     = !empty($this->ravis_options['rating_item']) ? $this->ravis_options['rating_item'] : '';
+            $room_rating_info = get_post_meta($p_id, 'mana_booking_room_rating', true);
+            $rating_items     = !empty($this->mana_options['rating_item']) ? $this->mana_options['rating_item'] : '';
             $room_total_rate  = array();
             if (!empty($rating_items))
             {
@@ -505,9 +505,9 @@
             }
 
             // Check General Seasonal Price
-            if (!empty($this->ravis_options['seasonal_price']))
+            if (!empty($this->mana_options['seasonal_price']))
             {
-                foreach ($this->ravis_options['seasonal_price'] as $g_season_item)
+                foreach ($this->mana_options['seasonal_price'] as $g_season_item)
                 {
                     $g_season_start = new DateTime($g_season_item['from']);
                     $g_season_end   = new DateTime($g_season_item['to']);
@@ -566,12 +566,12 @@
                 $service_info['img']['large']     = get_the_post_thumbnail($s_id, 'large', 'class=post-img');
                 $service_info['img']['full']      = get_the_post_thumbnail($s_id, 'full', 'class=post-img');
             }
-            $staff_meta_box_prefix      = 'ravis_booking_service_';
+            $staff_meta_box_prefix      = 'mana_booking_service_';
             $service_info['shortcode']  = get_post_meta($s_id, $staff_meta_box_prefix . 'shortcode', true);
             $service_info['in_booking'] = get_post_meta($s_id, $staff_meta_box_prefix . 'booking', true);
             if (!empty($service_info['in_booking']))
             {
-                $currency_info_obj          = new Ravis_booking_currency();
+                $currency_info_obj          = new Mana_booking_currency();
                 $currency_info              = $currency_info_obj->get_current_currency();
                 $service_info['price_type'] = get_post_meta($s_id, $staff_meta_box_prefix . 'price_type', true);
                 if ($service_info['price_type'] !== '1')
@@ -583,24 +583,24 @@
                     switch ($service_info['price']['guest'])
                     {
                         case ('1'):
-                            $price_guest = esc_html__('Guest', 'ravis-booking');
+                            $price_guest = esc_html__('Guest', 'mana-booking');
                             $total_price = ($total_guest * $total_price);
                             break;
                         case ('2'):
-                            $price_guest = esc_html__('Booking', 'ravis-booking');
+                            $price_guest = esc_html__('Booking', 'mana-booking');
                             break;
                         case ('3'):
-                            $price_guest = esc_html__('Room', 'ravis-booking');
+                            $price_guest = esc_html__('Room', 'mana-booking');
                             $total_price = ($room_count * $total_price);
                             break;
                     }
                     if ($service_info['price']['night'] === '2')
                     {
-                        $price_night = esc_html__('Booking', 'ravis-booking');
+                        $price_night = esc_html__('Booking', 'mana-booking');
                     }
                     else
                     {
-                        $price_night = esc_html__('Night', 'ravis-booking');
+                        $price_night = esc_html__('Night', 'mana-booking');
                         $total_price = ($duration * $total_price);
                     }
                     $service_info['price']['generated']       = '<span>' . $currency_info_obj->price_full_generator($service_info['price']['price']) . '</span> / ' . $price_guest . ' / ' . $price_night;
@@ -610,9 +610,9 @@
                 }
                 else
                 {
-                    $service_info['price']['generated']       = esc_html__('Free', 'ravis-booking');
+                    $service_info['price']['generated']       = esc_html__('Free', 'mana-booking');
                     $service_info['total_price']['value']     = 0;
-                    $service_info['total_price']['generated'] = esc_html__('Free', 'ravis-booking');
+                    $service_info['total_price']['generated'] = esc_html__('Free', 'mana-booking');
                 }
                 $service_info['mandatory'] = get_post_meta($s_id, $staff_meta_box_prefix . 'mandatory', true);
             }
@@ -632,7 +632,7 @@
             $block_date_info['title'] = get_the_title($p_id);
             $block_date_info['url']   = get_permalink($p_id);
 
-            $block_date_meta_box_prefix           = 'ravis_booking_block_dates_';
+            $block_date_meta_box_prefix           = 'mana_booking_block_dates_';
             $block_date_info['from']['full_date'] = get_post_meta($p_id, $block_date_meta_box_prefix . 'from', true);
             $block_date_info['from']['timestamp'] = strtotime($block_date_info['from']['full_date']);
             $block_date_info['to']['full_date']   = get_post_meta($p_id, $block_date_meta_box_prefix . 'to', true);
@@ -661,7 +661,7 @@
         public function booking_info($b_id)
         {
             global $wpdb;
-            $table_name       = $wpdb->prefix . 'ravis_booking';
+            $table_name       = $wpdb->prefix . 'mana_booking';
             $booking_raw_info = $wpdb->get_row($wpdb->prepare('SELECT * FROM ' . $table_name . ' WHERE id = %d', $b_id));
             $booking_info     = array();
             if (!empty($booking_raw_info))
@@ -699,10 +699,10 @@
         public function invoice_info($in_id)
         {
             global $wpdb;
-            $table_name       = $wpdb->prefix . 'ravis_invoice';
+            $table_name       = $wpdb->prefix . 'mana_invoice';
             $invoice_raw_info = $wpdb->get_row($wpdb->prepare('SELECT * FROM ' . $table_name . ' WHERE id = %d', $in_id));
             $invoice_info     = array();
-            $currency_obj     = new Ravis_booking_currency();
+            $currency_obj     = new Mana_booking_currency();
 
             $invoice_info['id']                 = $in_id;
             $invoice_info['booking_id']         = $invoice_raw_info->booking_id;
@@ -714,13 +714,13 @@
             switch ($invoice_raw_info->status)
             {
                 case '0':
-                    $invoice_info['status']['generated'] = esc_html__('Unpaid', 'ravis-booking');
+                    $invoice_info['status']['generated'] = esc_html__('Unpaid', 'mana-booking');
                     break;
                 case '1':
-                    $invoice_info['status']['generated'] = esc_html__('Paid', 'ravis-booking');
+                    $invoice_info['status']['generated'] = esc_html__('Paid', 'mana-booking');
                     break;
                 case '2':
-                    $invoice_info['status']['generated'] = esc_html__('Canceled', 'ravis-booking');
+                    $invoice_info['status']['generated'] = esc_html__('Canceled', 'mana-booking');
                     break;
             }
             $invoice_info['user'] = $invoice_raw_info->user_id;
@@ -737,17 +737,17 @@
         {
             $coupon_info['id']                 = $id;
             $coupon_info['title']              = get_the_title($id);
-            $coupon_info['description']        = get_post_meta($id, 'ravis_booking_coupon_desc', true);
-            $coupon_info['type']               = get_post_meta($id, 'ravis_booking_coupon_type', true);
-            $coupon_info['percent']            = get_post_meta($id, 'ravis_booking_coupon_percent', true);
-            $coupon_info['price']              = get_post_meta($id, 'ravis_booking_coupon_price', true);
-            $coupon_info['amount']             = get_post_meta($id, 'ravis_booking_coupon_amount', true);
-            $used_coupon                       = get_post_meta($id, 'ravis_booking_coupon_used', true);
+            $coupon_info['description']        = get_post_meta($id, 'mana_booking_coupon_desc', true);
+            $coupon_info['type']               = get_post_meta($id, 'mana_booking_coupon_type', true);
+            $coupon_info['percent']            = get_post_meta($id, 'mana_booking_coupon_percent', true);
+            $coupon_info['price']              = get_post_meta($id, 'mana_booking_coupon_price', true);
+            $coupon_info['amount']             = get_post_meta($id, 'mana_booking_coupon_amount', true);
+            $used_coupon                       = get_post_meta($id, 'mana_booking_coupon_used', true);
             $coupon_info['used_coupon']        = intval($used_coupon);
-            $coupon_info['expire_date']        = get_post_meta($id, 'ravis_booking_coupon_expire', true);
+            $coupon_info['expire_date']        = get_post_meta($id, 'mana_booking_coupon_expire', true);
 
             return $coupon_info;
         }
     }
 
-    $ravis_booking_get_info_obj = new Ravis_booking_get_info();
+    $mana_booking_get_info_obj = new Mana_booking_get_info();

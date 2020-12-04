@@ -1,5 +1,5 @@
 <div class="col-md-4 l-sec">
-	<div class="ravis-title-t-2">
+	<div class="mana-title-t-2">
 		<div class="title"><span>{{bookingAppVar.reservation_info}}</span></div>
 	</div>
 	<div class="check-in-out-container">
@@ -44,7 +44,7 @@
 		<div class="title-box">{{bookingAppVar.package}}</div>
 		<div class="selected-services clearfix">
 			<div class="title" ng-bind-html="bookingInfo.package.title"></div>
-			<div class="price">{{bookingInfo.package.total_price.value | ravisPrice:this}}</div>
+			<div class="price">{{bookingInfo.package.total_price.value | manaPrice:this}}</div>
 		</div>
 	</div>
 </div>
@@ -60,14 +60,14 @@
 		</div>
 		<form id="service-selection-form">
 			<div class="optional-service-container" ng-if="servicesList.optional">
-				<div class="ravis-title-t-2">
+				<div class="mana-title-t-2">
 					<div class="title"><span>{{bookingAppVar.optional_services}}</span></div>
 					<div class="sub-title">{{bookingAppVar.optional_services_desc}}</div>
 				</div>
 				<div class="optional-services">
 					<ul>
 						<li ng-repeat="opService in servicesList.optional track by $index">
-							<div class="ravis-checkbox">
+							<div class="mana-checkbox">
 								<label>
 									<input type="checkbox" ng-click="addService(opService)">
 									<span></span>
@@ -80,7 +80,7 @@
 				</div>
 			</div>
 			<div class="mandatory-service-container" ng-if="servicesList.mandatory">
-				<div class="ravis-title-t-2">
+				<div class="mana-title-t-2">
 					<div class="title"><span>{{bookingAppVar.mandatory_services}}</span></div>
 					<div class="sub-title">{{bookingAppVar.mandatory_services_desc}}</div>
 				</div>

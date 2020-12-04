@@ -1,6 +1,6 @@
 <wpml-config>
 	<admin-text>
-		<key name="ravis-booking-setting">
+		<key name="mana-booking-setting">
 			<key name="contact_url"/>
 			<key name="rating_item">
 				<key name="0"/>

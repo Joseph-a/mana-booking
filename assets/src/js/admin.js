@@ -144,7 +144,7 @@ import "./react/block-dates";
 
 // 		var _this = jQuery( this ),
 // 			image_slideshow_ids = _this.prev( 'input' ),
-// 			currentSliderShowContainer = _this.parents( '.ravis_slideshow_wrapper' ),
+// 			currentSliderShowContainer = _this.parents( '.mana_slideshow_wrapper' ),
 // 			attachment_ids = image_slideshow_ids.val();
 
 // 		// Create the media frame.
@@ -182,10 +182,10 @@ import "./react/block-dates";
 // 		slideshow_frame.open();
 // 	} );
 // 	// Remove files
-// 	jQuery( '.ravis_slideshow_wrapper' ).on( 'click', 'a.delete_slide', function()
+// 	jQuery( '.mana_slideshow_wrapper' ).on( 'click', 'a.delete_slide', function()
 // 	{
 // 		var _this = jQuery( this ),
-// 			currentSliderShowContainer = _this.parents( '.ravis_slideshow_wrapper' ),
+// 			currentSliderShowContainer = _this.parents( '.mana_slideshow_wrapper' ),
 // 			attachment_ids = '',
 // 			i = 0;
 
@@ -220,7 +220,7 @@ import "./react/block-dates";
 // 			var _this = jQuery( this );
 // 			if ( !_this.is( ':radio' ) )
 // 			{
-// 				_this.attr( 'name', "ravis-booking-setting[currency][" + fieldIndex + "][" + _this.data( 'name' ) + "]" );
+// 				_this.attr( 'name', "mana-booking-setting[currency][" + fieldIndex + "][" + _this.data( 'name' ) + "]" );
 // 				_this.removeAttr( 'id' );
 // 			}
 // 			else
@@ -260,7 +260,7 @@ import "./react/block-dates";
 // 			fieldContainer.find( 'li' ).each( function( )
 // 			{
 // 				var _this_li = jQuery( this ),
-// 					itemIndex = ( _this_li.children( 'input' ).attr( 'name' ) ).replace( 'ravis-booking-setting[rating_item][', '' ),
+// 					itemIndex = ( _this_li.children( 'input' ).attr( 'name' ) ).replace( 'mana-booking-setting[rating_item][', '' ),
 // 					itemIndexVal = parseInt( itemIndex.slice( ']', -1 ) );
 
 // 				if ( itemIndexVal > highestIndex )
@@ -276,7 +276,7 @@ import "./react/block-dates";
 // 		{
 // 			var _this = jQuery( this ),
 // 				fieldName = _this.data( 'name' );
-// 			_this.attr( 'name', "ravis-booking-setting[" + fieldName + "][" + highestIndex + "]" );
+// 			_this.attr( 'name', "mana-booking-setting[" + fieldName + "][" + highestIndex + "]" );
 // 		} );
 
 // 		return false;
@@ -300,10 +300,10 @@ import "./react/block-dates";
 // 		jQuery.ajax(
 // 		{
 // 			type: "POST",
-// 			url: ravis_booking.ajaxurl,
+// 			url: mana_booking.ajaxurl,
 // 			data:
 // 			{
-// 				action: "ravis_booking_update_currency"
+// 				action: "mana_booking_update_currency"
 // 			}
 // 		} ).done( function( data )
 // 		{
@@ -317,7 +317,7 @@ import "./react/block-dates";
 // 				rateBox.val( dataReturn[ index ] );
 // 			} );
 
-// 			jQuery( '#ravis-booking-setting-page' ).find( '#submit' ).trigger( 'click' );
+// 			jQuery( '#mana-booking-setting-page' ).find( '#submit' ).trigger( 'click' );
 // 		} );
 // 	} );
 
@@ -401,7 +401,7 @@ import "./react/block-dates";
 // 		firstField.find( '.client-box' ).last().find( 'input' ).each( function( )
 // 		{
 // 			var _this = jQuery( this );
-// 			_this.attr( 'name', "ravis-booking-setting[client][" + fieldIndex + "][" + _this.data( 'name' ) + "]" );
+// 			_this.attr( 'name', "mana-booking-setting[client][" + fieldIndex + "][" + _this.data( 'name' ) + "]" );
 // 			_this.removeAttr( 'id' );
 // 		} );
 
@@ -472,17 +472,17 @@ import "./react/block-dates";
 // 	} );
 
 
-// 	var fileName = 'ravis-booking-settings.json';
-// 	jQuery( '#export-ravis-booking-setting' ).click( function()
+// 	var fileName = 'mana-booking-settings.json';
+// 	jQuery( '#export-mana-booking-setting' ).click( function()
 // 	{
-// 		downloadInnerHtml( fileName, 'ravis-booking-export-data', 'application/json' );
+// 		downloadInnerHtml( fileName, 'mana-booking-export-data', 'application/json' );
 // 	} );
 
-// 	jQuery( '#import-ravis-booking-setting' ).on( 'click', function( e )
+// 	jQuery( '#import-mana-booking-setting' ).on( 'click', function( e )
 // 	{
 // 		e.preventDefault();
 // 		var _this = jQuery( this ),
-// 			importOptions = jQuery( '#import-ravis-booking-setting-field' ).val(),
+// 			importOptions = jQuery( '#import-mana-booking-setting-field' ).val(),
 // 			messageBox = _this.next( '.message-box' );
 // 		if ( importOptions !== '' )
 // 		{
@@ -490,10 +490,10 @@ import "./react/block-dates";
 // 			jQuery.ajax(
 // 			{
 // 				type: "POST",
-// 				url: ravis_booking.ajaxurl,
+// 				url: mana_booking.ajaxurl,
 // 				data:
 // 				{
-// 					action: "ravis_booking_import_options",
+// 					action: "mana_booking_import_options",
 // 					options: importOptions
 // 				}
 // 			} ).done( function( data )
@@ -565,11 +565,11 @@ import "./react/block-dates";
 // 		if ( !_this.hasClass( 'confirmed' ) )
 // 		{
 // 			var data = {
-// 				action: 'ravis_booking_event_booking_status',
+// 				action: 'mana_booking_event_booking_status',
 // 				nonce: nonce,
 // 				eventBookingID: eventBookingID
 // 			};
-// 			jQuery.post( ravis_booking.ajaxurl, data, function( data )
+// 			jQuery.post( mana_booking.ajaxurl, data, function( data )
 // 			{
 // 				var data = JSON.parse( jQuery.trim( data ) );
 // 				if ( data.status === true )
@@ -592,11 +592,11 @@ import "./react/block-dates";
 // 		if ( result )
 // 		{
 // 			var data = {
-// 				action: 'ravis_booking_event_booking_delete',
+// 				action: 'mana_booking_event_booking_delete',
 // 				nonce: nonce,
 // 				eventBookingID: eventBookingID
 // 			};
-// 			jQuery.post( ravis_booking.ajaxurl, data, function( data )
+// 			jQuery.post( mana_booking.ajaxurl, data, function( data )
 // 			{
 // 				var data = JSON.parse( jQuery.trim( data ) );
 // 				if ( data.status === true )
@@ -607,8 +607,8 @@ import "./react/block-dates";
 // 		}
 // 	} );
 
-// 	var service_price_type = jQuery( '#ravis_booking_service_price_type' ),
-// 		service_booking = jQuery( '#ravis_booking_service_booking' );
+// 	var service_price_type = jQuery( '#mana_booking_service_price_type' ),
+// 		service_booking = jQuery( '#mana_booking_service_booking' );
 
 // 	if ( service_booking.is( ':checked' ) )
 // 	{
@@ -654,7 +654,7 @@ import "./react/block-dates";
 // 		}
 // 	} );
 
-// 	var guestSelect = jQuery( '.ravis-service-price-box' ).find( '[name*=guest]' );
+// 	var guestSelect = jQuery( '.mana-service-price-box' ).find( '[name*=guest]' );
 // 	guestSelect.on( 'change', function( e )
 // 	{
 // 		e.preventDefault();
@@ -753,12 +753,12 @@ import "./react/block-dates";
 // 		firstField.find( '.membership-package-box' ).last().find( 'input' ).each( function( )
 // 		{
 // 			var _this = jQuery( this );
-// 			_this.attr( 'name', "ravis-booking-setting[membership][" + fieldIndex + "][" + _this.data( 'name' ) + "]" );
+// 			_this.attr( 'name', "mana-booking-setting[membership][" + fieldIndex + "][" + _this.data( 'name' ) + "]" );
 // 		} );
 // 		firstField.find( '.membership-package-box' ).last().find( 'select' ).each( function( )
 // 		{
 // 			var _this = jQuery( this );
-// 			_this.attr( 'name', "ravis-booking-setting[membership][" + fieldIndex + "][" + _this.data( 'name' ) + "]" );
+// 			_this.attr( 'name', "mana-booking-setting[membership][" + fieldIndex + "][" + _this.data( 'name' ) + "]" );
 // 		} );
 
 // 		return false;
@@ -774,7 +774,7 @@ import "./react/block-dates";
 // 	 *  Booking Archive Codes
 // 	 * ------------------------------------------------------------------------------------------
 // 	 */
-// 	var bookingArchiveMainContainer = jQuery( '#ravis-booking-booking-archive' );
+// 	var bookingArchiveMainContainer = jQuery( '#mana-booking-booking-archive' );
 // 	bookingArchiveMainContainer.on( 'click', '.booking-more', function( e )
 // 	{
 // 		e.preventDefault();
@@ -789,10 +789,10 @@ import "./react/block-dates";
 // 		jQuery.ajax(
 // 		{
 // 			type: "POST",
-// 			url: ravis_booking.ajaxurl,
+// 			url: mana_booking.ajaxurl,
 // 			data:
 // 			{
-// 				action: "ravis_booking_update_booking_status",
+// 				action: "mana_booking_update_booking_status",
 // 				id: _this.data( 'id' ),
 // 				security: _this.data( 'nonce' ),
 // 				lang: _this.data( 'lang' )
@@ -809,7 +809,7 @@ import "./react/block-dates";
 
 // 	bookingArchiveMainContainer.on( 'click', '.delete-item', function( e )
 // 	{
-// 		var response = confirm( ravis_booking.delete_alert );
+// 		var response = confirm( mana_booking.delete_alert );
 // 		e.preventDefault();
 // 		if ( response === true )
 // 		{
@@ -817,10 +817,10 @@ import "./react/block-dates";
 // 			jQuery.ajax(
 // 			{
 // 				type: "POST",
-// 				url: ravis_booking.ajaxurl,
+// 				url: mana_booking.ajaxurl,
 // 				data:
 // 				{
-// 					action: "ravis_booking_delete_booking",
+// 					action: "mana_booking_delete_booking",
 // 					id: _this.data( 'id' ),
 // 					security: _this.data( 'nonce' )
 // 				}
@@ -840,9 +840,9 @@ import "./react/block-dates";
 // 	 *  Payment Archive
 // 	 * ------------------------------------------------------------------------------------------
 // 	 */
-// 	jQuery( '#ravis-payment-archive' ).on( 'click', '.delete-item', function( e )
+// 	jQuery( '#mana-payment-archive' ).on( 'click', '.delete-item', function( e )
 // 	{
-// 		var response = confirm( ravis_booking.delete_alert );
+// 		var response = confirm( mana_booking.delete_alert );
 // 		e.preventDefault();
 // 		if ( response === true )
 // 		{
@@ -850,10 +850,10 @@ import "./react/block-dates";
 // 			jQuery.ajax(
 // 			{
 // 				type: "POST",
-// 				url: ravis_booking.ajaxurl,
+// 				url: mana_booking.ajaxurl,
 // 				data:
 // 				{
-// 					action: "ravis_booking_delete_invoice",
+// 					action: "mana_booking_delete_invoice",
 // 					id: _this.data( 'id' ),
 // 					security: _this.data( 'nonce' )
 // 				}
@@ -903,7 +903,7 @@ import "./react/block-dates";
 // 		firstField.find( '.season-package-box' ).last().find( 'input' ).each( function( )
 // 		{
 // 			var _this = jQuery( this );
-// 			_this.attr( 'name', "ravis-booking-setting[seasonal_price][" + fieldIndex + "][" + _this.data( 'name' ) + "]" );
+// 			_this.attr( 'name', "mana-booking-setting[seasonal_price][" + fieldIndex + "][" + _this.data( 'name' ) + "]" );
 
 // 			if ( _this.hasClass( 'from' ) )
 // 			{
@@ -935,7 +935,7 @@ import "./react/block-dates";
 // 		firstField.find( '.season-package-box' ).last().find( 'select' ).each( function( )
 // 		{
 // 			var _this = jQuery( this );
-// 			_this.attr( 'name', "ravis-booking-setting[seasonal_price][" + fieldIndex + "][" + _this.data( 'name' ) + "]" );
+// 			_this.attr( 'name', "mana-booking-setting[seasonal_price][" + fieldIndex + "][" + _this.data( 'name' ) + "]" );
 // 		} );
 
 // 		return false;

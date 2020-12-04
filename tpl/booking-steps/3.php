@@ -1,5 +1,5 @@
 <div class="col-md-4 l-sec">
-	<div class="ravis-title-t-2">
+	<div class="mana-title-t-2">
 		<div class="title"><span>{{bookingAppVar.reservation_info}}</span></div>
 	</div>
 	<div class="check-in-out-container">
@@ -43,39 +43,39 @@
 		<div class="title-box">{{bookingAppVar.package}}</div>
 		<div class="selected-services clearfix">
 			<div class="title" ng-bind-html="bookingInfo.package.title"></div>
-			<div class="price">{{bookingInfo.package.total_price.value | ravisPrice:this}}</div>
+			<div class="price">{{bookingInfo.package.total_price.value | manaPrice:this}}</div>
 		</div>
 	</div>
 	<div class="price-details-container">
 		<div class="price-detail-box">
 			<div class="title">{{bookingAppVar.room_service}} :</div>
-			<div class="value">{{bookingInfo.rawPrice | ravisPrice:this }}</div>
+			<div class="value">{{bookingInfo.rawPrice | manaPrice:this }}</div>
 		</div>
 		<div class="price-detail-box" ng-if="bookingInfo.user_membership">
 			<div class="title">{{bookingAppVar.membership_discount}} :</div>
-			<div class="value"> - {{bookingInfo.membershipDiscount | ravisPrice:this }} <span>(%{{bookingInfo.user_membership.discount}})</span></div>
+			<div class="value"> - {{bookingInfo.membershipDiscount | manaPrice:this }} <span>(%{{bookingInfo.user_membership.discount}})</span></div>
 		</div>
 		<div class="price-detail-box" ng-if="bookingAppVar.user_vat != 0">
 			<div class="title">{{bookingAppVar.vat}} {{bookingAppVar.user_vat}}% :</div>
-			<div class="value">{{bookingInfo.vat | ravisPrice:this }}</div>
+			<div class="value">{{bookingInfo.vat | manaPrice:this }}</div>
 		</div>
 		<div class="price-detail-box" ng-if="bookingInfo.couponPrice">
 			<div class="title">{{bookingAppVar.coupon}} :</div>
-			<div class="value"> - {{bookingInfo.couponPrice | ravisPrice:this }} <span></span></div>
+			<div class="value"> - {{bookingInfo.couponPrice | manaPrice:this }} <span></span></div>
 		</div>
 		<div class="price-detail-box total">
 			<div class="title">{{bookingAppVar.total_price}} :</div>
-			<div class="value">{{bookingInfo.totalBookingPrice | ravisPrice:this }}</div>
+			<div class="value">{{bookingInfo.totalBookingPrice | manaPrice:this }}</div>
 		</div>
 		<div class="payment-method" ng-if="bookingAppVar.deposit_status">
-			<div class="ravis-radio">
+			<div class="mana-radio">
 				<label for="full-payment">
 					<input type="radio" name="payment-method" ng-model="bookingInfo.paymentPriceMethod" value="1" id="full-payment" ng-init="bookingInfo.paymentPriceMethod = '1' ">
 					<span></span>
 					{{bookingAppVar.full_payment}}
 				</label>
 			</div>
-			<div class="ravis-radio">
+			<div class="mana-radio">
 				<label for="deposit">
 					<input type="radio" name="payment-method" ng-model="bookingInfo.paymentPriceMethod" value="2" id="deposit">
 					<span></span>
@@ -87,7 +87,7 @@
 					<div class="title">{{bookingAppVar.user_deposit}}% {{bookingAppVar.deposit}}</div>
 					<div class="sub-title">{{bookingAppVar.pay_on_arrival}}</div>
 				</div>
-				<div class="value">{{(bookingInfo.totalBookingPrice * bookingAppVar.user_deposit ) / 100 | ravisPrice:this }}</div>
+				<div class="value">{{(bookingInfo.totalBookingPrice * bookingAppVar.user_deposit ) / 100 | manaPrice:this }}</div>
 			</div>
 		</div>
 	</div>
@@ -139,7 +139,7 @@
 				</ul>
 			</div>
 			<div class="field-row clearfix">
-				<div class="ravis-checkbox">
+				<div class="mana-checkbox">
 					<label for="terms-condition">
 						<input type="checkbox" name="terms" value="1" id="terms-condition" ng-model="bookingInfo.terms" required>
 						<span></span>

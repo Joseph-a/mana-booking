@@ -24,7 +24,7 @@ const Gallery = (props) => {
                 e.preventDefault();
                 let mediaUploader = window.wp.media({
                     frame: 'select',
-                    title: __('Select Images', 'ravis-property'),
+                    title: __('Select Images', 'mana-property'),
                     multiple: true,
                     library: {
                         order: 'DESC',
@@ -34,7 +34,7 @@ const Gallery = (props) => {
                         uploadedTo: null
                     },
                     button: {
-                        text: __('Select', 'ravis-property')
+                        text: __('Select', 'mana-property')
                     }
                 });
 
@@ -49,8 +49,8 @@ const Gallery = (props) => {
                     props.onFieldChanged(images);
                 });
                 mediaUploader.open();
-            }}>{__('Select Image', 'ravis-property')}</button>
-            <button className="button button-danger" onClick={() => props.onFieldChanged([])}>{__('Remove Images', 'ravis-booking')}</button>
+            }}>{__('Select Image', 'mana-property')}</button>
+            <button className="button button-danger" onClick={() => props.onFieldChanged([])}>{__('Remove Images', 'mana-booking')}</button>
         </div>
     )
 }

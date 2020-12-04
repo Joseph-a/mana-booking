@@ -1,7 +1,7 @@
 <?php
 	global $wpdb;
-	$currency_obj      = new Ravis_booking_currency();
-	$table_name        = $wpdb->prefix . 'ravis_booking';
+	$currency_obj      = new Mana_booking_currency();
+	$table_name        = $wpdb->prefix . 'mana_booking';
 	$current_user_info = wp_get_current_user();
 	$user_bookings     = $wpdb->get_results( $wpdb->prepare( 'SELECT * FROM ' . $table_name . ' WHERE user_id=%d ORDER BY `booking_date` DESC', $current_user_info->ID ) );
 	$more_info_modal   = '';
@@ -14,14 +14,14 @@
 			<table>
 				<tr>
 					<th>#</th>
-					<th><?php esc_html_e( 'First Name', 'ravis-booking' ) ?></th>
-					<th><?php esc_html_e( 'Last Name', 'ravis-booking' ) ?></th>
-					<th><?php esc_html_e( 'Phone', 'ravis-booking' ) ?></th>
-					<th><?php esc_html_e( 'Email', 'ravis-booking' ) ?></th>
-					<th><?php esc_html_e( 'Check-in', 'ravis-booking' ) ?></th>
-					<th><?php esc_html_e( 'Check-out', 'ravis-booking' ) ?></th>
-					<th><?php esc_html_e( 'Status', 'ravis-booking' ) ?></th>
-					<th><?php esc_html_e( 'More Details', 'ravis-booking' ) ?></th>
+					<th><?php esc_html_e( 'First Name', 'mana-booking' ) ?></th>
+					<th><?php esc_html_e( 'Last Name', 'mana-booking' ) ?></th>
+					<th><?php esc_html_e( 'Phone', 'mana-booking' ) ?></th>
+					<th><?php esc_html_e( 'Email', 'mana-booking' ) ?></th>
+					<th><?php esc_html_e( 'Check-in', 'mana-booking' ) ?></th>
+					<th><?php esc_html_e( 'Check-out', 'mana-booking' ) ?></th>
+					<th><?php esc_html_e( 'Status', 'mana-booking' ) ?></th>
+					<th><?php esc_html_e( 'More Details', 'mana-booking' ) ?></th>
 				</tr>
 				<?php
 					$booking_i = 1;
@@ -33,10 +33,10 @@
 						switch ( $booking_item->confirmed )
 						{
 							case '1':
-								$confirm_txt = '<span class="status-box confirm">' . esc_html__( 'Confirmed', 'ravis-booking' ) . '</span>';
+								$confirm_txt = '<span class="status-box confirm">' . esc_html__( 'Confirmed', 'mana-booking' ) . '</span>';
 								break;
 							default:
-								$confirm_txt = '<span class="status-box not-confirm">' . esc_html__( 'Not Confirmed', 'ravis-booking' ) . '</span>';
+								$confirm_txt = '<span class="status-box not-confirm">' . esc_html__( 'Not Confirmed', 'mana-booking' ) . '</span>';
 								break;
 						}
 						$booking_total_price         = $currency_obj->price_generator_no_exchange( $booking_info_obj->totalBookingPrice, $booking_currency );
@@ -52,68 +52,68 @@
 							<td>' . esc_html( $booking_item->check_in ) . '</td>
 							<td>' . esc_html( $booking_item->check_out ) . '</td>
 							<td>' . wp_kses_post( $confirm_txt ) . '</td>
-							<td><a class="booking-more-info-btn" href="#booking-more-info-' . esc_attr( $rabdom_id ) . '">' . esc_html__( 'More', 'ravis-booking' ) . ' <i class="fa fa-angle-right"></i></a></td>
+							<td><a class="booking-more-info-btn" href="#booking-more-info-' . esc_attr( $rabdom_id ) . '">' . esc_html__( 'More', 'mana-booking' ) . ' <i class="fa fa-angle-right"></i></a></td>
 						</tr>';
 						$booking_i ++;
 						$more_info_modal .= '
 						<div id="booking-more-info-' . esc_attr( $rabdom_id ) . '" class="mfp-hide">
 							<div class="booking-main-info clearfix">
 								<div class="box-title">
-									<span>' . esc_html__( 'Main Information', 'ravis-booking' ) . '</span>
+									<span>' . esc_html__( 'Main Information', 'mana-booking' ) . '</span>
 								</div>
 								<div class="info-row row clearfix">
 									<div class="col-md-6 total-price">
-										<div class="title">' . esc_html__( 'Total Price : ', 'ravis-booking' ) . '</div>
+										<div class="title">' . esc_html__( 'Total Price : ', 'mana-booking' ) . '</div>
 										<div class="value">' . esc_html( $booking_total_price ) . '</div>
 									</div>
 								</div>
 								<div class="info-row row clearfix">
 									<div class="col-md-6 total-price">
-										<div class="title">' . esc_html__( 'Membership Discount : ', 'ravis-booking' ) . '</div>
+										<div class="title">' . esc_html__( 'Membership Discount : ', 'mana-booking' ) . '</div>
 										<div class="value">' . esc_html( $booking_membership_discount ) . '</div>
 									</div>
 									<div class="col-md-6 total-price">
-										<div class="title">' . esc_html__( 'VAT : ', 'ravis-booking' ) . '</div>
+										<div class="title">' . esc_html__( 'VAT : ', 'mana-booking' ) . '</div>
 										<div class="value">' . esc_html( $booking_total_vat ) . '</div>
 									</div>
 								</div>
 								<div class="info-row row clearfix">
 									<div class="col-md-6">
-										<div class="title">' . esc_html__( 'Check In : ', 'ravis-booking' ) . '</div>
+										<div class="title">' . esc_html__( 'Check In : ', 'mana-booking' ) . '</div>
 										<div class="value">' . ( ! empty( $booking_item->check_in ) ? esc_html( $booking_item->check_in ) : '' ) . '</div>
 									</div>
 									<div class="col-md-6">
-										<div class="title">' . esc_html__( 'Check Out : ', 'ravis-booking' ) . '</div>
+										<div class="title">' . esc_html__( 'Check Out : ', 'mana-booking' ) . '</div>
 										<div class="value">' . ( ! empty( $booking_item->check_out ) ? esc_html( $booking_item->check_out ) : '' ) . '</div>
 									</div>
 								</div>
 								<div class="info-row row clearfix">
 									<div class="col-md-6">
-										<div class="title">' . esc_html__( 'Duration : ', 'ravis-booking' ) . '</div>
-										<div class="value">' . ( ! empty( $booking_info_obj->duration ) ? esc_html( $booking_info_obj->duration ) : '' ) . ' ' . ( ( ! empty( $booking_info_obj->duration ) && $booking_info_obj->duration > 1 ) ? esc_html__( 'Nights', 'ravis-booking' ) : esc_html__( 'Night', 'ravis-booking' ) ) . '</div>
+										<div class="title">' . esc_html__( 'Duration : ', 'mana-booking' ) . '</div>
+										<div class="value">' . ( ! empty( $booking_info_obj->duration ) ? esc_html( $booking_info_obj->duration ) : '' ) . ' ' . ( ( ! empty( $booking_info_obj->duration ) && $booking_info_obj->duration > 1 ) ? esc_html__( 'Nights', 'mana-booking' ) : esc_html__( 'Night', 'mana-booking' ) ) . '</div>
 									</div>
 									<div class="col-md-6">
-										<div class="title">' . esc_html__( 'Weekends : ', 'ravis-booking' ) . '</div>
+										<div class="title">' . esc_html__( 'Weekends : ', 'mana-booking' ) . '</div>
 										<div class="value">' . ( ! empty( $booking_info_obj->weekends ) ? esc_html( $booking_info_obj->weekends ) : '' ) . '</div>
 									</div>
 								</div>
 								<div class="info-row row clearfix">
 									<div class="col-md-6">
-										<div class="title">' . esc_html__( 'Payment Method : ', 'ravis-booking' ) . '</div>
+										<div class="title">' . esc_html__( 'Payment Method : ', 'mana-booking' ) . '</div>
 										<div class="value">' . ( ! empty( $booking_info_obj->paymentMethod ) ? esc_html( $booking_info_obj->paymentMethod ) : '' ) . '</div>
 									</div>
 									<div class="col-md-6">
-										<div class="title">' . esc_html__( 'Booking Date : ', 'ravis-booking' ) . '</div>
+										<div class="title">' . esc_html__( 'Booking Date : ', 'mana-booking' ) . '</div>
 										<div class="value">' . ( ! empty( $booking_item->booking_date ) ? esc_html( $booking_item->booking_date ) : '' ) . '</div>
 									</div>
 								</div>
 								<div class="info-row row clearfix">
 									<div class="col-md-6">
-										<div class="title">' . esc_html__( 'Address : ', 'ravis-booking' ) . '</div>
+										<div class="title">' . esc_html__( 'Address : ', 'mana-booking' ) . '</div>
 										<div class="value">' . ( ! empty( $booking_info_obj->address ) ? esc_html( $booking_info_obj->address ) : '' ) . '</div>
 									</div>
 									<div class="col-md-6">
-										<div class="title">' . esc_html__( 'Special Requirements : ', 'ravis-booking' ) . '</div>
+										<div class="title">' . esc_html__( 'Special Requirements : ', 'mana-booking' ) . '</div>
 										<div class="value">' . ( ! empty( $booking_info_obj->requirements ) ? esc_html( $booking_info_obj->requirements ) : '' ) . '</div>
 									</div>
 								</div>
@@ -121,7 +121,7 @@
 
 						if ( $booking_item->payment_method == '1' )
 						{
-							$get_info_obj          = new Ravis_booking_get_info();
+							$get_info_obj          = new Mana_booking_get_info();
 							$invoice_info          = $get_info_obj->invoice_info( $booking_item->invoice_id );
 							$invoice_currency_info = unserialize( $invoice_info['currency'] );
 							$invoice_price         = $currency_obj->price_generator_no_exchange( $invoice_info['price']['value'], $invoice_currency_info );
@@ -140,13 +140,13 @@
 							$more_info_modal .= '
 							<div class="section-box">
 								<div class="box-title">
-									<span>' . esc_html__( 'Payment Information', 'ravis-booking' ) . '</span>
+									<span>' . esc_html__( 'Payment Information', 'mana-booking' ) . '</span>
 								</div>
 								<table>
 									<tr>
-										<th>' . esc_html__( 'Price', 'ravis-booking' ) . '</th>
-										<th>' . esc_html__( 'Status', 'ravis-booking' ) . '</th>
-										<th>' . esc_html__( 'Date', 'ravis-booking' ) . '</th>
+										<th>' . esc_html__( 'Price', 'mana-booking' ) . '</th>
+										<th>' . esc_html__( 'Status', 'mana-booking' ) . '</th>
+										<th>' . esc_html__( 'Date', 'mana-booking' ) . '</th>
 									</tr>
 									<tr>
 										<td>' . esc_html( $invoice_price ) . '</td>
@@ -159,15 +159,15 @@
 						$more_info_modal .= '
 							<div class="section-box">
 								<div class="box-title">
-									<span>' . esc_html__( 'Room Information', 'ravis-booking' ) . '</span>
+									<span>' . esc_html__( 'Room Information', 'mana-booking' ) . '</span>
 								</div>
 								<table>
 									<tr>
 										<th>#</th>
-										<th>' . esc_html__( 'Room Title', 'ravis-booking' ) . '</th>
-										<th>' . esc_html__( 'Adult', 'ravis-booking' ) . '</th>
-										<th>' . esc_html__( 'Child', 'ravis-booking' ) . '</th>
-										<th>' . esc_html__( 'Room Price', 'ravis-booking' ) . '</th>
+										<th>' . esc_html__( 'Room Title', 'mana-booking' ) . '</th>
+										<th>' . esc_html__( 'Adult', 'mana-booking' ) . '</th>
+										<th>' . esc_html__( 'Child', 'mana-booking' ) . '</th>
+										<th>' . esc_html__( 'Room Price', 'mana-booking' ) . '</th>
 									</tr>';
 						$room_i          = 1;
 						foreach ( $booking_info_obj->room as $room_item )
@@ -196,13 +196,13 @@
 							</div>
 							<div class="section-box">
 								<div class="box-title">
-									<span>' . esc_html__( 'Services Information', 'ravis-booking' ) . '</span>
+									<span>' . esc_html__( 'Services Information', 'mana-booking' ) . '</span>
 								</div>
 								<table>
 									<tr>
 										<th>#</th>
-										<th>' . esc_html__( 'Title', 'ravis-booking' ) . '</th>
-										<th>' . esc_html__( 'Price', 'ravis-booking' ) . '</th>
+										<th>' . esc_html__( 'Title', 'mana-booking' ) . '</th>
+										<th>' . esc_html__( 'Price', 'mana-booking' ) . '</th>
 									</tr>';
 						$services_i      = 1;
                         if (!empty($booking_info_obj->services))
@@ -227,12 +227,12 @@
 							$more_info_modal .= '
 							<div class="section-box">
 								<div class="box-title">
-									<span>' . esc_html__( 'Package Information', 'ravis-booking' ) . '</span>
+									<span>' . esc_html__( 'Package Information', 'mana-booking' ) . '</span>
 								</div>
 								<table>
 									<tr>
-										<th>' . esc_html__( 'Title', 'ravis-booking' ) . '</th>
-										<th>' . esc_html__( 'Price', 'ravis-booking' ) . '</th>
+										<th>' . esc_html__( 'Title', 'mana-booking' ) . '</th>
+										<th>' . esc_html__( 'Price', 'mana-booking' ) . '</th>
 									</tr>';
 							$more_info_modal .= '
 									<tr>
@@ -253,7 +253,7 @@
 		}
 		else
 		{
-			esc_html_e( 'You have not booked any rooms in our hotel.', 'ravis-booking' );
+			esc_html_e( 'You have not booked any rooms in our hotel.', 'mana-booking' );
 		}
 	?>
 </div>

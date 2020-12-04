@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { __ } from '@wordpress/i18n';
 
-import RavisDateRangePicker from './date-rang-picker';
+import ManaDateRangePicker from './date-rang-picker';
 import Price from './price';
 
 export default class SeasonalPrice extends Component {
@@ -25,7 +25,7 @@ export default class SeasonalPrice extends Component {
         return (
             <div className="base-price-row" key={index}>
                 <div className="date-row">
-                    <RavisDateRangePicker
+                    <ManaDateRangePicker
                         {...this.props}
                         startDate={seasonPrice.date.start}
                         endDate={seasonPrice.date.end}
@@ -53,7 +53,7 @@ export default class SeasonalPrice extends Component {
                         this.outputGenerator(index, 'main', newPrice)
                     }}
                 />
-                <div className="extra-guest-separator">{__('Extra Guest Price', 'ravis-booking')}</div>
+                <div className="extra-guest-separator">{__('Extra Guest Price', 'mana-booking')}</div>
                 <Price
                     {...this.props}
                     priceInfo={seasonPrice.extra}
@@ -92,7 +92,7 @@ export default class SeasonalPrice extends Component {
 
                         this.props.onFieldChanged(newVal);
                     }}
-                >{__('Add New', 'ravis-booking')}</button>
+                >{__('Add New', 'mana-booking')}</button>
             </div>
         );
     }

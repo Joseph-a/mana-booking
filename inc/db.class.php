@@ -1,6 +1,6 @@
 <?php
 	
-	class Ravis_booking_db_class
+	class Mana_booking_db_class
 	{
 		
 		public function required_tables()
@@ -13,7 +13,7 @@
 			 * Create Booking Room table
 			 * @var string table_name
 			 */
-			$sql1 = "CREATE TABLE " . ( $wpdb->prefix . 'ravis_booking' ) . " (
+			$sql1 = "CREATE TABLE " . ( $wpdb->prefix . 'mana_booking' ) . " (
 				id int NOT NULL AUTO_INCREMENT,
 				f_name VARCHAR(255) NOT NULL,
 				l_name VARCHAR(255) NOT NULL,
@@ -46,7 +46,7 @@
 			 * Create Invoice table
 			 * @var string table_name
 			 */
-			$sql4 = "CREATE TABLE " . ( $wpdb->prefix . 'ravis_invoice' ) . " (
+			$sql4 = "CREATE TABLE " . ( $wpdb->prefix . 'mana_invoice' ) . " (
 				id int NOT NULL AUTO_INCREMENT,
 				booking_id int NOT NULL,
 				booking_date TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
@@ -59,7 +59,7 @@
 			) $charset_collate;";
 			dbDelta( $sql4 );
 			
-			$sql5 = "ALTER TABLE " . $wpdb->prefix . "ravis_invoice AUTO_INCREMENT=1001";
+			$sql5 = "ALTER TABLE " . $wpdb->prefix . "mana_invoice AUTO_INCREMENT=1001";
 			dbDelta( $sql5 );
 			
 			
@@ -67,7 +67,7 @@
 			 * Create Newsletter Table
 			 * @var string table_name
 			 */
-			$sql2 = "CREATE TABLE " . ( $wpdb->prefix . 'ravis_newsletter' ) . " (
+			$sql2 = "CREATE TABLE " . ( $wpdb->prefix . 'mana_newsletter' ) . " (
 				id int NOT NULL AUTO_INCREMENT,
 				email text NOT NULL,
 				UNIQUE KEY id (id)
@@ -79,7 +79,7 @@
 			 * Create Booking Room table
 			 * @var string table_name
 			 */
-			$sql3 = "CREATE TABLE " . ( $wpdb->prefix . 'ravis_event_booking' ) . " (
+			$sql3 = "CREATE TABLE " . ( $wpdb->prefix . 'mana_event_booking' ) . " (
 				id int NOT NULL AUTO_INCREMENT,
 				event_id int NOT NULL,
 				guest int NOT NULL,
@@ -94,4 +94,4 @@
 		}
 	}
 	
-	$ravis_database_obj = new Ravis_booking_db_class;
+	$mana_database_obj = new Mana_booking_db_class;

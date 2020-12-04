@@ -1,29 +1,29 @@
 <?php
 	global $wpdb;
-	$table_name           = $wpdb->prefix . 'ravis_invoice';
+	$table_name           = $wpdb->prefix . 'mana_invoice';
 	$paged                = ( ! empty( $_GET['paged'] ) ? intval( $_GET['paged'] ) : 1 );
-	$ravis_booking_option = get_option( 'ravis-payment-setting' );
-	$per_page             = ( ! empty( $ravis_booking_option['payment_archive_per_page'] ) ? intval( $ravis_booking_option['payment_archive_per_page'] ) : 10 );
+	$mana_booking_option = get_option( 'mana-payment-setting' );
+	$per_page             = ( ! empty( $mana_booking_option['payment_archive_per_page'] ) ? intval( $mana_booking_option['payment_archive_per_page'] ) : 10 );
 	$offset_item          = ( $paged - 1 ) * $per_page;
 	$total_payments       = $wpdb->get_var( 'SELECT COUNT(*) FROM ' . $table_name );
 	$payment_result       = $wpdb->get_results( 'SELECT * FROM ' . $table_name . ' ORDER BY `booking_date` DESC LIMIT ' . $offset_item . ',' . $per_page );
 	$page_item_records    = count( $payment_result );
-	$current_page_url     = "//" . $_SERVER['HTTP_HOST'] . $_SERVER['PHP_SELF'] . '?page=ravis-payment-archive';
-	$currency_obj         = new Ravis_booking_currency();
+	$current_page_url     = "//" . $_SERVER['HTTP_HOST'] . $_SERVER['PHP_SELF'] . '?page=mana-payment-archive';
+	$currency_obj         = new Mana_booking_currency();
 ?>
-<div id="ravis-payment-archive">
+<div id="mana-payment-archive">
 	<div class="wrap">
-		<h1><?php esc_html_e( 'Payment Archive', 'ravis-booking' ) ?></h1>
+		<h1><?php esc_html_e( 'Payment Archive', 'mana-booking' ) ?></h1>
 		<table class="wp-list-table widefat fixed">
 			<thead>
 			<tr>
 				<th class="row-number">#</th>
-				<th class="payment-booking-id"><?php esc_html_e( 'Booking ID', 'ravis-booking' ) ?></th>
-				<th class="payment-booking-date"><?php esc_html_e( 'Date', 'ravis-booking' ) ?></th>
-				<th class="payment-price"><?php esc_html_e( 'Price', 'ravis-booking' ) ?></th>
-				<th class="payment-user"><?php esc_html_e( 'User ID', 'ravis-booking' ) ?></th>
-				<th class="payment-status"><?php esc_html_e( 'Status', 'ravis-booking' ) ?></th>
-				<th class="payment-action"><?php esc_html_e( 'Actions', 'ravis-booking' ) ?></th>
+				<th class="payment-booking-id"><?php esc_html_e( 'Booking ID', 'mana-booking' ) ?></th>
+				<th class="payment-booking-date"><?php esc_html_e( 'Date', 'mana-booking' ) ?></th>
+				<th class="payment-price"><?php esc_html_e( 'Price', 'mana-booking' ) ?></th>
+				<th class="payment-user"><?php esc_html_e( 'User ID', 'mana-booking' ) ?></th>
+				<th class="payment-status"><?php esc_html_e( 'Status', 'mana-booking' ) ?></th>
+				<th class="payment-action"><?php esc_html_e( 'Actions', 'mana-booking' ) ?></th>
 			</tr>
 			</thead>
 			<tbody id="the-list">
@@ -39,10 +39,10 @@
 						switch ( $payment_item->user_id )
 						{
 							case '1';
-								$user_txt = esc_html__( 'Admin', 'ravis-booking' );
+								$user_txt = esc_html__( 'Admin', 'mana-booking' );
 							break;
 							case '0';
-								$user_txt = esc_html__( 'Guest', 'ravis-booking' );
+								$user_txt = esc_html__( 'Guest', 'mana-booking' );
 							break;
 							default:
 								$user_info = get_user_by( 'id', $payment_item->user_id );
@@ -52,13 +52,13 @@
 						switch ( $payment_item->status )
 						{
 							case '0':
-								$confirm_txt = '<span class="status-box unpaid">' . esc_html__( 'Unpaid', 'ravis-booking' ) . '</span>';
+								$confirm_txt = '<span class="status-box unpaid">' . esc_html__( 'Unpaid', 'mana-booking' ) . '</span>';
 							break;
 							case '1':
-								$confirm_txt = '<span class="status-box paid">' . esc_html__( 'Paid', 'ravis-booking' ) . '</span>';
+								$confirm_txt = '<span class="status-box paid">' . esc_html__( 'Paid', 'mana-booking' ) . '</span>';
 							break;
 							case '2':
-								$confirm_txt = '<span class="status-box canceled">' . esc_html__( 'Canceled', 'ravis-booking' ) . '</span>';
+								$confirm_txt = '<span class="status-box canceled">' . esc_html__( 'Canceled', 'mana-booking' ) . '</span>';
 							break;
 						}
 						echo '
@@ -77,7 +77,7 @@
 			?>
 			</tbody>
 		</table>
-		<div class="ravis-pagination-box">
+		<div class="mana-pagination-box">
 			<?php
 				$pages = ceil( $total_payments / $per_page );
 				if ( $pages > 1 )

@@ -28,7 +28,7 @@ Trace:
 
 npm manifest: 
   {
-  	"name": "ravis",
+  	"name": "mana",
   	"version": "1.0.0",
   	"scripts": {
   		"start": "cross-env BABEL_ENV=default SOURCEMAP=true MODE=development webpack --watch",

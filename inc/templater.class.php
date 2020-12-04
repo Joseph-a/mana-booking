@@ -1,6 +1,6 @@
 <?php
 	
-	class Ravis_booking_page_templater
+	class Mana_booking_page_templater
 	{
 		
 		private static $instance;
@@ -33,11 +33,11 @@
 			
 			// Add your templates to this array.
 			$this->templates = array (
-				'../templates/room-archive.php'    => esc_html__( 'Room Archive', 'ravis-booking' ),
-				'../templates/guest-book.php'      => esc_html__( 'Guest Book', 'ravis-booking' ),
-				'../templates/staff-archive.php'   => esc_html__( 'Staff Archive', 'ravis-booking' ),
-				'../templates/package-archive.php' => esc_html__( 'Package Archive', 'ravis-booking' ),
-				'../templates/event-archive.php'   => esc_html__( 'Event Archive', 'ravis-booking' )
+				'../templates/room-archive.php'    => esc_html__( 'Room Archive', 'mana-booking' ),
+				'../templates/guest-book.php'      => esc_html__( 'Guest Book', 'mana-booking' ),
+				'../templates/staff-archive.php'   => esc_html__( 'Staff Archive', 'mana-booking' ),
+				'../templates/package-archive.php' => esc_html__( 'Package Archive', 'mana-booking' ),
+				'../templates/event-archive.php'   => esc_html__( 'Event Archive', 'mana-booking' )
 			);
 		}
 		
@@ -46,7 +46,7 @@
 			
 			if ( null == self::$instance )
 			{
-				self::$instance = new Ravis_booking_page_templater();
+				self::$instance = new Mana_booking_page_templater();
 			}
 			
 			return self::$instance;

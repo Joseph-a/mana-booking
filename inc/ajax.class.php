@@ -1,17 +1,17 @@
 <?php
 
-    class Ravis_booking_ajax
+    class Mana_booking_ajax
     {
         public function __construct()
         {
-            add_action('wp_ajax_nopriv_ravis_booking_services', array($this, 'booking_services'));
-            add_action('wp_ajax_ravis_booking_services', array($this, 'booking_services'));
+            add_action('wp_ajax_nopriv_mana_booking_services', array($this, 'booking_services'));
+            add_action('wp_ajax_mana_booking_services', array($this, 'booking_services'));
 
-            add_action('wp_ajax_nopriv_ravis_booking_rating', array($this, 'update_rating'));
-            add_action('wp_ajax_ravis_booking_rating', array($this, 'update_rating'));
+            add_action('wp_ajax_nopriv_mana_booking_rating', array($this, 'update_rating'));
+            add_action('wp_ajax_mana_booking_rating', array($this, 'update_rating'));
 
-            add_action('wp_ajax_nopriv_ravis_booking_delete_invoice', array($this, 'delete_invoice'));
-            add_action('wp_ajax_ravis_booking_delete_invoice', array($this, 'delete_invoice'));
+            add_action('wp_ajax_nopriv_mana_booking_delete_invoice', array($this, 'delete_invoice'));
+            add_action('wp_ajax_mana_booking_delete_invoice', array($this, 'delete_invoice'));
         }
 
         /**
@@ -22,7 +22,7 @@
         public function booking_services()
         {
             global $wp_query;
-            $get_info_obj = new Ravis_booking_get_info();
+            $get_info_obj = new Mana_booking_get_info();
             $duration     = isset($_REQUEST['duration']) ? intval($_REQUEST['duration']) : '';
             $room_count   = isset($_REQUEST['roomCount']) ? intval($_REQUEST['roomCount']) : '';
             $total_guest  = isset($_REQUEST['totalGuest']) ? intval($_REQUEST['totalGuest']) : '';
@@ -37,7 +37,7 @@
                 'posts_per_page' => -1,
                 'meta_query'     => array(
                     array(
-                        'key'   => 'ravis_booking_service_booking',
+                        'key'   => 'mana_booking_service_booking',
                         'value' => 'on',
                     ),
                 )
@@ -82,9 +82,9 @@
             $current_user_info = wp_get_current_user();
             $current_user_id   = $current_user_info->ID;
 
-            if (check_ajax_referer('ravis-rating-item', 'security'))
+            if (check_ajax_referer('mana-rating-item', 'security'))
             {
-                $rating_post_meta_txt = 'ravis_booking_room_rating';
+                $rating_post_meta_txt = 'mana_booking_room_rating';
                 $rate_meta            = get_post_meta($room_id, $rating_post_meta_txt, true);
 
                 if (!empty($rate_meta))
@@ -99,12 +99,12 @@
 
                 update_post_meta($room_id, $rating_post_meta_txt, $rate_meta);
                 $return_value['status']  = true;
-                $return_value['message'] = esc_html__('Thanks for rating.', 'ravis-booking');
+                $return_value['message'] = esc_html__('Thanks for rating.', 'mana-booking');
             }
             else
             {
                 $return_value['status']  = false;
-                $return_value['message'] = esc_html__('You are cheating!', 'ravis-booking');
+                $return_value['message'] = esc_html__('You are cheating!', 'mana-booking');
             }
 
             echo json_encode($return_value);
@@ -119,7 +119,7 @@
         public function delete_invoice()
         {
             global $wpdb;
-            $table_name = $wpdb->prefix . 'ravis_invoice';
+            $table_name = $wpdb->prefix . 'mana_invoice';
             $invoice_id = (!empty($_REQUEST['id']) ? intval($_REQUEST['id']) : '');
             $security   = (!empty($_REQUEST['security']) ? sanitize_text_field($_REQUEST['security']) : '');
 
@@ -153,4 +153,4 @@
         }
     }
 
-    $ravis_booking_ajax_obj = new Ravis_booking_ajax();
+    $mana_booking_ajax_obj = new Mana_booking_ajax();

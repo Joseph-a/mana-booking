@@ -7,7 +7,7 @@ export default class BlockDatesMetaData extends Component {
     constructor(props) {
         super(props);
 
-        const savedSetting = document.getElementById('ravis_booking_block_dates_meta_info').value;
+        const savedSetting = document.getElementById('mana_booking_block_dates_meta_info').value;
 
         this.state = {
             blockDatesSettings: savedSetting ? { ...JSON.parse(savedSetting), ...blockDatesSettings } : blockDatesSettings,
@@ -23,7 +23,7 @@ export default class BlockDatesMetaData extends Component {
             blockDatesSettings
         })
 
-        document.getElementById('ravis_booking_block_dates_meta_info').value = JSON.stringify(this.state.blockDatesSettings);
+        document.getElementById('mana_booking_block_dates_meta_info').value = JSON.stringify(this.state.blockDatesSettings);
     }
 
     render() {
@@ -44,7 +44,7 @@ export default class BlockDatesMetaData extends Component {
     }
 }
 
-const signalApiReader = document.getElementById("ravis-block-date-settings-info-box");
+const signalApiReader = document.getElementById("mana-block-date-settings-info-box");
 if (signalApiReader) {
     ReactDOM.render(<BlockDatesMetaData />, signalApiReader);
 }

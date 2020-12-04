@@ -8,7 +8,7 @@ export default class RoomMetaData extends Component {
     constructor(props) {
         super(props);
 
-        const savedSetting = document.getElementById('ravis_booking_room_meta_info').value;
+        const savedSetting = document.getElementById('mana_booking_room_meta_info').value;
 
         this.state = {
             roomSettings: savedSetting ? { ...JSON.parse(savedSetting), ...roomSettings } : roomSettings,
@@ -24,7 +24,7 @@ export default class RoomMetaData extends Component {
             roomSettings
         })
 
-        document.getElementById('ravis_booking_room_meta_info').value = JSON.stringify(this.state.roomSettings);
+        document.getElementById('mana_booking_room_meta_info').value = JSON.stringify(this.state.roomSettings);
     }
     render() {
         const { roomSettings, activeTab } = this.state;
@@ -64,7 +64,7 @@ export default class RoomMetaData extends Component {
     }
 }
 
-const roomMetaDataBox = document.getElementById("ravis-room-settings-info-box");
+const roomMetaDataBox = document.getElementById("mana-room-settings-info-box");
 if (roomMetaDataBox) {
     ReactDOM.render(<RoomMetaData />, roomMetaDataBox);
 }

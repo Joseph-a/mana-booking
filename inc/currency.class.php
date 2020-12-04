@@ -1,29 +1,29 @@
 <?php
 
-    class Ravis_booking_currency
+    class Mana_booking_currency
     {
-        public $ravis_booking_option;
+        public $mana_booking_option;
 
         public function __construct()
         {
-            $this->ravis_booking_option = get_option('ravis-booking-setting');
-            add_action('wp_ajax_nopriv_ravis_booking_update_currency', array($this, 'update_currency'));
-            add_action('wp_ajax_ravis_booking_update_currency', array($this, 'update_currency'));
+            $this->mana_booking_option = get_option('mana-booking-setting');
+            add_action('wp_ajax_nopriv_mana_booking_update_currency', array($this, 'update_currency'));
+            add_action('wp_ajax_mana_booking_update_currency', array($this, 'update_currency'));
 
-            add_action('wp_ajax_nopriv_ravis_booking_currency_cookie', array($this, 'set_currency_cookie_ajax'));
-            add_action('wp_ajax_ravis_booking_currency_cookie', array($this, 'set_currency_cookie_ajax'));
+            add_action('wp_ajax_nopriv_mana_booking_currency_cookie', array($this, 'set_currency_cookie_ajax'));
+            add_action('wp_ajax_mana_booking_currency_cookie', array($this, 'set_currency_cookie_ajax'));
 
             add_action('init', array($this, 'set_currency_cookie'));
         }
 
         public function update_currency()
         {
-            $currency_count   = count($this->ravis_booking_option['currency']);
-            $default_currency = $this->ravis_booking_option['default_currency'];
+            $currency_count   = count($this->mana_booking_option['currency']);
+            $default_currency = $this->mana_booking_option['default_currency'];
             if ($currency_count > 1)
             {
-                $default_currency_info = $this->ravis_booking_option['currency'][ $default_currency ];
-                foreach ($this->ravis_booking_option['currency'] as $index => $currency_item)
+                $default_currency_info = $this->mana_booking_option['currency'][ $default_currency ];
+                foreach ($this->mana_booking_option['currency'] as $index => $currency_item)
                 {
                     if ($default_currency_info['title'] === $currency_item['title'])
                     {
@@ -46,14 +46,14 @@
 
         public function set_currency_cookie()
         {
-            if (!empty($this->ravis_booking_option['currency']))
+            if (!empty($this->mana_booking_option['currency']))
             {
                 $current_currency  = !empty($_COOKIE['currencyTitle']) ? $_COOKIE['currencyTitle'] : '';
                 $currency_is_valid = false;
 
-                if (!empty($this->ravis_booking_option['currency']))
+                if (!empty($this->mana_booking_option['currency']))
                 {
-                    foreach ($this->ravis_booking_option['currency'] as $currency_item)
+                    foreach ($this->mana_booking_option['currency'] as $currency_item)
                     {
                         if (in_array($current_currency, $currency_item))
                         {
@@ -64,9 +64,9 @@
 
                 if ($currency_is_valid == false)
                 {
-                    foreach ($this->ravis_booking_option['currency'] as $index => $currency_item)
+                    foreach ($this->mana_booking_option['currency'] as $index => $currency_item)
                     {
-                        if ($index == $this->ravis_booking_option['default_currency'])
+                        if ($index == $this->mana_booking_option['default_currency'])
                         {
                             setcookie('currencyTitle', $currency_item['title'], time() + (86400 * 30), '/');
                             setcookie('currencySymbol', $currency_item['symbol'], time() + (86400 * 30), '/');
@@ -80,7 +80,7 @@
 
         public function set_currency_cookie_ajax()
         {
-            $currency_obj     = new Ravis_booking_currency();
+            $currency_obj     = new Mana_booking_currency();
             $currency         = is_string($_POST['currency']) ? $_POST['currency'] : '';
             $currentCurreny   = $currency_obj->get_current_currency();
             $result           = array();
@@ -88,7 +88,7 @@
 
             if (!empty($currency))
             {
-                foreach ($this->ravis_booking_option['currency'] as $currency_item)
+                foreach ($this->mana_booking_option['currency'] as $currency_item)
                 {
                     if ($currency_item['title'] == $currency)
                     {
@@ -112,11 +112,11 @@
         public function get_current_currency()
         {
             $i = 0;
-            if (is_array($this->ravis_booking_option['currency']))
+            if (is_array($this->mana_booking_option['currency']))
             {
-                foreach ($this->ravis_booking_option['currency'] as $index => $currency_item)
+                foreach ($this->mana_booking_option['currency'] as $index => $currency_item)
                 {
-                    if (empty($this->ravis_booking_option['default_currency']))
+                    if (empty($this->mana_booking_option['default_currency']))
                     {
                         if ($i === 0)
                         {
@@ -130,7 +130,7 @@
                     }
                     else
                     {
-                        if ($index == $this->ravis_booking_option['default_currency'])
+                        if ($index == $this->mana_booking_option['default_currency'])
                         {
                             $default_currency_item = array(
                                 'title'    => $currency_item['title'],
@@ -184,7 +184,7 @@
 
         public function get_currency_info($title)
         {
-            $currency_info = $this->ravis_booking_option['currency'];
+            $currency_info = $this->mana_booking_option['currency'];
             foreach ($currency_info as $item_info)
             {
                 if ($item_info['title'] === $title)
@@ -216,9 +216,9 @@
 
         public function price_formatter($price)
         {
-            $currency_separator_val         = !empty($this->ravis_booking_option['currency_separator']) ? intval($this->ravis_booking_option['currency_separator']) : 1;
-            $currency_decimal               = !empty($this->ravis_booking_option['currency_decimal']) ? intval($this->ravis_booking_option['currency_decimal']) : 0;
-            $currency_decimal_separator_val = !empty($this->ravis_booking_option['currency_decimal_separator']) ? intval($this->ravis_booking_option['currency_decimal_separator']) : 1;
+            $currency_separator_val         = !empty($this->mana_booking_option['currency_separator']) ? intval($this->mana_booking_option['currency_separator']) : 1;
+            $currency_decimal               = !empty($this->mana_booking_option['currency_decimal']) ? intval($this->mana_booking_option['currency_decimal']) : 0;
+            $currency_decimal_separator_val = !empty($this->mana_booking_option['currency_decimal_separator']) ? intval($this->mana_booking_option['currency_decimal_separator']) : 1;
 
             switch ($currency_separator_val)
             {
@@ -296,4 +296,4 @@
         }
     }
 
-    $ravis_booking_currency_obj = new Ravis_booking_currency();
+    $mana_booking_currency_obj = new Mana_booking_currency();

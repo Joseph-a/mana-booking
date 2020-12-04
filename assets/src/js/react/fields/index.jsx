@@ -85,8 +85,8 @@ export default class Fields extends Component {
 				// Facility Field
 			case ( 'facility' ):
 				const facilityFields = [
-					{ field: 'icon', type: 'text', title: __( 'Icon', 'ravis-booking' ) },
-					{ field: 'title', type: 'text', title: __( 'Title', 'ravis-booking' ) }
+					{ field: 'icon', type: 'text', title: __( 'Icon', 'mana-booking' ) },
+					{ field: 'title', type: 'text', title: __( 'Title', 'mana-booking' ) }
 				]
 				returnVal = <SimpleRepeater fields={facilityFields} info={info} {...this.props} />;
 				break;
@@ -95,8 +95,8 @@ export default class Fields extends Component {
 				// Services Field
 			case ( 'service' ):
 				const serviceFields = [
-					{ field: 'title', type: 'text', title: __( 'Title', 'ravis-booking' ) },
-					{ field: 'value', type: 'text', title: __( 'Value', 'ravis-booking' ) }
+					{ field: 'title', type: 'text', title: __( 'Title', 'mana-booking' ) },
+					{ field: 'value', type: 'text', title: __( 'Value', 'mana-booking' ) }
 				]
 				returnVal = <SimpleRepeater fields={serviceFields} info={info} {...this.props} />;
 				break;
@@ -104,8 +104,8 @@ export default class Fields extends Component {
 				// Discount Field
 			case ( 'discount' ):
 				const discountFields = [
-					{ field: 'night', type: 'number', title: __( 'Night', 'ravis-booking' ) },
-					{ field: 'percent', type: 'number', title: __( '%', 'ravis-booking' ) }
+					{ field: 'night', type: 'number', title: __( 'Night', 'mana-booking' ) },
+					{ field: 'percent', type: 'number', title: __( '%', 'mana-booking' ) }
 				]
 				returnVal = <SimpleRepeater fields={discountFields} info={info} {...this.props} />;
 				break;

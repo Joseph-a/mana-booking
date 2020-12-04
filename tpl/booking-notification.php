@@ -1,14 +1,14 @@
 <?php
 	get_header();
 	global $wpdb;
-	$get_info_obj      = new Ravis_booking_get_info();
-	$currency_info_obj = new Ravis_booking_currency();
+	$get_info_obj      = new Mana_booking_get_info();
+	$currency_info_obj = new Mana_booking_currency();
 	$currency_info     = $currency_info_obj->get_current_currency();
-	$ravis_options     = get_option( 'ravis-booking-setting' );
+	$mana_options     = get_option( 'mana-booking-setting' );
 	$booking_id        = ! empty( $_GET['booking'] ) ? intval( $_GET['booking'] ) : '';
 	$invoice_id        = ! empty( $_GET['invoice'] ) ? intval( $_GET['invoice'] ) : '';
 	$status            = ! empty( $_GET['status'] ) ? sanitize_text_field( $_GET['status'] ) : '';
-	$invoice_table     = $wpdb->prefix . 'ravis_invoice';
+	$invoice_table     = $wpdb->prefix . 'mana_invoice';
 ?>
 	<div class="booking-app-container">
 		<section id="booking-section">
@@ -23,7 +23,7 @@
 							if ( $invoice_status === '2' )
 							{
 								echo '<div class="l-sec">';
-								esc_html_e( 'You have already canceled this invoice.', 'ravis-booking' );
+								esc_html_e( 'You have already canceled this invoice.', 'mana-booking' );
 								echo '</div>';
 							}
 							else
@@ -31,18 +31,18 @@
 								$wpdb->update( $invoice_table, array ( 'status' => 1 ), array ( 'id' => $invoice_id ), array ( '%d' ), array ( '%d' ) );
 								?>
 								<div class="col-md-4 l-sec">
-									<div class="ravis-title-t-2">
+									<div class="mana-title-t-2">
 										<div class="title">
-											<span><?php esc_html_e( 'Reservation Information', 'ravis-booking' ) ?></span>
+											<span><?php esc_html_e( 'Reservation Information', 'mana-booking' ) ?></span>
 										</div>
 									</div>
 									<div class="check-in-out-container">
 										<div class="check-in-out-box">
-											<div class="title"><?php esc_html_e( 'Check in :', 'ravis-booking' ) ?></div>
+											<div class="title"><?php esc_html_e( 'Check in :', 'mana-booking' ) ?></div>
 											<div class="value"><?php echo esc_html( $booking_info['check_in'] ) ?></div>
 										</div>
 										<div class="check-in-out-box">
-											<div class="title"><?php esc_html_e( 'Check out :', 'ravis-booking' ) ?></div>
+											<div class="title"><?php esc_html_e( 'Check out :', 'mana-booking' ) ?></div>
 											<div class="value"><?php echo esc_html( $booking_info['check_out'] ) ?></div>
 										</div>
 									</div>
@@ -59,19 +59,19 @@
 														?>
 														<div class="selected-room-box has-price">
 															<div class="room-title">
-																<div class="title"><?php esc_html_e( 'Room', 'ravis-booking' ) ?> <?php echo esc_html( $room_i ) ?> :</div>
+																<div class="title"><?php esc_html_e( 'Room', 'mana-booking' ) ?> <?php echo esc_html( $room_i ) ?> :</div>
 																<div class="value"><?php echo esc_html( $room_item->roomTitle ) ?></div>
 															</div>
 															<div class="adult-count">
-																<div class="title"><?php esc_html_e( 'Adult', 'ravis-booking' ) ?> :</div>
+																<div class="title"><?php esc_html_e( 'Adult', 'mana-booking' ) ?> :</div>
 																<div class="value"><?php echo esc_html( $room_item->adult ) ?></div>
 															</div>
 															<div class="child-count">
-																<div class="title"><?php esc_html_e( 'Children', 'ravis-booking' ) ?> :</div>
+																<div class="title"><?php esc_html_e( 'Children', 'mana-booking' ) ?> :</div>
 																<div class="value"><?php echo esc_html( $room_item->child ) ?></div>
 															</div>
 															<div class="price">
-																<div class="title"><?php esc_html_e( 'Price', 'ravis-booking' ) ?> :</div>
+																<div class="title"><?php esc_html_e( 'Price', 'mana-booking' ) ?> :</div>
 																<div class="value"><?php echo esc_html( $room_price ) ?></div>
 															</div>
 														</div>
@@ -86,7 +86,7 @@
 										{
 											?>
 											<div class="services-container">
-												<div class="title-box"><?php esc_html_e( 'Services', 'ravis-booking' ) ?></div>
+												<div class="title-box"><?php esc_html_e( 'Services', 'mana-booking' ) ?></div>
 												<?php
 													foreach ( $booking_info['booking_info']->services as $service_item )
 													{
@@ -114,7 +114,7 @@
 											$package_price = $currency_info_obj->price_generator_no_exchange( $booking_info['booking_info']->package->total_price->value );
 											?>
 											<div class="services-container">
-												<div class="title-box"><?php esc_html_e( 'Package', 'ravis-booking' ) ?></div>
+												<div class="title-box"><?php esc_html_e( 'Package', 'mana-booking' ) ?></div>
 												<div class="selected-services clearfix">
 													<div class="title"><?php echo esc_html( $booking_info['booking_info']->package->title ) ?></div>
 													<div class="price"><?php echo esc_html( $package_price ) ?></div>
@@ -125,7 +125,7 @@
 									?>
 									<div class="price-details-container">
 										<div class="price-detail-box">
-											<div class="title"><?php esc_html_e( 'Rooms & Services', 'ravis-booking' ) ?> :</div>
+											<div class="title"><?php esc_html_e( 'Rooms & Services', 'mana-booking' ) ?> :</div>
 											<div class="value">
 												<?php
 													$total_booking_price = $booking_info['booking_info']->totalPrice + $booking_info['booking_info']->totalServicesPrice;
@@ -144,7 +144,7 @@
 												$membership_discount = $currency_info_obj->price_generator_no_exchange( $booking_info['booking_info']->membershipDiscount );
 												?>
 												<div class="price-detail-box">
-													<div class="title"><?php esc_html_e( 'Membership Discount', 'ravis-booking' ) ?> :</div>
+													<div class="title"><?php esc_html_e( 'Membership Discount', 'mana-booking' ) ?> :</div>
 													<div class="value"> - <?php echo esc_html( $membership_discount ) ?>
 														<span>(%<?php echo esc_html( $booking_info['booking_info']->user_membership->discount ) ?>)</span>
 													</div>
@@ -153,7 +153,7 @@
 											}
 										?>
 										<div class="price-detail-box">
-											<div class="title"><?php echo esc_html__( 'Vat', 'ravis-booking' ) . ' ' . esc_html( $ravis_options['vat'] ) ?>% :</div>
+											<div class="title"><?php echo esc_html__( 'Vat', 'mana-booking' ) . ' ' . esc_html( $mana_options['vat'] ) ?>% :</div>
 											<div class="value">
 												<?php
 													$total_vat = $currency_info_obj->price_generator_no_exchange( $booking_info['booking_info']->vat );
@@ -162,7 +162,7 @@
 											</div>
 										</div>
 										<div class="price-detail-box total">
-											<div class="title"><?php esc_html_e( 'Total Price', 'ravis-booking' ) ?> :</div>
+											<div class="title"><?php esc_html_e( 'Total Price', 'mana-booking' ) ?> :</div>
 											<div class="value">
 												<?php
 													$main_total_price = $currency_info_obj->price_generator_no_exchange( $booking_info['booking_info']->totalBookingPrice );
@@ -176,20 +176,20 @@
 									<div class="inner-box">
 										<div class="steps">
 											<ul class="list-inline">
-												<li><?php esc_html_e( 'Choose Date', 'ravis-booking' ) ?></li>
-												<li><?php esc_html_e( 'Choose Room', 'ravis-booking' ) ?></li>
-												<li><?php esc_html_e( 'Make a Reservation', 'ravis-booking' ) ?></li>
-												<li class="active"><?php esc_html_e( 'Confirmation', 'ravis-booking' ) ?></li>
+												<li><?php esc_html_e( 'Choose Date', 'mana-booking' ) ?></li>
+												<li><?php esc_html_e( 'Choose Room', 'mana-booking' ) ?></li>
+												<li><?php esc_html_e( 'Make a Reservation', 'mana-booking' ) ?></li>
+												<li class="active"><?php esc_html_e( 'Confirmation', 'mana-booking' ) ?></li>
 											</ul>
 										</div>
 										<div id="confirmation-message">
-											<div class="ravis-title-t-2">
+											<div class="mana-title-t-2">
 												<div class="title">
-													<span><?php echo( ! empty( $ravis_booking_options['final_booking_title'] ) ? esc_html( $ravis_booking_options['final_booking_title'] ) : esc_html__( 'Reservation Complete', 'ravis-booking' ) ); ?></span>
+													<span><?php echo( ! empty( $mana_booking_options['final_booking_title'] ) ? esc_html( $mana_booking_options['final_booking_title'] ) : esc_html__( 'Reservation Complete', 'mana-booking' ) ); ?></span>
 												</div>
-												<div class="sub-title"><?php echo( ! empty( $ravis_booking_options['final_booking_subtitle'] ) ? esc_html( $ravis_booking_options['final_booking_subtitle'] ) : esc_html__( 'Details of your reservation request was sent to your email', 'ravis-booking' ) ); ?></div>
+												<div class="sub-title"><?php echo( ! empty( $mana_booking_options['final_booking_subtitle'] ) ? esc_html( $mana_booking_options['final_booking_subtitle'] ) : esc_html__( 'Details of your reservation request was sent to your email', 'mana-booking' ) ); ?></div>
 											</div>
-											<div class="desc"><?php echo( ! empty( $ravis_booking_options['final_booking_desc'] ) ? esc_html( $ravis_booking_options['final_booking_desc'] ) : sprintf( __( 'For more information you can contact us via <a href="%s">contact form</a> of website', 'ravis-booking' ), ! empty( $ravis_booking_options['contact_url'] ) ? esc_url( $ravis_booking_options['contact_url'] ) : '#' ) ); ?></div>
+											<div class="desc"><?php echo( ! empty( $mana_booking_options['final_booking_desc'] ) ? esc_html( $mana_booking_options['final_booking_desc'] ) : sprintf( __( 'For more information you can contact us via <a href="%s">contact form</a> of website', 'mana-booking' ), ! empty( $mana_booking_options['contact_url'] ) ? esc_url( $mana_booking_options['contact_url'] ) : '#' ) ); ?></div>
 										</div>
 									</div>
 								</div>
@@ -199,7 +199,7 @@
 						else
 						{
 							echo '<div class="l-sec">';
-							esc_html_e( 'There is not any booking information available with this criteria.', 'ravis-booking' );
+							esc_html_e( 'There is not any booking information available with this criteria.', 'mana-booking' );
 							echo '</div>';
 						}
 					}
@@ -210,21 +210,21 @@
 						if ( $invoice_status === '1' )
 						{
 							echo '<div class="l-sec">';
-							esc_html_e( 'You have already paid this invoice.', 'ravis-booking' );
+							esc_html_e( 'You have already paid this invoice.', 'mana-booking' );
 							echo '</div>';
 						}
 						else
 						{
 							$wpdb->update( $invoice_table, array ( 'status' => 2 ), array ( 'id' => $invoice_id ), array ( '%d' ), array ( '%d' ) );
 							echo '<div class="l-sec">';
-							esc_html_e( 'Thanks for your try, you canceled your booking', 'ravis-booking' );
+							esc_html_e( 'Thanks for your try, you canceled your booking', 'mana-booking' );
 							echo '</div>';
 						}
 					}
 					else
 					{
 						echo '<div class="l-sec">';
-						esc_html_e( 'There is not any booking information available with this criteria.', 'ravis-booking' );
+						esc_html_e( 'There is not any booking information available with this criteria.', 'mana-booking' );
 						echo '</div>';
 					}
 				?>

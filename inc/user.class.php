@@ -2,35 +2,35 @@
 
     //	User Action Class
 
-    class Ravis_booking_user
+    class Mana_booking_user
     {
-        public $ravis_booking_option;
+        public $mana_booking_option;
 
         public function __construct()
         {
-            $this->ravis_booking_option = get_option('ravis-booking-setting');
+            $this->mana_booking_option = get_option('mana-booking-setting');
 
             add_action('init', array($this, 'user_panel'));
             add_action('parse_request', array($this, 'user_panel_request'));
             add_filter('query_vars', array($this, 'user_panel_var'));
 
-            add_action('wp_ajax_nopriv_ravis_booking_login', array($this, 'login_user'));
-            add_action('wp_ajax_ravis_booking_login', array($this, 'login_user'));
+            add_action('wp_ajax_nopriv_mana_booking_login', array($this, 'login_user'));
+            add_action('wp_ajax_mana_booking_login', array($this, 'login_user'));
 
-            add_action('wp_ajax_nopriv_ravis_booking_register', array($this, 'register_user'));
-            add_action('wp_ajax_ravis_booking_register', array($this, 'register_user'));
+            add_action('wp_ajax_nopriv_mana_booking_register', array($this, 'register_user'));
+            add_action('wp_ajax_mana_booking_register', array($this, 'register_user'));
 
-            add_action('wp_ajax_nopriv_ravis_booking_update_profile', array($this, 'update_profile'));
-            add_action('wp_ajax_ravis_booking_update_profile', array($this, 'update_profile'));
+            add_action('wp_ajax_nopriv_mana_booking_update_profile', array($this, 'update_profile'));
+            add_action('wp_ajax_mana_booking_update_profile', array($this, 'update_profile'));
 
             add_action('init', array($this, 'admin_restrict'));
             add_action('user_register', array($this, 'add_meta_data'), 10, 1);
 
-            if (!empty($this->ravis_booking_option['wp_email_sender']))
+            if (!empty($this->mana_booking_option['wp_email_sender']))
             {
                 add_filter('wp_mail_from', array($this, 'change_wp_default_sender_email'));
             }
-            if (!empty($this->ravis_booking_option['wp_email_sender_name']))
+            if (!empty($this->mana_booking_option['wp_email_sender_name']))
             {
                 add_filter('wp_mail_from_name', array($this, 'change_wp_default_sender_name'));
             }
@@ -66,14 +66,14 @@
                 {
                     $return_value = array(
                         'loggedin' => false,
-                        'message'  => esc_html__('Wrong username or password.', 'ravis-booking')
+                        'message'  => esc_html__('Wrong username or password.', 'mana-booking')
                     );
                 }
                 else
                 {
                     $return_value = array(
                         'loggedin' => true,
-                        'message'  => esc_html__('You are logged in.', 'ravis-booking')
+                        'message'  => esc_html__('You are logged in.', 'mana-booking')
                     );
                 }
             }
@@ -81,7 +81,7 @@
             {
                 $return_value = array(
                     'loggedin' => false,
-                    'message'  => esc_html__('Are your cheating?', 'ravis-booking')
+                    'message'  => esc_html__('Are your cheating?', 'mana-booking')
                 );
             }
 
@@ -124,14 +124,14 @@
                     {
                         $return_value = array(
                             'loggedin' => false,
-                            'message'  => esc_html__('This username is already registered.', 'ravis-booking')
+                            'message'  => esc_html__('This username is already registered.', 'mana-booking')
                         );
                     }
                     elseif (in_array('existing_user_email', $error))
                     {
                         $return_value = array(
                             'loggedin' => false,
-                            'message'  => esc_html__('This email address is already registered.', 'ravis-booking')
+                            'message'  => esc_html__('This email address is already registered.', 'mana-booking')
                         );
                     }
                 }
@@ -140,7 +140,7 @@
                     wp_new_user_notification($user_register, $info['password']);
                     $return_value = array(
                         'loggedin' => true,
-                        'message'  => esc_html__('Thanks for your registration, please check your email.', 'ravis-booking')
+                        'message'  => esc_html__('Thanks for your registration, please check your email.', 'mana-booking')
                     );
                 }
             }
@@ -148,7 +148,7 @@
             {
                 $return_value = array(
                     'loggedin' => false,
-                    'message'  => esc_html__('Are your cheating?', 'ravis-booking')
+                    'message'  => esc_html__('Are your cheating?', 'mana-booking')
                 );
             }
 
@@ -188,7 +188,7 @@
         {
             if (array_key_exists('user-panel', $wp->query_vars))
             {
-                include RAVIS_BOOKING_TPL . 'user-panel.php';
+                include MANA_BOOKING_TPL . 'user-panel.php';
                 exit();
             }
 
@@ -219,7 +219,7 @@
                     {
                         $return_value = array(
                             'status'  => false,
-                            'message' => esc_html__('Your information was not updated, please try again.', 'ravis-booking')
+                            'message' => esc_html__('Your information was not updated, please try again.', 'mana-booking')
                         );
                     }
                     else
@@ -234,7 +234,7 @@
                         }
                         $return_value = array(
                             'status'  => true,
-                            'message' => esc_html__('Your information is updated.', 'ravis-booking')
+                            'message' => esc_html__('Your information is updated.', 'mana-booking')
                         );
                     }
                 }
@@ -242,7 +242,7 @@
                 {
                     $return_value = array(
                         'status'  => false,
-                        'message' => esc_html__('Please fill all required fields.', 'ravis-booking')
+                        'message' => esc_html__('Please fill all required fields.', 'mana-booking')
                     );
                 }
             }
@@ -250,7 +250,7 @@
             {
                 $return_value = array(
                     'status'  => false,
-                    'message' => esc_html__('Are your cheating?', 'ravis-booking')
+                    'message' => esc_html__('Are your cheating?', 'mana-booking')
                 );
             }
 
@@ -265,7 +265,7 @@
                 'exclude' => array('1')
             );
             $all_users  = get_users($user_param);
-            $table_name = $wpdb->prefix . 'ravis_booking';
+            $table_name = $wpdb->prefix . 'mana_booking';
             foreach ($all_users as $user_item)
             {
                 $user_id          = $user_item->ID;
@@ -278,7 +278,7 @@
                     {
                         $booking_info           = unserialize($user_booking->booking_info);
                         $booking_currency       = unserialize($user_booking->booking_currency);
-                        $default_currency_price = Ravis_booking_currency::convert_to_default($booking_info->totalBookingPrice, $booking_currency);
+                        $default_currency_price = Mana_booking_currency::convert_to_default($booking_info->totalBookingPrice, $booking_currency);
                         $user_total_price += floatval($default_currency_price);
                     }
                 }
@@ -309,14 +309,14 @@
 
         public function check_membership($booking_count, $booking_price)
         {
-            $ravis_booking_options = get_option('ravis-booking-setting');
+            $mana_booking_options = get_option('mana-booking-setting');
             $package_info          = null;
-            if ($ravis_booking_options['membership'])
+            if ($mana_booking_options['membership'])
             {
                 $highest_count       = 0;
                 $highest_total_price = 0;
                 $highest_discount    = 0;
-                foreach ($ravis_booking_options['membership'] as $index => $membership_item)
+                foreach ($mana_booking_options['membership'] as $index => $membership_item)
                 {
                     switch ($membership_item['condition'])
                     {
@@ -396,17 +396,17 @@
 
         public function change_wp_default_sender_email()
         {
-            $email_sender = !empty($this->ravis_booking_option['wp_email_sender']) ? $this->ravis_booking_option['wp_email_sender'] : '';
+            $email_sender = !empty($this->mana_booking_option['wp_email_sender']) ? $this->mana_booking_option['wp_email_sender'] : '';
 
             return $email_sender;
         }
 
         public function change_wp_default_sender_name()
         {
-            $email_sender_name = !empty($this->ravis_booking_option['wp_email_sender_name']) ? $this->ravis_booking_option['wp_email_sender_name'] : '';
+            $email_sender_name = !empty($this->mana_booking_option['wp_email_sender_name']) ? $this->mana_booking_option['wp_email_sender_name'] : '';
 
             return $email_sender_name;
         }
     }
 
-    $ravis_booking_user_obj = new Ravis_booking_user();
+    $mana_booking_user_obj = new Mana_booking_user();

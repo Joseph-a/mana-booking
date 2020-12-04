@@ -1,4 +1,4 @@
-.postbox[id^='ravis_booking_'] {
+.postbox[id^='mana_booking_'] {
     border: 0;
     box-shadow: none;
     margin-bottom: 20px;
@@ -322,11 +322,11 @@
                     }
                 }
             }
-            // Ravis image Slide Show
+            // Mana image Slide Show
             .clearfix {
                 @include clearfix;
             }
-            .ravis_slideshow_wrapper {
+            .mana_slideshow_wrapper {
                 .slideshow_images {
                     margin: 0;
                     li {

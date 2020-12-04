@@ -1,6 +1,6 @@
 msgid ""
 msgstr ""
-"Project-Id-Version: Ravis Booking Plugin\n"
+"Project-Id-Version: Mana Booking Plugin\n"
 "POT-Creation-Date: 2018-05-16 16:11+0330\n"
 "PO-Revision-Date: 2018-05-16 16:11+0330\n"
 "Last-Translator: \n"
@@ -157,8 +157,8 @@ msgid "Child"
 msgstr ""
 
 #: inc/booking.class.php:715 inc/shortcode.class.php:1356
-#: ravis-booking.php:1055 ravis-booking.php:1322 ravis-booking.php:1397
-#: ravis-booking.php:1444 tpl/admin/booking.php:187 tpl/admin/booking.php:251
+#: mana-booking.php:1055 mana-booking.php:1322 mana-booking.php:1397
+#: mana-booking.php:1444 tpl/admin/booking.php:187 tpl/admin/booking.php:251
 #: tpl/admin/booking.php:273 tpl/admin/booking.php:301
 #: tpl/admin/payment.php:23 tpl/booking-notification.php:74
 #: tpl/booking-steps/booking_variables.php:42 tpl/user-panel/booking.php:147
@@ -207,7 +207,7 @@ msgstr ""
 msgid "Not Available"
 msgstr ""
 
-#: inc/booking.class.php:1084 inc/booking.class.php:1088 ravis-booking.php:913
+#: inc/booking.class.php:1084 inc/booking.class.php:1088 mana-booking.php:913
 msgid "From"
 msgstr ""
 
@@ -264,7 +264,7 @@ msgid "Night"
 msgstr ""
 
 #: inc/get_info.class.php:810 inc/get_info.class.php:812
-#: ravis-booking.php:1392 tpl/booking-steps/booking_variables.php:72
+#: mana-booking.php:1392 tpl/booking-steps/booking_variables.php:72
 msgid "Free"
 msgstr ""
 
@@ -273,7 +273,7 @@ msgstr ""
 msgid "Unpaid"
 msgstr ""
 
-#: inc/get_info.class.php:1026 ravis-booking.php:1393 tpl/admin/payment.php:58
+#: inc/get_info.class.php:1026 mana-booking.php:1393 tpl/admin/payment.php:58
 #: tpl/user-panel/payment.php:36
 msgid "Paid"
 msgstr ""
@@ -429,7 +429,7 @@ msgid "End Date"
 msgstr ""
 
 #: inc/meta_box.class.php:420 inc/meta_box.class.php:505
-#: ravis-booking.php:1249
+#: mana-booking.php:1249
 msgid "Extra Guest Price"
 msgstr ""
 
@@ -438,11 +438,11 @@ msgstr ""
 msgid "Chef Selection"
 msgstr ""
 
-#: inc/meta_box.class.php:660 ravis-booking.php:997
+#: inc/meta_box.class.php:660 mana-booking.php:997
 msgid "Guest Name"
 msgstr ""
 
-#: inc/meta_box.class.php:661 ravis-booking.php:1015
+#: inc/meta_box.class.php:661 mana-booking.php:1015
 msgid "Guest Phone"
 msgstr ""
 
@@ -451,9 +451,9 @@ msgid "Guest Count"
 msgstr ""
 
 #: inc/meta_box.class.php:663 inc/shortcode.class.php:1548
-#: inc/shortcode.class.php:1942 ravis-booking.php:956 tpl/admin/booking.php:24
+#: inc/shortcode.class.php:1942 mana-booking.php:956 tpl/admin/booking.php:24
 #: tpl/admin/booking.php:348 tpl/booking-steps/booking_variables.php:52
-#: tpl/user-panel/booking.php:20 widgets/ravis-newsletter.php:43
+#: tpl/user-panel/booking.php:20 widgets/mana-newsletter.php:43
 msgid "Email"
 msgstr ""
 
@@ -491,514 +491,514 @@ msgstr ""
 msgid "Today"
 msgstr ""
 
-#: inc/ravisButtons.php:16
+#: inc/manaButtons.php:16
 msgid "Insert"
 msgstr ""
 
-#: inc/ravisButtons.php:20
+#: inc/manaButtons.php:20
 msgid "ShortCode : "
 msgstr ""
 
-#: inc/ravisButtons.php:22
+#: inc/manaButtons.php:22
 msgid "Select a shortcode"
 msgstr ""
 
-#: inc/ravisButtons.php:23
+#: inc/manaButtons.php:23
 msgid "Main Slider"
 msgstr ""
 
-#: inc/ravisButtons.php:24
+#: inc/manaButtons.php:24
 msgid "Text Section"
 msgstr ""
 
-#: inc/ravisButtons.php:25 ravis-booking.php:1107 ravis-booking.php:1214
+#: inc/manaButtons.php:25 mana-booking.php:1107 mana-booking.php:1214
 msgid "Gallery"
 msgstr ""
 
-#: inc/ravisButtons.php:26
+#: inc/manaButtons.php:26
 msgid "Gallery Slideshow"
 msgstr ""
 
-#: inc/ravisButtons.php:27
+#: inc/manaButtons.php:27
 msgid "Special Rooms"
 msgstr ""
 
-#: inc/ravisButtons.php:28 ravis-booking.php:404
+#: inc/manaButtons.php:28 mana-booking.php:404
 msgid "Testimonials"
 msgstr ""
 
-#: inc/ravisButtons.php:29 ravis-booking.php:276
+#: inc/manaButtons.php:29 mana-booking.php:276
 msgid "Hotel Section"
 msgstr ""
 
-#: inc/ravisButtons.php:30 tpl/booking-notification.php:117
+#: inc/manaButtons.php:30 tpl/booking-notification.php:117
 #: tpl/booking-steps/booking_variables.php:76
 msgid "Package"
 msgstr ""
 
-#: inc/ravisButtons.php:31
+#: inc/manaButtons.php:31
 msgid "Video Tour"
 msgstr ""
 
-#: inc/ravisButtons.php:32
+#: inc/manaButtons.php:32
 msgid "Timeline"
 msgstr ""
 
-#: inc/ravisButtons.php:33 ravis-booking.php:1226
+#: inc/manaButtons.php:33 mana-booking.php:1226
 #: tpl/booking-notification.php:89 tpl/booking-steps/booking_variables.php:74
 msgid "Services"
 msgstr ""
 
-#: inc/ravisButtons.php:34 tpl/admin/admin.php:37
+#: inc/manaButtons.php:34 tpl/admin/admin.php:37
 msgid "Clients"
 msgstr ""
 
-#: inc/ravisButtons.php:35 ravis-booking.php:388
+#: inc/manaButtons.php:35 mana-booking.php:388
 msgid "Staff"
 msgstr ""
 
-#: inc/ravisButtons.php:36
+#: inc/manaButtons.php:36
 msgid "Promo"
 msgstr ""
 
-#: inc/ravisButtons.php:37 tpl/admin/admin.php:31
+#: inc/manaButtons.php:37 tpl/admin/admin.php:31
 msgid "Social Icons"
 msgstr ""
 
-#: inc/ravisButtons.php:38 ravis-booking.php:435
+#: inc/manaButtons.php:38 mana-booking.php:435
 msgid "Dishes"
 msgstr ""
 
-#: inc/ravisButtons.php:39 ravis-booking.php:451
+#: inc/manaButtons.php:39 mana-booking.php:451
 msgid "Menu"
 msgstr ""
 
-#: inc/ravisButtons.php:40
+#: inc/manaButtons.php:40
 msgid "Testimonial Form"
 msgstr ""
 
-#: inc/ravisButtons.php:41
+#: inc/manaButtons.php:41
 msgid "Upcoming Events"
 msgstr ""
 
-#: inc/ravisButtons.php:42
+#: inc/manaButtons.php:42
 msgid "Past Events"
 msgstr ""
 
-#: inc/ravisButtons.php:43
+#: inc/manaButtons.php:43
 msgid "Other Events"
 msgstr ""
 
-#: inc/ravisButtons.php:44
+#: inc/manaButtons.php:44
 msgid "Event Booking"
 msgstr ""
 
-#: inc/ravisButtons.php:45
+#: inc/manaButtons.php:45
 msgid "Room Listing"
 msgstr ""
 
-#: inc/ravisButtons.php:46
+#: inc/manaButtons.php:46
 msgid "Room Search Form"
 msgstr ""
 
-#: inc/ravisButtons.php:47
+#: inc/manaButtons.php:47
 msgid "Other Rooms"
 msgstr ""
 
-#: inc/ravisButtons.php:48
+#: inc/manaButtons.php:48
 msgid "Room Rating"
 msgstr ""
 
-#: inc/ravisButtons.php:49
+#: inc/manaButtons.php:49
 msgid "Currency Switcher"
 msgstr ""
 
-#: inc/ravisButtons.php:50
+#: inc/manaButtons.php:50
 msgid "Contact Section"
 msgstr ""
 
-#: inc/ravisButtons.php:51 ravis-booking.php:1284 ravis-booking.php:1304
-#: ravis-booking.php:1482 tpl/admin/overview.php:3
+#: inc/manaButtons.php:51 mana-booking.php:1284 mana-booking.php:1304
+#: mana-booking.php:1482 tpl/admin/overview.php:3
 msgid "Booking Overview"
 msgstr ""
 
-#: inc/ravisButtons.php:53
+#: inc/manaButtons.php:53
 msgid "Please select the shortcode you want to add."
 msgstr ""
 
-#: inc/ravisButtons.php:55
+#: inc/manaButtons.php:55
 msgid "This shortcode doesn't have any attributes"
 msgstr ""
 
-#: inc/ravisButtons.php:58 inc/ravisButtons.php:103 inc/ravisButtons.php:184
-#: inc/ravisButtons.php:214 inc/ravisButtons.php:241 inc/ravisButtons.php:263
-#: inc/ravisButtons.php:304 inc/ravisButtons.php:333 inc/ravisButtons.php:358
-#: inc/ravisButtons.php:380 inc/ravisButtons.php:397 inc/ravisButtons.php:414
-#: inc/ravisButtons.php:436 inc/ravisButtons.php:468 inc/ravisButtons.php:506
-#: inc/ravisButtons.php:528 inc/ravisButtons.php:550 inc/ravisButtons.php:562
+#: inc/manaButtons.php:58 inc/manaButtons.php:103 inc/manaButtons.php:184
+#: inc/manaButtons.php:214 inc/manaButtons.php:241 inc/manaButtons.php:263
+#: inc/manaButtons.php:304 inc/manaButtons.php:333 inc/manaButtons.php:358
+#: inc/manaButtons.php:380 inc/manaButtons.php:397 inc/manaButtons.php:414
+#: inc/manaButtons.php:436 inc/manaButtons.php:468 inc/manaButtons.php:506
+#: inc/manaButtons.php:528 inc/manaButtons.php:550 inc/manaButtons.php:562
 #: tpl/admin/admin.php:565 tpl/admin/admin.php:615 tpl/admin/admin.php:853
 #: tpl/admin/admin.php:886 tpl/admin/admin.php:941 tpl/admin/admin.php:999
 #: tpl/admin/admin.php:1078 tpl/admin/admin.php:1117
 msgid "Title : "
 msgstr ""
 
-#: inc/ravisButtons.php:60
+#: inc/manaButtons.php:60
 msgid "Add the title text section in this field"
 msgstr ""
 
-#: inc/ravisButtons.php:63 inc/ravisButtons.php:108 inc/ravisButtons.php:189
-#: inc/ravisButtons.php:219 inc/ravisButtons.php:246 inc/ravisButtons.php:268
-#: inc/ravisButtons.php:309 inc/ravisButtons.php:338 inc/ravisButtons.php:363
-#: inc/ravisButtons.php:385 inc/ravisButtons.php:402 inc/ravisButtons.php:419
-#: inc/ravisButtons.php:441 inc/ravisButtons.php:473 inc/ravisButtons.php:511
-#: inc/ravisButtons.php:533 inc/ravisButtons.php:555 inc/ravisButtons.php:567
+#: inc/manaButtons.php:63 inc/manaButtons.php:108 inc/manaButtons.php:189
+#: inc/manaButtons.php:219 inc/manaButtons.php:246 inc/manaButtons.php:268
+#: inc/manaButtons.php:309 inc/manaButtons.php:338 inc/manaButtons.php:363
+#: inc/manaButtons.php:385 inc/manaButtons.php:402 inc/manaButtons.php:419
+#: inc/manaButtons.php:441 inc/manaButtons.php:473 inc/manaButtons.php:511
+#: inc/manaButtons.php:533 inc/manaButtons.php:555 inc/manaButtons.php:567
 msgid "Subtitle : "
 msgstr ""
 
-#: inc/ravisButtons.php:65
+#: inc/manaButtons.php:65
 msgid "Add the subtitle text section in this field"
 msgstr ""
 
-#: inc/ravisButtons.php:68
+#: inc/manaButtons.php:68
 msgid "Text : "
 msgstr ""
 
-#: inc/ravisButtons.php:70
+#: inc/manaButtons.php:70
 msgid "Add main text of this section in this field."
 msgstr ""
 
-#: inc/ravisButtons.php:73
+#: inc/manaButtons.php:73
 msgid "Image URL : "
 msgstr ""
 
-#: inc/ravisButtons.php:75
+#: inc/manaButtons.php:75
 msgid "If your text section has an image, add its url in this field."
 msgstr ""
 
-#: inc/ravisButtons.php:78
+#: inc/manaButtons.php:78
 msgid "Person's Image : "
 msgstr ""
 
-#: inc/ravisButtons.php:80 inc/ravisButtons.php:350
+#: inc/manaButtons.php:80 inc/manaButtons.php:350
 msgid "Yes"
 msgstr ""
 
-#: inc/ravisButtons.php:81 inc/ravisButtons.php:351
+#: inc/manaButtons.php:81 inc/manaButtons.php:351
 msgid "No"
 msgstr ""
 
-#: inc/ravisButtons.php:83
+#: inc/manaButtons.php:83
 msgid "Select that if the above image is a person image or not."
 msgstr ""
 
-#: inc/ravisButtons.php:86
+#: inc/manaButtons.php:86
 msgid "Cite : "
 msgstr ""
 
-#: inc/ravisButtons.php:88
+#: inc/manaButtons.php:88
 msgid "Add the cite of text section in this field."
 msgstr ""
 
-#: inc/ravisButtons.php:91
+#: inc/manaButtons.php:91
 msgid "Button Text : "
 msgstr ""
 
-#: inc/ravisButtons.php:93
+#: inc/manaButtons.php:93
 msgid "If your text section has a button, add its text in this field"
 msgstr ""
 
-#: inc/ravisButtons.php:96
+#: inc/manaButtons.php:96
 msgid "Button URL : "
 msgstr ""
 
-#: inc/ravisButtons.php:98
+#: inc/manaButtons.php:98
 msgid "If your text section has a button, add its URL in this field"
 msgstr ""
 
-#: inc/ravisButtons.php:105
+#: inc/manaButtons.php:105
 msgid "Add the title galler section in this field"
 msgstr ""
 
-#: inc/ravisButtons.php:110
+#: inc/manaButtons.php:110
 msgid "Add the subtitle galler section in this field"
 msgstr ""
 
-#: inc/ravisButtons.php:113 inc/ravisButtons.php:206
+#: inc/manaButtons.php:113 inc/manaButtons.php:206
 msgid "Type : "
 msgstr ""
 
-#: inc/ravisButtons.php:115
+#: inc/manaButtons.php:115
 msgid "Grid"
 msgstr ""
 
-#: inc/ravisButtons.php:116 inc/ravisButtons.php:463
+#: inc/manaButtons.php:116 inc/manaButtons.php:463
 msgid "List"
 msgstr ""
 
-#: inc/ravisButtons.php:118
+#: inc/manaButtons.php:118
 msgid "Select which type of gallery you want."
 msgstr ""
 
-#: inc/ravisButtons.php:121 inc/ravisButtons.php:143
+#: inc/manaButtons.php:121 inc/manaButtons.php:143
 msgid "Image Count : "
 msgstr ""
 
-#: inc/ravisButtons.php:123 inc/ravisButtons.php:145
+#: inc/manaButtons.php:123 inc/manaButtons.php:145
 msgid "Add how many images you want to show in gallery section."
 msgstr ""
 
-#: inc/ravisButtons.php:126
+#: inc/manaButtons.php:126
 msgid "More Button's URL : "
 msgstr ""
 
-#: inc/ravisButtons.php:128
+#: inc/manaButtons.php:128
 msgid ""
 "If you want to have more link below the gallery add your gallery's URL in "
 "this field. Leave it blank if you do not need more button."
 msgstr ""
 
-#: inc/ravisButtons.php:133
+#: inc/manaButtons.php:133
 msgid "Pre Text : "
 msgstr ""
 
-#: inc/ravisButtons.php:135
+#: inc/manaButtons.php:135
 msgid "If you want to show a text above the gallery show, add your text here."
 msgstr ""
 
-#: inc/ravisButtons.php:138 inc/ravisButtons.php:194
+#: inc/manaButtons.php:138 inc/manaButtons.php:194
 msgid "Post Text : "
 msgstr ""
 
-#: inc/ravisButtons.php:140
+#: inc/manaButtons.php:140
 msgid "If you want to show a text below the gallery show, add your text here."
 msgstr ""
 
-#: inc/ravisButtons.php:150
+#: inc/manaButtons.php:150
 msgid "Room Count : "
 msgstr ""
 
-#: inc/ravisButtons.php:152
+#: inc/manaButtons.php:152
 msgid "Add how many rooms you want to show in this section."
 msgstr ""
 
-#: inc/ravisButtons.php:157 inc/ravisButtons.php:314
+#: inc/manaButtons.php:157 inc/manaButtons.php:314
 msgid "Background Image : "
 msgstr ""
 
-#: inc/ravisButtons.php:159 inc/ravisButtons.php:316
+#: inc/manaButtons.php:159 inc/manaButtons.php:316
 msgid "Add the URL of image that you want to show as background."
 msgstr ""
 
-#: inc/ravisButtons.php:162 inc/ravisButtons.php:169 inc/ravisButtons.php:199
-#: inc/ravisButtons.php:256 inc/ravisButtons.php:278 inc/ravisButtons.php:285
-#: inc/ravisButtons.php:297 inc/ravisButtons.php:343 inc/ravisButtons.php:373
-#: inc/ravisButtons.php:407 inc/ravisButtons.php:424 inc/ravisButtons.php:446
-#: inc/ravisButtons.php:483 inc/ravisButtons.php:538
+#: inc/manaButtons.php:162 inc/manaButtons.php:169 inc/manaButtons.php:199
+#: inc/manaButtons.php:256 inc/manaButtons.php:278 inc/manaButtons.php:285
+#: inc/manaButtons.php:297 inc/manaButtons.php:343 inc/manaButtons.php:373
+#: inc/manaButtons.php:407 inc/manaButtons.php:424 inc/manaButtons.php:446
+#: inc/manaButtons.php:483 inc/manaButtons.php:538
 msgid "Count : "
 msgstr ""
 
-#: inc/ravisButtons.php:164
+#: inc/manaButtons.php:164
 msgid "Add how many testimonials you want to show in this section."
 msgstr ""
 
-#: inc/ravisButtons.php:171
+#: inc/manaButtons.php:171
 msgid "Add how many sections you want to show in this section."
 msgstr ""
 
-#: inc/ravisButtons.php:176 inc/ravisButtons.php:488
+#: inc/manaButtons.php:176 inc/manaButtons.php:488
 msgid "Title Type : "
 msgstr ""
 
-#: inc/ravisButtons.php:178 inc/ravisButtons.php:209 inc/ravisButtons.php:490
+#: inc/manaButtons.php:178 inc/manaButtons.php:209 inc/manaButtons.php:490
 msgid "Simple"
 msgstr ""
 
-#: inc/ravisButtons.php:179 inc/ravisButtons.php:491
+#: inc/manaButtons.php:179 inc/manaButtons.php:491
 msgid "Box"
 msgstr ""
 
-#: inc/ravisButtons.php:181 inc/ravisButtons.php:211 inc/ravisButtons.php:493
+#: inc/manaButtons.php:181 inc/manaButtons.php:211 inc/manaButtons.php:493
 msgid "Select which type of title you want for this section."
 msgstr ""
 
-#: inc/ravisButtons.php:186 inc/ravisButtons.php:191 inc/ravisButtons.php:216
-#: inc/ravisButtons.php:221 inc/ravisButtons.php:243 inc/ravisButtons.php:248
-#: inc/ravisButtons.php:265 inc/ravisButtons.php:270 inc/ravisButtons.php:306
-#: inc/ravisButtons.php:311 inc/ravisButtons.php:335 inc/ravisButtons.php:340
-#: inc/ravisButtons.php:360 inc/ravisButtons.php:365 inc/ravisButtons.php:382
-#: inc/ravisButtons.php:387 inc/ravisButtons.php:399 inc/ravisButtons.php:404
-#: inc/ravisButtons.php:416 inc/ravisButtons.php:421 inc/ravisButtons.php:438
-#: inc/ravisButtons.php:443 inc/ravisButtons.php:470 inc/ravisButtons.php:475
-#: inc/ravisButtons.php:508 inc/ravisButtons.php:513 inc/ravisButtons.php:530
-#: inc/ravisButtons.php:535 inc/ravisButtons.php:552 inc/ravisButtons.php:557
-#: inc/ravisButtons.php:564 inc/ravisButtons.php:569
+#: inc/manaButtons.php:186 inc/manaButtons.php:191 inc/manaButtons.php:216
+#: inc/manaButtons.php:221 inc/manaButtons.php:243 inc/manaButtons.php:248
+#: inc/manaButtons.php:265 inc/manaButtons.php:270 inc/manaButtons.php:306
+#: inc/manaButtons.php:311 inc/manaButtons.php:335 inc/manaButtons.php:340
+#: inc/manaButtons.php:360 inc/manaButtons.php:365 inc/manaButtons.php:382
+#: inc/manaButtons.php:387 inc/manaButtons.php:399 inc/manaButtons.php:404
+#: inc/manaButtons.php:416 inc/manaButtons.php:421 inc/manaButtons.php:438
+#: inc/manaButtons.php:443 inc/manaButtons.php:470 inc/manaButtons.php:475
+#: inc/manaButtons.php:508 inc/manaButtons.php:513 inc/manaButtons.php:530
+#: inc/manaButtons.php:535 inc/manaButtons.php:552 inc/manaButtons.php:557
+#: inc/manaButtons.php:564 inc/manaButtons.php:569
 msgid "Add the title of this section in this field."
 msgstr ""
 
-#: inc/ravisButtons.php:196
+#: inc/manaButtons.php:196
 msgid ""
 "If you want to add any description to be shown above of the packages, add it "
 "in this field."
 msgstr ""
 
-#: inc/ravisButtons.php:201
+#: inc/manaButtons.php:201
 msgid "Add how many packages you want to show in this section."
 msgstr ""
 
-#: inc/ravisButtons.php:208
+#: inc/manaButtons.php:208
 msgid "2 Columns"
 msgstr ""
 
-#: inc/ravisButtons.php:224 inc/ravisButtons.php:251 inc/ravisButtons.php:273
-#: inc/ravisButtons.php:368 inc/ravisButtons.php:478 inc/ravisButtons.php:572
+#: inc/manaButtons.php:224 inc/manaButtons.php:251 inc/manaButtons.php:273
+#: inc/manaButtons.php:368 inc/manaButtons.php:478 inc/manaButtons.php:572
 msgid "Description : "
 msgstr ""
 
-#: inc/ravisButtons.php:226
+#: inc/manaButtons.php:226
 msgid ""
 "If you want to add any description to be shown above of the video, add it in "
 "this field."
 msgstr ""
 
-#: inc/ravisButtons.php:229
+#: inc/manaButtons.php:229
 msgid "Background Image URL : "
 msgstr ""
 
-#: inc/ravisButtons.php:231
+#: inc/manaButtons.php:231
 msgid "Add the URL of background image in this field."
 msgstr ""
 
-#: inc/ravisButtons.php:234
+#: inc/manaButtons.php:234
 msgid "Video URL : "
 msgstr ""
 
-#: inc/ravisButtons.php:236
+#: inc/manaButtons.php:236
 msgid "Add the URL of embed code of video in this field."
 msgstr ""
 
-#: inc/ravisButtons.php:253 inc/ravisButtons.php:275 inc/ravisButtons.php:370
-#: inc/ravisButtons.php:480
+#: inc/manaButtons.php:253 inc/manaButtons.php:275 inc/manaButtons.php:370
+#: inc/manaButtons.php:480
 msgid ""
 "If you want to add any description to be shown above of the timeline, add it "
 "in this field."
 msgstr ""
 
-#: inc/ravisButtons.php:258 inc/ravisButtons.php:280 inc/ravisButtons.php:287
-#: inc/ravisButtons.php:299 inc/ravisButtons.php:345 inc/ravisButtons.php:375
-#: inc/ravisButtons.php:409 inc/ravisButtons.php:426 inc/ravisButtons.php:448
-#: inc/ravisButtons.php:485 inc/ravisButtons.php:540
+#: inc/manaButtons.php:258 inc/manaButtons.php:280 inc/manaButtons.php:287
+#: inc/manaButtons.php:299 inc/manaButtons.php:345 inc/manaButtons.php:375
+#: inc/manaButtons.php:409 inc/manaButtons.php:426 inc/manaButtons.php:448
+#: inc/manaButtons.php:485 inc/manaButtons.php:540
 msgid "Add how many items you want to show in this section."
 msgstr ""
 
-#: inc/ravisButtons.php:292
+#: inc/manaButtons.php:292
 msgid "Staff IDs : "
 msgstr ""
 
-#: inc/ravisButtons.php:294
+#: inc/manaButtons.php:294
 msgid ""
 "If you want to show some specified staff, you just need to add their IDs in "
 "this field in CSV(Comma Separated Value) format."
 msgstr ""
 
-#: inc/ravisButtons.php:321
+#: inc/manaButtons.php:321
 msgid "ID : "
 msgstr ""
 
-#: inc/ravisButtons.php:323
+#: inc/manaButtons.php:323
 msgid "If you want this section has a unique ID, add your ID in this field."
 msgstr ""
 
-#: inc/ravisButtons.php:326 inc/ravisButtons.php:390 inc/ravisButtons.php:516
-#: inc/ravisButtons.php:579
+#: inc/manaButtons.php:326 inc/manaButtons.php:390 inc/manaButtons.php:516
+#: inc/manaButtons.php:579
 msgid "Class : "
 msgstr ""
 
-#: inc/ravisButtons.php:328 inc/ravisButtons.php:392
+#: inc/manaButtons.php:328 inc/manaButtons.php:392
 msgid "If you want this section has a class, add your class in this field."
 msgstr ""
 
-#: inc/ravisButtons.php:348
+#: inc/manaButtons.php:348
 msgid "Post URL : "
 msgstr ""
 
-#: inc/ravisButtons.php:353
+#: inc/manaButtons.php:353
 msgid "You can disable/enable more links for the dishes with this option"
 msgstr ""
 
-#: inc/ravisButtons.php:431 inc/ravisButtons.php:453
+#: inc/manaButtons.php:431 inc/manaButtons.php:453
 msgid "Event ID : "
 msgstr ""
 
-#: inc/ravisButtons.php:433
+#: inc/manaButtons.php:433
 msgid "Add the ID of the event that you want to exclude it from the result."
 msgstr ""
 
-#: inc/ravisButtons.php:455
+#: inc/manaButtons.php:455
 msgid "Add the ID of the event that you want user book for it in this field."
 msgstr ""
 
-#: inc/ravisButtons.php:460 inc/ravisButtons.php:498
+#: inc/manaButtons.php:460 inc/manaButtons.php:498
 msgid "Layout : "
 msgstr ""
 
-#: inc/ravisButtons.php:462
+#: inc/manaButtons.php:462
 msgid "Gird"
 msgstr ""
 
-#: inc/ravisButtons.php:465
+#: inc/manaButtons.php:465
 msgid "Select layout that you want to show the rooms."
 msgstr ""
 
-#: inc/ravisButtons.php:500
+#: inc/manaButtons.php:500
 msgid "Horizontal"
 msgstr ""
 
-#: inc/ravisButtons.php:501
+#: inc/manaButtons.php:501
 msgid "Vertical"
 msgstr ""
 
-#: inc/ravisButtons.php:503
+#: inc/manaButtons.php:503
 msgid "Select layout that search form"
 msgstr ""
 
-#: inc/ravisButtons.php:518
+#: inc/manaButtons.php:518
 msgid ""
 "If you want that this section has a specified class, add it in this field."
 msgstr ""
 
-#: inc/ravisButtons.php:523 inc/ravisButtons.php:545 inc/ravisButtons.php:584
+#: inc/manaButtons.php:523 inc/manaButtons.php:545 inc/manaButtons.php:584
 msgid "Room ID : "
 msgstr ""
 
-#: inc/ravisButtons.php:525
+#: inc/manaButtons.php:525
 msgid "Add the id of room that you want to exclude it from the result."
 msgstr ""
 
-#: inc/ravisButtons.php:547
+#: inc/manaButtons.php:547
 msgid "Add the id of room that you want to show its rating."
 msgstr ""
 
-#: inc/ravisButtons.php:563
+#: inc/manaButtons.php:563
 msgid "Contact Us"
 msgstr ""
 
-#: inc/ravisButtons.php:568
+#: inc/manaButtons.php:568
 msgid "Do not hesitate to contact me if you have any further questions"
 msgstr ""
 
-#: inc/ravisButtons.php:574
+#: inc/manaButtons.php:574
 msgid ""
 "If you want to add any description to be shown above of this section, add it "
 "in this field."
 msgstr ""
 
-#: inc/ravisButtons.php:581
+#: inc/manaButtons.php:581
 msgid ""
 "Add class for the calendar container, if you need special class for future "
 "uses."
 msgstr ""
 
-#: inc/ravisButtons.php:586
+#: inc/manaButtons.php:586
 msgid ""
 "If you want to show an specific room's availability, put its ID in this "
 "field."
@@ -1156,7 +1156,7 @@ msgstr ""
 #: inc/shortcode.class.php:2310 inc/shortcode.class.php:2311
 #: inc/shortcode.class.php:2415 inc/shortcode.class.php:2416
 #: inc/shortcode.class.php:2417 inc/shortcode.class.php:2418
-#: ravis-booking.php:292 tpl/booking-steps/booking_variables.php:10
+#: mana-booking.php:292 tpl/booking-steps/booking_variables.php:10
 msgid "Rooms"
 msgstr ""
 
@@ -1310,707 +1310,707 @@ msgstr ""
 msgid "Please fill all required fields."
 msgstr ""
 
-#: ravis-booking.php:277
+#: mana-booking.php:277
 msgid "Manage the hotel sections in this section."
 msgstr ""
 
-#: ravis-booking.php:293
+#: mana-booking.php:293
 msgid "Manage the rooms of hotel."
 msgstr ""
 
-#: ravis-booking.php:303
+#: mana-booking.php:303
 msgctxt "Taxonomy plural name"
 msgid "Room Categories"
 msgstr ""
 
-#: ravis-booking.php:304
+#: mana-booking.php:304
 msgctxt "Taxonomy singular name"
 msgid "Room Category"
 msgstr ""
 
-#: ravis-booking.php:324
+#: mana-booking.php:324
 msgid "Block Dates"
 msgstr ""
 
-#: ravis-booking.php:325
+#: mana-booking.php:325
 msgid "Manage the Block Dates."
 msgstr ""
 
-#: ravis-booking.php:340
+#: mana-booking.php:340
 msgid "Service"
 msgstr ""
 
-#: ravis-booking.php:341
+#: mana-booking.php:341
 msgid "Manage the services that your hotel provide."
 msgstr ""
 
-#: ravis-booking.php:356
+#: mana-booking.php:356
 msgid "Packages"
 msgstr ""
 
-#: ravis-booking.php:357
+#: mana-booking.php:357
 msgid "Manage Special offer packages."
 msgstr ""
 
-#: ravis-booking.php:372
+#: mana-booking.php:372
 msgid "Events"
 msgstr ""
 
-#: ravis-booking.php:373
+#: mana-booking.php:373
 msgid "Manage the events which are happening in the Hotel."
 msgstr ""
 
-#: ravis-booking.php:389
+#: mana-booking.php:389
 msgid "Manage the staff of hotel."
 msgstr ""
 
-#: ravis-booking.php:405
+#: mana-booking.php:405
 msgid "Manage the testimonials which is given by hotel's guests."
 msgstr ""
 
-#: ravis-booking.php:420
+#: mana-booking.php:420
 msgid "History Time Line"
 msgstr ""
 
-#: ravis-booking.php:421
+#: mana-booking.php:421
 msgid ""
-"These events will be added to \"[ravis-booking-timeline]\" shortcodes that "
+"These events will be added to \"[mana-booking-timeline]\" shortcodes that "
 "you can add it to any pages you want."
 msgstr ""
 
-#: ravis-booking.php:436
+#: mana-booking.php:436
 msgid "You can manage the dishes of your restaurant in this section."
 msgstr ""
 
-#: ravis-booking.php:452
+#: mana-booking.php:452
 msgid "You can manage menu of your restaurant in this section."
 msgstr ""
 
-#: ravis-booking.php:467 tpl/booking-steps/booking_variables.php:79
+#: mana-booking.php:467 tpl/booking-steps/booking_variables.php:79
 msgid "Coupon"
 msgstr ""
 
-#: ravis-booking.php:468
+#: mana-booking.php:468
 msgid "You can manage coupon in this section."
 msgstr ""
 
-#: ravis-booking.php:537
+#: mana-booking.php:537
 msgid "You are not allowed to be here"
 msgstr ""
 
-#: ravis-booking.php:567
+#: mana-booking.php:567
 msgid "Are you sure you want to delete this item?"
 msgstr ""
 
-#: ravis-booking.php:746
+#: mana-booking.php:746
 #, php-format
 msgid "I have read and accept the <a href=\"%s\">terms and conditions</a>"
 msgstr ""
 
-#: ravis-booking.php:750 tpl/booking-notification.php:188
+#: mana-booking.php:750 tpl/booking-notification.php:188
 msgid "Reservation Complete"
 msgstr ""
 
-#: ravis-booking.php:751 tpl/booking-notification.php:190
+#: mana-booking.php:751 tpl/booking-notification.php:190
 msgid "Details of your reservation request was sent to your email"
 msgstr ""
 
-#: ravis-booking.php:752 tpl/booking-notification.php:192
+#: mana-booking.php:752 tpl/booking-notification.php:192
 #, php-format
 msgid ""
 "For more information you can contact us via <a href=\"%s\">contact form</a> "
 "of website"
 msgstr ""
 
-#: ravis-booking.php:806
+#: mana-booking.php:806
 msgid "Post Setting"
 msgstr ""
 
-#: ravis-booking.php:809 ravis-booking.php:826 ravis-booking.php:1049
-#: ravis-booking.php:1083 ravis-booking.php:1150 ravis-booking.php:1172
-#: ravis-booking.php:1350
+#: mana-booking.php:809 mana-booking.php:826 mana-booking.php:1049
+#: mana-booking.php:1083 mana-booking.php:1150 mana-booking.php:1172
+#: mana-booking.php:1350
 msgid "Subtitle"
 msgstr ""
 
-#: ravis-booking.php:810
+#: mana-booking.php:810
 msgid "Add subtitle of the post in this field."
 msgstr ""
 
-#: ravis-booking.php:823
+#: mana-booking.php:823
 msgid "Page Setting"
 msgstr ""
 
-#: ravis-booking.php:827
+#: mana-booking.php:827
 msgid "Add subtitle of the page in this field."
 msgstr ""
 
-#: ravis-booking.php:832
+#: mana-booking.php:832
 msgid "Page ID"
 msgstr ""
 
-#: ravis-booking.php:833
+#: mana-booking.php:833
 msgid ""
 "Add your custom ID for using it to change the default style. List of the "
 "default page IDs are <a href=\"#\" target=\"_blank\">here</a>"
 msgstr ""
 
-#: ravis-booking.php:838
+#: mana-booking.php:838
 msgid "Page Class"
 msgstr ""
 
-#: ravis-booking.php:839
+#: mana-booking.php:839
 msgid ""
 "Add your custom class for using it to change the default style. List of the "
 "default page classes are <a href=\"#\" target=\"_blank\">here</a>"
 msgstr ""
 
-#: ravis-booking.php:844
+#: mana-booking.php:844
 msgid "Wide View"
 msgstr ""
 
-#: ravis-booking.php:845
+#: mana-booking.php:845
 msgid "If you want to have wide view in this page, please turn this switch on."
 msgstr ""
 
-#: ravis-booking.php:850
+#: mana-booking.php:850
 msgid "Breadcrumb Section"
 msgstr ""
 
-#: ravis-booking.php:851
+#: mana-booking.php:851
 msgid ""
 "If you want to have breadcrumb in this page, please turn this switch on."
 msgstr ""
 
-#: ravis-booking.php:857
+#: mana-booking.php:857
 msgid "Page Breadcrumb Background"
 msgstr ""
 
-#: ravis-booking.php:858
+#: mana-booking.php:858
 msgid ""
 "Upload your desired image as page's breadcrumb. Please note that your image "
 "will be shown if you have turned on the \"Breadcrumb Section\" option."
 msgstr ""
 
-#: ravis-booking.php:863
+#: mana-booking.php:863
 msgid "Page Breadcrumb Height"
 msgstr ""
 
-#: ravis-booking.php:864
+#: mana-booking.php:864
 msgid ""
 "Set the height of breadcrumb in this field. Default value of it is 520px, "
 "leave it blank if you want to use default value."
 msgstr ""
 
-#: ravis-booking.php:869
+#: mana-booking.php:869
 msgid "Page Breadcrumb Text"
 msgstr ""
 
-#: ravis-booking.php:870
+#: mana-booking.php:870
 msgid "If you want to have text below the title box, add it here."
 msgstr ""
 
-#: ravis-booking.php:910
+#: mana-booking.php:910
 msgid "Block Dates Information"
 msgstr ""
 
-#: ravis-booking.php:914
+#: mana-booking.php:914
 msgid "Select the block date starting date"
 msgstr ""
 
-#: ravis-booking.php:920
+#: mana-booking.php:920
 msgid "To"
 msgstr ""
 
-#: ravis-booking.php:921
+#: mana-booking.php:921
 msgid "Select the block date ending date"
 msgstr ""
 
-#: ravis-booking.php:927
+#: mana-booking.php:927
 msgid "Select Rooms"
 msgstr ""
 
-#: ravis-booking.php:928
+#: mana-booking.php:928
 msgid "Select rooms which is blocked"
 msgstr ""
 
-#: ravis-booking.php:942
+#: mana-booking.php:942
 msgid "Additional information"
 msgstr ""
 
-#: ravis-booking.php:945
+#: mana-booking.php:945
 msgid "Staff ID"
 msgstr ""
 
-#: ravis-booking.php:950
+#: mana-booking.php:950
 msgid "Position"
 msgstr ""
 
-#: ravis-booking.php:951
+#: mana-booking.php:951
 msgid ""
 "Add the position of the employee like : \"Manager\", \"Executive Director\" "
 "and etc."
 msgstr ""
 
-#: ravis-booking.php:957
+#: mana-booking.php:957
 msgid "Add the email of the employee"
 msgstr ""
 
-#: ravis-booking.php:962
+#: mana-booking.php:962
 msgid "Skype"
 msgstr ""
 
-#: ravis-booking.php:963
+#: mana-booking.php:963
 msgid "Add the Skype ID of the employee"
 msgstr ""
 
-#: ravis-booking.php:968
+#: mana-booking.php:968
 msgid "Facebook"
 msgstr ""
 
-#: ravis-booking.php:969
+#: mana-booking.php:969
 msgid "Add the facebook ID of the employee"
 msgstr ""
 
-#: ravis-booking.php:974
+#: mana-booking.php:974
 msgid "Twitter"
 msgstr ""
 
-#: ravis-booking.php:975
+#: mana-booking.php:975
 msgid "Add the twitter ID of the employee"
 msgstr ""
 
-#: ravis-booking.php:980
+#: mana-booking.php:980
 msgid "Google Plus"
 msgstr ""
 
-#: ravis-booking.php:981
+#: mana-booking.php:981
 msgid "Add the google plus of the employee"
 msgstr ""
 
-#: ravis-booking.php:994
+#: mana-booking.php:994
 msgid "Testimonials Extra information"
 msgstr ""
 
-#: ravis-booking.php:998
+#: mana-booking.php:998
 msgid "Put the guest's name in this field"
 msgstr ""
 
-#: ravis-booking.php:1003
+#: mana-booking.php:1003
 msgid "Guest Job"
 msgstr ""
 
-#: ravis-booking.php:1004
+#: mana-booking.php:1004
 msgid "Put the guest's job in this field"
 msgstr ""
 
-#: ravis-booking.php:1009
+#: mana-booking.php:1009
 msgid "Guest Email"
 msgstr ""
 
-#: ravis-booking.php:1010
+#: mana-booking.php:1010
 msgid "Put the guest's email in this field"
 msgstr ""
 
-#: ravis-booking.php:1016
+#: mana-booking.php:1016
 msgid "Put the guest's phone in this field"
 msgstr ""
 
-#: ravis-booking.php:1029
+#: mana-booking.php:1029
 msgid "Timeline Extra information"
 msgstr ""
 
-#: ravis-booking.php:1032 ravis-booking.php:1095 tpl/admin/booking.php:189
+#: mana-booking.php:1032 mana-booking.php:1095 tpl/admin/booking.php:189
 #: tpl/admin/payment.php:22 tpl/user-panel/booking.php:149
 #: tpl/user-panel/payment.php:18
 msgid "Date"
 msgstr ""
 
-#: ravis-booking.php:1033
+#: mana-booking.php:1033
 msgid "Please add the \"Year\" of the event in this box like : 1984"
 msgstr ""
 
-#: ravis-booking.php:1046
+#: mana-booking.php:1046
 msgid "Packages Setting"
 msgstr ""
 
-#: ravis-booking.php:1050
+#: mana-booking.php:1050
 msgid "Add subtitle of the package in this field."
 msgstr ""
 
-#: ravis-booking.php:1056
+#: mana-booking.php:1056
 msgid "Add price of the package in this field"
 msgstr ""
 
-#: ravis-booking.php:1061
+#: mana-booking.php:1061
 msgid "Included Items"
 msgstr ""
 
-#: ravis-booking.php:1062
+#: mana-booking.php:1062
 msgid "Add as much as you need items to this package"
 msgstr ""
 
-#: ravis-booking.php:1075
+#: mana-booking.php:1075
 msgid "Event Extra information"
 msgstr ""
 
-#: ravis-booking.php:1078
+#: mana-booking.php:1078
 msgid "Event ID"
 msgstr ""
 
-#: ravis-booking.php:1084
+#: mana-booking.php:1084
 msgid "Add subtitle of about the event in this field."
 msgstr ""
 
-#: ravis-booking.php:1089 ravis-booking.php:1178
+#: mana-booking.php:1089 mana-booking.php:1178
 msgid "Short Description"
 msgstr ""
 
-#: ravis-booking.php:1090
+#: mana-booking.php:1090
 msgid ""
 "Add some description about the event to be shown in event's box in archive "
 "page."
 msgstr ""
 
-#: ravis-booking.php:1096
+#: mana-booking.php:1096
 msgid "Select date of the event"
 msgstr ""
 
-#: ravis-booking.php:1101
+#: mana-booking.php:1101
 msgid "Capacity"
 msgstr ""
 
-#: ravis-booking.php:1102
+#: mana-booking.php:1102
 msgid "Select how many guests can book for this event"
 msgstr ""
 
-#: ravis-booking.php:1108
+#: mana-booking.php:1108
 msgid "Manage event's images with this field."
 msgstr ""
 
-#: ravis-booking.php:1113 ravis-booking.php:1328
+#: mana-booking.php:1113 mana-booking.php:1328
 msgid "Box Column"
 msgstr ""
 
-#: ravis-booking.php:1114
+#: mana-booking.php:1114
 msgid ""
 "Select how many columns of archive pages or shortcode must be filled by this "
 "item."
 msgstr ""
 
-#: ravis-booking.php:1132
+#: mana-booking.php:1132
 msgid "Event Guest List"
 msgstr ""
 
-#: ravis-booking.php:1147
+#: mana-booking.php:1147
 msgid "Hotel Section Extra information"
 msgstr ""
 
-#: ravis-booking.php:1151
+#: mana-booking.php:1151
 msgid "Add subtitle of this section in this field."
 msgstr ""
 
-#: ravis-booking.php:1164
+#: mana-booking.php:1164
 msgid "Room Extra information"
 msgstr ""
 
-#: ravis-booking.php:1167
+#: mana-booking.php:1167
 msgid "Room ID"
 msgstr ""
 
-#: ravis-booking.php:1173
+#: mana-booking.php:1173
 msgid "Add a subtitle about the room"
 msgstr ""
 
-#: ravis-booking.php:1179
+#: mana-booking.php:1179
 msgid ""
 "Add a short description about this room to be shown in the room listing "
 "pages. Do Not use HTML tags."
 msgstr ""
 
-#: ravis-booking.php:1184
+#: mana-booking.php:1184
 msgid "Room Count"
 msgstr ""
 
-#: ravis-booking.php:1185
+#: mana-booking.php:1185
 msgid "Add the count of this kind of room in the hotel like : 30"
 msgstr ""
 
-#: ravis-booking.php:1190
+#: mana-booking.php:1190
 msgid "Room Capacity"
 msgstr ""
 
-#: ravis-booking.php:1191
+#: mana-booking.php:1191
 msgid ""
 "Set the capacity of the room here. <br> Main Capacity is the capacity of the "
 "room without extra guests. <br> Extra capacity is for rooms in which can be "
 "accepted extra guests."
 msgstr ""
 
-#: ravis-booking.php:1196
+#: mana-booking.php:1196
 msgid "Minimum Stay"
 msgstr ""
 
-#: ravis-booking.php:1197
+#: mana-booking.php:1197
 msgid ""
 "Add the minimum stay night for this room like : \"2\". <br> which means that "
 "guests must book this room for 2 or more nights. <br> Leave it blank if the "
 "room doesn't have minimum stay limitation."
 msgstr ""
 
-#: ravis-booking.php:1202 tpl/booking-steps/booking_variables.php:31
+#: mana-booking.php:1202 tpl/booking-steps/booking_variables.php:31
 msgid "Room Size"
 msgstr ""
 
-#: ravis-booking.php:1203
+#: mana-booking.php:1203
 msgid "Add the area of room"
 msgstr ""
 
-#: ravis-booking.php:1208 tpl/booking-steps/booking_variables.php:30
+#: mana-booking.php:1208 tpl/booking-steps/booking_variables.php:30
 msgid "View"
 msgstr ""
 
-#: ravis-booking.php:1209
+#: mana-booking.php:1209
 msgid "Add the view of room, for example: Garden, Sea."
 msgstr ""
 
-#: ravis-booking.php:1215
+#: mana-booking.php:1215
 msgid "Manage room's images with this field."
 msgstr ""
 
-#: ravis-booking.php:1220 tpl/booking-steps/booking_variables.php:33
+#: mana-booking.php:1220 tpl/booking-steps/booking_variables.php:33
 msgid "Facilities"
 msgstr ""
 
-#: ravis-booking.php:1221
+#: mana-booking.php:1221
 msgid "Add the facilities of this room."
 msgstr ""
 
-#: ravis-booking.php:1227
+#: mana-booking.php:1227
 msgid "Add the services of this room."
 msgstr ""
 
-#: ravis-booking.php:1240
+#: mana-booking.php:1240
 msgid "Room Price Setting"
 msgstr ""
 
-#: ravis-booking.php:1243 tpl/booking-steps/booking_variables.php:34
+#: mana-booking.php:1243 tpl/booking-steps/booking_variables.php:34
 msgid "Base Price"
 msgstr ""
 
-#: ravis-booking.php:1244
+#: mana-booking.php:1244
 msgid ""
 "Add base price, the price which is used for main capacity of room, of room "
 "in this field."
 msgstr ""
 
-#: ravis-booking.php:1250
+#: mana-booking.php:1250
 msgid ""
 "Add base price, the price which is used for extra capacity of room, of room "
 "in this field."
 msgstr ""
 
-#: ravis-booking.php:1255 tpl/admin/admin.php:43
+#: mana-booking.php:1255 tpl/admin/admin.php:43
 msgid "Seasonal Price"
 msgstr ""
 
-#: ravis-booking.php:1256
+#: mana-booking.php:1256
 msgid ""
 "Set the room price based on the date. These prices will override the base "
 "price during the period you set."
 msgstr ""
 
-#: ravis-booking.php:1261 tpl/booking-steps/booking_variables.php:66
+#: mana-booking.php:1261 tpl/booking-steps/booking_variables.php:66
 msgid "Discount"
 msgstr ""
 
-#: ravis-booking.php:1262
+#: mana-booking.php:1262
 msgid ""
 "Set the discount for users who want to book more than specific night, for "
 "example a week or 12 nights. "
 msgstr ""
 
-#: ravis-booking.php:1275
+#: mana-booking.php:1275
 msgid "Room Setting"
 msgstr ""
 
-#: ravis-booking.php:1278
+#: mana-booking.php:1278
 msgid "Rating System"
 msgstr ""
 
-#: ravis-booking.php:1279
+#: mana-booking.php:1279
 msgid "Enable / Disable Rating for rooms"
 msgstr ""
 
-#: ravis-booking.php:1285
+#: mana-booking.php:1285
 msgid "Enable / Disable Booking Overview Calendar in Rooms"
 msgstr ""
 
-#: ravis-booking.php:1290
+#: mana-booking.php:1290
 msgid "Special Room"
 msgstr ""
 
-#: ravis-booking.php:1291
+#: mana-booking.php:1291
 msgid ""
-"Mark this room as a special room to be listed in [ravis-booking-special-"
+"Mark this room as a special room to be listed in [mana-booking-special-"
 "rooms] shortcode"
 msgstr ""
 
-#: ravis-booking.php:1319
+#: mana-booking.php:1319
 msgid "Dish Extra Information"
 msgstr ""
 
-#: ravis-booking.php:1323
+#: mana-booking.php:1323
 msgid "Add base price of this dish in this field."
 msgstr ""
 
-#: ravis-booking.php:1329
+#: mana-booking.php:1329
 msgid "Select how many columns of archive pages must be filled by this item."
 msgstr ""
 
-#: ravis-booking.php:1347
+#: mana-booking.php:1347
 msgid "Menu Extra Information"
 msgstr ""
 
-#: ravis-booking.php:1351
+#: mana-booking.php:1351
 msgid "Add a subtitle for this menu to be used in menu shortcode"
 msgstr ""
 
-#: ravis-booking.php:1356
+#: mana-booking.php:1356
 msgid "Menu Item"
 msgstr ""
 
-#: ravis-booking.php:1357
+#: mana-booking.php:1357
 msgid "Mange menu items by this section"
 msgstr ""
 
-#: ravis-booking.php:1370
+#: mana-booking.php:1370
 msgid "Additional Settings"
 msgstr ""
 
-#: ravis-booking.php:1373
+#: mana-booking.php:1373
 msgid "Load in Shortcode"
 msgstr ""
 
-#: ravis-booking.php:1374
+#: mana-booking.php:1374
 msgid ""
-"Enable this field if you want this service loads in [ravis-booking-services] "
+"Enable this field if you want this service loads in [mana-booking-services] "
 "shortcode."
 msgstr ""
 
-#: ravis-booking.php:1380
+#: mana-booking.php:1380
 msgid "Load in Booking Process"
 msgstr ""
 
-#: ravis-booking.php:1381
+#: mana-booking.php:1381
 msgid ""
 "Enable this field if you want this service loads in booking process that "
 "users can select it as extra services."
 msgstr ""
 
-#: ravis-booking.php:1386
+#: mana-booking.php:1386
 msgid "Price Type"
 msgstr ""
 
-#: ravis-booking.php:1387
+#: mana-booking.php:1387
 msgid "Select if this service is free or paid."
 msgstr ""
 
-#: ravis-booking.php:1398
+#: mana-booking.php:1398
 msgid "Add price details for your service"
 msgstr ""
 
-#: ravis-booking.php:1404
+#: mana-booking.php:1404
 msgid "Mandatory"
 msgstr ""
 
-#: ravis-booking.php:1405
+#: mana-booking.php:1405
 msgid ""
 "Enable this field if you want this service will un-selectable by user during "
 "the booking process. It always will be checked."
 msgstr ""
 
-#: ravis-booking.php:1419
+#: mana-booking.php:1419
 msgid "Settings"
 msgstr ""
 
-#: ravis-booking.php:1422
+#: mana-booking.php:1422
 msgid "Description"
 msgstr ""
 
-#: ravis-booking.php:1423
+#: mana-booking.php:1423
 msgid "Add a short description about this coupon."
 msgstr ""
 
-#: ravis-booking.php:1428
+#: mana-booking.php:1428
 msgid "Discount Type"
 msgstr ""
 
-#: ravis-booking.php:1429
+#: mana-booking.php:1429
 msgid ""
 "Select which type of discount you want to set for the total booking price."
 msgstr ""
 
-#: ravis-booking.php:1433 ravis-booking.php:1438
+#: mana-booking.php:1433 mana-booking.php:1438
 msgid "Percent"
 msgstr ""
 
-#: ravis-booking.php:1434
+#: mana-booking.php:1434
 msgid "Fixed Price"
 msgstr ""
 
-#: ravis-booking.php:1439
+#: mana-booking.php:1439
 msgid ""
 "If you have set Percent for your coupon, you can set the discount's percent "
 "in this field. Please add just a digit"
 msgstr ""
 
-#: ravis-booking.php:1445
+#: mana-booking.php:1445
 msgid ""
 "If you have set fixed price for your coupon, you can set the fixed discount "
 "in this field. Please add just a digit"
 msgstr ""
 
-#: ravis-booking.php:1450
+#: mana-booking.php:1450
 msgid "Expire Date"
 msgstr ""
 
-#: ravis-booking.php:1451
+#: mana-booking.php:1451
 msgid "Set when this coupon will be expired."
 msgstr ""
 
-#: ravis-booking.php:1456
+#: mana-booking.php:1456
 msgid "Coupon Amount"
 msgstr ""
 
-#: ravis-booking.php:1457
+#: mana-booking.php:1457
 msgid "Set how many coupon you need to set for this coupon."
 msgstr ""
 
-#: ravis-booking.php:1462
+#: mana-booking.php:1462
 msgid "Used Coupon"
 msgstr ""
 
-#: ravis-booking.php:1463
+#: mana-booking.php:1463
 msgid "How many coupon have been used until now."
 msgstr ""
 
-#: ravis-booking.php:1474
-msgid "Ravis Booking"
+#: mana-booking.php:1474
+msgid "Mana Booking"
 msgstr ""
 
-#: ravis-booking.php:1478 tpl/admin/booking.php:16
+#: mana-booking.php:1478 tpl/admin/booking.php:16
 msgid "Booking Archive"
 msgstr ""
 
-#: ravis-booking.php:1486 tpl/admin/payment.php:16
+#: mana-booking.php:1486 tpl/admin/payment.php:16
 msgid "Payment Archive"
 msgstr ""
 
-#: ravis-booking.php:1806
+#: mana-booking.php:1806
 msgid "Your options was imported correctly."
 msgstr ""
 
-#: ravis-booking.php:1811
+#: mana-booking.php:1811
 msgid "Your imported data does not have valid format. It must be JSON code."
 msgstr ""
 
@@ -2039,7 +2039,7 @@ msgid "You have not set any staff for your hotel."
 msgstr ""
 
 #: tpl/admin/admin.php:6
-msgid "Ravis Booking Settings"
+msgid "Mana Booking Settings"
 msgstr ""
 
 #: tpl/admin/admin.php:16
@@ -2133,7 +2133,7 @@ msgstr ""
 #: tpl/admin/admin.php:141
 msgid ""
 "Booking URL is used for booking page that you can modify it. It will be show "
-"in address bar after ? and the default value is \"?ravis-booking\""
+"in address bar after ? and the default value is \"?mana-booking\""
 msgstr ""
 
 #: tpl/admin/admin.php:144
@@ -2555,7 +2555,7 @@ msgstr ""
 #: tpl/admin/admin.php:759
 msgid ""
 "You can add your social network addresses in these fields to be used in "
-"[ravis-booking-social-icons] shortcode."
+"[mana-booking-social-icons] shortcode."
 msgstr ""
 
 #: tpl/admin/admin.php:760
@@ -2580,13 +2580,13 @@ msgstr ""
 
 #: tpl/admin/admin.php:826
 msgid ""
-"You can manage the images of [ravis-booking-main-slider] shortcode in this "
+"You can manage the images of [mana-booking-main-slider] shortcode in this "
 "section."
 msgstr ""
 
 #: tpl/admin/admin.php:827
 msgid ""
-"In the second item of this page, you can manage the images of [ravis-booking-"
+"In the second item of this page, you can manage the images of [mana-booking-"
 "gallery] shortcode in this section."
 msgstr ""
 
@@ -2608,7 +2608,7 @@ msgstr ""
 
 #: tpl/admin/admin.php:914
 msgid ""
-"Clients you add here, will be generated by [ravis-booking-client] shortcode."
+"Clients you add here, will be generated by [mana-booking-client] shortcode."
 msgstr ""
 
 #: tpl/admin/admin.php:915
@@ -3248,50 +3248,50 @@ msgstr ""
 msgid "Total Booking Item :"
 msgstr ""
 
-#: widgets/ravis-newsletter.php:18
-msgid "Ravis Newsletter"
+#: widgets/mana-newsletter.php:18
+msgid "Mana Newsletter"
 msgstr ""
 
-#: widgets/ravis-newsletter.php:19
+#: widgets/mana-newsletter.php:19
 msgid "Show newsletter subscription form."
 msgstr ""
 
-#: widgets/ravis-newsletter.php:45
+#: widgets/mana-newsletter.php:45
 msgid "Subscribe Now"
 msgstr ""
 
-#: widgets/ravis-newsletter.php:66
+#: widgets/mana-newsletter.php:66
 msgid "Please add a valid email"
 msgstr ""
 
-#: widgets/ravis-newsletter.php:95
+#: widgets/mana-newsletter.php:95
 msgid "Newsletter"
 msgstr ""
 
-#: widgets/ravis-newsletter.php:99
+#: widgets/mana-newsletter.php:99
 msgid "Title:"
 msgstr ""
 
-#: widgets/ravis-newsletter.php:103
+#: widgets/mana-newsletter.php:103
 msgid "Newsletter description:"
 msgstr ""
 
-#: widgets/ravis-newsletter.php:107
+#: widgets/mana-newsletter.php:107
 msgid "Download the subscriber's email"
 msgstr ""
 
-#: widgets/ravis-newsletter.php:160
+#: widgets/mana-newsletter.php:160
 msgid "You have already subscribed."
 msgstr ""
 
-#: widgets/ravis-newsletter.php:170
+#: widgets/mana-newsletter.php:170
 msgid "Thanks for your subscription."
 msgstr ""
 
-#: widgets/ravis-newsletter.php:187
+#: widgets/mana-newsletter.php:187
 msgid "Email was not added!"
 msgstr ""
 
-#: widgets/ravis-newsletter.php:194
+#: widgets/mana-newsletter.php:194
 msgid "Please add a valid email format"
 msgstr ""

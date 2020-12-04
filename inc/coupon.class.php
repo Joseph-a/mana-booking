@@ -1,11 +1,11 @@
 <?php
 
-    class Ravis_booking_coupon
+    class Mana_booking_coupon
     {
         public function __construct()
         {
-            add_action('wp_ajax_nopriv_ravis_booking_check_coupon', array($this, 'check_coupon'));
-            add_action('wp_ajax_ravis_booking_check_coupon', array($this, 'check_coupon'));
+            add_action('wp_ajax_nopriv_mana_booking_check_coupon', array($this, 'check_coupon'));
+            add_action('wp_ajax_mana_booking_check_coupon', array($this, 'check_coupon'));
         }
 
         /**
@@ -30,38 +30,38 @@
 
                     if (!empty($post_info))
                     {
-                        $coupon_info = Ravis_booking_get_info::coupon_info($post_info->ID);
+                        $coupon_info = Mana_booking_get_info::coupon_info($post_info->ID);
                         $today       = date('Y-m-d');
 
                         if ($today > $coupon_info['expire_date'])
                         {
-                            $return_value['message'] = esc_html__('Coupon is expired.', 'ravis-booking');
+                            $return_value['message'] = esc_html__('Coupon is expired.', 'mana-booking');
                         }
                         elseif ($coupon_info['used_coupon'] >= intval($coupon_info['amount']))
                         {
-                            $return_value['message'] = esc_html__('Coupon is finished.', 'ravis-booking');
+                            $return_value['message'] = esc_html__('Coupon is finished.', 'mana-booking');
                         }
                         else
                         {
                             self::update_count($post_info->ID);
                             $return_value['info']    = $coupon_info;
                             $return_value['status']  = true;
-                            $return_value['message'] = esc_html__('Coupon is applied.', 'ravis-booking');
+                            $return_value['message'] = esc_html__('Coupon is applied.', 'mana-booking');
                         }
                     }
                     else
                     {
-                        $return_value['message'] = esc_html__('Invalid Coupon.', 'ravis-booking');
+                        $return_value['message'] = esc_html__('Invalid Coupon.', 'mana-booking');
                     }
                 }
                 else
                 {
-                    $return_value['message']= esc_html__('Please fill the coupon field.', 'ravis-booking');
+                    $return_value['message']= esc_html__('Please fill the coupon field.', 'mana-booking');
                 }
             }
             else
             {
-                $return_value['message'] = esc_html__('Are you cheating?', 'ravis-booking');
+                $return_value['message'] = esc_html__('Are you cheating?', 'mana-booking');
             }
 
             echo json_encode($return_value);
@@ -75,9 +75,9 @@
         */
         public function update_count($id)
         {
-            $field_id    = 'ravis_booking_coupon_used';
+            $field_id    = 'mana_booking_coupon_used';
             $old         = (int) get_post_meta($id, $field_id, true);
             update_post_meta($id, $field_id, $old + 1);
         }
     }
-    $ravis_booking_coupon_obj = new Ravis_booking_coupon();
+    $mana_booking_coupon_obj = new Mana_booking_coupon();

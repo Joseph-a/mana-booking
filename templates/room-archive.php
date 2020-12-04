@@ -6,8 +6,8 @@
     global $post, $wp_query;
     get_header();
 
-    $options                  = get_option('ravis-booking-setting');
-    $room_info_obj            = new Ravis_booking_get_info();
+    $options                  = get_option('mana-booking-setting');
+    $room_info_obj            = new Mana_booking_get_info();
     $archive_pg_template      = (!empty($options['archive_page_layout']) ? esc_attr($options['archive_page_layout']) : '1');
     $paged                    = $wp_query->query_vars['paged'];
     $args                     = array(
@@ -18,18 +18,18 @@
         'paged'          => $paged,
         'posts_per_page' => get_option('posts_per_page')
     );
-    $ravis_booking_room_query = new WP_Query($args);
+    $mana_booking_room_query = new WP_Query($args);
 ?>
 	<section id="rooms-section" <?php echo($archive_pg_template === '2' ? wp_kses_post('class="row-view"') : '') ?>>
 		<div class="inner-container container">
 			<div class="room-container clearfix">
 				<?php
-                    if ($ravis_booking_room_query->have_posts())
+                    if ($mana_booking_room_query->have_posts())
                     {
                         $room_i = 0;
-                        while ($ravis_booking_room_query->have_posts())
+                        while ($mana_booking_room_query->have_posts())
                         {
-                            $ravis_booking_room_query->the_post();
+                            $mana_booking_room_query->the_post();
                             $post_id   = get_the_ID();
                             $room_info = $room_info_obj->room_info($post_id);
 
@@ -67,7 +67,7 @@
 											<div class="caption">
 												<div class="title"><a href="' . esc_url($room_info['url']) . '">' . esc_html($room_info['title']) . '</a></div>
 												<div class="price">
-													<div class="title">' . esc_html__('Starting from :', 'ravis-booking') . '</div>
+													<div class="title">' . esc_html__('Starting from :', 'mana-booking') . '</div>
 													<div class="value">' . esc_html($room_info['start_price']) . '</div>
 												</div>
 												<div class="desc">
@@ -112,7 +112,7 @@
 												<div class="title-box">
 													<div class="title">' . esc_html($room_info['title']) . '</div>
 													<div class="price">
-														<div class="title">' . esc_html__('Starting from :', 'ravis-booking') . '</div>
+														<div class="title">' . esc_html__('Starting from :', 'mana-booking') . '</div>
 														<div class="value">' . esc_html($room_info['start_price']) . '</div>
 													</div>
 												</div>
@@ -123,7 +123,7 @@
                                 {
                                     echo '
 										<li class="col-md-6">
-											<div class="title">' . esc_html__('View :', 'ravis-booking') . '</div>
+											<div class="title">' . esc_html__('View :', 'mana-booking') . '</div>
 											<div class="value">' . esc_html($room_info['room_view']) . '</div>
 										</li>';
                                 }
@@ -131,7 +131,7 @@
                                 {
                                     echo '
 										<li class="col-md-6">
-											<div class="title">' . esc_html__('Room Size :', 'ravis-booking') . '</div>
+											<div class="title">' . esc_html__('Room Size :', 'mana-booking') . '</div>
 											<div class="value">' . esc_html($room_info['room_size']['qnt']) . ' ' . wp_kses_post($room_info['room_size']['unit']) . '</div>
 										</li>';
                                 }
@@ -140,7 +140,7 @@
                                 {
                                     echo '
 										<li class="col-md-6">
-											<div class="title">' . esc_html__('Max People :', 'ravis-booking') . '</div>
+											<div class="title">' . esc_html__('Max People :', 'mana-booking') . '</div>
 											<div class="value">' . esc_html($room_info['max_people']) . '</div>
 										</li>';
                                 }
@@ -166,14 +166,14 @@
 
                                     echo '
 										<li class="col-md-12">
-											<div class="title">' . esc_html__('Facilities :', 'ravis-booking') . '</div>
+											<div class="title">' . esc_html__('Facilities :', 'mana-booking') . '</div>
 											<div class="value">' . esc_html($facility_str) . '</div>
 										</li>';
                                 }
                                 echo '
 													</ul>
 												</div>
-												<a href="' . esc_url($room_info['url']) . '" class="more-info">' . esc_html__('More Info', 'ravis-booking') . '</a>
+												<a href="' . esc_url($room_info['url']) . '" class="more-info">' . esc_html__('More Info', 'mana-booking') . '</a>
 											</div>
 											<div class="col-md-6 desc">' . esc_html($room_info['description']['short']) . '</div>
 										</div>
@@ -187,7 +187,7 @@
                 ?>
 			</div>
 
-			<?php Ravis_booking_main::ravis_booking_pagination($ravis_booking_room_query); ?>
+			<?php Mana_booking_main::mana_booking_pagination($mana_booking_room_query); ?>
 		</div>
 	</section>
 <?php

@@ -1,5 +1,5 @@
 <div class="col-md-4 l-sec">
-	<div class="ravis-title-t-2">
+	<div class="mana-title-t-2">
 		<div class="title">
 			<span>{{bookingAppVar.reservation_info}}</span>
 		</div>

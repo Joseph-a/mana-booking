@@ -3,7 +3,7 @@ import 'react-dates/initialize';
 import { DateRangePicker } from 'react-dates';
 import moment from 'moment';
 
-export default class RavisDateRangPicker extends Component {
+export default class ManaDateRangPicker extends Component {
 
     constructor(props) {
         super(props);

@@ -45,7 +45,7 @@ const SimpleRepeater = (props) => {
                     props.onFieldChanged(newVal);
                 }}
                 className="button button-primary button-large"
-            >{__('Add New', 'ravis-booking')}</button>
+            >{__('Add New', 'mana-booking')}</button>
         </div>
     )
 }
