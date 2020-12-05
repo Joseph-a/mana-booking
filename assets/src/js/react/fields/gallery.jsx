@@ -1,25 +1,44 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { __ } from '@wordpress/i18n';
 
 const Gallery = (props) => {
-    const { info } = props;
+    const [imgInfo, setInfo] = useState();
+
+    useEffect(() => {
+        let imgs = [];
+        const imgLoader = async ID => {
+            if (!wp.media.attachment(ID).get('url')) {
+                return await wp.media.attachment(ID).fetch();
+            }
+            return wp.media.attachment(ID).attributes;
+        }
+        console.log(props.info.value);
+
+        if (props.info.value.length > 0) {
+            props.info.value.map(ID => {
+                imgLoader(ID).then(newAttachment => {
+                    setInfo([...imgs, newAttachment]);
+                    imgs.push(newAttachment);
+                });
+            });
+        } else {
+            setInfo([]);
+        }
+    }, [props.info.value]);
+
     return (
         <div className="gallery-main-container">
-            {
-                info.value.length > 0 &&
-                <div className="gallery-images-list">
-                    {
-                        info.value.map(item => {
-                            const imgInfo = wp.media.attachment(item);
-                            return (
-                                <div className="img-box" key={imgInfo.id}>
-                                    <img src={imgInfo.attributes.sizes.thumbnail.url} alt={imgInfo.attributes.name} />
-                                </div>
-                            )
-                        })
-                    }
-                </div>
-            }
+            <div className="gallery-images-list">
+                {
+                    imgInfo && imgInfo.map(item => {
+                        return (
+                            <div className="img-box" key={item.id}>
+                                <img src={item.sizes.thumbnail.url} alt={item.name} />
+                            </div>
+                        )
+                    })
+                }
+            </div>
             <button className="button button-primary" onClick={(e) => {
                 e.preventDefault();
                 let mediaUploader = window.wp.media({

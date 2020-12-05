@@ -90,7 +90,7 @@
                     input[type=text],
                     input[type=number],
                     select {
-                        background: $color-1;
+                        // background: $color-1;
                         @include size(200px, 40px);
                         padding: 10px;
                         border: 1px solid $color-4;
