@@ -26,3 +26,13 @@ export const manaBlockDatesSettings = {
     PERIOD: 'period',
     ROOMS: 'rooms'
 };
+
+export const manaCouponSettings = {
+    DESCRIPTION: 'desc',
+    DISCOUNT_TYPE: 'discountType',
+    PERCENT: 'percent',
+    PRICE: 'price',
+    EXPIRE_DATE: 'expireDate',
+    COUPON_AMOUNT: 'couponAmount',
+    USED_COUPON: 'usedCoupon'
+};

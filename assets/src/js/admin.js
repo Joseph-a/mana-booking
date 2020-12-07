@@ -1,6 +1,7 @@
 "use strict";
 import "./react/room-meta";
 import "./react/block-dates";
+import "./react/coupon";
 
 // jQuery.fn.digits = function()
 // {

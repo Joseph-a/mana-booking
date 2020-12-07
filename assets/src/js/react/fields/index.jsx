@@ -7,6 +7,7 @@ import Gallery from './gallery';
 import Price from './price';
 import SeasonalPrice from './seasonal-price';
 import ManaDateRangePicker from './date-rang-picker';
+import ManaDatePicker from './date-picker';
 import RoomList from './room-list';
 
 export default class Fields extends Component {
@@ -153,6 +154,26 @@ export default class Fields extends Component {
 							}}
 						/>
 					</div>
+				break;
+
+			// Date Picker Fields
+			case ('date-picker'):
+				returnVal =
+					<div className="mana-date-row normal">
+						<ManaDatePicker
+							{...this.props}
+							date={fieldValue}
+							onDateChange={newDate => {
+								this.props.onFieldChanged(info.fieldIndex, newDate);
+							}}
+						/>
+					</div>
+				break;
+
+			// Demo Fields
+			case ('demo'):
+				returnVal =
+					<div className="demo-txt">{fieldValue}</div>
 				break;
 		}
 

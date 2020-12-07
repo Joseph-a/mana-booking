@@ -37,7 +37,7 @@ export default class ManaDateRangPicker extends Component {
                 endDate={this.state.endDate}
                 onDatesChange={({ startDate, endDate }) => this.setState({ startDate, endDate })}
                 focusedInput={this.state.focusedInput}
-                onFocusChange={(focusedInput) => this.setState({ focusedInput })}
+                onFocusChange={focusedInput => this.setState({ focusedInput })}
                 displayFormat="DD-MM-YYYY"
                 noBorder={true}
                 small={true}

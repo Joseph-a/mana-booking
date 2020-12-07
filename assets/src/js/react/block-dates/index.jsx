@@ -12,8 +12,7 @@ export default class BlockDatesMetaData extends Component {
 
         this.state = {
             savedSetting: JSON.parse(savedSetting),
-            blockDatesSettings,
-            activeTab: 0
+            blockDatesSettings
         }
     }
 

@@ -636,67 +636,15 @@ class Mana_booking_main
 		 *  Block Dates Meta Boxes
 		 * ------------------------------------------------------------------------------------------
 		 */
-		$get_rooms_args           = array(
-			'post_type'   => 'rooms',
-			'post_status' => 'publish',
-			'order'       => 'DESC',
-			'orderby'     => 'date',
-			'nopaging'    => true,
-		);
-		$mana_booking_rooms_list = new WP_Query($get_rooms_args);
-
-		/**
-		 * List all rooms
-		 */
-
-		if ($mana_booking_rooms_list->have_posts()) {
-			while ($mana_booking_rooms_list->have_posts()) {
-				$mana_booking_rooms_list->the_post();
-				$mana_booking_blocked_rooms[] = array(
-					'label' => get_the_title(),
-					'value' => Mana_booking_get_info::original_post_id(get_the_id()),
-				);
-			}
-
-			wp_reset_postdata();
-		}
-
 		$block_dates_meta_box_prefix = 'mana_booking_block_dates_';
 		$block_dates_meta_box_title  = esc_html__('Block Dates Information', 'mana-booking');
 		$block_dates_meta_box_items  = array(
-			array(
-				'label' => esc_html__('From', 'mana-booking'),
-				'desc'  => esc_html__('Select the block date starting date', 'mana-booking'),
-				'id'    => $block_dates_meta_box_prefix . 'from',
-				'type'  => 'date',
-				'class' => 'from',
-			),
-			array(
-				'label' => esc_html__('To', 'mana-booking'),
-				'desc'  => esc_html__('Select the block date ending date', 'mana-booking'),
-				'id'    => $block_dates_meta_box_prefix . 'to',
-				'type'  => 'date',
-				'class' => 'to',
-			),
-			array(
-				'label'   => esc_html__('Select Rooms', 'mana-booking'),
-				'desc'    => esc_html__('Select rooms which is blocked', 'mana-booking'),
-				'id'      => $block_dates_meta_box_prefix . 'blocked_rooms',
-				'type'    => 'checkbox_group',
-				'options' => (isset($mana_booking_blocked_rooms) ? $mana_booking_blocked_rooms : ''),
-			),
-		);
-		$block_dates_meta_box_obj    = new Mana_booking_meta_boxes($block_dates_meta_box_items, $block_dates_meta_box_prefix, $block_dates_meta_box_title, 'block_dates');
-
-		$block_dates_meta_n_box_prefix = 'mana_booking_block_dates_n_';
-		$block_dates_meta_n_box_title  = esc_html__('Block Date Information', 'mana-booking');
-		$block_dates_meta_n_box_items  = array(
 			array(
 				'id'    => $block_dates_meta_box_prefix . 'meta_info',
 				'type'  => 'block_date_settings',
 			)
 		);
-		$block_dates_meta_n_box_obj    = new Mana_booking_meta_boxes($block_dates_meta_n_box_items, $block_dates_meta_n_box_prefix, $block_dates_meta_n_box_title, 'block_dates');
+		$block_dates_meta_box_obj    = new Mana_booking_meta_boxes($block_dates_meta_box_items, $block_dates_meta_box_prefix, $block_dates_meta_box_title, 'block_dates');
 
 		/**
 		 * ------------------------------------------------------------------------------------------
@@ -783,54 +731,11 @@ class Mana_booking_main
 		 * ------------------------------------------------------------------------------------------
 		 */
 		$coupon_meta_box_prefix = 'mana_booking_coupon_';
-		$coupon_meta_box_title  = esc_html__('Settings', 'mana-booking');
+		$coupon_meta_box_title  = esc_html__('Additional Settings', 'mana-booking');
 		$coupon_meta_box_items  = array(
 			array(
-				'label' => esc_html__('Description', 'mana-booking'),
-				'desc'  => esc_html__('Add a short description about this coupon.', 'mana-booking'),
-				'id'    => $coupon_meta_box_prefix . 'desc',
-				'type'  => 'textarea'
-			),
-			array(
-				'label'   => esc_html__('Discount Type', 'mana-booking'),
-				'desc'    => esc_html__('Select which type of discount you want to set for the total booking price.', 'mana-booking'),
-				'id'      => $coupon_meta_box_prefix . 'type',
-				'type'    => 'select',
-				'options' => array(
-					'percent' => esc_html__('Percent', 'mana-booking'),
-					'fixed'   => esc_html__('Fixed Price', 'mana-booking'),
-				),
-			),
-			array(
-				'label' => esc_html__('Percent', 'mana-booking'),
-				'desc'  => esc_html__('If you have set Percent for your coupon, you can set the discount\'s percent in this field. Please add just a digit', 'mana-booking'),
-				'id'    => $coupon_meta_box_prefix . 'percent',
-				'type'  => 'percent'
-			),
-			array(
-				'label' => esc_html__('Price', 'mana-booking'),
-				'desc'  => esc_html__('If you have set fixed price for your coupon, you can set the fixed discount in this field. Please add just a digit', 'mana-booking'),
-				'id'    => $coupon_meta_box_prefix . 'price',
-				'type'  => 'price'
-			),
-			array(
-				'label' => esc_html__('Expire Date', 'mana-booking'),
-				'desc'  => esc_html__('Set when this coupon will be expired.', 'mana-booking'),
-				'id'    => $coupon_meta_box_prefix . 'expire',
-				'type'  => 'date'
-			),
-			array(
-				'label' => esc_html__('Coupon Amount', 'mana-booking'),
-				'desc'  => esc_html__('Set how many coupon you need to set for this coupon.', 'mana-booking'),
-				'id'    => $coupon_meta_box_prefix . 'amount',
-				'type'  => 'number'
-			),
-			array(
-				'label' => esc_html__('Used Coupon', 'mana-booking'),
-				'desc'  => esc_html__('How many coupon have been used until now.', 'mana-booking'),
-				'id'    => $coupon_meta_box_prefix . 'used',
-				'type'  => 'demo',
-				'init'  => 0,
+				'id'   => $coupon_meta_box_prefix . 'meta_info',
+				'type' => 'coupon_settings',
 			),
 		);
 		$coupon_meta_box_obj    = new Mana_booking_meta_boxes($coupon_meta_box_items, $coupon_meta_box_prefix, $coupon_meta_box_title, 'coupon');

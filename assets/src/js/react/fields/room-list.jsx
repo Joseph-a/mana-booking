@@ -22,11 +22,11 @@ const RoomList = (props) => {
     }
     return (
         <div className="room-list-main-container">
-            <div className="room-list-images-list">
+            <div className="room-list">
                 {
                     roomList && roomList.map(item => {
                         return (
-                            <div key={item.id}>
+                            <div className="room-list-item" key={item.id}>
                                 <input
                                     type="checkbox"
                                     value={item.id}
