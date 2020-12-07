@@ -13,14 +13,14 @@ export default class SeasonalPrice extends Component {
     }
 
     outputGenerator = (index, field, val) => {
-        const { info } = this.props;
-        let newVal = { ...info.value, [index]: { ...info.value[index], [field]: val } };
+        const { info, savedValue } = this.props;
+        let newVal = { ...savedValue, [index]: { ...savedValue[index], [field]: val } };
 
-        this.props.onFieldChanged(newVal);
+        this.props.onFieldChanged(info.fieldIndex, newVal);
     }
 
     priceRow = (seasonPrice, index) => {
-        const { info } = this.props;
+        const { info, savedValue } = this.props;
 
         return (
             <div className="base-price-row" key={index}>
@@ -37,9 +37,9 @@ export default class SeasonalPrice extends Component {
 
                     <div
                         onClick={() => {
-                            const newVal = Object.values(info.value);
+                            const newVal = Object.values(savedValue);
                             newVal.splice(index, 1);
-                            this.props.onFieldChanged(newVal);
+                            this.props.onFieldChanged(info.fieldIndex, newVal);
                         }}
                         className="remove-item"
                     >
@@ -66,8 +66,8 @@ export default class SeasonalPrice extends Component {
     }
 
     render() {
-        const { info } = this.props;
-        const rowInfo = typeof info.value === 'object' ? Object.values(info.value) : info.value;
+        const { info, savedValue } = this.props;
+        const rowInfo = typeof savedValue === 'object' ? Object.values(savedValue) : savedValue;
 
         return (
             <div className="seasonal-price-main-container">
@@ -88,9 +88,9 @@ export default class SeasonalPrice extends Component {
                                 child: { weekday: '', weekend: '' }
                             },
                         }
-                        const newVal = typeof info.value === 'object' ? [...Object.values(info.value), rawVal] : [...info.value, rawVal];
+                        const newVal = typeof savedValue === 'object' ? [...Object.values(savedValue), rawVal] : [...savedValue, rawVal];
 
-                        this.props.onFieldChanged(newVal);
+                        this.props.onFieldChanged(info.fieldIndex, newVal);
                     }}
                 >{__('Add New', 'mana-booking')}</button>
             </div>

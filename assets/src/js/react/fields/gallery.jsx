@@ -2,6 +2,8 @@ import React, { useState, useEffect } from 'react';
 import { __ } from '@wordpress/i18n';
 
 const Gallery = (props) => {
+    const { info, savedValue } = props;
+
     const [imgInfo, setInfo] = useState();
 
     useEffect(() => {
@@ -12,10 +14,9 @@ const Gallery = (props) => {
             }
             return wp.media.attachment(ID).attributes;
         }
-        console.log(props.info.value);
 
-        if (props.info.value.length > 0) {
-            props.info.value.map(ID => {
+        if (props.savedValue.length > 0) {
+            props.savedValue.map(ID => {
                 imgLoader(ID).then(newAttachment => {
                     setInfo([...imgs, newAttachment]);
                     imgs.push(newAttachment);
@@ -24,7 +25,7 @@ const Gallery = (props) => {
         } else {
             setInfo([]);
         }
-    }, [props.info.value]);
+    }, [props.savedValue]);
 
     return (
         <div className="gallery-main-container">
@@ -65,11 +66,11 @@ const Gallery = (props) => {
                             images.push(item.id);
                         });
                     }
-                    props.onFieldChanged(images);
+                    props.onFieldChanged(info.fieldIndex, images);
                 });
                 mediaUploader.open();
             }}>{__('Select Image', 'mana-property')}</button>
-            <button className="button button-danger" onClick={() => props.onFieldChanged([])}>{__('Remove Images', 'mana-booking')}</button>
+            <button className="button button-danger" onClick={() => props.onFieldChanged(info.fieldIndex, [])}>{__('Remove Images', 'mana-booking')}</button>
         </div>
     )
 }

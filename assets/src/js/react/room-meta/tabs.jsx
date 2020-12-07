@@ -1,14 +1,15 @@
 import React from 'react';
 import Fields from '../fields';
 
-const Tabs = ( props ) => {
-	return (
-		<div className="tab-content-container">
+const Tabs = (props) => {
+    const { tabInfo, savedSetting } = props;
+    return (
+        <div className="tab-content-container">
             {
-                props.tabInfo.map((item,index) => <Fields info={item} key={index} onFieldChanged={val => props.onFieldChanged(val, index)}/>)
-            }            
+                tabInfo.map((item, index) => <Fields info={item} key={index} savedInfo={savedSetting} onFieldChanged={(fieldIndex, val) => props.onFieldChanged(fieldIndex, val)} />)
+            }
         </div>
-	)
+    )
 }
 
 export default Tabs

@@ -1,10 +1,10 @@
 import React from 'react'
 
 const Capacity = (props) => {
-    const { info } = props;
+    const { info, savedValue } = props;
     const capacityGenerator = (val, type) => {
-        const newVal = { ...info.value, [type]: val };
-        props.onFieldChanged(newVal);
+        const newVal = { ...savedValue, [type]: val };
+        props.onFieldChanged(info.fieldIndex, newVal);
     }
     return (
         <div className="capacity-row">
@@ -13,16 +13,16 @@ const Capacity = (props) => {
                 min="0"
                 step="1"
                 placeholder={info.label}
-                value={info.value.main}
-                onChange={val => capacityGenerator(val.target.value, 'main')}
+                value={savedValue.main}
+                onChange={e => capacityGenerator(e.target.value, 'main')}
             /> +
             <input
                 type="number"
                 min="0"
                 step="1"
                 placeholder={info.label}
-                value={info.value.extra}
-                onChange={val => capacityGenerator(val.target.value, 'extra')}
+                value={savedValue.extra}
+                onChange={e => capacityGenerator(e.target.value, 'extra')}
             />
         </div>
     )

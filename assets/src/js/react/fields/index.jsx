@@ -17,8 +17,9 @@ export default class Fields extends Component {
 		};
 	}
 
-	fieldSwitcher = (info) => {
-		let returnVal;
+	fieldSwitcher = (info, savedValue) => {
+		let returnVal,
+			fieldValue = (savedValue && savedValue[info.fieldIndex]) ? savedValue[info.fieldIndex] : info.value;
 		switch (info.type) {
 
 			// TextArea Field
@@ -26,15 +27,15 @@ export default class Fields extends Component {
 				returnVal =
 					<textarea
 						placeholder={info.label}
-						value={info.value}
-						onChange={e => this.props.onFieldChanged(e.target.value)}
+						value={fieldValue}
+						onChange={e => this.props.onFieldChanged(info.fieldIndex, e.target.value)}
 					></textarea>;
 				break;
 
 			// Select Field
 			case ('select'):
 				returnVal =
-					<select value={info.value} onChange={e => this.props.onFieldChanged(e.target.value)}>
+					<select value={fieldValue} onChange={e => this.props.onFieldChanged(info.fieldIndex, e.target.value)}>
 						{
 							info.options.map((item, index) => <option key={index} value={item.value}>{item.label}</option>)
 						}
@@ -47,8 +48,8 @@ export default class Fields extends Component {
 					<input
 						type="text"
 						placeholder={info.label}
-						value={info.value}
-						onChange={val => this.props.onFieldChanged(val.target.value)}
+						value={fieldValue}
+						onChange={e => this.props.onFieldChanged(info.fieldIndex, e.target.value)}
 					/>;
 				break;
 			// number Field
@@ -57,8 +58,8 @@ export default class Fields extends Component {
 					<input
 						type="number"
 						placeholder={info.label}
-						value={info.value}
-						onChange={val => this.props.onFieldChanged(val.target.value)}
+						value={fieldValue}
+						onChange={e => this.props.onFieldChanged(info.fieldIndex, e.target.value)}
 					/>;
 				break;
 
@@ -68,10 +69,8 @@ export default class Fields extends Component {
 					<label className="toggle-box">
 						<input
 							type="checkbox"
-							checked={info.value}
-							onChange={val => {
-								this.props.onFieldChanged(val.target.checked);
-							}}
+							checked={fieldValue}
+							onChange={e => this.props.onFieldChanged(info.fieldIndex, e.target.checked)}
 						/>
 						<span></span>
 					</label>
@@ -79,58 +78,58 @@ export default class Fields extends Component {
 
 			// Capacity Field
 			case ('capacity'):
-				returnVal = <Capacity info={info} {...this.props} />
+				returnVal = <Capacity info={info} savedValue={fieldValue} {...this.props} />
 				break;
 
-			// Facility Field
+			// // Facility Field
 			case ('facility'):
 				const facilityFields = [
 					{ field: 'icon', type: 'text', title: __('Icon', 'mana-booking') },
 					{ field: 'title', type: 'text', title: __('Title', 'mana-booking') }
 				]
-				returnVal = <SimpleRepeater fields={facilityFields} info={info} {...this.props} />;
+				returnVal = <SimpleRepeater fields={facilityFields} info={info} savedValue={fieldValue} {...this.props} />;
 				break;
 
 
-			// Services Field
+			// // Services Field
 			case ('service'):
 				const serviceFields = [
 					{ field: 'title', type: 'text', title: __('Title', 'mana-booking') },
 					{ field: 'value', type: 'text', title: __('Value', 'mana-booking') }
 				]
-				returnVal = <SimpleRepeater fields={serviceFields} info={info} {...this.props} />;
+				returnVal = <SimpleRepeater fields={serviceFields} info={info} savedValue={fieldValue} {...this.props} />;
 				break;
 
-			// Discount Field
+			// // Discount Field
 			case ('discount'):
 				const discountFields = [
 					{ field: 'night', type: 'number', title: __('Night', 'mana-booking') },
 					{ field: 'percent', type: 'number', title: __('%', 'mana-booking') }
 				]
-				returnVal = <SimpleRepeater fields={discountFields} info={info} {...this.props} />;
+				returnVal = <SimpleRepeater fields={discountFields} info={info} savedValue={fieldValue} {...this.props} />;
 				break;
 
-			// Gallery Field
+			// // Gallery Field
 			case ('gallery'):
-				returnVal = <Gallery info={info} {...this.props} />
+				returnVal = <Gallery info={info} savedValue={fieldValue} {...this.props} />
 				break;
 
-			// Price Fields
+			// // Price Fields
 			case ('price'):
 				returnVal =
 					<Price
 						{...this.props}
-						priceInfo={info.value}
+						priceInfo={fieldValue}
 						onPriceChanged={(newPrice) => {
-							this.props.onFieldChanged(newPrice);
+							this.props.onFieldChanged(info.fieldIndex, newPrice);
 						}}
 
 					/>
 				break;
 
-			// Seasonal Price Fields
+			// // Seasonal Price Fields
 			case ('seasonal-price'):
-				returnVal = <SeasonalPrice info={info} {...this.props} />
+				returnVal = <SeasonalPrice info={info} savedValue={fieldValue} {...this.props} />
 				break;
 		}
 
@@ -154,8 +153,9 @@ export default class Fields extends Component {
 		);
 	}
 	render() {
+		const { info, savedInfo } = this.props;
 		return (
-			this.fieldSwitcher(this.props.info)
+			this.fieldSwitcher(info, savedInfo)
 		)
 	}
 }

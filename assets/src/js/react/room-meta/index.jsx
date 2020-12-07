@@ -8,26 +8,25 @@ export default class RoomMetaData extends Component {
     constructor(props) {
         super(props);
 
-        const savedSetting = document.getElementById('mana_booking_room_meta_info').value;
+        const savedSetting = document.getElementById('mana_booking_room_meta_info').value || "{}";
 
         this.state = {
-            roomSettings: savedSetting ? { ...roomSettings, ...JSON.parse(savedSetting) } : roomSettings,
+            savedSetting: JSON.parse(savedSetting),
+            roomSettings,
             activeTab: 0
         }
     }
 
-    onFieldChanged = (val, ii, i) => {
-        let roomSettings = [...Object.values(this.state.roomSettings)];
-        roomSettings[i]['value'][ii]['value'] = val;
-
+    onFieldChanged = (fieldIndex, val) => {
+        let savedSetting = { ...this.state.savedSetting, [fieldIndex]: val };
         this.setState({
-            roomSettings
+            savedSetting
         })
 
-        document.getElementById('mana_booking_room_meta_info').value = JSON.stringify(this.state.roomSettings);
+        document.getElementById('mana_booking_room_meta_info').value = JSON.stringify(savedSetting);
     }
     render() {
-        const { roomSettings, activeTab } = this.state;
+        const { savedSetting, roomSettings, activeTab } = this.state;
         let fRoomSettings;
         if (typeof roomSettings === 'object') {
             fRoomSettings = Object.values(roomSettings);
@@ -56,7 +55,7 @@ export default class RoomMetaData extends Component {
                 </div>
                 <div className="tab-content">
                     {
-                        fRoomSettings.map((item, index) => index === activeTab && <Tabs settingInfo={roomSettings} key={index} onFieldChanged={(v, a) => this.onFieldChanged(v, a, index)} tabInfo={item.value} />)
+                        fRoomSettings.map((item, index) => index === activeTab && <Tabs settingInfo={roomSettings} savedSetting={savedSetting} key={index} onFieldChanged={(v, a) => this.onFieldChanged(v, a)} tabInfo={item.value} />)
                     }
                 </div>
             </div>

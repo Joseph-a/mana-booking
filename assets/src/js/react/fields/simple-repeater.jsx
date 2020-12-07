@@ -2,16 +2,16 @@ import React from 'react';
 import { __ } from '@wordpress/i18n';
 
 const SimpleRepeater = (props) => {
-    const { info, fields } = props;
+    const { info, fields, savedValue } = props;
     const inputChanges = (val, name, index) => {
-        let newVal = [...info.value];
+        let newVal = [...savedValue];
         newVal[index][name] = val;
-        props.onFieldChanged(newVal);
+        props.onFieldChanged(info.fieldIndex, newVal);
     }
     return (
         <div className="repeater-box-container">
             {
-                info.value.map((item, index) => {
+                savedValue.map((item, index) => {
                     return (
                         <div className={`repeater-row box-${fields.length}`} key={index}>
                             {
@@ -29,9 +29,9 @@ const SimpleRepeater = (props) => {
                             }
                             <div
                                 onClick={() => {
-                                    const newVal = [...info.value];
+                                    const newVal = [...savedValue];
                                     newVal.splice(index, 1);
-                                    props.onFieldChanged(newVal);
+                                    props.onFieldChanged(info.fieldIndex, newVal);
                                 }}
                                 className="remove-item"
                             ><i className="dashicons dashicons-no-alt"></i></div>
@@ -41,8 +41,8 @@ const SimpleRepeater = (props) => {
             }
             <button
                 onClick={() => {
-                    const newVal = [...info.value, { icon: '', title: '' }];
-                    props.onFieldChanged(newVal);
+                    const newVal = [...savedValue, { [fields[0].field]: '', [fields[1].field]: '' }];
+                    props.onFieldChanged(info.fieldIndex, newVal);
                 }}
                 className="button button-primary button-large"
             >{__('Add New', 'mana-booking')}</button>
