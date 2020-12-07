@@ -2,32 +2,34 @@ import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
 import { __ } from '@wordpress/i18n';
 import { blockDatesSettings } from './settings';
+import Fields from '../fields';
 
 export default class BlockDatesMetaData extends Component {
     constructor(props) {
         super(props);
 
-        const savedSetting = document.getElementById('mana_booking_block_dates_meta_info').value;
+        const savedSetting = document.getElementById('mana_booking_block_dates_meta_info').value || "{}";
 
         this.state = {
-            blockDatesSettings: savedSetting ? { ...JSON.parse(savedSetting), ...blockDatesSettings } : blockDatesSettings,
+            savedSetting: JSON.parse(savedSetting),
+            blockDatesSettings,
             activeTab: 0
         }
     }
 
-    onFieldChanged = (val, ii, i) => {
-        let blockDatesSettings = [...Object.values(this.state.blockDatesSettings)];
-        blockDatesSettings[i]['value'][ii]['value'] = val;
+    onFieldChanged = (fieldIndex, val) => {
+        let savedSetting = { ...this.state.savedSetting, [fieldIndex]: val };
+        if (JSON.stringify(savedSetting) !== JSON.stringify(this.state.savedSetting)) {
+            this.setState({
+                savedSetting
+            })
+        }
 
-        this.setState({
-            blockDatesSettings
-        })
-
-        document.getElementById('mana_booking_block_dates_meta_info').value = JSON.stringify(this.state.blockDatesSettings);
+        document.getElementById('mana_booking_block_dates_meta_info').value = JSON.stringify(savedSetting);
     }
 
     render() {
-        const { blockDatesSettings, activeTab } = this.state;
+        const { blockDatesSettings, savedSetting } = this.state;
         let fblockDatesSettings;
         if (typeof blockDatesSettings === 'object') {
             fblockDatesSettings = Object.values(blockDatesSettings);
@@ -37,14 +39,18 @@ export default class BlockDatesMetaData extends Component {
         return (
             <div className="room-settings-tabular">
                 <div className="tab-content">
-                    aaaaa
+                    <div className="tab-content-container">
+                        {
+                            fblockDatesSettings.map((item, index) => <Fields info={item} key={index} savedInfo={savedSetting} onFieldChanged={(v, a) => this.onFieldChanged(v, a)} />)
+                        }
+                    </div>
                 </div>
             </div>
         )
     }
 }
 
-const signalApiReader = document.getElementById("mana-block-date-settings-info-box");
-if (signalApiReader) {
-    ReactDOM.render(<BlockDatesMetaData />, signalApiReader);
+const blockDatesMetaData = document.getElementById("mana-block-date-settings-info-box");
+if (blockDatesMetaData) {
+    ReactDOM.render(<BlockDatesMetaData />, blockDatesMetaData);
 }

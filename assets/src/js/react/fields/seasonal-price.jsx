@@ -24,7 +24,7 @@ export default class SeasonalPrice extends Component {
 
         return (
             <div className="base-price-row" key={index}>
-                <div className="date-row">
+                <div className="mana-date-row">
                     <ManaDateRangePicker
                         {...this.props}
                         startDate={seasonPrice.date.start}

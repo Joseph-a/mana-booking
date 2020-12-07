@@ -339,15 +339,17 @@ class Mana_booking_main
 
 	public function mana_booking_register_scripts($hook)
 	{
-		wp_enqueue_style('custom-admin-style', MANA_BOOKING_CSS_PATH . 'admin.build.css');
+		wp_enqueue_style('mana-booking-admin-css', MANA_BOOKING_CSS_PATH . 'admin.build.css');
 		wp_enqueue_style('jquery-ui-custom', MANA_BOOKING_CSS_PATH . 'jquery-ui.min.css');
 
+		wp_enqueue_style('tinymce_stylesheet');
 		wp_enqueue_script('jquery-ui-datepicker');
 		wp_enqueue_script('jquery-ui-tabs');
 
 		wp_enqueue_script('mana-booking-admin-js', MANA_BOOKING_JS_PATH . 'admin.build.js', array('jquery'), MANA_BOOKING_VERSION, true);
 		$admin_js_var_array = array(
 			'ajaxurl'      => esc_url(admin_url('admin-ajax.php')),
+			'rest_url'      => esc_url(get_rest_url(null, 'wp/v2/')),
 			'plg_base'     => MANA_BOOKING_BASE_URL,
 			'delete_alert' => esc_html__('Are you sure you want to delete this item?', 'mana-booking'),
 		);
@@ -386,22 +388,22 @@ class Mana_booking_main
 				$mana_booking_variables['room_base'] = true;
 			}
 
-			$theme_current_locale = 'en';
+			// $theme_current_locale = 'en';
 
-			if (get_locale() !== 'en_US') {
-				if (file_exists(COLOSSEUM_THEMEROOT . '/assets/js/locales/locales.php')) {
-					require COLOSSEUM_THEMEROOT . '/assets/js/locales/locales.php';
-				}
+			// if (get_locale() !== 'en_US') {
+			// 	if (file_exists(COLOSSEUM_THEMEROOT . '/assets/js/locales/locales.php')) {
+			// 		require COLOSSEUM_THEMEROOT . '/assets/js/locales/locales.php';
+			// 	}
 
-				isset($theme_locales[get_locale()]) ? $theme_current_locale = $theme_locales[get_locale()] : '';
+			// 	isset($theme_locales[get_locale()]) ? $theme_current_locale = $theme_locales[get_locale()] : '';
 
-				wp_enqueue_script('bootstrap-datepicker-locale-js', COLOSSEUM_JS_PATH . 'locales/' . $theme_current_locale . '.min.js', array(
-					'jquery',
-					'colosseum-helper-js',
-				), get_bloginfo('version'), true);
-			}
+			// 	wp_enqueue_script('bootstrap-datepicker-locale-js', COLOSSEUM_JS_PATH . 'locales/' . $theme_current_locale . '.min.js', array(
+			// 		'jquery',
+			// 		'colosseum-helper-js',
+			// 	), get_bloginfo('version'), true);
+			// }
 
-			$mana_booking_variables['datePickerLang'] = $theme_current_locale;
+			// $mana_booking_variables['datePickerLang'] = $theme_current_locale;
 
 			/**
 			 * ------------------------------------------------------------------------------------------

@@ -21,3 +21,8 @@ export const manaRoomSettings = {
     BOOKING_OVERVIEW_INDEX: 'bookingOverview',
     SPECIAL_ROOM_INDEX: 'specialRoom'
 };
+
+export const manaBlockDatesSettings = {
+    PERIOD: 'period',
+    ROOMS: 'rooms'
+};

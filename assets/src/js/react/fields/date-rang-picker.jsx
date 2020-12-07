@@ -4,7 +4,6 @@ import { DateRangePicker } from 'react-dates';
 import moment from 'moment';
 
 export default class ManaDateRangPicker extends Component {
-
     constructor(props) {
         super(props);
 

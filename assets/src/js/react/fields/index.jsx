@@ -6,6 +6,8 @@ import Capacity from './capacity';
 import Gallery from './gallery';
 import Price from './price';
 import SeasonalPrice from './seasonal-price';
+import ManaDateRangePicker from './date-rang-picker';
+import RoomList from './room-list';
 
 export default class Fields extends Component {
 	constructor(props) {
@@ -81,7 +83,7 @@ export default class Fields extends Component {
 				returnVal = <Capacity info={info} savedValue={fieldValue} {...this.props} />
 				break;
 
-			// // Facility Field
+			// Facility Field
 			case ('facility'):
 				const facilityFields = [
 					{ field: 'icon', type: 'text', title: __('Icon', 'mana-booking') },
@@ -91,7 +93,7 @@ export default class Fields extends Component {
 				break;
 
 
-			// // Services Field
+			// Services Field
 			case ('service'):
 				const serviceFields = [
 					{ field: 'title', type: 'text', title: __('Title', 'mana-booking') },
@@ -100,7 +102,7 @@ export default class Fields extends Component {
 				returnVal = <SimpleRepeater fields={serviceFields} info={info} savedValue={fieldValue} {...this.props} />;
 				break;
 
-			// // Discount Field
+			// Discount Field
 			case ('discount'):
 				const discountFields = [
 					{ field: 'night', type: 'number', title: __('Night', 'mana-booking') },
@@ -109,27 +111,48 @@ export default class Fields extends Component {
 				returnVal = <SimpleRepeater fields={discountFields} info={info} savedValue={fieldValue} {...this.props} />;
 				break;
 
-			// // Gallery Field
+			// Gallery Field
 			case ('gallery'):
 				returnVal = <Gallery info={info} savedValue={fieldValue} {...this.props} />
 				break;
 
-			// // Price Fields
+			// Price Fields
 			case ('price'):
 				returnVal =
 					<Price
 						{...this.props}
 						priceInfo={fieldValue}
-						onPriceChanged={(newPrice) => {
+						onPriceChanged={newPrice => {
 							this.props.onFieldChanged(info.fieldIndex, newPrice);
 						}}
 
 					/>
 				break;
 
-			// // Seasonal Price Fields
+			// Seasonal Price Fields
 			case ('seasonal-price'):
 				returnVal = <SeasonalPrice info={info} savedValue={fieldValue} {...this.props} />
+				break;
+
+			// Room List Fields
+			case ('room-list'):
+				returnVal = <RoomList info={info} savedValue={fieldValue} {...this.props} />
+				break;
+
+			// Date Range Picker Fields
+			case ('date-range-picker'):
+				returnVal =
+					<div className="mana-date-row normal">
+						<ManaDateRangePicker
+							{...this.props}
+							startDate={fieldValue.start}
+							endDate={fieldValue.end}
+							onDateChange={dateInfo => {
+								const newDate = { start: dateInfo[0], end: dateInfo[1] }
+								this.props.onFieldChanged(info.fieldIndex, newDate);
+							}}
+						/>
+					</div>
 				break;
 		}
 

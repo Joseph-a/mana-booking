@@ -16,7 +16,8 @@ $color-8: set-preset-color($preset-id, 8);
 $color-9: set-preset-color($preset-id, 9);
 $color-10: set-preset-color($preset-id, 10);
 
-@import 'inc/datepicker';
+// @import 'inc/datepicker';
+@import '../../../node_modules/react-dates/lib/css/_datepicker.css';
 @import "inc/social-font-icon";
 @import "inc/elements";
 @import "inc/grid";
@@ -29,5 +30,3 @@ $color-10: set-preset-color($preset-id, 10);
 @import "inc/print";
 
 @import "sections/room-settings";
-
-
