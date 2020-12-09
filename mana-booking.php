@@ -52,18 +52,6 @@ if (!defined('MANA_BOOKING_PATH')) {
 	define('MANA_BOOKING_PATH', plugin_dir_path($mana_booking_base));
 }
 
-if (!defined('MANA_BOOKING_URL')) {
-	define('MANA_BOOKING_URL', plugins_url('/', $mana_booking_base));
-}
-
-if (!defined('MANA_BOOKING_MAIN_FILE')) {
-	define('MANA_BOOKING_MAIN_FILE', $mana_booking_base);
-}
-
-if (!defined('MANA_BOOKING_CONFIG')) {
-	define('MANA_BOOKING_CONFIG', MANA_BOOKING_PATH . 'conf/');
-}
-
 if (!defined('MANA_BOOKING_SHORTCODES')) {
 	define('MANA_BOOKING_SHORTCODES', MANA_BOOKING_PATH . 'shortcodes/');
 }
