@@ -17,12 +17,35 @@ export default class Fields extends Component {
 			startDate: null,
 			endDate: null,
 			focusedInput: null,
+			conditionalField: true
 		};
 	}
 
+	componentDidUpdate() {
+		this.conditionalField()
+	}
+
+	componentDidMount() {
+		this.conditionalField()
+	}
+
+	conditionalField = () => {
+		const { info, generalInfo, savedInfo } = this.props;
+		const { conditionalField } = this.state;
+		let newConditionalField = true;
+		if (info.conditional) {
+			let parentField = Object.keys(savedInfo).length === 0 ? generalInfo.filter(val => val.fieldIndex === info.conditional.ifField)[0].value : savedInfo[info.conditional.ifField];
+			newConditionalField = parentField === info.conditional.ifValue;
+		}
+		if (newConditionalField !== conditionalField) {
+			this.setState({ conditionalField: newConditionalField });
+		}
+	}
+
 	fieldSwitcher = (info, savedValue) => {
+		const { conditionalField } = this.state;
 		let returnVal,
-			fieldValue = (savedValue && savedValue[info.fieldIndex]) ? savedValue[info.fieldIndex] : info.value;
+			fieldValue = (savedValue && Object.keys(savedValue).length > 0 && typeof savedValue[info.fieldIndex] !== undefined) ? savedValue[info.fieldIndex] : info.value;
 		switch (info.type) {
 
 			// TextArea Field
@@ -55,6 +78,7 @@ export default class Fields extends Component {
 						onChange={e => this.props.onFieldChanged(info.fieldIndex, e.target.value)}
 					/>;
 				break;
+
 			// number Field
 			case ('number'):
 				returnVal =
@@ -64,6 +88,40 @@ export default class Fields extends Component {
 						value={fieldValue}
 						onChange={e => this.props.onFieldChanged(info.fieldIndex, e.target.value)}
 					/>;
+				break;
+
+			// Percent Field
+			case ('percent'):
+				returnVal =
+					<div className="price-input-holder">
+						<input
+							type="number"
+							placeholder={info.label}
+							value={fieldValue}
+							onChange={e => this.props.onFieldChanged(info.fieldIndex, e.target.value)}
+						/>
+						<span className="value-container">%</span>
+					</div>;
+				break;
+
+			// Single Price Field
+			case ('single-price'):
+				returnVal =
+					<div className="price-input-holder">
+						<input
+							type="number"
+							placeholder={info.label}
+							value={fieldValue}
+							onChange={e => this.props.onFieldChanged(info.fieldIndex, e.target.value)}
+						/>
+						{
+							fieldValue &&
+							<span className="value-container">
+								<span className="price-unit">$</span>
+								{parseInt(fieldValue).toLocaleString()}
+							</span>
+						}
+					</div>
 				break;
 
 			// Toggle Field
@@ -92,7 +150,6 @@ export default class Fields extends Component {
 				]
 				returnVal = <SimpleRepeater fields={facilityFields} info={info} savedValue={fieldValue} {...this.props} />;
 				break;
-
 
 			// Services Field
 			case ('service'):
@@ -126,7 +183,6 @@ export default class Fields extends Component {
 						onPriceChanged={newPrice => {
 							this.props.onFieldChanged(info.fieldIndex, newPrice);
 						}}
-
 					/>
 				break;
 
@@ -178,6 +234,7 @@ export default class Fields extends Component {
 		}
 
 		return (
+			conditionalField &&
 			<div className={`field-row ${info.type}`}>
 				<label className="components-base-control__label">
 					{info.label}

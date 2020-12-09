@@ -47,7 +47,7 @@ class Mana_booking_meta_boxes
 		// Use nonce for verification
 		echo '<input type="hidden" name="' . $this->meta_box_post_type . '_meta_box_nonce" value="' . esc_attr(wp_create_nonce(basename(__FILE__))) . '" />';
 
-		$new_setting_types = array('room_settings', 'block_date_settings', 'coupon_settings');
+		$new_setting_types = array('room_settings', 'block_date_settings', 'coupon_settings', 'service_settings');
 		if (in_array($this->meta_box_fields[0]['type'], $new_setting_types)) {
 			$field = $this->meta_box_fields[0];
 			$meta = get_post_meta($post->ID, $field['id'], true);

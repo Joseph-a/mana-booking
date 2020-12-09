@@ -32,15 +32,23 @@ export const couponSettings = [{
 		label: __('Percent', 'mana-booking'),
 		desc: __('If you have set Percent for your coupon, you can set the discount\'s percent in this field. Please add just a digit', 'mana-booking'),
 		fieldIndex: manaCouponSettings.PERCENT,
-		type: 'number',
-		value: ''
+		type: 'percent',
+		value: '',
+		conditional: {
+			ifField: manaCouponSettings.DISCOUNT_TYPE,
+			ifValue: 'percent'
+		}
 	},
 	{
 		label: __('Price', 'mana-booking'),
 		desc: __('If you have set fixed price for your coupon, you can set the fixed discount in this field. Please add just a digit', 'mana-booking'),
 		fieldIndex: manaCouponSettings.PRICE,
-		type: 'number',
-		value: ''
+		type: 'single-price',
+		value: '',
+		conditional: {
+			ifField: manaCouponSettings.DISCOUNT_TYPE,
+			ifValue: 'price'
+		}
 	},
 	{
 		label: __('Expire Date', 'mana-booking'),

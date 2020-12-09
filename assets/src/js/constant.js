@@ -36,3 +36,11 @@ export const manaCouponSettings = {
     COUPON_AMOUNT: 'couponAmount',
     USED_COUPON: 'usedCoupon'
 };
+
+export const manaServiceSettings = {
+    SHORTCODE: 'shortcode',
+    BOOKING: 'booking',
+    PRICE_TYPE: 'priceType',
+    PRICE: 'price',
+    MANDATORY: 'mandatory',
+};

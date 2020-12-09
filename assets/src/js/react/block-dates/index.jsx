@@ -40,7 +40,7 @@ export default class BlockDatesMetaData extends Component {
                 <div className="tab-content">
                     <div className="tab-content-container">
                         {
-                            fblockDatesSettings.map((item, index) => <Fields info={item} key={index} savedInfo={savedSetting} onFieldChanged={(v, a) => this.onFieldChanged(v, a)} />)
+                            fblockDatesSettings.map((item, index) => <Fields generalInfo={fblockDatesSettings} info={item} key={index} savedInfo={savedSetting} onFieldChanged={(v, a) => this.onFieldChanged(v, a)} />)
                         }
                     </div>
                 </div>

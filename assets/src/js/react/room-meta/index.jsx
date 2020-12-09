@@ -55,7 +55,7 @@ export default class RoomMetaData extends Component {
                 </div>
                 <div className="tab-content">
                     {
-                        fRoomSettings.map((item, index) => index === activeTab && <Tabs settingInfo={roomSettings} savedSetting={savedSetting} key={index} onFieldChanged={(v, a) => this.onFieldChanged(v, a)} tabInfo={item.value} />)
+                        fRoomSettings.map((item, index) => index === activeTab && <Tabs generalInfo={fRoomSettings} settingInfo={roomSettings} savedSetting={savedSetting} key={index} tabIndex={index} onFieldChanged={(v, a) => this.onFieldChanged(v, a)} tabInfo={item.value} />)
                     }
                 </div>
             </div>

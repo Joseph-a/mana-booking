@@ -1,0 +1,23 @@
+#mana-service-settings-info-box {
+
+    .room-settings-tabular .tab-content .tab-content-container .field-row>label {
+        width: 200px;
+    }
+}
+
+.price-input-holder {
+    // input {}
+
+    .value-container {
+        margin-left: 30px;
+        display: inline-block;
+        vertical-align: middle;
+        font-weight: 700;
+        color: $color-3;
+        font-size: 16px;
+
+        .price-unit {
+            margin-right: 5px;
+        }
+    }
+}

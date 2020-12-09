@@ -41,7 +41,7 @@ export default class CouponMetaData extends Component {
                 <div className="tab-content">
                     <div className="tab-content-container">
                         {
-                            fcouponSettings.map((item, index) => <Fields info={item} key={index} savedInfo={savedSetting} onFieldChanged={(v, a) => this.onFieldChanged(v, a)} />)
+                            fcouponSettings.map((item, index) => <Fields generalInfo={fcouponSettings} info={item} key={index} savedInfo={savedSetting} onFieldChanged={(v, a) => this.onFieldChanged(v, a)} />)
                         }
                     </div>
                 </div>

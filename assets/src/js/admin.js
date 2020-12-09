@@ -2,6 +2,7 @@
 import "./react/room-meta";
 import "./react/block-dates";
 import "./react/coupon";
+import "./react/service";
 
 // jQuery.fn.digits = function()
 // {

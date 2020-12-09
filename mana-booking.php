@@ -48,10 +48,6 @@ if (!defined('MANA_BOOKING_CSS_PATH')) {
 	define('MANA_BOOKING_CSS_PATH', MANA_BOOKING_BASE_URL . 'assets/dist/css/');
 }
 
-if (!defined('MANA_BOOKING_BASE')) {
-	define('MANA_BOOKING_BASE', $mana_booking_base);
-}
-
 if (!defined('MANA_BOOKING_PATH')) {
 	define('MANA_BOOKING_PATH', plugin_dir_path($mana_booking_base));
 }
@@ -556,83 +552,6 @@ class Mana_booking_main
 	{
 		/**
 		 * ------------------------------------------------------------------------------------------
-		 *  Post Meta Boxes
-		 * ------------------------------------------------------------------------------------------
-		 */
-		$post_meta_box_prefix = 'mana_booking_post_';
-		$post_meta_box_title  = esc_html__('Post Setting', 'mana-booking');
-		$post_meta_box_items  = array(
-			array(
-				'label' => esc_html__('Subtitle', 'mana-booking'),
-				'desc'  => esc_html__('Add subtitle of the post in this field.', 'mana-booking'),
-				'id'    => $post_meta_box_prefix . 'subtitle',
-				'type'  => 'text',
-			),
-		);
-		$posts_meta_box_obj   = new Mana_booking_meta_boxes($post_meta_box_items, $post_meta_box_prefix, $post_meta_box_title, 'post');
-
-		/**
-		 * ------------------------------------------------------------------------------------------
-		 *  Pages Meta Boxes
-		 * ------------------------------------------------------------------------------------------
-		 */
-		$page_meta_box_prefix = 'mana_booking_page_';
-		$page_meta_box_title  = esc_html__('Page Setting', 'mana-booking');
-		$page_meta_box_items  = array(
-			array(
-				'label' => esc_html__('Subtitle', 'mana-booking'),
-				'desc'  => esc_html__('Add subtitle of the page in this field.', 'mana-booking'),
-				'id'    => $page_meta_box_prefix . 'subtitle',
-				'type'  => 'text',
-			),
-			array(
-				'label' => esc_html__('Page ID', 'mana-booking'),
-				'desc'  => __('Add your custom ID for using it to change the default style. List of the default page IDs are <a href="#" target="_blank">here</a>', 'mana-booking'),
-				'id'    => $page_meta_box_prefix . 'id',
-				'type'  => 'text',
-			),
-			array(
-				'label' => esc_html__('Page Class', 'mana-booking'),
-				'desc'  => __('Add your custom class for using it to change the default style. List of the default page classes are <a href="#" target="_blank">here</a>', 'mana-booking'),
-				'id'    => $page_meta_box_prefix . 'class',
-				'type'  => 'text',
-			),
-			array(
-				'label' => esc_html__('Wide View', 'mana-booking'),
-				'desc'  => esc_html__('If you want to have wide view in this page, please turn this switch on.', 'mana-booking'),
-				'id'    => $page_meta_box_prefix . 'page_layout',
-				'type'  => 'switch',
-			),
-			array(
-				'label'   => esc_html__('Breadcrumb Section', 'mana-booking'),
-				'desc'    => esc_html__('If you want to have breadcrumb in this page, please turn this switch on.', 'mana-booking'),
-				'id'      => $page_meta_box_prefix . 'breadcrumb_section',
-				'type'    => 'switch',
-				'default' => 'on',
-			),
-			array(
-				'label' => esc_html__('Page Breadcrumb Background', 'mana-booking'),
-				'desc'  => esc_html__('Upload your desired image as page\'s breadcrumb. Please note that your image will be shown if you have turned on the "Breadcrumb Section" option.', 'mana-booking'),
-				'id'    => $page_meta_box_prefix . 'bread_crumb',
-				'type'  => 'image',
-			),
-			array(
-				'label' => esc_html__('Page Breadcrumb Height', 'mana-booking'),
-				'desc'  => esc_html__('Set the height of breadcrumb in this field. Default value of it is 520px, leave it blank if you want to use default value.', 'mana-booking'),
-				'id'    => $page_meta_box_prefix . 'bread_crumb_height',
-				'type'  => 'number',
-			),
-			array(
-				'label' => esc_html__('Page Breadcrumb Text', 'mana-booking'),
-				'desc'  => esc_html__('If you want to have text below the title box, add it here.', 'mana-booking'),
-				'id'    => $page_meta_box_prefix . 'bread_crumb_text',
-				'type'  => 'textarea',
-			),
-		);
-		$pages_meta_box_obj   = new Mana_booking_meta_boxes($page_meta_box_items, $page_meta_box_prefix, $page_meta_box_title, 'page');
-
-		/**
-		 * ------------------------------------------------------------------------------------------
 		 *  Block Dates Meta Boxes
 		 * ------------------------------------------------------------------------------------------
 		 */
@@ -685,42 +604,8 @@ class Mana_booking_main
 		$service_meta_box_title  = esc_html__('Additional Settings', 'mana-booking');
 		$service_meta_box_items  = array(
 			array(
-				'label'   => esc_html__('Load in Shortcode', 'mana-booking'),
-				'desc'    => esc_html__('Enable this field if you want this service loads in [mana-booking-services] shortcode.', 'mana-booking'),
-				'id'      => $service_meta_box_prefix . 'shortcode',
-				'type'    => 'switch',
-				'default' => true,
-			),
-			array(
-				'label' => esc_html__('Load in Booking Process', 'mana-booking'),
-				'desc'  => esc_html__('Enable this field if you want this service loads in booking process that users can select it as extra services.', 'mana-booking'),
-				'id'    => $service_meta_box_prefix . 'booking',
-				'type'  => 'switch',
-			),
-			array(
-				'label'    => esc_html__('Price Type', 'mana-booking'),
-				'desc'     => esc_html__('Select if this service is free or paid.', 'mana-booking'),
-				'id'       => $service_meta_box_prefix . 'price_type',
-				'type'     => 'select',
-				'tr_class' => 'price-type',
-				'options'  => array(
-					1 => esc_html__('Free', 'mana-booking'),
-					2 => esc_html__('Paid', 'mana-booking'),
-				),
-			),
-			array(
-				'label'    => esc_html__('Price', 'mana-booking'),
-				'desc'     => esc_html__('Add price details for your service', 'mana-booking'),
-				'id'       => $service_meta_box_prefix . 'price',
-				'type'     => 'service_price',
-				'tr_class' => 'paid-service',
-			),
-			array(
-				'label'    => esc_html__('Mandatory', 'mana-booking'),
-				'desc'     => esc_html__('Enable this field if you want this service will un-selectable by user during the booking process. It always will be checked.', 'mana-booking'),
-				'id'       => $service_meta_box_prefix . 'mandatory',
-				'type'     => 'switch',
-				'tr_class' => 'price-type',
+				'id'   => $service_meta_box_prefix . 'meta_info',
+				'type' => 'service_settings',
 			),
 		);
 		$service_meta_box_obj    = new Mana_booking_meta_boxes($service_meta_box_items, $service_meta_box_prefix, $service_meta_box_title, 'service');
