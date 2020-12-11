@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { __ } from '@wordpress/i18n';
 
 import SimpleRepeater from './simple-repeater';
+import SingleRepeater from './single-repeater';
 import Capacity from './capacity';
 import Gallery from './gallery';
 import Price from './price';
@@ -45,7 +46,7 @@ export default class Fields extends Component {
 	fieldSwitcher = (info, savedValue) => {
 		const { conditionalField } = this.state;
 		let returnVal,
-			fieldValue = (savedValue && Object.keys(savedValue).length > 0 && typeof savedValue[info.fieldIndex] !== undefined) ? savedValue[info.fieldIndex] : info.value;
+			fieldValue = (savedValue && Object.keys(savedValue).length > 0 && typeof savedValue[info.fieldIndex] !== 'undefined') ? savedValue[info.fieldIndex] : info.value;
 		switch (info.type) {
 
 			// TextArea Field
@@ -73,6 +74,28 @@ export default class Fields extends Component {
 				returnVal =
 					<input
 						type="text"
+						placeholder={info.label}
+						value={fieldValue}
+						onChange={e => this.props.onFieldChanged(info.fieldIndex, e.target.value)}
+					/>;
+				break;
+
+			// URL Field
+			case ('url'):
+				returnVal =
+					<input
+						type="url"
+						placeholder={info.label}
+						value={fieldValue}
+						onChange={e => this.props.onFieldChanged(info.fieldIndex, e.target.value)}
+					/>;
+				break;
+
+			// Email Field
+			case ('email'):
+				returnVal =
+					<input
+						type="email"
 						placeholder={info.label}
 						value={fieldValue}
 						onChange={e => this.props.onFieldChanged(info.fieldIndex, e.target.value)}
@@ -135,6 +158,14 @@ export default class Fields extends Component {
 						/>
 						<span></span>
 					</label>
+				break;
+
+			// Single repeater Field
+			case ('single-repeater'):
+				const repeaterFields = [
+					{ field: 'item', type: 'text', title: __('Item', 'mana-booking') }
+				]
+				returnVal = <SingleRepeater fields={repeaterFields} info={info} savedValue={fieldValue} {...this.props} />;
 				break;
 
 			// Capacity Field
@@ -246,9 +277,12 @@ export default class Fields extends Component {
 						</div>
 					}
 				</label>
-				<div className="value-box">{returnVal}</div>
+				<div className={`value-box ${info.type}`}>{returnVal}</div>
 				{
 					info.type === 'toggle' && <div className="desc-box">{info.desc}</div>
+				}
+				{
+					info.alertBox && <div className="desc-box alert">{info.alertBox}</div>
 				}
 			</div>
 		);

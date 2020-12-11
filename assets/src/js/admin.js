@@ -1,8 +1,13 @@
 "use strict";
+// Main Settings
+import "./react/main-settings";
+
+// Meta Boxes
 import "./react/room-meta";
 import "./react/block-dates";
 import "./react/coupon";
 import "./react/service";
+
 
 // jQuery.fn.digits = function()
 // {

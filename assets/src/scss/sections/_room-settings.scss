@@ -89,6 +89,8 @@
                     textarea,
                     input[type=text],
                     input[type=number],
+                    input[type=url],
+                    input[type=email],
                     select {
                         // background: $color-1;
                         @include size(200px, 40px);
@@ -154,23 +156,30 @@
                     }
                 }
 
+                .desc-box {
+                    display: inline-block;
+                    vertical-align: middle;
+                    line-height: 40px;
+                    font-size: 14px;
+                    line-height: 25px;
+                    margin-left: 15px;
+
+                    &.alert {
+                        color: $color-6;
+                        font-weight: bold;
+                    }
+                }
+
                 &.toggle {
 
-                    .value-box,
-                    .desc-box {
+                    .value-box {
                         display: inline-block;
                         vertical-align: middle;
                         line-height: 40px;
                     }
 
                     .value-box {
-                        margin-left: 0;
-                    }
-
-                    .desc-box {
-                        font-size: 14px;
-                        line-height: 25px;
-                        margin-left: 15px;
+                        margin-left: 0 !important;
                     }
                 }
             }
@@ -203,6 +212,7 @@
         line-height: 25px;
         opacity: 0;
         visibility: hidden;
+        z-index: 1;
         transition: $general-transition;
         box-shadow: 0 0 15px rgba($color-2, .2);
     }

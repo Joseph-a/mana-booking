@@ -23,12 +23,13 @@ $color-10: set-preset-color($preset-id, 10);
 @import "inc/grid";
 @import "inc/meta-boxes";
 @import "inc/spiner";
-@import "inc/setting-page";
+// @import "inc/setting-page";
 @import "inc/event-booking-list";
 @import "inc/booking-archive";
 @import "inc/fullcalendar";
 @import "inc/print";
 
+@import "sections/main-settings";
 @import "sections/room-settings";
 @import "sections/block-dates";
 @import "sections/service";
