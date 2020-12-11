@@ -286,22 +286,55 @@ export const manaMainSettings = [{
     {
         label: __('Email Notification', 'mana-booking'),
         fields: [{
-            label: __('Coupon Amount1', 'mana-booking'),
-            desc: __('Set how many coupon you need to set for this coupon.', 'mana-booking'),
-            fieldIndex: manaMainSetting.COUPON_AMOUNT,
-            type: 'number',
-            value: ''
-        }]
+                label: __('Email Notification Status', 'mana-booking'),
+                desc: __('You can enable/disable email notification by switching this field.', 'mana-booking'),
+                fieldIndex: manaMainSetting.EMAIL_NOTIFICATION_STATUS,
+                type: 'toggle',
+                value: false
+            },
+            {
+                label: __('Email Sender', 'mana-booking'),
+                desc: __('', 'mana-booking'),
+                fieldIndex: manaMainSetting.EMAIL_SENDERS,
+                type: 'email',
+                value: '',
+                alertBox: __('Use an email from your website for email sender. For example if your website is "your_website.com", your email must be something like "sender@your_website.com"', 'mana-booking')
+            },
+            {
+                label: __('Email Receivers', 'mana-booking'),
+                desc: __('', 'mana-booking'),
+                fieldIndex: manaMainSetting.EMAIL_RECEIVERS,
+                type: 'single-repeater',
+                value: []
+            },
+            {
+                label: __('Booking Details For Users', 'mana-booking'),
+                desc: __('If you want your guests receive their booking information you set for the admins of website, enable this option.', 'mana-booking'),
+                fieldIndex: manaMainSetting.BOOKING_DETAILS_FOR_USERS,
+                type: 'toggle',
+                value: false
+            },
+            {
+                label: __('Email Template of Admins', 'mana-booking'),
+                desc: __('', 'mana-booking'),
+                fieldIndex: manaMainSetting.EMAIL_TEMPLATE_FOR_ADMINS,
+                type: 'editor',
+                value: '',
+                alertBox: __('For putting extra information in your email, you can use these shortcode to provide more details about the booking. Here is the list of shortcode that you can use in this field :[guest-first-name][guest-last-name][guest-email][guest-phone][guest-address][guest-special-requirement][guest-check-in][guest-check-out][guest-room][guest-services][guest-booking-total-price]', 'mana-booking')
+            },
+            {
+                label: __('Email template of users', 'mana-booking'),
+                desc: __('', 'mana-booking'),
+                fieldIndex: manaMainSetting.EMAIL_TEMPLATE_FOR_USERS,
+                type: 'editor',
+                value: '',
+                alertBox: __('For putting extra information in your email, you can use these shortcode to provide more details about the booking. Here is the list of shortcode that you can use in this field :[guest-first-name][guest-last-name][guest-email][guest-phone][guest-address][guest-special-requirement][guest-check-in][guest-check-out][guest-room][guest-services][guest-booking-total-price]', 'mana-booking')
+            },
+        ]
     },
     {
         label: __('Currency', 'mana-booking'),
-        fields: [{
-            label: __('Coupon Amount1', 'mana-booking'),
-            desc: __('Set how many coupon you need to set for this coupon.', 'mana-booking'),
-            fieldIndex: manaMainSetting.COUPON_AMOUNT,
-            type: 'number',
-            value: ''
-        }]
+        fields: []
     },
     {
         label: __('Membership', 'mana-booking'),
@@ -316,11 +349,11 @@ export const manaMainSettings = [{
     {
         label: __('Seasonal Price', 'mana-booking'),
         fields: [{
-            label: __('Coupon Amount1', 'mana-booking'),
-            desc: __('Set how many coupon you need to set for this coupon.', 'mana-booking'),
-            fieldIndex: manaMainSetting.COUPON_AMOUNT,
-            type: 'number',
-            value: ''
+            label: __('', 'mana-booking'),
+            desc: __('', 'mana-booking'),
+            fieldIndex: manaMainSetting.SEASONAL_PRICE,
+            type: 'seasons',
+            value: []
         }]
     },
     {

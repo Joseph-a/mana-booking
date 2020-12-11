@@ -16,10 +16,68 @@
             display: inline-block;
             margin-left: 0 !important;
 
-            &.textarea {
+            &.textarea,
+            &.editor {
                 display: block;
                 margin-left: 270px !important;
             }
+
+            &.seasons {
+                display: block;
+            }
+        }
+
+        &.editor {
+            .desc-box {
+                display: block;
+                margin-left: 270px !important;
+            }
+        }
+
+        &.seasons {
+            .season-box-container {
+                display: flex;
+                flex-wrap: wrap;
+            }
+
+            .season-price-row {
+                flex: 0 0 auto;
+                width: 50%;
+                padding: 0 15px 15px 0;
+                box-sizing: border-box;
+            }
+
+            .mana-date-row {
+                margin: 0;
+            }
+
+            .season-info-container {
+                padding: 30px;
+                background: $color-1;
+                border-radius: 0 0 5px 5px;
+
+                .info-row {
+                    border-bottom: 1px solid lighten($color-4, 10%);
+                    padding: 15px 0;
+
+                    .title-box {
+                        display: inline-block;
+                        width: 270px;
+                        vertical-align: middle;
+                        color: $color-10;
+                        font-size: 16px;
+                        line-height: 40px;
+                    }
+
+                    // display: inline-block;
+                    // width: 30%;
+                    &:last-child {
+                        border-bottom: 0;
+                    }
+                }
+            }
+
+            // .btn-container {}
         }
     }
 }
@@ -492,4 +550,27 @@
 
 .clearfix {
     @include clearfix;
+}
+
+.mana-text-editor {
+    .quill {
+        background: $color-1;
+    }
+
+    .ql-toolbar.ql-snow {
+        border-radius: 5px 5px 0 0;
+        background: lighten($color-4, 20%);
+
+        &:after {
+            display: none;
+        }
+    }
+
+    .ql-container.ql-snow {
+        border-radius: 0 0 5px 5px;
+    }
+
+    .ql-editor {
+        min-height: 300px;
+    }
 }

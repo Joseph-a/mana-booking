@@ -36,6 +36,15 @@ export const manaMainSetting = {
     BOOKING_BY_STRIPE: 'bookingByStripe',
     STRIPE_PUBLISHABLE_KEY: 'stripePublishableKey',
     STRIPE_SECRET_KEY: 'stripeSecretKey',
+
+    EMAIL_NOTIFICATION_STATUS: 'emailNotificationStatus',
+    EMAIL_SENDERS: 'emailSenders',
+    EMAIL_RECEIVERS: 'emailReceivers',
+    BOOKING_DETAILS_FOR_USERS: 'bookingDetailsForUsers',
+    EMAIL_TEMPLATE_FOR_ADMINS: 'emailTemplateForAdmins',
+    EMAIL_TEMPLATE_FOR_USERS: 'emailTemplateForUsers',
+
+    SEASONAL_PRICE: 'seasonalPrice'
 };
 
 export const manaRoomSettings = {

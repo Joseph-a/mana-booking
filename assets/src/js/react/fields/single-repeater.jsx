@@ -2,10 +2,10 @@ import React from 'react';
 import { __ } from '@wordpress/i18n';
 
 const SingleRepeater = (props) => {
-    const { info, fields, savedValue } = props;
-    const inputChanges = (val, name, index) => {
+    const { info, field, savedValue } = props;
+    const inputChanges = (val, index) => {
         let newVal = [...savedValue];
-        newVal[index][name] = val;
+        newVal[index] = val;
         props.onFieldChanged(info.fieldIndex, newVal);
     }
     return (
@@ -13,20 +13,13 @@ const SingleRepeater = (props) => {
             {
                 savedValue.map((item, index) => {
                     return (
-                        <div className={`repeater-row box-${fields.length}`} key={index}>
-                            {
-                                fields.map((field, i) => {
-                                    return (
-                                        <input
-                                            key={i}
-                                            type={field.type}
-                                            value={item[field.field] || ''}
-                                            placeholder={field.title}
-                                            onChange={e => inputChanges(e.target.value, field.field, index)}
-                                        />
-                                    )
-                                })
-                            }
+                        <div className={`repeater-row box-${field.length}`} key={index}>
+                            <input
+                                type={field.type}
+                                value={item || ''}
+                                placeholder={field.title}
+                                onChange={e => inputChanges(e.target.value, index)}
+                            />
                             <div
                                 onClick={() => {
                                     const newVal = [...savedValue];
@@ -41,7 +34,7 @@ const SingleRepeater = (props) => {
             }
             <button
                 onClick={() => {
-                    const newVal = [...savedValue, fields];
+                    const newVal = [...savedValue, ''];
                     props.onFieldChanged(info.fieldIndex, newVal);
                 }}
                 className="button button-primary button-large"
