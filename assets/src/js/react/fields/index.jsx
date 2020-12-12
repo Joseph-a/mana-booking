@@ -12,6 +12,7 @@ import ManaDatePicker from './date-picker';
 import RoomList from './room-list';
 import TextEditor from './editor';
 import Seasons from './seasons';
+import Currency from './currency';
 
 export default class Fields extends Component {
 	constructor(props) {
@@ -268,6 +269,12 @@ export default class Fields extends Component {
 			// Seasons Fields
 			case ('seasons'):
 				returnVal = <Seasons info={info} savedValue={fieldValue} {...this.props} />;
+				break;
+
+			// Currency Fields
+			case ('currency'):
+				console.log(info);
+				returnVal = <Currency info={info} savedValue={fieldValue} {...this.props} />;
 				break;
 
 			// Demo Fields

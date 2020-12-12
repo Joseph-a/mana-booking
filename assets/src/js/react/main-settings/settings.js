@@ -334,7 +334,85 @@ export const manaMainSettings = [{
     },
     {
         label: __('Currency', 'mana-booking'),
-        fields: []
+        fields: [{
+                label: __('Currency Separator', 'mana-booking'),
+                desc: __('', 'mana-booking'),
+                fieldIndex: manaMainSetting.CURRENCY_SEPARATOR,
+                type: 'select',
+                options: [{
+                        label: ',',
+                        value: '1'
+                    },
+                    {
+                        label: '.',
+                        value: '2'
+                    },
+                    {
+                        label: __('Space', 'mana-booking'),
+                        value: '3'
+                    },
+                ],
+                value: '1'
+            },
+            {
+                label: __('Currency Decimal', 'mana-booking'),
+                desc: __('', 'mana-booking'),
+                fieldIndex: manaMainSetting.CURRENCY_DECIMAL,
+                type: 'select',
+                options: [{
+                        label: __('None', 'mana-booking'),
+                        value: ''
+                    },
+                    {
+                        label: '1',
+                        value: '1'
+                    },
+                    {
+                        label: '2',
+                        value: '2'
+                    },
+                    {
+                        label: '3',
+                        value: '3'
+                    },
+                    {
+                        label: '4',
+                        value: '4'
+                    },
+                    {
+                        label: '5',
+                        value: '5'
+                    },
+                ],
+                value: '1'
+            },
+            {
+                label: __('Currency Decimal Separator', 'mana-booking'),
+                desc: __('', 'mana-booking'),
+                fieldIndex: manaMainSetting.CURRENCY_DECIMAL_SEPARATOR,
+                type: 'select',
+                options: [{
+                        label: '.',
+                        value: '1'
+                    },
+                    {
+                        label: ',',
+                        value: '2'
+                    }
+                ],
+                value: '1'
+            },
+            {
+                label: __('', 'mana-booking'),
+                desc: __('', 'mana-booking'),
+                fieldIndex: manaMainSetting.CURRENCY_LIST,
+                type: 'currency',
+                value: {
+                    defaultCurrency: 0,
+                    currencyList: []
+                }
+            }
+        ]
     },
     {
         label: __('Membership', 'mana-booking'),

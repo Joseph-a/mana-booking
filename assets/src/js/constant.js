@@ -44,6 +44,11 @@ export const manaMainSetting = {
     EMAIL_TEMPLATE_FOR_ADMINS: 'emailTemplateForAdmins',
     EMAIL_TEMPLATE_FOR_USERS: 'emailTemplateForUsers',
 
+    CURRENCY_SEPARATOR: 'currencySeparator',
+    CURRENCY_DECIMAL: 'currencyDecimal',
+    CURRENCY_DECIMAL_SEPARATOR: 'currencyDecimalSeparator',
+    CURRENCY_LIST: 'currencyList',
+
     SEASONAL_PRICE: 'seasonalPrice'
 };
 
