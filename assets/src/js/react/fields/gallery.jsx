@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { __ } from '@wordpress/i18n';
 
 const Gallery = (props) => {
-    const { info } = props;
+    const { imgType } = props;
 
     const [imgInfo, setInfo] = useState();
 
@@ -39,13 +39,15 @@ const Gallery = (props) => {
                         )
                     })
                 }
+                {
+                    (!imgInfo || imgInfo.length === 0) && <div className="img-box placeholder"></div>
+                }
             </div>
             <button className="button button-primary" onClick={(e) => {
                 e.preventDefault();
-                let mediaUploader = window.wp.media({
+                let uploaderOpt = {
                     frame: 'select',
                     title: __('Select Images', 'mana-property'),
-                    multiple: true,
                     library: {
                         order: 'DESC',
                         orderby: 'date',
@@ -56,7 +58,13 @@ const Gallery = (props) => {
                     button: {
                         text: __('Select', 'mana-property')
                     }
-                });
+                };
+
+                if (imgType !== 'single') {
+                    uploaderOpt.multiple = true;
+                }
+
+                let mediaUploader = window.wp.media(uploaderOpt);
 
                 mediaUploader.on('select', function () {
                     let attachment = mediaUploader.state().get('selection');
@@ -66,11 +74,22 @@ const Gallery = (props) => {
                             images.push(item.id);
                         });
                     }
-                    props.onFieldChanged(info.fieldIndex, images);
+                    props.onImageChanged(images);
                 });
                 mediaUploader.open();
             }}>{__('Select Image', 'mana-property')}</button>
-            <button className="button button-danger" onClick={() => props.onFieldChanged(info.fieldIndex, [])}>{__('Remove Images', 'mana-booking')}</button>
+            {
+                (imgInfo && imgInfo.length > 0) &&
+                <button className="button button-danger" onClick={() => props.onImageChanged([])}>
+                    {
+                        imgInfo.length === 1 && __('Remove Image', 'mana-booking')
+                    }
+                    {
+                        imgInfo.length > 1 && __('Remove Images', 'mana-booking')
+                    }
+                </button>
+
+            }
         </div>
     )
 }

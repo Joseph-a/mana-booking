@@ -4,9 +4,6 @@ import { __ } from '@wordpress/i18n';
 export default class Currency extends Component {
     constructor(props) {
         super(props);
-        this.state = {
-            focusedInput: null
-        }
     }
 
     outputGenerator = (index, val, field) => {

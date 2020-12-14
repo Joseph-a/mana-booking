@@ -636,6 +636,7 @@ class Mana_booking_main
 
 	public function mana_booking_setting_page()
 	{
+		wp_enqueue_media();
 		require_once MANA_BOOKING_TPL . 'admin/admin.php';
 	}
 

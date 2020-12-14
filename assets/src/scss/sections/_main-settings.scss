@@ -23,6 +23,7 @@
             }
 
             &.seasons,
+            &.membership,
             &.currency {
                 display: block;
             }
@@ -36,6 +37,7 @@
         }
 
         &.seasons,
+        &.membership,
         &.currency {
             .season-box-container {
                 display: flex;
@@ -84,10 +86,16 @@
             }
         }
 
-        &.currency {
+        &.currency,
+        &.membership {
             .season-info-container {
                 border-radius: 5px;
                 position: relative;
+            }
+
+            .price-input-holder,
+            .gallery-main-container {
+                display: inline-block;
             }
 
             .remove-item {

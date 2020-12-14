@@ -417,11 +417,11 @@ export const manaMainSettings = [{
     {
         label: __('Membership', 'mana-booking'),
         fields: [{
-            label: __('Coupon Amount1', 'mana-booking'),
-            desc: __('Set how many coupon you need to set for this coupon.', 'mana-booking'),
-            fieldIndex: manaMainSetting.COUPON_AMOUNT,
-            type: 'number',
-            value: ''
+            label: __('', 'mana-booking'),
+            desc: __('', 'mana-booking'),
+            fieldIndex: manaMainSetting.MEMBERSHIP,
+            type: 'membership',
+            value: []
         }]
     },
     {

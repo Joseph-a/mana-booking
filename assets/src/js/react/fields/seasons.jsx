@@ -83,10 +83,10 @@ export default class Seasons extends Component {
         return (
             <div className="seasonal-price-main-container">
                 <div className="notice-warning notice">
-                    <ul>
+                    <ol>
                         <li>{__('Please note that these seasonal prices will override the single room prices. It means that they have higher priority of room\'s seasonal prices.', 'mana-booking')}</li>
                         <li>{__('This prices will be applied on all rooms of website.', 'mana-booking')}</li>
-                    </ul>
+                    </ol>
                 </div>
                 <div className="season-box-container">
                     {

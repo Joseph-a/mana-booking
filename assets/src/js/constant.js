@@ -49,7 +49,9 @@ export const manaMainSetting = {
     CURRENCY_DECIMAL_SEPARATOR: 'currencyDecimalSeparator',
     CURRENCY_LIST: 'currencyList',
 
-    SEASONAL_PRICE: 'seasonalPrice'
+    SEASONAL_PRICE: 'seasonalPrice',
+
+    MEMBERSHIP: 'membership'
 };
 
 export const manaRoomSettings = {

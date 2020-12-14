@@ -13,6 +13,7 @@ import RoomList from './room-list';
 import TextEditor from './editor';
 import Seasons from './seasons';
 import Currency from './currency';
+import Membership from './membership';
 
 export default class Fields extends Component {
 	constructor(props) {
@@ -211,7 +212,7 @@ export default class Fields extends Component {
 
 			// Gallery Field
 			case ('gallery'):
-				returnVal = <Gallery info={info} savedValue={fieldValue} {...this.props} />;
+				returnVal = <Gallery info={info} savedValue={fieldValue} onImageChanged={val => this.props.onFieldChanged(info.fieldIndex, val)} {...this.props} />;
 				break;
 
 			// Price Fields
@@ -269,6 +270,11 @@ export default class Fields extends Component {
 			// Seasons Fields
 			case ('seasons'):
 				returnVal = <Seasons info={info} savedValue={fieldValue} {...this.props} />;
+				break;
+
+			// Membership Fields
+			case ('membership'):
+				returnVal = <Membership info={info} savedValue={fieldValue} {...this.props} />;
 				break;
 
 			// Currency Fields
