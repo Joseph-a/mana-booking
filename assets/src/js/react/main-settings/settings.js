@@ -437,11 +437,19 @@ export const manaMainSettings = [{
     {
         label: __('Export & Import', 'mana-booking'),
         fields: [{
-            label: __('Coupon Amount1', 'mana-booking'),
-            desc: __('Set how many coupon you need to set for this coupon.', 'mana-booking'),
-            fieldIndex: manaMainSetting.COUPON_AMOUNT,
-            type: 'number',
-            value: ''
-        }]
+                label: __('Export', 'mana-booking'),
+                desc: __('After downloading the content, you can open the downloaded file with a simple text editor.', 'mana-booking'),
+                fieldIndex: manaMainSetting.EXPORT,
+                type: 'export',
+                value: {}
+            },
+            {
+                label: __('Import', 'mana-booking'),
+                desc: __('The import section accepts JSON content, so please be sure that your content has correct format.', 'mana-booking'),
+                fieldIndex: manaMainSetting.IMPORT,
+                type: 'import',
+                value: ''
+            }
+        ]
     }
 ];

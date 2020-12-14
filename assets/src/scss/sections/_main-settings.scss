@@ -1,5 +1,6 @@
 #mana-booking-main-setting-container {
     @extend .room-settings-tabular;
+    margin: 10px 0 0 !important;
 
     .tab-container {
         .tab {
@@ -17,7 +18,9 @@
             margin-left: 0 !important;
 
             &.textarea,
-            &.editor {
+            &.editor,
+            &.export,
+            &.import {
                 display: block;
                 margin-left: 270px !important;
             }
@@ -609,5 +612,27 @@
 
     .ql-editor {
         min-height: 300px;
+    }
+}
+
+.export-container {
+    .code {
+        word-break: break-all;
+        padding: 10px;
+        border: 1px solid $color-4;
+        height: 200px;
+        max-height: 250px;
+        overflow: auto;
+        background: $color-1;
+        border-radius: 5px;
+        color: darken($color-4, 20%);
+    }
+
+    .btn-container {
+        margin-top: 15px;
+
+        button {
+            margin-right: 15px;
+        }
     }
 }

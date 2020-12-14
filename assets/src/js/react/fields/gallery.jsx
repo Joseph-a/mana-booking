@@ -3,7 +3,6 @@ import { __ } from '@wordpress/i18n';
 
 const Gallery = (props) => {
     const { imgType } = props;
-
     const [imgInfo, setInfo] = useState();
 
     useEffect(() => {

@@ -14,6 +14,8 @@ import TextEditor from './editor';
 import Seasons from './seasons';
 import Currency from './currency';
 import Membership from './membership';
+import Export from './export';
+import Import from './import';
 
 export default class Fields extends Component {
 	constructor(props) {
@@ -279,8 +281,17 @@ export default class Fields extends Component {
 
 			// Currency Fields
 			case ('currency'):
-				console.log(info);
 				returnVal = <Currency info={info} savedValue={fieldValue} {...this.props} />;
+				break;
+
+			// Export Fields
+			case ('export'):
+				returnVal = <Export info={info} savedValue={fieldValue} {...this.props} />;
+				break;
+
+			// Import Fields
+			case ('import'):
+				returnVal = <Import info={info} savedValue={fieldValue} {...this.props} />;
 				break;
 
 			// Demo Fields

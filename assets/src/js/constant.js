@@ -51,7 +51,10 @@ export const manaMainSetting = {
 
     SEASONAL_PRICE: 'seasonalPrice',
 
-    MEMBERSHIP: 'membership'
+    MEMBERSHIP: 'membership',
+
+    EXPORT: 'export',
+    IMPORT: 'import',
 };
 
 export const manaRoomSettings = {
