@@ -42,7 +42,9 @@ const prodPlugins = [frontCSSPlugin, adminCSSPlugin, browserSync, momentPlugin];
 const extractConfig = {
 	use: [
 		// "postcss" loader applies autoprefixer to our CSS.
-		{ loader: "raw-loader" },
+		{
+			loader: "raw-loader"
+		},
 		{
 			loader: "postcss-loader",
 			options: {
@@ -73,7 +75,6 @@ const extractConfig = {
 // Export configuration.
 module.exports = {
 	entry: {
-		"./assets/dist/js/index.build": path.resolve("assets/src/js/index.js"),
 		"./assets/dist/js/admin.build": path.resolve("assets/src/js/admin.js"),
 		"./assets/dist/js/blocks.build": path.resolve("assets/src/js/blocks.js"),
 		"./assets/dist/js/front.build": path.resolve("assets/src/js/front.js"),
@@ -107,8 +108,7 @@ module.exports = {
 	devtool: shouldUseSourceMap ? "source-map" : "",
 	// You may want 'eval' instead if you prefer to see the compiled output in DevTools.
 	module: {
-		rules: [
-			{
+		rules: [{
 				test: /\.js|.jsx$/,
 				exclude: /(node_modules|bower_components)/,
 				use: {

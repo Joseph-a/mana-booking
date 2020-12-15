@@ -1,4 +1,7 @@
 "use strict";
+// Import CSS
+import "../scss/admin.scss";
+
 // Main Settings
 import "./react/main-settings";
 
