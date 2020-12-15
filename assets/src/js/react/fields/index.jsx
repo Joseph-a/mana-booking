@@ -41,7 +41,9 @@ export default class Fields extends Component {
 		const { conditionalField } = this.state;
 		let newConditionalField = true;
 		if (info.conditional) {
-			let parentField = Object.keys(savedInfo).length === 0 ? generalInfo.filter(val => val.fieldIndex === info.conditional.ifField)[0].value : savedInfo[info.conditional.ifField];
+			let parentField = generalInfo && Object.keys(savedInfo).length === 0 ?
+				generalInfo.filter(val => val.fieldIndex === info.conditional.ifField).length > 0 ? generalInfo.filter(val => val.fieldIndex === info.conditional.ifField)[0].value : '' :
+				savedInfo[info.conditional.ifField];
 			newConditionalField = parentField === info.conditional.ifValue;
 		}
 		if (newConditionalField !== conditionalField) {

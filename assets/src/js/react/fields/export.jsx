@@ -29,7 +29,7 @@ const Export = (props) => {
         <div className="export-container">
             <div className="code">{settings}</div>
             <div className="btn-container">
-                <button className="button button-primary" onClick={e => downloadFile('mana-booking-settings.json', 'mana-booking-export-data', 'application/json')}>{__('Export as JSON file', 'mana-booking')}</button>
+                <button className="button button-primary" onClick={e => downloadFile('mana-booking-settings.json', 'mana_booking_main_setting', 'application/json')}>{__('Export as JSON file', 'mana-booking')}</button>
                 <button className="button button-primary" onClick={e => copyToClipboard(e)}>{__('Copy to Clipboard', 'mana-booking')}</button>
             </div>
         </div>

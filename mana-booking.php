@@ -740,66 +740,22 @@ class Mana_booking_main
 	public function mana_booking_sanitize_options($data)
 	{
 		$new_data     = array();
-		$int_fields   = array(
-			'vat',
-			'deposit',
-			'email_notification_status',
-			'default_currency',
-			'archive_page_layout',
-			'deposit_status',
-			'email_booking',
-			'paypal_booking',
-			'paymill_booking',
-			'stripe_booking',
-			'booking_archive_per_age',
-			'currency_separator',
-			'currency_decimal',
-			'currency_decimal_separator',
-			'rating_status',
-			'external_booking',
-			'external_booking_method',
-			'guest_receiver',
-			'room_base_price',
-			'listing_image_slider',
-		);
-		$text_fields  = array(
-			'main_slider',
-			'main_gallery',
-			'booking_url',
-			'paymill_private_key',
-			'paymill_public_key',
-			'stripe_publish_key',
-			'stripe_secret_key',
-			'final_booking_title',
-			'final_booking_subtitle',
-			'final_booking_desc',
-			'rating_item',
-			'wp_email_sender_name',
-			'paypal_default_currency',
-		);
-		$html_fields  = array('email_admin_tmpl', 'email_user_tmpl');
-		$email_fields = array('email_sender', 'email_receiver', 'paypal_email', 'wp_email_sender');
-		$url_fields   = array('condition_url', 'paypal_action_url', 'contact_url', 'external_booking_url');
+		$int_fields   = array();
+		$text_fields  = array('main_setting');
+		$html_fields  = array();
+		$email_fields = array();
+		$url_fields   = array();
 
 		foreach ($data as $index => $field) {
 			if (in_array($index, $email_fields)) {
-				if ($index !== 'email_receiver') {
-					$new_data[$index] = filter_var($field, FILTER_SANITIZE_EMAIL);
-				} else {
-					foreach ($field as $receiver_index => $receiver_email) {
-						$new_data[$index][$receiver_index] = filter_var($receiver_email, FILTER_SANITIZE_EMAIL);
-					}
+
+				foreach ($field as $receiver_index => $receiver_email) {
+					$new_data[$index][$receiver_index] = filter_var($receiver_email, FILTER_SANITIZE_EMAIL);
 				}
 			}
 
 			if (in_array($index, $text_fields)) {
-				if ($index === 'rating_item') {
-					foreach ($field as $item_index => $item_value) {
-						$new_data[$index][$item_index] = filter_var($item_value, FILTER_SANITIZE_STRING);
-					}
-				} else {
-					$new_data[$index] = filter_var($field, FILTER_SANITIZE_STRING);
-				}
+				$new_data[$index] = filter_var($field, FILTER_SANITIZE_STRING);
 			}
 
 			if (in_array($index, $html_fields)) {
@@ -812,64 +768,6 @@ class Mana_booking_main
 
 			if (in_array($index, $int_fields)) {
 				$new_data[$index] = filter_var($field, FILTER_SANITIZE_NUMBER_INT);
-			}
-
-			if ($index === 'currency') {
-				foreach ($field as $curr_index => $curr_val) {
-					if (!empty($curr_val['title']) || !empty($curr_val['symbol']) || !empty($curr_val['position'])) {
-						$new_data[$index][$curr_index]['title']  = filter_var($curr_val['title'], FILTER_SANITIZE_STRING);
-						$new_data[$index][$curr_index]['symbol'] = filter_var($curr_val['symbol'], FILTER_SANITIZE_STRING);
-						$new_data[$index][$curr_index]['rate']   = filter_var($curr_val['rate'], FILTER_SANITIZE_NUMBER_FLOAT, FILTER_FLAG_ALLOW_FRACTION);
-
-						if (!empty($curr_val['position'])) {
-							$new_data[$index][$curr_index]['position'] = filter_var($curr_val['position'], FILTER_SANITIZE_NUMBER_INT);
-						}
-					}
-				}
-			}
-
-			if ($index === 'social_icons') {
-				foreach ($field as $social_index => $social_val) {
-					$new_data[$index][$social_index] = filter_var($social_val, FILTER_SANITIZE_STRING);
-				}
-			}
-
-			if ($index === 'client') {
-				foreach ($field as $client_index => $client_val) {
-					if (!empty($client_val['title']) || !empty($client_val['url']) || !empty($client_val['logo'])) {
-						$new_data[$index][$client_index]['title'] = filter_var($client_val['title'], FILTER_SANITIZE_STRING);
-						$new_data[$index][$client_index]['url']   = filter_var($client_val['url'], FILTER_SANITIZE_URL);
-						$new_data[$index][$client_index]['logo']  = filter_var($client_val['logo'], FILTER_SANITIZE_NUMBER_INT);
-					}
-				}
-			}
-
-			if ($index === 'membership') {
-				foreach ($field as $membership_index => $membership_val) {
-					if (!empty($membership_val['title']) || !empty($membership_val['badge']) || !empty($membership_val['condition']) || !empty($membership_val['discount'])) {
-						$new_data[$index][$membership_index]['title']                  = filter_var($membership_val['title'], FILTER_SANITIZE_STRING);
-						$new_data[$index][$membership_index]['badge']                  = filter_var($membership_val['badge'], FILTER_SANITIZE_NUMBER_INT);
-						$new_data[$index][$membership_index]['condition']              = filter_var($membership_val['condition'], FILTER_SANITIZE_NUMBER_INT);
-						$new_data[$index][$membership_index]['single-condition-price'] = filter_var($membership_val['single-condition-price'], FILTER_SANITIZE_NUMBER_INT);
-						$new_data[$index][$membership_index]['single-condition-item']  = filter_var($membership_val['single-condition-item'], FILTER_SANITIZE_NUMBER_INT);
-						$new_data[$index][$membership_index]['condition-price']        = filter_var($membership_val['condition-price'], FILTER_SANITIZE_NUMBER_INT);
-						$new_data[$index][$membership_index]['condition-item']         = filter_var($membership_val['condition-item'], FILTER_SANITIZE_NUMBER_INT);
-						$new_data[$index][$membership_index]['condition-type']         = filter_var($membership_val['condition-type'], FILTER_SANITIZE_NUMBER_INT);
-						$new_data[$index][$membership_index]['discount']               = filter_var($membership_val['discount'], FILTER_SANITIZE_NUMBER_INT);
-					}
-				}
-			}
-
-			if ($index === 'seasonal_price') {
-				foreach ($field as $season_index => $season_val) {
-					if (!empty($season_val['title']) || !empty($season_val['from']) || !empty($season_val['to']) || !empty($season_val['type']) || !empty($season_val['percent'])) {
-						$new_data[$index][$season_index]['title']   = filter_var($season_val['title'], FILTER_SANITIZE_STRING);
-						$new_data[$index][$season_index]['type']    = filter_var($season_val['type'], FILTER_SANITIZE_NUMBER_INT);
-						$new_data[$index][$season_index]['from']    = filter_var($season_val['from'], FILTER_SANITIZE_STRING);
-						$new_data[$index][$season_index]['to']      = filter_var($season_val['to'], FILTER_SANITIZE_STRING);
-						$new_data[$index][$season_index]['percent'] = filter_var($season_val['percent'], FILTER_SANITIZE_NUMBER_INT);
-					}
-				}
 			}
 
 			if (function_exists('icl_get_languages') && $index === 'condition_url') {

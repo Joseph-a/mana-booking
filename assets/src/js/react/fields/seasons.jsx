@@ -13,7 +13,8 @@ export default class Seasons extends Component {
 
     outputGenerator = (index, val, field) => {
         const { info, savedValue } = this.props;
-        let newVal = { ...savedValue, [index]: { ...savedValue[index], [field]: val } };
+        let newVal = [...savedValue];
+        newVal[index][field] = val;
 
         this.props.onFieldChanged(info.fieldIndex, newVal);
     }

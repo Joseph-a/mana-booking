@@ -13,7 +13,7 @@ const SingleRepeater = (props) => {
             {
                 savedValue.map((item, index) => {
                     return (
-                        <div className={`repeater-row box-${field.length}`} key={index}>
+                        <div className={`repeater-row single`} key={index}>
                             <input
                                 type={field.type}
                                 value={item || ''}

@@ -26,7 +26,6 @@ export default class ManaBookingMainSettings extends Component {
 
     onFieldChanged = (fieldIndex, val) => {
         let savedSetting = { ...this.state.savedSetting, [fieldIndex]: val };
-        console.log(savedSetting);
         this.setState({
             savedSetting
         })

@@ -9,7 +9,7 @@ $options_str = wp_json_encode($options);
 			<div id="mana-booking-main-setting-container"></div>
 			<form action="options.php" method="post" id="mana-options-setting-form">
 				<?php settings_fields('mana-booking-setting'); ?>
-				<input type="hidden" name="mana-booking-setting" id="mana_booking_main_setting" value="<?php echo !empty($options_str) ? esc_attr($options_str) : '' ?>" />
+				<input type="hidden" name="mana-booking-setting[main_setting]" id="mana_booking_main_setting" value="<?php echo !empty($options['main_setting']) ? esc_attr($options['main_setting']) : '0' ?>" />
 				<?php submit_button(); ?>
 			</form>
 		</div>

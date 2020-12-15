@@ -13,7 +13,7 @@ export default class Membership extends Component {
 
     outputGenerator = (index, val, field) => {
         const { info, savedValue } = this.props;
-        let newVal = { ...savedValue };
+        let newVal = [...savedValue];
         newVal[index][field] = val;
 
         this.props.onFieldChanged(info.fieldIndex, newVal);

@@ -153,6 +153,15 @@
                                 width: 49%;
                             }
                         }
+
+                        &.single {
+                            display: block;
+
+                            .remove-item {
+                                display: inline-block;
+                                width: auto;
+                            }
+                        }
                     }
                 }
 

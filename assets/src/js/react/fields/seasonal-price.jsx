@@ -14,7 +14,8 @@ export default class SeasonalPrice extends Component {
 
     outputGenerator = (index, field, val) => {
         const { info, savedValue } = this.props;
-        let newVal = { ...savedValue, [index]: { ...savedValue[index], [field]: val } };
+        let newVal = [...savedValue];
+        newVal[index][field] = val;
 
         this.props.onFieldChanged(info.fieldIndex, newVal);
     }
