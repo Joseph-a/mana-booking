@@ -1,6 +1,10 @@
 #mana-booking-main-setting-container {
     @extend .room-settings-tabular;
-    margin: 10px 0 0 !important;
+    margin: 20px 0 0 !important;
+
+    .room-settings-tabular {
+        margin: 0;
+    }
 
     .tab-container {
         .tab {
@@ -122,6 +126,21 @@
     }
 }
 
+#mana-booking-main-setting-page {
+    .main-h1-box {
+        margin-top: 20px;
+
+        h1,
+        >form {
+            display: inline-block;
+            vertical-align: middle;
+        }
+
+        >form {
+            margin-left: 50px;
+        }
+    }
+}
 
 #mana-booking-setting-page {
     i {
@@ -633,6 +652,26 @@
 
         button {
             margin-right: 15px;
+        }
+    }
+}
+
+#mana-options-setting-form {
+    .submit {
+        margin: 0;
+        padding: 0;
+    }
+
+    input[type="submit"] {
+        background: $color-3;
+        border: 0;
+        box-shadow: none;
+        padding: 4px 25px;
+        text-transform: uppercase;
+        transition: all .5s ease;
+
+        &:hover {
+            background-color: darken($color-3, 10%);
         }
     }
 }

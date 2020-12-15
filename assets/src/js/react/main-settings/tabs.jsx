@@ -6,7 +6,7 @@ const Tabs = (props) => {
     return (
         <div className="tab-content-container">
             {
-                tabInfo.map((item, index) => <Fields generalInfo={generalInfo} info={item} key={index} savedInfo={savedSetting} onFieldChanged={(fieldIndex, val) => props.onFieldChanged(fieldIndex, val)} />)
+                tabInfo.map((item, index) => <Fields generalInfo={generalInfo} info={item} key={index} savedInfo={savedSetting} {...props} />)
             }
         </div>
     )

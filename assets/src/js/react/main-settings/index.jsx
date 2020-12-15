@@ -33,6 +33,10 @@ export default class ManaBookingMainSettings extends Component {
         document.getElementById('mana_booking_main_setting').value = JSON.stringify(savedSetting);
     }
 
+    getFieldValue = (index) => {
+        return this.state.savedSetting[index];
+    }
+
     render() {
         const { manaMainSettings, activeTab, savedSetting } = this.state;
         return (
@@ -57,7 +61,7 @@ export default class ManaBookingMainSettings extends Component {
                 </div>
                 <div className="tab-content">
                     {
-                        manaMainSettings.map((item, index) => index === activeTab && <Tabs generalInfo={manaMainSettings} savedSetting={savedSetting} key={index} tabIndex={index} onFieldChanged={(v, a) => this.onFieldChanged(v, a)} tabInfo={item.fields} />)
+                        manaMainSettings.map((item, index) => index === activeTab && <Tabs generalInfo={manaMainSettings} savedSetting={savedSetting} key={index} tabIndex={index} onFieldChanged={(v, a) => this.onFieldChanged(v, a)} tabInfo={item.fields} getFieldValue={i => this.getFieldValue(i)} />)
                     }
                 </div>
             </div>

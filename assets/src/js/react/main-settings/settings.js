@@ -221,12 +221,8 @@ export const manaMainSettings = [{
                 label: __('Paypal Default Currency', 'mana-booking'),
                 desc: __('If you set a "Current Currency" default currency for Paypal, total booking price will calculated based on the user-selected or current currency before sending to Paypal website.', 'mana-booking'),
                 fieldIndex: manaMainSetting.PAYPAL_DEFAULT_CURRENCY,
-                type: 'select',
-                options: [{
-                    label: __('Current Currency', 'mana-booking'),
-                    value: 'no_item'
-                }],
-                value: 'no_item',
+                type: 'currency-select',
+                value: '',
                 alertBox: __('If you set a default currency for Paypal, total booking price will be exchanged to this currency before sending to Paypal website.', 'mana-booking'),
                 conditional: {
                     ifField: manaMainSetting.BOOKING_BY_PAYPAL,

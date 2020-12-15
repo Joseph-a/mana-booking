@@ -34,7 +34,7 @@ export default class Currency extends Component {
                             onClick={() => {
                                 const newVal = Object.values(currencyList);
                                 newVal.splice(index, 1);
-                                this.props.outputGenerator(info.fieldIndex, { defaultCurrency, newVal });
+                                this.props.onFieldChanged(info.fieldIndex, { defaultCurrency, currencyList: newVal });
                             }}
                             className="remove-item"
                         >

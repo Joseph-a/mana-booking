@@ -1,5 +1,8 @@
 import React, { Component } from 'react';
 import { __ } from '@wordpress/i18n';
+import {
+	manaMainSetting
+} from '../../constant'
 
 import SimpleRepeater from './simple-repeater';
 import SingleRepeater from './single-repeater';
@@ -65,6 +68,32 @@ export default class Fields extends Component {
 						value={fieldValue}
 						onChange={e => this.props.onFieldChanged(info.fieldIndex, e.target.value)}
 					></textarea>;
+				break;
+
+			// Currency Select Field
+			case ('currency-select'):
+				let options = [{
+					label: __('Current Currency', 'mana-booking'),
+					value: 'no_item'
+				}],
+					currencyListValue = this.props.getFieldValue(manaMainSetting.CURRENCY_LIST);
+
+				if (currencyListValue) {
+					currencyListValue.currencyList.map(item => {
+						if (item.title) {
+							options.push({
+								label: item.title,
+								value: item.title
+							})
+						}
+					});
+				}
+				returnVal =
+					<select value={fieldValue} onChange={e => this.props.onFieldChanged(info.fieldIndex, e.target.value)}>
+						{
+							options.map((item, index) => <option key={index} value={item.value}>{item.label}</option>)
+						}
+					</select>;
 				break;
 
 			// Select Field
