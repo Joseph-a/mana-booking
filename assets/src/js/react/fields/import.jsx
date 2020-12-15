@@ -9,8 +9,9 @@ const Import = (props) => {
         e.preventDefault();
         if (newSetting !== '') {
             settings.value = newSetting;
-            // console.log(document.getElementById('mana-options-setting-form'));
-            // document.getElementById('mana-options-setting-form').submit();
+            let form = document.getElementById('mana-options-setting-form'),
+                submitFormFunction = Object.getPrototypeOf(form).submit;
+            submitFormFunction.call(form);
         }
     }
 
