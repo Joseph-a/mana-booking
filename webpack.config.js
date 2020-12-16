@@ -2,7 +2,6 @@ const path = require("path");
 const autoprefixer = require("autoprefixer");
 const ExtractTextPlugin = require("extract-text-webpack-plugin");
 const BrowserSyncPlugin = require("browser-sync-webpack-plugin");
-const MomentLocalesPlugin = require('moment-locales-webpack-plugin');
 const UglifyJSPlugin = require('uglifyjs-webpack-plugin');
 
 // Extract style.css for both editor and frontend styles.
@@ -10,14 +9,19 @@ const frontCSSPlugin = new ExtractTextPlugin({
 	filename: "./assets/dist/css/front.build.css",
 });
 
-// Extract editor.css for editor styles.
+// Extract admin.css for admin styles.
 const adminCSSPlugin = new ExtractTextPlugin({
 	filename: "./assets/dist/css/admin.build.css",
 });
 
-const SITE_NAME = "booking";
+// Extract blocks.css for blocks styles.
+const blocksCSSPlugin = new ExtractTextPlugin({
+	filename: "./assets/dist/css/blocks.build.css",
+});
+
+const SITE_NAME = "mana-booking";
 const HOST = "localhost";
-const PORT = 3000;
+const PORT = 80;
 const PROXY = `http://${HOST}/${SITE_NAME}`;
 
 const browserSync = new BrowserSyncPlugin({
@@ -30,13 +34,9 @@ const browserSync = new BrowserSyncPlugin({
 // Source maps are resource heavy and can cause out of memory issue for large source files.
 // const shouldUseSourceMap = process.env.SOURCEMAP === "true";
 const shouldUseSourceMap = false;
-const momentPlugin = new MomentLocalesPlugin({
-	localesToKeep: ['es-us', 'fa'],
-});
+const devPlugins = [frontCSSPlugin, adminCSSPlugin, blocksCSSPlugin, browserSync];
 
-const devPlugins = [frontCSSPlugin, adminCSSPlugin, browserSync, momentPlugin];
-
-const prodPlugins = [frontCSSPlugin, adminCSSPlugin, browserSync, momentPlugin];
+const prodPlugins = [frontCSSPlugin, adminCSSPlugin, blocksCSSPlugin, browserSync];
 
 // Configuration for the ExtractTextPlugin — DRY rule.
 const extractConfig = {
@@ -109,18 +109,9 @@ module.exports = {
 	// You may want 'eval' instead if you prefer to see the compiled output in DevTools.
 	module: {
 		rules: [{
-				test: /\.js|.jsx$/,
-				exclude: /(node_modules|bower_components)/,
-				use: {
-					loader: "babel-loader",
-				}
-			},
-			{
-				test: /\.json$/,
-				exclude: /(node_modules|bower_components)/,
-				use: {
-					loader: "json-loader"
-				}
+				test: /\.(js|jsx)$/,
+				exclude: /node_modules/,
+				use: ["babel-loader"]
 			},
 			{
 				test: /front\.s?css$/,
@@ -132,7 +123,15 @@ module.exports = {
 				exclude: /(node_modules|bower_components)/,
 				use: adminCSSPlugin.extract(extractConfig),
 			},
+			{
+				test: /blocks\.s?css$/,
+				exclude: /(node_modules|bower_components)/,
+				use: blocksCSSPlugin.extract(extractConfig),
+			},
 		],
+	},
+	resolve: {
+		extensions: ["*", ".js", ".jsx", ".json"]
 	},
 	// Add plugins.
 	plugins: "production" === process.env.MODE ? prodPlugins : devPlugins,

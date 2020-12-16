@@ -1,0 +1,10 @@
+{
+    "title": {
+        "default": "Find a Room",
+        "type": "string"
+    },
+    "desc": {
+        "default": "When you want to be our guest?",
+        "type": "string"
+    }
+}

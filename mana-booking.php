@@ -60,6 +60,14 @@ if (!defined('MANA_BOOKING_INCLUDES')) {
 	define('MANA_BOOKING_INCLUDES', MANA_BOOKING_PATH . 'inc/');
 }
 
+if (!defined('MANA_BOOKING_BLOCKS')) {
+	define('MANA_BOOKING_BLOCKS', MANA_BOOKING_PATH . 'blocks/');
+}
+
+if (!defined('MANA_BOOKING_BLOCK_CATEGORY')) {
+	define('MANA_BOOKING_BLOCK_CATEGORY', 'mana-booking');
+}
+
 if (!defined('MANA_BOOKING_TPL')) {
 	define('MANA_BOOKING_TPL', MANA_BOOKING_PATH . 'tpl/');
 }
@@ -136,6 +144,14 @@ require_once MANA_BOOKING_INCLUDES . 'user.class.php';
  * ------------------------------------------------------------------------------------------
  */
 require_once MANA_BOOKING_INCLUDES . 'coupon.class.php';
+
+/**
+ * ------------------------------------------------------------------------------------------
+ * Gutenberg blocks class
+ * ------------------------------------------------------------------------------------------
+ */
+require_once MANA_BOOKING_INCLUDES . 'blocks.class.php';
+$mana_booking_blocks_obj = new Mana_booking_blocks();
 
 /**
  * ------------------------------------------------------------------------------------------
