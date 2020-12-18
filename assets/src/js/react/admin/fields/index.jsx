@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { __ } from '@wordpress/i18n';
 import {
 	manaMainSetting
-} from '../../constant'
+} from '../../../constant'
 
 import SimpleRepeater from './simple-repeater';
 import SingleRepeater from './single-repeater';

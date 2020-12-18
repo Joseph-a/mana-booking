@@ -4,7 +4,7 @@
         "type": "string"
     },
     "desc": {
-        "default": "When you want to be our guest?",
+        "default": "When do you want to be our guest?",
         "type": "string"
     }
 }

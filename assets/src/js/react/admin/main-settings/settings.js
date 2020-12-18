@@ -3,7 +3,7 @@ import {
 } from '@wordpress/i18n';
 import {
     manaMainSetting
-} from '../../constant'
+} from '../../../constant'
 
 export const manaMainSettings = [{
         label: __('General', 'mana-booking'),

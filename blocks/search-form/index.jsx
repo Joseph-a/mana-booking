@@ -25,7 +25,7 @@ export default registerBlockType(`${wp_mana_booking_php.block_category}/search-f
     edit: props => {
         const { attributes, setAttributes } = props;
         return (
-            <div className="block-mana-search-form">
+            <div className="mana-booking-search-form-container">
                 <RichText
                     tagName="h3"
                     className="text-center"
@@ -38,8 +38,8 @@ export default registerBlockType(`${wp_mana_booking_php.block_category}/search-f
                     }}
                 />
                 <RichText
-                    tagName="h5"
-                    className="text-center"
+                    tagName="div"
+                    className="desc"
                     placeholder={__("Description")}
                     value={attributes.desc || " "}
                     onChange={desc => {

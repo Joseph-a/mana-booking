@@ -3,7 +3,7 @@ import {
 } from '@wordpress/i18n';
 import {
 	manaRoomSettings
-} from '../../constant'
+} from '../../../constant'
 
 
 export const roomSettings = [{

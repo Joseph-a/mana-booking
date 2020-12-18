@@ -3,13 +3,13 @@
 import "../scss/admin.scss";
 
 // Main Settings
-import "./react/main-settings";
+import "./react/admin/main-settings";
 
 // Meta Boxes
-import "./react/room-meta";
-import "./react/block-dates";
-import "./react/coupon";
-import "./react/service";
+import "./react/admin/room-meta";
+import "./react/admin/block-dates";
+import "./react/admin/coupon";
+import "./react/admin/service";
 
 
 // jQuery.fn.digits = function()

@@ -542,14 +542,14 @@ class Mana_booking_main
 			wp_reset_postdata();
 		}
 
-		wp_enqueue_script('mana-booking-front-js', MANA_BOOKING_JS_PATH . 'front.min.js', array('jquery'), MANA_BOOKING_VERSION, true);
+		wp_enqueue_script('mana-booking-front-js', MANA_BOOKING_JS_PATH . 'front.build.js', array('jquery'), MANA_BOOKING_VERSION, true);
 		wp_localize_script('mana-booking-front-js', 'mana_booking_front', array(
 			'ajaxurl'     => esc_url(admin_url('admin-ajax.php')),
 			'redirecturl' => esc_url(home_url($wp->request)),
 			'plg_base'    => MANA_BOOKING_BASE_URL,
 		));
 
-		wp_enqueue_style('mana-booking-front-style', MANA_BOOKING_CSS_PATH . 'styles.css');
+		wp_enqueue_style('mana-booking-front-style', MANA_BOOKING_CSS_PATH . 'front.build.css');
 	}
 
 	public function mana_booking_init_meta_boxes()

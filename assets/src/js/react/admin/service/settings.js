@@ -3,7 +3,7 @@ import {
 } from '@wordpress/i18n';
 import {
 	manaServiceSettings
-} from '../../constant'
+} from '../../../constant'
 
 export const serviceSettings = [{
 		label: __('Load in Shortcode', 'mana-booking'),

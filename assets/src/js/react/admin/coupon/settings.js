@@ -3,7 +3,7 @@ import {
 } from '@wordpress/i18n';
 import {
 	manaCouponSettings
-} from '../../constant'
+} from '../../../constant'
 
 export const couponSettings = [{
 		label: __('Description', 'mana-booking'),

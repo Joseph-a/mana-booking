@@ -3,7 +3,7 @@ import {
 } from '@wordpress/i18n';
 import {
 	manaBlockDatesSettings
-} from '../../constant'
+} from '../../../constant'
 
 export const blockDatesSettings = [{
 		label: __('Start / End date', 'mana-booking'),
