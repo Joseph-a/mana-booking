@@ -57,6 +57,14 @@ class Mana_booking_get_info
         $room_info = array();
         $p_id = Mana_booking_get_info::translated_post_id($p_id);
 
+
+        $room_info_meta_json = get_post_meta($p_id, 'mana_booking_room_meta_info', true);
+        $room_info_meta = json_decode($room_info_meta_json, true);
+
+        echo '<pre>';
+        var_dump($room_info_meta);
+        echo '</pre>';
+
         /**
          * ------------------------------------------------------------------------------------------
          *  Basic Details
@@ -65,7 +73,6 @@ class Mana_booking_get_info
         $room_meta_box_prefix = 'mana_booking_room_';
         $room_info['id'] = $p_id;
         $room_info['title'] = get_the_title($p_id);
-        $room_info['subtitle'] = get_post_meta($p_id, $room_meta_box_prefix . 'subtitle', true);
         $room_info['description']['wp'] = get_extended(get_post_field('post_content', $p_id));
         $room_info['url'] = get_permalink($p_id);
         $room_info['category'] = get_the_terms($p_id, 'room-category');
@@ -75,12 +82,13 @@ class Mana_booking_get_info
          *  Room extra information
          * ------------------------------------------------------------------------------------------
          */
-        $room_info['description']['short'] = get_post_meta($p_id, $room_meta_box_prefix . 'short_desc', true);
-        $room_info['count'] = get_post_meta($p_id, $room_meta_box_prefix . 'count', true);
-        $room_info['capacity'] = get_post_meta($p_id, $room_meta_box_prefix . 'capacity', true);
+        $room_info['description']['short'] = $room_info_meta['shortDesc'];
+        $room_info['count'] = $room_info_meta['roomCount'];
+        $room_info['capacity']['main'] = $room_info_meta['capacity']['main'];
+        $room_info['capacity']['extra'] = $room_info_meta['capacity']['extra'];
         $room_info['max_people'] = intval($room_info['capacity']['main']) + intval($room_info['capacity']['extra']);
-        $room_info['min_stay'] = get_post_meta($p_id, $room_meta_box_prefix . 'min_stay', true);
-        $room_size = get_post_meta($p_id, $room_meta_box_prefix . 'room_size', true);
+        $room_info['min_stay'] = $room_info_meta['minStay'];
+        $room_size = $room_info_meta['roomSize'];
 
         if (gettype($room_size) === 'string') {
             $room_size = array(
@@ -91,22 +99,19 @@ class Mana_booking_get_info
 
         $room_info['room_size']['qnt'] = $room_size['value'];
         $room_info['room_size']['unit'] = $room_size['unit'] === 'm2' ? 'm<sup>2</sup>' : $room_size['unit'];
-        $room_info['room_view'] = get_post_meta($p_id, $room_meta_box_prefix . 'room_view', true);
-        $room_info['facilities'] = get_post_meta($p_id, $room_meta_box_prefix . 'facilities', true);
-        $room_info['service'] = get_post_meta($p_id, $room_meta_box_prefix . 'service', true);
+        $room_info['room_view'] = $room_info_meta['view'];
+        $room_info['facilities'] = $room_info_meta['facility'];
+        $room_info['service'] = $room_info_meta['service'];
 
         /**
          * ------------------------------------------------------------------------------------------
          *  Room Gallery
          * ------------------------------------------------------------------------------------------
          */
-        $room_images = get_post_meta($p_id, $room_meta_box_prefix . 'gallery', true);
-        $room_thumb_arr = array();
-        $trimmed_image_val = trim($room_images);
-        if (!empty($trimmed_image_val)) {
-            $room_thumb_arr = explode('---', $room_images);
+        $room_images = $room_info_meta['gallery'];
+        if (!empty($room_images)) {
             $i = 0;
-            foreach ($room_thumb_arr as $room_image) {
+            foreach ($room_images as $room_image) {
                 $room_image = trim($room_image);
                 $room_info['gallery']['img'][$i]['id'] = $room_image;
                 $room_info['gallery']['img'][$i]['url'] = wp_get_attachment_url($room_image);
@@ -117,7 +122,7 @@ class Mana_booking_get_info
                 $i++;
             }
         }
-        $room_info['gallery']['count'] = (!empty($room_info) ? count($room_thumb_arr) : 0);
+        $room_info['gallery']['count'] = (!empty($room_images) ? count($room_images) : 0);
 
         /**
          * ------------------------------------------------------------------------------------------
@@ -568,16 +573,19 @@ class Mana_booking_get_info
         $block_date_info['title'] = get_the_title($p_id);
         $block_date_info['url'] = get_permalink($p_id);
 
-        $block_date_meta_box_prefix = 'mana_booking_block_dates_';
-        $block_date_info['from']['full_date'] = get_post_meta($p_id, $block_date_meta_box_prefix . 'from', true);
-        $block_date_info['from']['timestamp'] = strtotime($block_date_info['from']['full_date']);
-        $block_date_info['to']['full_date'] = get_post_meta($p_id, $block_date_meta_box_prefix . 'to', true);
-        $block_date_info['to']['timestamp'] = strtotime($block_date_info['to']['full_date']);
-        $block_date_info['duration'] = ($block_date_info['to']['timestamp'] - $block_date_info['from']['timestamp']) / (24 * 60 * 60);
-        $block_rooms = get_post_meta($p_id, $block_date_meta_box_prefix . 'blocked_rooms', true);
+        $block_date_info_meta_json = get_post_meta($p_id, 'mana_booking_block_dates_meta_info', true);
+        $block_date_info_meta = json_decode($block_date_info_meta_json, true);
+        $block_date_info['from'] = $block_date_info_meta['period']['start'];
+        $block_date_info['to'] = $block_date_info_meta['period']['end'];
+
+        $from_date = date_create($block_date_info['from']);
+        $to_date = date_create($block_date_info['to']);
+        $duration = date_diff($from_date, $to_date);
+
+        $block_date_info['duration'] = $duration->format("%a");
+        $block_rooms = $block_date_info_meta['rooms'];
 
         if (!empty($block_rooms)) {
-            $room_info['title'] = get_the_title($p_id);
             foreach ($block_rooms as $index => $room) {
                 $block_date_info['blocked_rooms'][$index]['id'] = $room;
                 $block_date_info['blocked_rooms'][$index]['title'] = get_the_title($room);
