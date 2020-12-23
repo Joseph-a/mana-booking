@@ -24,11 +24,11 @@
 	<form id="room-information-form">
 		<div class="input-daterange">
 			<div class="field-row">
-				<input placeholder="{{bookingAppVar.check_in}}" class="datepicker-fields check-in" type="text" name="start" value="{{bookingInfo.checkIn ? generateDate(bookingInfo.checkIn) : ''}}" ng-model="bookingInfo.checkIn" ng-change="updateSearchResult()"/>
+				<input placeholder="{{bookingAppVar.check_in}}" class="datepicker-fields check-in" type="text" name="start" value="{{bookingInfo.checkIn ? generateDate(bookingInfo.checkIn) : ''}}" ng-model="bookingInfo.checkIn" ng-change="updateSearchResult()" />
 				<i class="fa fa-calendar"></i>
 			</div>
 			<div class="field-row">
-				<input placeholder="{{bookingAppVar.check_out}}" class="datepicker-fields check-out" type="text" name="end" value="{{bookingInfo.checkOut ? generateDate(bookingInfo.checkOut) : ''}}" ng-model="bookingInfo.checkOut" ng-change="updateSearchResult()"/>
+				<input placeholder="{{bookingAppVar.check_out}}" class="datepicker-fields check-out" type="text" name="end" value="{{bookingInfo.checkOut ? generateDate(bookingInfo.checkOut) : ''}}" ng-model="bookingInfo.checkOut" ng-change="updateSearchResult()" />
 				<i class="fa fa-calendar"></i>
 			</div>
 		</div>

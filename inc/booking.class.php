@@ -8,8 +8,8 @@ class Mana_booking_booking_process
     public function __construct()
     {
         $this->mana_booking_option = get_option('mana-booking-setting');
-        $booking_param              = (!empty($this->mana_booking_option['booking_url']) ? $this->mana_booking_option['booking_url'] : 'mana-booking');
-        $this->mana_booking_param  = $booking_param;
+        $booking_param = (!empty($this->mana_booking_option['booking_url']) ? $this->mana_booking_option['booking_url'] : 'mana-booking');
+        $this->mana_booking_param = $booking_param;
 
         add_filter('body_class', array($this, 'add_body_class'));
         add_action('init', array($this, 'booking_page'));
@@ -89,54 +89,54 @@ class Mana_booking_booking_process
     {
         global $wpdb;
         if (check_ajax_referer('mana-booking-security-str', 'security')) {
-            $check_in       = !empty($_REQUEST['data']['checkIn']) ? sanitize_text_field($_REQUEST['data']['checkIn']) : '';
-            $check_out      = !empty($_REQUEST['data']['checkOut']) ? sanitize_text_field($_REQUEST['data']['checkOut']) : '';
-            $adult          = !empty($_REQUEST['data']['adult']) ? intval($_REQUEST['data']['adult']) : '';
-            $child          = !empty($_REQUEST['data']['child']) ? intval($_REQUEST['data']['child']) : '';
-            $total_guests   = $adult + $child;
-            $duration       = (strtotime($check_out) - strtotime($check_in)) / 86400;
-            $lang           = !empty($_REQUEST['data']['lang']) ? sanitize_text_field($_REQUEST['data']['lang']) : '';
+            $check_in = !empty($_REQUEST['data']['checkIn']) ? sanitize_text_field($_REQUEST['data']['checkIn']) : '';
+            $check_out = !empty($_REQUEST['data']['checkOut']) ? sanitize_text_field($_REQUEST['data']['checkOut']) : '';
+            $adult = !empty($_REQUEST['data']['adult']) ? intval($_REQUEST['data']['adult']) : '';
+            $child = !empty($_REQUEST['data']['child']) ? intval($_REQUEST['data']['child']) : '';
+            $total_guests = $adult + $child;
+            $duration = (strtotime($check_out) - strtotime($check_in)) / 86400;
+            $lang = !empty($_REQUEST['data']['lang']) ? sanitize_text_field($_REQUEST['data']['lang']) : '';
             $selected_rooms = !empty($_REQUEST['data']['rooms']) ? sanitize_text_field($_REQUEST['data']['rooms']) : '';
 
             if (!empty($check_in) && !empty($check_out) && $total_guests !== 0) {
                 $available_room_info = array();
-                $get_info_obj        = new Mana_booking_get_info();
-                $table_name          = $wpdb->prefix . 'mana_booking';
+                $get_info_obj = new Mana_booking_get_info();
+                $table_name = $wpdb->prefix . 'mana_booking';
 
                 /**
                  * Check the block dates
                  */
-                $block_date_args  = array(
-                    'post_type'   => 'block_dates',
+                $block_date_args = array(
+                    'post_type' => 'block_dates',
                     'post_status' => 'publish',
-                    'order'       => 'DESC',
-                    'orderby'     => 'date',
-                    'nopaging'    => true,
-                    'meta_query'  => array(
+                    'order' => 'DESC',
+                    'orderby' => 'date',
+                    'nopaging' => true,
+                    'meta_query' => array(
                         'relation' => 'OR',
                         array(
                             'relation' => 'AND',
                             array(
-                                'key'     => 'mana_booking_block_dates_from',
-                                'value'   => $check_in,
+                                'key' => 'mana_booking_block_dates_from',
+                                'value' => $check_in,
                                 'compare' => '<='
                             ),
                             array(
-                                'key'     => 'mana_booking_block_dates_to',
-                                'value'   => $check_in,
+                                'key' => 'mana_booking_block_dates_to',
+                                'value' => $check_in,
                                 'compare' => '>='
                             )
                         ),
                         array(
                             'relation' => 'AND',
                             array(
-                                'key'     => 'mana_booking_block_dates_from',
-                                'value'   => $check_in,
+                                'key' => 'mana_booking_block_dates_from',
+                                'value' => $check_in,
                                 'compare' => '>='
                             ),
                             array(
-                                'key'     => 'mana_booking_block_dates_from',
-                                'value'   => $check_out,
+                                'key' => 'mana_booking_block_dates_from',
+                                'value' => $check_out,
                                 'compare' => '<='
                             )
                         )
@@ -148,7 +148,7 @@ class Mana_booking_booking_process
                     $block_rooms_info = array();
                     while ($block_dates_list->have_posts()) {
                         $block_dates_list->the_post();
-                        $block_date_id   = get_the_ID();
+                        $block_date_id = get_the_ID();
                         $block_date_info = $get_info_obj->block_date_info($block_date_id);
                         if (!empty($block_date_info['blocked_rooms'])) {
                             foreach ($block_date_info['blocked_rooms'] as $blocked_room) {
@@ -159,18 +159,18 @@ class Mana_booking_booking_process
                     wp_reset_postdata();
                 }
 
-                $room_args       = array(
-                    'post_type'   => 'rooms',
+                $room_args = array(
+                    'post_type' => 'rooms',
                     'post_status' => 'publish',
-                    'order'       => 'DESC',
-                    'orderby'     => 'date',
-                    'nopaging'    => true,
+                    'order' => 'DESC',
+                    'orderby' => 'date',
+                    'nopaging' => true,
                 );
                 $room_list_query = new WP_Query($room_args);
                 if ($room_list_query->have_posts()) {
                     while ($room_list_query->have_posts()) {
                         $room_list_query->the_post();
-                        $room_id   = Mana_booking_get_info::original_post_id(get_the_ID());
+                        $room_id = Mana_booking_get_info::original_post_id(get_the_ID());
                         $room_info = $get_info_obj->room_info($room_id, $check_in, $check_out, $duration, $adult, $child, $lang);
 
                         $room_capacity = $room_info['capacity']['main'] + $room_info['capacity']['extra'];
@@ -218,7 +218,7 @@ class Mana_booking_booking_process
 
                         $prev_booked_room = 0;
                         foreach ($prev_bookings as $prev_booking) {
-                            $prev_room_count  = substr_count($prev_booking, $room_id);
+                            $prev_room_count = substr_count($prev_booking, $room_id);
                             $prev_booked_room += $prev_room_count;
                         }
                         $prev_selected_room = !empty($selected_rooms) ? substr_count(get_the_ID() . ',', $selected_rooms) : 0;
@@ -234,23 +234,23 @@ class Mana_booking_booking_process
 
                 if (!empty($available_room_info)) {
                     $return_value['status'] = true;
-                    $return_value['rooms']  = $available_room_info;
+                    $return_value['rooms'] = $available_room_info;
                 } else {
-                    $return_value['status']  = false;
+                    $return_value['status'] = false;
                     $return_value['message'] = esc_html__('No Room Available', 'mana-booking');
                 }
 
                 echo json_encode($return_value);
                 die();
             } else {
-                $return_value['status']  = false;
+                $return_value['status'] = false;
                 $return_value['message'] = esc_html__('Please choose the correct information.', 'mana-booking');
 
                 echo json_encode($return_value);
                 die();
             }
         } else {
-            $return_value['status']  = false;
+            $return_value['status'] = false;
             $return_value['message'] = esc_html__('Your are cheating!', 'mana-booking');
 
             echo json_encode($return_value);
@@ -261,9 +261,9 @@ class Mana_booking_booking_process
     public function insert_booking()
     {
         global $wpdb;
-        $currency_obj     = new Mana_booking_currency();
+        $currency_obj = new Mana_booking_currency();
         $current_currency = $currency_obj->get_current_currency();
-        $table_name       = $wpdb->prefix . 'mana_booking';
+        $table_name = $wpdb->prefix . 'mana_booking';
         $booking_info_obj = json_decode(json_encode($_POST['bookingInfo']));;
 
         $room_id_str = '';
@@ -310,7 +310,7 @@ class Mana_booking_booking_process
                 )));
 
                 if ($wpdb->num_rows > 0) {
-                    $return_value['status']  = false;
+                    $return_value['status'] = false;
                     $return_value['message'] = esc_html__('You have already booked, after checking your information, your booking will be finalized.', 'mana-booking');
 
                     echo json_encode($return_value);
@@ -322,22 +322,22 @@ class Mana_booking_booking_process
                         $payment_method = 2;
                     }
                     $inserted_booking = $wpdb->insert($table_name, array(
-                        'f_name'           => sanitize_text_field($booking_info_obj->fname),
-                        'l_name'           => sanitize_text_field($booking_info_obj->lname),
-                        'phone'            => sanitize_text_field($booking_info_obj->phone),
-                        'email'            => sanitize_email($booking_info_obj->email),
-                        'address'          => sanitize_text_field($booking_info_obj->address),
-                        'requirements'     => sanitize_text_field($booking_info_obj->requirements),
-                        'rooms'            => trim($room_id_str, ','),
-                        'check_in'         => date('Y-m-d', strtotime($booking_info_obj->checkIn)),
-                        'check_out'        => date('Y-m-d', strtotime($booking_info_obj->checkOut)),
-                        'payment_method'   => intval($payment_method),
-                        'total_price'      => filter_var($booking_info_obj->totalBookingPrice, FILTER_SANITIZE_NUMBER_FLOAT, FILTER_FLAG_ALLOW_FRACTION),
-                        'vat'              => filter_var($booking_info_obj->vat, FILTER_SANITIZE_NUMBER_FLOAT, FILTER_FLAG_ALLOW_FRACTION),
-                        'duration'         => intval($booking_info_obj->duration),
-                        'weekends'         => intval($booking_info_obj->weekends),
-                        'booking_info'     => serialize($booking_info_obj),
-                        'user_id'          => intval($booking_info_obj->userID),
+                        'f_name' => sanitize_text_field($booking_info_obj->fname),
+                        'l_name' => sanitize_text_field($booking_info_obj->lname),
+                        'phone' => sanitize_text_field($booking_info_obj->phone),
+                        'email' => sanitize_email($booking_info_obj->email),
+                        'address' => sanitize_text_field($booking_info_obj->address),
+                        'requirements' => sanitize_text_field($booking_info_obj->requirements),
+                        'rooms' => trim($room_id_str, ','),
+                        'check_in' => date('Y-m-d', strtotime($booking_info_obj->checkIn)),
+                        'check_out' => date('Y-m-d', strtotime($booking_info_obj->checkOut)),
+                        'payment_method' => intval($payment_method),
+                        'total_price' => filter_var($booking_info_obj->totalBookingPrice, FILTER_SANITIZE_NUMBER_FLOAT, FILTER_FLAG_ALLOW_FRACTION),
+                        'vat' => filter_var($booking_info_obj->vat, FILTER_SANITIZE_NUMBER_FLOAT, FILTER_FLAG_ALLOW_FRACTION),
+                        'duration' => intval($booking_info_obj->duration),
+                        'weekends' => intval($booking_info_obj->weekends),
+                        'booking_info' => serialize($booking_info_obj),
+                        'user_id' => intval($booking_info_obj->userID),
                         'booking_currency' => serialize($current_currency),
                     ), array(
                         '%s',
@@ -368,15 +368,15 @@ class Mana_booking_booking_process
                                 if (!empty($this->mana_booking_option['paypal_booking'])) {
                                     $payable_price = $booking_info_obj->totalBookingPrice;
                                     if ($booking_info_obj->paymentPriceMethod === '2' && !empty($this->mana_booking_option['deposit_status'])) {
-                                        $user_deposit  = !empty($this->mana_booking_option['deposit']) ? esc_html($this->mana_booking_option['deposit']) : 20;
+                                        $user_deposit = !empty($this->mana_booking_option['deposit']) ? esc_html($this->mana_booking_option['deposit']) : 20;
                                         $payable_price = ($payable_price * $user_deposit) / 100;
                                     }
 
-                                    $invoice_table    = $wpdb->prefix . 'mana_invoice';
+                                    $invoice_table = $wpdb->prefix . 'mana_invoice';
                                     $inserted_invoice = $wpdb->insert($invoice_table, array(
-                                        'booking_id'       => intval($booking_id),
-                                        'price'            => filter_var($payable_price, FILTER_SANITIZE_NUMBER_FLOAT, FILTER_FLAG_ALLOW_FRACTION),
-                                        'user_id'          => intval($booking_info_obj->userID),
+                                        'booking_id' => intval($booking_id),
+                                        'price' => filter_var($payable_price, FILTER_SANITIZE_NUMBER_FLOAT, FILTER_FLAG_ALLOW_FRACTION),
+                                        'user_id' => intval($booking_info_obj->userID),
                                         'booking_currency' => serialize($current_currency),
                                     ), array(
                                         '%d',
@@ -392,10 +392,10 @@ class Mana_booking_booking_process
                                         $paypal_default_currency = $this->mana_booking_option['paypal_default_currency'];
                                         if ($paypal_default_currency !== 'no_item') {
                                             $paypal_default_currency_info = $currency_obj->get_currency_info($paypal_default_currency);
-                                            $payable_price                = $currency_obj->price_exchanger($payable_price, $paypal_default_currency_info);
+                                            $payable_price = $currency_obj->price_exchanger($payable_price, $paypal_default_currency_info);
                                         }
 
-                                        $return_value['status']      = true;
+                                        $return_value['status'] = true;
                                         $return_value['paymentForm'] = '
 												<form id="paypal-form" method="post" action="' . (!empty($this->mana_booking_option['paypal_action_url']) ? esc_html($this->mana_booking_option['paypal_action_url']) : '') . '">
 													<input type="hidden" name="business" value="' . (!empty($this->mana_booking_option['paypal_email']) ? esc_html($this->mana_booking_option['paypal_email']) : '') . '">
@@ -407,13 +407,13 @@ class Mana_booking_booking_process
 													<input type="hidden" name="return" value="' . home_url() . '?booking-notification&booking=' . esc_attr($booking_id) . '&invoice=' . esc_attr($invoice_id) . '&status=confirmed">
 												</form>';
                                     } else {
-                                        $return_value['status']  = false;
+                                        $return_value['status'] = false;
                                         $return_value['message'] = esc_html__('Because of some technical issues, your booking was not proceed. Please try again.', 'mana-booking');
                                     }
                                     echo json_encode($return_value);
                                     die();
                                 } else {
-                                    $return_value['status']  = false;
+                                    $return_value['status'] = false;
                                     $return_value['message'] = esc_html__('Paypal payment is disabled on your website.', 'mana-booking');
 
                                     echo json_encode($return_value);
@@ -424,15 +424,15 @@ class Mana_booking_booking_process
                                 if (!empty($this->mana_booking_option['paymill_booking'])) {
                                     $payable_price = $booking_info_obj->totalBookingPrice;
                                     if ($booking_info_obj->paymentPriceMethod === '2' && !empty($this->mana_booking_option['deposit_status'])) {
-                                        $user_deposit  = !empty($this->mana_booking_option['deposit']) ? esc_html($this->mana_booking_option['deposit']) : 20;
+                                        $user_deposit = !empty($this->mana_booking_option['deposit']) ? esc_html($this->mana_booking_option['deposit']) : 20;
                                         $payable_price = ($payable_price * $user_deposit) / 100;
                                     }
 
-                                    $invoice_table    = $wpdb->prefix . 'mana_invoice';
+                                    $invoice_table = $wpdb->prefix . 'mana_invoice';
                                     $inserted_invoice = $wpdb->insert($invoice_table, array(
-                                        'booking_id'       => intval($booking_id),
-                                        'price'            => filter_var($payable_price, FILTER_SANITIZE_NUMBER_FLOAT, FILTER_FLAG_ALLOW_FRACTION),
-                                        'user_id'          => intval($booking_info_obj->userID),
+                                        'booking_id' => intval($booking_id),
+                                        'price' => filter_var($payable_price, FILTER_SANITIZE_NUMBER_FLOAT, FILTER_FLAG_ALLOW_FRACTION),
+                                        'user_id' => intval($booking_info_obj->userID),
                                         'booking_currency' => serialize($current_currency),
                                     ), array(
                                         '%d',
@@ -445,7 +445,7 @@ class Mana_booking_booking_process
                                         $invoice_id = $wpdb->insert_id;
                                         $wpdb->update($table_name, array('invoice_id' => $invoice_id), array('id' => $booking_id), array('%d'), array('%d'));
 
-                                        $return_value['status']      = true;
+                                        $return_value['status'] = true;
                                         $return_value['paymentForm'] = '
 												<form id="paymill-form" action="#" method="POST" data-invoice="' . esc_attr($invoice_id) . '" data-ajax-url="' . esc_url(admin_url('admin-ajax.php')) . '">
 													<input class="security-code" type="hidden" value="' . wp_create_nonce('paymill_form_security') . '" />
@@ -485,13 +485,13 @@ class Mana_booking_booking_process
 													})
 												</script>';
                                     } else {
-                                        $return_value['status']  = false;
+                                        $return_value['status'] = false;
                                         $return_value['message'] = esc_html__('Because of some technical issues, your booking was not proceed. Please try again.', 'mana-booking');
                                     }
                                     echo json_encode($return_value);
                                     die();
                                 } else {
-                                    $return_value['status']  = false;
+                                    $return_value['status'] = false;
                                     $return_value['message'] = esc_html__('Paypal payment is disabled on your website.', 'mana-booking');
 
                                     echo json_encode($return_value);
@@ -502,15 +502,15 @@ class Mana_booking_booking_process
                                 if (!empty($this->mana_booking_option['stripe_booking'])) {
                                     $payable_price = $booking_info_obj->totalBookingPrice;
                                     if ($booking_info_obj->paymentPriceMethod === '2' && !empty($this->mana_booking_option['deposit_status'])) {
-                                        $user_deposit  = !empty($this->mana_booking_option['deposit']) ? esc_html($this->mana_booking_option['deposit']) : 20;
+                                        $user_deposit = !empty($this->mana_booking_option['deposit']) ? esc_html($this->mana_booking_option['deposit']) : 20;
                                         $payable_price = ($payable_price * $user_deposit) / 100;
                                     }
 
-                                    $invoice_table    = $wpdb->prefix . 'mana_invoice';
+                                    $invoice_table = $wpdb->prefix . 'mana_invoice';
                                     $inserted_invoice = $wpdb->insert($invoice_table, array(
-                                        'booking_id'       => intval($booking_id),
-                                        'price'            => filter_var($payable_price, FILTER_SANITIZE_NUMBER_FLOAT, FILTER_FLAG_ALLOW_FRACTION),
-                                        'user_id'          => intval($booking_info_obj->userID),
+                                        'booking_id' => intval($booking_id),
+                                        'price' => filter_var($payable_price, FILTER_SANITIZE_NUMBER_FLOAT, FILTER_FLAG_ALLOW_FRACTION),
+                                        'user_id' => intval($booking_info_obj->userID),
                                         'booking_currency' => serialize($current_currency),
                                     ), array(
                                         '%d',
@@ -523,7 +523,7 @@ class Mana_booking_booking_process
                                         $invoice_id = $wpdb->insert_id;
                                         $wpdb->update($table_name, array('invoice_id' => $invoice_id), array('id' => $booking_id), array('%d'), array('%d'));
 
-                                        $return_value['status']      = true;
+                                        $return_value['status'] = true;
                                         $return_value['paymentForm'] = '
 												<form id="stripe-form" action="#" method="POST" data-invoice="' . esc_attr($invoice_id) . '" data-ajax-url="' . esc_url(admin_url('admin-ajax.php')) . '">
 													<input class="security-code" type="hidden" value="' . wp_create_nonce('stripe_form_security') . '" />
@@ -577,13 +577,13 @@ class Mana_booking_booking_process
 													})
 												</script>';
                                     } else {
-                                        $return_value['status']  = false;
+                                        $return_value['status'] = false;
                                         $return_value['message'] = esc_html__('Because of some technical issues, your booking was not proceed. Please try again.', 'mana-booking');
                                     }
                                     echo json_encode($return_value);
                                     die();
                                 } else {
-                                    $return_value['status']  = false;
+                                    $return_value['status'] = false;
                                     $return_value['message'] = esc_html__('Paypal payment is disabled on your website.', 'mana-booking');
 
                                     echo json_encode($return_value);
@@ -591,7 +591,7 @@ class Mana_booking_booking_process
                                 }
                                 break;
                             default:
-                                $return_value['status']  = true;
+                                $return_value['status'] = true;
                                 $return_value['message'] = esc_html__('Thanks for your booking, after checking your information, your booking will be finalized.', 'mana-booking');
                                 break;
                         }
@@ -599,7 +599,7 @@ class Mana_booking_booking_process
                         echo json_encode($return_value);
                         die();
                     } else {
-                        $return_value['status']  = false;
+                        $return_value['status'] = false;
                         $return_value['message'] = esc_html__('Because of some technical issues, your booking was not successful, please try again.', 'mana-booking');
 
                         echo json_encode($return_value);
@@ -607,14 +607,14 @@ class Mana_booking_booking_process
                     }
                 }
             } else {
-                $return_value['status']  = false;
+                $return_value['status'] = false;
                 $return_value['message'] = esc_html__('Please provide all the required information.', 'mana-booking');
 
                 echo json_encode($return_value);
                 die();
             }
         } else {
-            $return_value['status']  = false;
+            $return_value['status'] = false;
             $return_value['message'] = esc_html__('Your are cheating!', 'mana-booking');
 
             echo json_encode($return_value);
@@ -626,25 +626,25 @@ class Mana_booking_booking_process
     {
         $status = false;
         if (!empty($this->mana_booking_option['email_notification_status'])) {
-            $currency_obj     = new Mana_booking_currency();
-            $get_info_obj     = new Mana_booking_get_info();
-            $user_deposit     = $this->mana_booking_option['deposit'];
+            $currency_obj = new Mana_booking_currency();
+            $get_info_obj = new Mana_booking_get_info();
+            $user_deposit = $this->mana_booking_option['deposit'];
             $user_deposit_val = ($booking_info_obj->totalBookingPrice * $user_deposit) / 100;
 
             if (defined('ICL_LANGUAGE_CODE') && !empty($language)) {
-                $room_tbl_title      = apply_filters('wpml_translate_single_string', 'Room Title', 'mana-booking', 'room_tbl_title', $language);
-                $room_tbl_adult      = apply_filters('wpml_translate_single_string', 'Adult', 'mana-booking', 'room_tbl_adult', $language);
-                $room_tbl_child      = apply_filters('wpml_translate_single_string', 'Child', 'mana-booking', 'room_tbl_child', $language);
-                $room_tbl_price      = apply_filters('wpml_translate_single_string', 'Price', 'mana-booking', 'room_tbl_price', $language);
+                $room_tbl_title = apply_filters('wpml_translate_single_string', 'Room Title', 'mana-booking', 'room_tbl_title', $language);
+                $room_tbl_adult = apply_filters('wpml_translate_single_string', 'Adult', 'mana-booking', 'room_tbl_adult', $language);
+                $room_tbl_child = apply_filters('wpml_translate_single_string', 'Child', 'mana-booking', 'room_tbl_child', $language);
+                $room_tbl_price = apply_filters('wpml_translate_single_string', 'Price', 'mana-booking', 'room_tbl_price', $language);
                 $room_tbl_serv_title = apply_filters('wpml_translate_single_string', 'Title', 'mana-booking', 'room_tbl_serv_title', $language);
             } else {
-                $room_tbl_title      = esc_html__('Room Title', 'mana-booking');
-                $room_tbl_adult      = esc_html__('Adult', 'mana-booking');
-                $room_tbl_child      = esc_html__('Child', 'mana-booking');
-                $room_tbl_price      = esc_html__('Price', 'mana-booking');
+                $room_tbl_title = esc_html__('Room Title', 'mana-booking');
+                $room_tbl_adult = esc_html__('Adult', 'mana-booking');
+                $room_tbl_child = esc_html__('Child', 'mana-booking');
+                $room_tbl_price = esc_html__('Price', 'mana-booking');
                 $room_tbl_serv_title = esc_html__('Title', 'mana-booking');
             }
-            $room_tmpl        = '
+            $room_tmpl = '
 					<table>
 						<tr>
 							<th>#</th>
@@ -653,7 +653,7 @@ class Mana_booking_booking_process
 							<th>' . esc_html($room_tbl_child) . '</th>
 							<th>' . esc_html($room_tbl_price) . '</th>
 						</tr>';
-            $room_i       = 1;
+            $room_i = 1;
             foreach ($booking_info_obj->room as $room_item) {
                 $room_price = $room_item->priceDetails->total->payable;
                 $room_tmpl .= '
@@ -693,11 +693,11 @@ class Mana_booking_booking_process
 					</table>';
 
             $email_sender = (!empty($this->mana_booking_option['email_sender']) ? $this->mana_booking_option['email_sender'] : get_option('admin_email'));
-            $headers      = 'MIME-Version: 1.0' . "\r\n";
+            $headers = 'MIME-Version: 1.0' . "\r\n";
             $headers .= 'Content-type:text/html;charset=UTF-8' . "\r\n";
             $headers .= 'From: "' . get_bloginfo('name') . '" <' . $email_sender . '>';
 
-            $link_shortcodes   = array(
+            $link_shortcodes = array(
                 '[guest-first-name]',
                 '[guest-last-name]',
                 '[guest-email]',
@@ -728,14 +728,14 @@ class Mana_booking_booking_process
 
             switch ($receiver) {
                 case ('guest'):
-                    $body   = str_replace($link_shortcodes, $link_replace_text, $this->mana_booking_option['email_user_tmpl']);
-                    $subj   = esc_html__('Your Booking has been confirmed.', 'mana-booking');
+                    $body = str_replace($link_shortcodes, $link_replace_text, $this->mana_booking_option['email_user_tmpl']);
+                    $subj = esc_html__('Your Booking has been confirmed.', 'mana-booking');
                     $status = wp_mail($booking_info_obj->email, $subj, $body, $headers);
                     break;
                 case ('admin'):
-                    $body                = str_replace($link_shortcodes, $link_replace_text, $this->mana_booking_option['email_admin_tmpl']);
+                    $body = str_replace($link_shortcodes, $link_replace_text, $this->mana_booking_option['email_admin_tmpl']);
                     $multiple_recipients = (!empty($this->mana_booking_option['email_receiver']) ? $this->mana_booking_option['email_receiver'] : '');
-                    $subj                = esc_html__('New Booking Information was in your website', 'mana-booking');
+                    $subj = esc_html__('New Booking Information was in your website', 'mana-booking');
 
                     if (!empty($this->mana_booking_option['guest_receiver']) && !empty($booking_info_obj->email)) {
                         $multiple_recipients[] = $booking_info_obj->email;
@@ -758,19 +758,19 @@ class Mana_booking_booking_process
         global $wpdb;
         $table_name = $wpdb->prefix . 'mana_booking';
         $booking_id = (!empty($_REQUEST['id']) ? intval($_REQUEST['id']) : '');
-        $security   = (!empty($_REQUEST['security']) ? sanitize_text_field($_REQUEST['security']) : '');
-        $language   = isset($_REQUEST['lang']) ? sanitize_text_field($_REQUEST['lang']) : '';
+        $security = (!empty($_REQUEST['security']) ? sanitize_text_field($_REQUEST['security']) : '');
+        $language = isset($_REQUEST['lang']) ? sanitize_text_field($_REQUEST['lang']) : '';
 
         if (!empty($booking_id) && wp_verify_nonce($security, 'booking-update-status')) {
-            $get_info_obj        = new Mana_booking_get_info();
-            $booking_info        = $get_info_obj->booking_info($booking_id);
+            $get_info_obj = new Mana_booking_get_info();
+            $booking_info = $get_info_obj->booking_info($booking_id);
             $booking_information = $wpdb->get_var($wpdb->prepare('SELECT `confirmed` FROM ' . $table_name . ' WHERE id=%s', $booking_id));
             if ($booking_information === '1') {
-                $updated_row           = $wpdb->update($table_name, array('confirmed' => '0'), array('id' => $booking_id), array('%d'), array('%d'));
+                $updated_row = $wpdb->update($table_name, array('confirmed' => '0'), array('id' => $booking_id), array('%d'), array('%d'));
                 $return_value['class'] = 'not-confirmed';
             } else {
                 $this->email_notification($booking_info['booking_info'], 'guest', $booking_info['currency'], $language);
-                $updated_row           = $wpdb->update($table_name, array('confirmed' => '1'), array('id' => $booking_id), array('%d'), array('%d'));
+                $updated_row = $wpdb->update($table_name, array('confirmed' => '1'), array('id' => $booking_id), array('%d'), array('%d'));
                 $return_value['class'] = 'confirmed';
             }
             if (!empty($updated_row)) {
@@ -791,7 +791,7 @@ class Mana_booking_booking_process
         global $wpdb;
         $table_name = $wpdb->prefix . 'mana_booking';
         $booking_id = (!empty($_REQUEST['id']) ? intval($_REQUEST['id']) : '');
-        $security   = (!empty($_REQUEST['security']) ? sanitize_text_field($_REQUEST['security']) : '');
+        $security = (!empty($_REQUEST['security']) ? sanitize_text_field($_REQUEST['security']) : '');
         if (!empty($booking_id) && wp_verify_nonce($security, 'booking-delete-item')) {
             $booking_information = $wpdb->get_var($wpdb->prepare('SELECT * FROM ' . $table_name . ' WHERE id=%s', $booking_id));
             if (!empty($booking_information)) {
@@ -816,13 +816,13 @@ class Mana_booking_booking_process
     {
         global $wpdb;
 
-        $start_date   = sanitize_text_field($_POST['start']);
-        $end_date     = sanitize_text_field($_POST['end']);
-        $front_end    = !empty($_POST['frontEnd']) ? true : false;
+        $start_date = sanitize_text_field($_POST['start']);
+        $end_date = sanitize_text_field($_POST['end']);
+        $front_end = !empty($_POST['frontEnd']) ? true : false;
         $currency_obj = new Mana_booking_currency();
 
         // Get the Booking items
-        $table_name     = $wpdb->prefix . 'mana_booking';
+        $table_name = $wpdb->prefix . 'mana_booking';
         $booking_result = $wpdb->get_results($wpdb->prepare("
 									SELECT * FROM  $table_name
 									WHERE check_in >= %s
@@ -837,13 +837,13 @@ class Mana_booking_booking_process
         if (!empty($booking_result)) {
             $result = array();
             foreach ($booking_result as $booking_item) {
-                $booking_info  = unserialize($booking_item->booking_info);
+                $booking_info = unserialize($booking_item->booking_info);
                 $currency_info = unserialize($booking_item->booking_currency);
-                $room_info     = $booking_info->room;
-                $total_guest   = $booking_info->totalGuest;
-                $total_price   = $currency_obj->price_generator_no_exchange($booking_info->totalBookingPrice, $currency_info);
-                $user_id       = $booking_item->user_id;
-                $room_str      = '';
+                $room_info = $booking_info->room;
+                $total_guest = $booking_info->totalGuest;
+                $total_price = $currency_obj->price_generator_no_exchange($booking_info->totalBookingPrice, $currency_info);
+                $user_id = $booking_item->user_id;
+                $room_str = '';
                 foreach ($room_info as $room_item) {
                     $room_str .= $room_item->roomTitle . ',';
                 }
@@ -860,7 +860,7 @@ class Mana_booking_booking_process
                 $result[] = array(
                     'title' => $box_title,
                     'start' => $booking_item->check_in,
-                    'end'   => $booking_item->check_out
+                    'end' => $booking_item->check_out
                 );
             }
         }
@@ -873,49 +873,49 @@ class Mana_booking_booking_process
     public function room_overview()
     {
         global $wpdb;
-        $get_info_obj    = new Mana_booking_get_info();
-        $start_date      = sanitize_text_field($_POST['start']);
-        $end_date        = sanitize_text_field($_POST['end']);
-        $room_id         = intval($_POST['roomID']);
-        $room_count      = get_post_meta($room_id, 'mana_booking_room_count', true);
-        $table_name      = $wpdb->prefix . 'mana_booking';
+        $get_info_obj = new Mana_booking_get_info();
+        $start_date = sanitize_text_field($_POST['start']);
+        $end_date = sanitize_text_field($_POST['end']);
+        $room_id = intval($_POST['roomID']);
+        $room_count = get_post_meta($room_id, 'mana_booking_room_count', true);
+        $table_name = $wpdb->prefix . 'mana_booking';
         $start_date_time = strtotime($start_date);
-        $end_date_time   = strtotime($end_date);
-        $i               = 1;
-        $today           = gettimeofday();
+        $end_date_time = strtotime($end_date);
+        $i = 1;
+        $today = gettimeofday();
 
         while ($start_date_time < $end_date_time) {
-            $block_date_args  = array(
-                'post_type'   => 'block_dates',
+            $block_date_args = array(
+                'post_type' => 'block_dates',
                 'post_status' => 'publish',
-                'order'       => 'DESC',
-                'orderby'     => 'date',
-                'nopaging'    => true,
-                'meta_query'  => array(
+                'order' => 'DESC',
+                'orderby' => 'date',
+                'nopaging' => true,
+                'meta_query' => array(
                     'relation' => 'OR',
                     array(
                         'relation' => 'AND',
                         array(
-                            'key'     => 'mana_booking_block_dates_from',
-                            'value'   => $start_date,
+                            'key' => 'mana_booking_block_dates_from',
+                            'value' => $start_date,
                             'compare' => '<='
                         ),
                         array(
-                            'key'     => 'mana_booking_block_dates_to',
-                            'value'   => $start_date,
+                            'key' => 'mana_booking_block_dates_to',
+                            'value' => $start_date,
                             'compare' => '>='
                         )
                     ),
                     array(
                         'relation' => 'AND',
                         array(
-                            'key'     => 'mana_booking_block_dates_from',
-                            'value'   => $start_date,
+                            'key' => 'mana_booking_block_dates_from',
+                            'value' => $start_date,
                             'compare' => '>='
                         ),
                         array(
-                            'key'     => 'mana_booking_block_dates_from',
-                            'value'   => $end_date,
+                            'key' => 'mana_booking_block_dates_from',
+                            'value' => $end_date,
                             'compare' => '<='
                         )
                     )
@@ -927,7 +927,7 @@ class Mana_booking_booking_process
             if ($block_dates_list->have_posts()) {
                 while ($block_dates_list->have_posts()) {
                     $block_dates_list->the_post();
-                    $block_date_id   = get_the_ID();
+                    $block_date_id = get_the_ID();
                     $block_date_info = $get_info_obj->block_date_info($block_date_id);
                     if (!empty($block_date_info['blocked_rooms'])) {
                         if ($block_date_info['from']['timestamp'] <= $start_date_time && $block_date_info['to']['timestamp'] >= $start_date_time) {
@@ -956,10 +956,10 @@ class Mana_booking_booking_process
             )));
             if ($booking_result >= $room_count || in_array($start_date_time, $block_data_array)) {
                 $result[] = array(
-                    'id'        => $i,
-                    'title'     => esc_html__('Not Available', 'mana-booking'),
-                    'start'     => date('Y-m-d', $start_date_time),
-                    'end'       => date('Y-m-d', ($start_date_time + 86400)),
+                    'id' => $i,
+                    'title' => esc_html__('Not Available', 'mana-booking'),
+                    'start' => date('Y-m-d', $start_date_time),
+                    'end' => date('Y-m-d', ($start_date_time + 86400)),
                     'rendering' => 'background'
                 );
             } else {
@@ -973,10 +973,10 @@ class Mana_booking_booking_process
                     }
 
                     $result[] = array(
-                        'id'    => $i,
+                        'id' => $i,
                         'title' => $price_title,
                         'start' => date('Y-m-d', $start_date_time),
-                        'end'   => date('Y-m-d', ($start_date_time + 86400)),
+                        'end' => date('Y-m-d', ($start_date_time + 86400)),
                     );
                 }
             }
@@ -994,15 +994,15 @@ class Mana_booking_booking_process
         global $wpdb;
         $table_name = $wpdb->prefix . 'mana_invoice';
         $invoice_id = (!empty($_REQUEST['invoice']) ? intval($_REQUEST['invoice']) : '');
-        $token      = (!empty($_REQUEST['token']) ? sanitize_text_field($_REQUEST['token']) : '');
-        $security   = (!empty($_REQUEST['security']) ? sanitize_text_field($_REQUEST['security']) : '');
+        $token = (!empty($_REQUEST['token']) ? sanitize_text_field($_REQUEST['token']) : '');
+        $security = (!empty($_REQUEST['security']) ? sanitize_text_field($_REQUEST['security']) : '');
 
         if (!empty($invoice_id) && wp_verify_nonce($security, 'paymill_form_security')) {
             $invoice_info = $wpdb->get_row($wpdb->prepare('SELECT * FROM ' . $table_name . ' WHERE id=%s', $invoice_id));
             if (!empty($invoice_info)) {
                 $updated_row = $wpdb->update($table_name, array(
                     'status' => '1',
-                    'token'  => $token
+                    'token' => $token
                 ), array('id' => $invoice_id), array('%d', '%s'), array('%d'));
 
                 if (!empty($updated_row)) {
@@ -1023,12 +1023,12 @@ class Mana_booking_booking_process
     {
         global $wpdb;
         $return_value = null;
-        $table_name   = $wpdb->prefix . 'mana_invoice';
-        $invoice_id   = (!empty($_REQUEST['invoice']) ? intval($_REQUEST['invoice']) : '');
-        $token        = (!empty($_REQUEST['token']) ? sanitize_text_field($_REQUEST['token']) : '');
-        $security     = (!empty($_REQUEST['security']) ? sanitize_text_field($_REQUEST['security']) : '');
-        $amount       = (!empty($_REQUEST['amount']) ? sanitize_text_field($_REQUEST['amount']) : '');
-        $currency     = (!empty($_REQUEST['currency']) ? sanitize_text_field($_REQUEST['currency']) : '');
+        $table_name = $wpdb->prefix . 'mana_invoice';
+        $invoice_id = (!empty($_REQUEST['invoice']) ? intval($_REQUEST['invoice']) : '');
+        $token = (!empty($_REQUEST['token']) ? sanitize_text_field($_REQUEST['token']) : '');
+        $security = (!empty($_REQUEST['security']) ? sanitize_text_field($_REQUEST['security']) : '');
+        $amount = (!empty($_REQUEST['amount']) ? sanitize_text_field($_REQUEST['amount']) : '');
+        $currency = (!empty($_REQUEST['currency']) ? sanitize_text_field($_REQUEST['currency']) : '');
 
         if (!empty($token) && !empty($invoice_id) && wp_verify_nonce($security, 'stripe_form_security')) {
             require_once 'stripe/init.php';
@@ -1036,16 +1036,16 @@ class Mana_booking_booking_process
             \Stripe\Stripe::setApiKey($this->mana_booking_option['stripe_secret_key']);
             try {
                 \Stripe\Charge::create(array(
-                    'amount'   => $amount,
+                    'amount' => $amount,
                     'currency' => $currency,
-                    'source'   => $token
+                    'source' => $token
                 ));
 
                 $invoice_info = $wpdb->get_row($wpdb->prepare('SELECT * FROM ' . $table_name . ' WHERE id=%s', $invoice_id));
                 if (!empty($invoice_info)) {
                     $updated_row = $wpdb->update($table_name, array(
                         'status' => '1',
-                        'token'  => $token
+                        'token' => $token
                     ), array('id' => $invoice_id), array('%d', '%s'), array('%d'));
 
                     if (!empty($updated_row)) {
@@ -1057,10 +1057,10 @@ class Mana_booking_booking_process
                     $return_value['status'] = false;
                 }
             } catch (\Stripe\Error\Api $e) {
-                $return_value['status']  = false;
+                $return_value['status'] = false;
                 $return_value['message'] = $e->getMessage();
             } catch (\Stripe\Error\Card $e) {
-                $return_value['status']  = false;
+                $return_value['status'] = false;
                 $return_value['message'] = $e->getMessage();
             }
         }

@@ -1,7 +1,7 @@
 <?php
-    $currency_obj      = new Mana_booking_currency();
-    $current_user_info = wp_get_current_user();
-    $current_user_meta = get_user_meta($current_user_info->ID);
+$currency_obj = new Mana_booking_currency();
+$current_user_info = wp_get_current_user();
+$current_user_meta = get_user_meta($current_user_info->ID);
 ?>
 <div class="personal-information">
 	<div class="inner-container clearfix">
@@ -49,38 +49,34 @@
 			<div class="membership-info-container">
 				<ul>
 					<?php
-                        if (!empty($current_user_meta['membership'][0]))
-                        {
-                            $membership_info = unserialize($current_user_meta['membership'][0]);
-                            if (!empty($membership_info['badge']))
-                            {
-                                $img_info    = wp_get_attachment_url($membership_info['badge']);
-                                $img_preview = (!empty($img_info) ? '<div class="image-preview-box"><img src="' . esc_url($img_info) . '"/></div>' : '');
-                            } ?>
-							<li><?php echo wp_kses_post($img_preview) ?></li>
-							<?php
-                        }
-                        if (!empty($current_user_meta['total_booking_price'][0]))
-                        {
-                            $mana_options         = get_option('mana-booking-setting');
-                            $default_currency      = $mana_options['default_currency'];
-                            $default_currency_info = $mana_options['currency'][ $default_currency ]; ?>
-							<li>
-								<div class="title"><?php esc_html_e('Total Booking Price :', 'mana-booking') ?></div>
-								<div class="value"><?php echo esc_html($currency_obj->price_generator_no_exchange($current_user_meta['total_booking_price'][0], $default_currency_info)) ?></div>
-							</li>
-							<?php
-                        }
-                        if (!empty($current_user_meta['total_booking_item'][0]))
-                        {
-                            ?>
-							<li>
-								<div class="title"><?php esc_html_e('Total Booking Item :', 'mana-booking') ?></div>
-								<div class="value"><?php echo esc_html($current_user_meta['total_booking_item'][0]) ?></div>
-							</li>
-							<?php
-                        }
-                    ?>
+					if (!empty($current_user_meta['membership'][0])) {
+						$membership_info = unserialize($current_user_meta['membership'][0]);
+						if (!empty($membership_info['badge'])) {
+							$img_info = wp_get_attachment_url($membership_info['badge']);
+							$img_preview = (!empty($img_info) ? '<div class="image-preview-box"><img src="' . esc_url($img_info) . '"/></div>' : '');
+						} ?>
+						<li><?php echo wp_kses_post($img_preview) ?></li>
+					<?php
+					}
+					if (!empty($current_user_meta['total_booking_price'][0])) {
+						$mana_options = get_option('mana-booking-setting');
+						$default_currency = $mana_options['default_currency'];
+						$default_currency_info = $mana_options['currency'][$default_currency]; ?>
+						<li>
+							<div class="title"><?php esc_html_e('Total Booking Price :', 'mana-booking') ?></div>
+							<div class="value"><?php echo esc_html($currency_obj->price_generator_no_exchange($current_user_meta['total_booking_price'][0], $default_currency_info)) ?></div>
+						</li>
+					<?php
+					}
+					if (!empty($current_user_meta['total_booking_item'][0])) {
+					?>
+						<li>
+							<div class="title"><?php esc_html_e('Total Booking Item :', 'mana-booking') ?></div>
+							<div class="value"><?php echo esc_html($current_user_meta['total_booking_item'][0]) ?></div>
+						</li>
+					<?php
+					}
+					?>
 				</ul>
 			</div>
 		</div>

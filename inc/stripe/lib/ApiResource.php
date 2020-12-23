@@ -76,7 +76,7 @@ abstract class ApiResource extends StripeObject
         if ($id === null) {
             $class = get_called_class();
             $message = "Could not determine which URL to request: "
-               . "$class instance has invalid ID: $id";
+                . "$class instance has invalid ID: $id";
             throw new Error\InvalidRequest($message, null);
         }
         $id = Util\Util::utf8($id);
@@ -97,9 +97,9 @@ abstract class ApiResource extends StripeObject
     {
         if ($params && !is_array($params)) {
             $message = "You must pass an array as the first argument to Stripe API "
-               . "method calls.  (HINT: an example call to create a charge "
-               . "would be: \"Stripe\\Charge::create(array('amount' => 100, "
-               . "'currency' => 'usd', 'source' => 'tok_1234'))\")";
+                . "method calls.  (HINT: an example call to create a charge "
+                . "would be: \"Stripe\\Charge::create(array('amount' => 100, "
+                . "'currency' => 'usd', 'source' => 'tok_1234'))\")";
             throw new Error\Api($message);
         }
     }

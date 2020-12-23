@@ -21,7 +21,7 @@ abstract class Util
             return false;
         }
 
-      // TODO: generally incorrect, but it's correct given Stripe's response
+        // TODO: generally incorrect, but it's correct given Stripe's response
         foreach (array_keys($array) as $k) {
             if (!is_numeric($k)) {
                 return false;
@@ -203,9 +203,9 @@ abstract class Util
 
             if ($prefix) {
                 if ($k !== null && (!is_int($k) || is_array($v))) {
-                    $k = $prefix."[".$k."]";
+                    $k = $prefix . "[" . $k . "]";
                 } else {
-                    $k = $prefix."[]";
+                    $k = $prefix . "[]";
                 }
             }
 
@@ -215,7 +215,7 @@ abstract class Util
                     $r[] = $enc;
                 }
             } else {
-                $r[] = urlencode($k)."=".urlencode($v);
+                $r[] = urlencode($k) . "=" . urlencode($v);
             }
         }
 

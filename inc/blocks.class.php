@@ -21,10 +21,10 @@ class Mana_booking_blocks
 
         // JS Variables
         $jsVars = array(
-            'theme_uri'  => get_template_directory_uri(),
-            'home_page'  => home_url(),
-            'ajax_url'   => admin_url('admin-ajax.php'),
-            'post_type'  => get_post_type(),
+            'theme_uri' => get_template_directory_uri(),
+            'home_page' => home_url(),
+            'ajax_url' => admin_url('admin-ajax.php'),
+            'post_type' => get_post_type(),
             'block_category' => MANA_BOOKING_BLOCK_CATEGORY
         );
         wp_localize_script('mana-booking-gutenberg-js', 'wp_mana_booking_php', $jsVars);
@@ -54,17 +54,17 @@ class Mana_booking_blocks
         foreach (glob(MANA_BOOKING_BLOCKS . '*/render.php') as $file) {
             include $file;
             $block_path = dirname($file);
-            $block_id   = basename($block_path);
+            $block_id = basename($block_path);
 
-            $block_name      = MANA_BOOKING_BLOCK_CATEGORY . '/' . $block_id;
-            $block_callback  = 'mana_booking_block_' . str_replace('-', '_', $block_id);
+            $block_name = MANA_BOOKING_BLOCK_CATEGORY . '/' . $block_id;
+            $block_callback = 'mana_booking_block_' . str_replace('-', '_', $block_id);
             $attributes_file = file_get_contents($block_path . '/config.json');
-            $attributes      = json_decode($attributes_file);
+            $attributes = json_decode($attributes_file);
 
             if (function_exists($block_callback)) {
                 register_block_type($block_name, array(
                     'render_callback' => $block_callback,
-                    'attributes'      => $this->recursive_cast_to_array($attributes),
+                    'attributes' => $this->recursive_cast_to_array($attributes),
                 ));
             }
         }

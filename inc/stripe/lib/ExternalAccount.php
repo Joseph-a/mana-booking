@@ -22,7 +22,7 @@ abstract class ExternalAccount extends ApiResource
         if (!$id) {
             $class = get_class($this);
             $msg = "Could not determine which URL to request: $class instance "
-             . "has invalid ID: $id";
+                . "has invalid ID: $id";
             throw new Error\InvalidRequest($msg, null);
         }
 

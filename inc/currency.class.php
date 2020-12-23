@@ -18,7 +18,7 @@ class Mana_booking_currency
 
     public function update_currency()
     {
-        $currency_count   = count($this->mana_booking_option['currency']);
+        $currency_count = count($this->mana_booking_option['currency']);
         $default_currency = $this->mana_booking_option['default_currency'];
         if ($currency_count > 1) {
             $default_currency_info = $this->mana_booking_option['currency'][$default_currency];
@@ -26,10 +26,10 @@ class Mana_booking_currency
                 if ($default_currency_info['title'] === $currency_item['title']) {
                     $currency_array[$index] = 1;
                 } else {
-                    $currency_index           = $default_currency_info['title'] . '_' . $currency_item['title'];
-                    $get                      = file_get_contents('http://free.currencyconverterapi.com/api/v5/convert?q=' . $currency_index . '&compact=y');
-                    $return_val               = json_decode($get);
-                    $converted_currency       = $return_val->$currency_index->val;
+                    $currency_index = $default_currency_info['title'] . '_' . $currency_item['title'];
+                    $get = file_get_contents('http://free.currencyconverterapi.com/api/v5/convert?q=' . $currency_index . '&compact=y');
+                    $return_val = json_decode($get);
+                    $converted_currency = $return_val->$currency_index->val;
                     $currency_array[$index] = !empty($converted_currency) ? $converted_currency : 0;
                 }
             }
@@ -42,7 +42,7 @@ class Mana_booking_currency
     public function set_currency_cookie()
     {
         if (!empty($this->mana_booking_option['currency'])) {
-            $current_currency  = !empty($_COOKIE['currencyTitle']) ? $_COOKIE['currencyTitle'] : '';
+            $current_currency = !empty($_COOKIE['currencyTitle']) ? $_COOKIE['currencyTitle'] : '';
             $currency_is_valid = false;
 
             if (!empty($this->mana_booking_option['currency'])) {
@@ -68,18 +68,18 @@ class Mana_booking_currency
 
     public function set_currency_cookie_ajax()
     {
-        $currency_obj     = new Mana_booking_currency();
-        $currency         = is_string($_POST['currency']) ? $_POST['currency'] : '';
-        $currentCurreny   = $currency_obj->get_current_currency();
-        $result           = array();
+        $currency_obj = new Mana_booking_currency();
+        $currency = is_string($_POST['currency']) ? $_POST['currency'] : '';
+        $currentCurreny = $currency_obj->get_current_currency();
+        $result = array();
         $result['status'] = false;
 
         if (!empty($currency)) {
             foreach ($this->mana_booking_option['currency'] as $currency_item) {
                 if ($currency_item['title'] == $currency) {
-                    $currency_symbol   = $currency_item['symbol'];
+                    $currency_symbol = $currency_item['symbol'];
                     $currency_position = empty($currency_item['position']) ? 0 : $currency_item['position'];
-                    $currency_rate     = empty($currency_item['rate']) ? 0 : $currency_item['rate'];
+                    $currency_rate = empty($currency_item['rate']) ? 0 : $currency_item['rate'];
 
                     setcookie('currencyTitle', $currency, time() + (86400 * 30), '/');
                     setcookie('currencySymbol', $currency_symbol, time() + (86400 * 30), '/');
@@ -106,23 +106,23 @@ class Mana_booking_currency
                 if (empty($this->mana_booking_option['default_currency'])) {
                     if ($i === 0) {
                         $default_currency_item = array(
-                            'title'    => $currency_item['title'],
-                            'symbol'   => $currency_item['symbol'],
+                            'title' => $currency_item['title'],
+                            'symbol' => $currency_item['symbol'],
                             'position' => !empty($currency_item['position']) ? $currency_item['position'] : 0,
-                            'rate'     => 1,
+                            'rate' => 1,
                         );
                     }
                 } else {
                     if ($index == $this->mana_booking_option['default_currency']) {
                         $default_currency_item = array(
-                            'title'    => $currency_item['title'],
-                            'symbol'   => $currency_item['symbol'],
+                            'title' => $currency_item['title'],
+                            'symbol' => $currency_item['symbol'],
                             'position' => !empty($currency_item['position']) ? $currency_item['position'] : 0,
-                            'rate'     => 1,
+                            'rate' => 1,
                         );
                     }
                 }
-                $currency_title_array[]  = $currency_item['title'];
+                $currency_title_array[] = $currency_item['title'];
                 $currency_symbol_array[] = $currency_item['symbol'];
 
                 $i++;
@@ -130,10 +130,10 @@ class Mana_booking_currency
 
             if (!empty($_COOKIE['currencyTitle']) && !empty($_COOKIE['currencySymbol']) && !empty($_COOKIE['currencyRate']) && (!empty($_COOKIE['currencyPosition']) || $_COOKIE['currencyPosition'] === '0')) {
                 if (in_array($_COOKIE['currencyTitle'], $currency_title_array) && in_array($_COOKIE['currencySymbol'], $currency_symbol_array)) {
-                    $currency['title']    = $_COOKIE['currencyTitle'];
-                    $currency['symbol']   = $_COOKIE['currencySymbol'];
+                    $currency['title'] = $_COOKIE['currencyTitle'];
+                    $currency['symbol'] = $_COOKIE['currencySymbol'];
                     $currency['position'] = $_COOKIE['currencyPosition'];
-                    $currency['rate']     = $_COOKIE['currencyRate'];
+                    $currency['rate'] = $_COOKIE['currencyRate'];
                 } else {
                     $currency = $default_currency_item;
                 }
@@ -151,7 +151,7 @@ class Mana_booking_currency
     {
         $exchanged_price = $this->price_exchanger($price, $currency_info);
         $formatted_price = $this->price_formatter($exchanged_price);
-        $new_price       = $this->price_symbol_generator($formatted_price, $currency_info);
+        $new_price = $this->price_symbol_generator($formatted_price, $currency_info);
 
         return $new_price;
     }
@@ -184,8 +184,8 @@ class Mana_booking_currency
 
     public function price_formatter($price)
     {
-        $currency_separator_val         = !empty($this->mana_booking_option['currency_separator']) ? intval($this->mana_booking_option['currency_separator']) : 1;
-        $currency_decimal               = !empty($this->mana_booking_option['currency_decimal']) ? intval($this->mana_booking_option['currency_decimal']) : 0;
+        $currency_separator_val = !empty($this->mana_booking_option['currency_separator']) ? intval($this->mana_booking_option['currency_separator']) : 1;
+        $currency_decimal = !empty($this->mana_booking_option['currency_decimal']) ? intval($this->mana_booking_option['currency_decimal']) : 0;
         $currency_decimal_separator_val = !empty($this->mana_booking_option['currency_decimal_separator']) ? intval($this->mana_booking_option['currency_decimal_separator']) : 1;
 
         switch ($currency_separator_val) {
@@ -208,7 +208,7 @@ class Mana_booking_currency
                 break;
         }
 
-        $price     = is_object($price) ? $price->payable_raw : $price;
+        $price = is_object($price) ? $price->payable_raw : $price;
         $new_price = number_format($price, $currency_decimal, $currency_decimal_separator, $currency_separator);
 
         return $new_price;
@@ -233,7 +233,7 @@ class Mana_booking_currency
     public function price_generator_no_exchange($price, $currency_info = null)
     {
         $formatted_price = $this->price_formatter($price);
-        $new_price       = $this->price_symbol_generator($formatted_price, $currency_info);
+        $new_price = $this->price_symbol_generator($formatted_price, $currency_info);
 
         return $new_price;
     }
@@ -241,7 +241,7 @@ class Mana_booking_currency
     public static function convert_to_default($price, $currency)
     {
         $converted_price = $price;
-        $price_value     = floatval($currency['rate']);
+        $price_value = floatval($currency['rate']);
         if ($price_value >= 1) {
             $converted_price = $price * $price_value;
         } else {

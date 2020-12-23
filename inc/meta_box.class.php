@@ -16,12 +16,12 @@ class Mana_booking_meta_boxes
 	function __construct($meta_items, $prefix, $title, $post_type, $context = 'normal', $priority = 'high')
 	{
 		Mana_booking_main::mana_load_plugin_text_domain();
-		$this->meta_box_fields    = $meta_items;
-		$this->meta_box_title     = $title;
+		$this->meta_box_fields = $meta_items;
+		$this->meta_box_title = $title;
 		$this->meta_box_post_type = $post_type;
-		$this->meta_box_context   = $context;
-		$this->meta_box_priority  = $priority;
-		$this->meta_box_prefix    = $prefix;
+		$this->meta_box_context = $context;
+		$this->meta_box_priority = $priority;
+		$this->meta_box_prefix = $prefix;
 		add_action('add_meta_boxes', array($this, 'add_meta_box'));
 		add_action('save_post', array($this, 'save_meta_box'));
 	}
@@ -127,7 +127,7 @@ class Mana_booking_meta_boxes
 						if (gettype($meta) === 'string') {
 							$meta = array(
 								'value' => $meta,
-								'unit'  => 'sqft'
+								'unit' => 'sqft'
 							);
 						}
 						echo '<input type="number" min="0" name="' . esc_attr($field['id']) . '[value]" id="' . esc_attr($field['id']) . '[value]" value="' . esc_attr($meta['value']) . '" size="40" />
@@ -198,7 +198,7 @@ class Mana_booking_meta_boxes
 
 						// Image
 					case 'image':
-						$img_info    = wp_get_attachment_thumb_url($meta);
+						$img_info = wp_get_attachment_thumb_url($meta);
 						$img_preview = (!empty($img_info) ? '<div class="image-preview-box"><img src="' . esc_url($img_info) . '"/></div>' : '');
 
 						echo '
@@ -568,7 +568,7 @@ class Mana_booking_meta_boxes
 						// Switch
 					case 'switch':
 						$post_status = get_post_status($post->ID);
-						$default     = null;
+						$default = null;
 
 						if ($post_status === 'auto-draft' && !empty($field['default'])) {
 							$default = true;
@@ -636,7 +636,7 @@ class Mana_booking_meta_boxes
 
 						// Event Guest List
 					case 'event_guest_list':
-						$table_name     = $wpdb->prefix . 'mana_event_booking';
+						$table_name = $wpdb->prefix . 'mana_event_booking';
 						$event_bookings = $wpdb->get_results($wpdb->prepare("SELECT * FROM $table_name WHERE event_id = %d", $post->ID));
 						echo '
 								<table id="event-booking-list" class="wp-list-table widefat striped posts">
@@ -650,7 +650,7 @@ class Mana_booking_meta_boxes
 										<th class="num">' . esc_html__('Delete', 'mana-booking') . '</th>
 									</tr>';
 						$event_booking_i = 1;
-						$total_guest     = 0;
+						$total_guest = 0;
 						foreach ($event_bookings as $event_booking_item) {
 							echo '
 								<tr class="num" data-event-booking-id="' . esc_attr($event_booking_item->id) . '">
@@ -722,7 +722,7 @@ class Mana_booking_meta_boxes
 										roomCalendarContainer.fullCalendar({
 											locale:        \'' . esc_js($web_current_locale) . '\',
 											eventMouseover: function (event, jsEvent, view) {
-												var eventURL   = event.url,
+												var eventURL = event.url,
 													eventTitle = event.title;
 
 												jQuery(\'.fc-event\').each(function (index, el) {
@@ -752,7 +752,7 @@ class Mana_booking_meta_boxes
 												{
 													events: function (start, end, timezone, callback) {
 														var startDate = (start._d.getFullYear()) + \'-\' + (start._d.getMonth() + 1) + \'-\' + (start._d.getDate()),
-															endDate   = (end._d.getFullYear()) + \'-\' + (end._d.getMonth() + 1) + \'-\' + (end._d.getDate());
+															endDate = (end._d.getFullYear()) + \'-\' + (end._d.getMonth() + 1) + \'-\' + (end._d.getDate());
 														jQuery.ajax({
 															url:      mana_booking.ajaxurl,
 															dataType: \'json\',

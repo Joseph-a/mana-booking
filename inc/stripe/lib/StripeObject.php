@@ -106,14 +106,16 @@ class StripeObject implements ArrayAccess, JsonSerializable
     {
         if ($v === "") {
             throw new InvalidArgumentException(
-                'You cannot set \''.$k.'\'to an empty string. '
-                .'We interpret empty strings as NULL in requests. '
-                .'You may set obj->'.$k.' = NULL to delete the property'
+                'You cannot set \'' . $k . '\'to an empty string. '
+                    . 'We interpret empty strings as NULL in requests. '
+                    . 'You may set obj->' . $k . ' = NULL to delete the property'
             );
         }
 
-        if (self::$nestedUpdatableAttributes->includes($k)
-                && isset($this->$k) && $this->$k instanceof AttachedObject && is_array($v)) {
+        if (
+            self::$nestedUpdatableAttributes->includes($k)
+            && isset($this->$k) && $this->$k instanceof AttachedObject && is_array($v)
+        ) {
             $this->$k->replaceWith($v);
         } else {
             // TODO: may want to clear from $_transientValues (Won't be user-visible).
@@ -144,11 +146,11 @@ class StripeObject implements ArrayAccess, JsonSerializable
             $class = get_class($this);
             $attrs = join(', ', array_keys($this->_values));
             $message = "Stripe Notice: Undefined property of $class instance: $k. "
-                    . "HINT: The $k attribute was set in the past, however. "
-                    . "It was then wiped when refreshing the object "
-                    . "with the result returned by Stripe's API, "
-                    . "probably as a result of a save(). The attributes currently "
-                    . "available on this object are: $attrs";
+                . "HINT: The $k attribute was set in the past, however. "
+                . "It was then wiped when refreshing the object "
+                . "with the result returned by Stripe's API, "
+                . "probably as a result of a save(). The attributes currently "
+                . "available on this object are: $attrs";
             Stripe::getLogger()->error($message);
             return $nullval;
         } else {

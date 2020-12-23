@@ -7,21 +7,21 @@
 	<form id="room-information-form" method="post" ng-submit="validateForm()">
 		<div class="input-daterange">
 			<div class="field-row check-in">
-				<input type="hidden" class="check-in-input" name="start" ng-model="bookingInfo.checkIn" value="{{bookingInfo.checkIn}}"/>
+				<input type="hidden" class="check-in-input" name="start" ng-model="bookingInfo.checkIn" value="{{bookingInfo.checkIn}}" />
 				<div class="check-in-box">
 					<div class="title">{{bookingAppVar.check_in}}</div>
 					<div class="value">{{bookingInfo.checkIn ? bookingInfo.checkIn : bookingAppVar.choose_a_date}}</div>
 				</div>
 			</div>
 			<div class="field-row check-out">
-				<input type="hidden" class="check-out-input" name="end" ng-model="bookingInfo.checkOut" value="{{bookingInfo.checkOut}}"/>
+				<input type="hidden" class="check-out-input" name="end" ng-model="bookingInfo.checkOut" value="{{bookingInfo.checkOut}}" />
 				<div class="check-out-box">
 					<div class="title">{{bookingAppVar.check_out}}</div>
 					<div class="value">{{bookingInfo.checkOut ? bookingInfo.checkOut : bookingAppVar.choose_a_date}}</div>
 				</div>
 			</div>
 			<div class="field-row duration">
-				<input type="hidden" name="duration" ng-model="bookingInfo.checkDuration"/>
+				<input type="hidden" name="duration" ng-model="bookingInfo.checkDuration" />
 				<div class="duration-box">
 					<div class="title">{{bookingAppVar.duration}}</div>
 					<div class="value">

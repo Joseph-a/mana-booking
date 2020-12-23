@@ -28,7 +28,7 @@ class TransferReversal extends ApiResource
         if (!$id) {
             throw new Error\InvalidRequest(
                 "Could not determine which URL to request: " .
-                "class instance has invalid ID: $id",
+                    "class instance has invalid ID: $id",
                 null
             );
         }
