@@ -363,193 +363,117 @@ class Mana_booking_main
 	public function mana_booking_register_scripts_front()
 	{
 		global $wp;
-		$booking_process       = new Mana_booking_booking_process();
-		$currency_info_obj     = new Mana_booking_currency();
-		$currency_info         = $currency_info_obj->get_current_currency();
-		$mana_booking_options = get_option('mana-booking-setting');
+		$mana_booking_options = json_decode(get_option('mana-booking-setting')['main_setting']);
 
-		if ($booking_process->is_booking()) {
-			wp_enqueue_script('angularjs', MANA_BOOKING_JS_PATH . 'angular.min.js', array('jquery'), MANA_BOOKING_VERSION, true);
-			wp_enqueue_script('angularjs-sanitize', MANA_BOOKING_JS_PATH . 'angular-sanitize.min.js', array('angularjs'), MANA_BOOKING_VERSION, true);
-			wp_enqueue_script('angularjs-route', MANA_BOOKING_JS_PATH . 'angular-route.min.js', array('angularjs'), MANA_BOOKING_VERSION, true);
+		$mana_booking_variables['ajaxurl'] = esc_url(admin_url('admin-ajax.php'));
+		$mana_booking_variables['redirecturl'] = esc_url(home_url($wp->request));
+		$mana_booking_variables['plg_base'] = MANA_BOOKING_BASE_URL;
+		$mana_booking_variables['asset_url'] = MANA_BOOKING_IMG_PATH;
 
-			require_once 'tpl/booking-steps/booking_variables.php';
+		if (defined('ICL_LANGUAGE_CODE')) {
+			$mana_booking_variables['lang'] = ICL_LANGUAGE_CODE;
+			$condition_page_url              = !empty($mana_booking_options->termConditionPageUrl[ICL_LANGUAGE_CODE]) ? esc_url($mana_booking_options->termConditionPageUrl[ICL_LANGUAGE_CODE]) : '#';
+		} else {
+			$condition_page_url = !empty($mana_booking_options->termConditionPageUrl) ? esc_url($mana_booking_options->termConditionPageUrl) : '#';
+		}
 
-			$mana_booking_variables['asset_url'] = MANA_BOOKING_IMG_PATH;
+		/**
+		 * ------------------------------------------------------------------------------------------
+		 *  Paymill Codes
+		 * ------------------------------------------------------------------------------------------
+		 */
 
-			if (defined('ICL_LANGUAGE_CODE')) {
-				$mana_booking_variables['lang'] = ICL_LANGUAGE_CODE;
-				$condition_page_url              = !empty($mana_booking_options['condition_url'][ICL_LANGUAGE_CODE]) ? esc_url($mana_booking_options['condition_url'][ICL_LANGUAGE_CODE]) : '#';
+		if (!empty($mana_booking_options->bookingByPaymill)) {
+			wp_enqueue_script('paymill-js-code', '//bridge.paymill.com', '', MANA_BOOKING_VERSION, true);
+		}
+
+		/**
+		 * ------------------------------------------------------------------------------------------
+		 *  Stripe Codes
+		 * ------------------------------------------------------------------------------------------
+		 */
+
+		if (!empty($mana_booking_options->bookingByStripe)) {
+			wp_enqueue_script('stripe-js-code', '//js.stripe.com/v3/', '', MANA_BOOKING_VERSION, true);
+		}
+
+
+		if ($_POST) {
+			$package_id = !empty($_POST['package-id']) ? intval($_POST['package-id']) : '';
+
+			if (!empty($package_id)) {
+				$mana_booking_variables['package_id'] = $package_id;
 			} else {
-				$condition_page_url = !empty($mana_booking_options['condition_url']) ? esc_url($mana_booking_options['condition_url']) : '#';
-			}
+				$check_in        = !empty($_POST['start']) ? sanitize_text_field($_POST['start']) : '';
+				$check_out       = !empty($_POST['end']) ? sanitize_text_field($_POST['end']) : '';
+				$room_count      = !empty($_POST['room-count']) ? intval($_POST['room-count']) : '';
+				$rooms           = !empty($_POST['room']) ? $_POST['room'] : '';
+				$date_diff       = strtotime($check_out) - strtotime($check_in);
+				$duration        = ($date_diff / 86400);
+				$weekend_counter = 0;
 
-			if (!empty($mana_booking_options['room_base_price'])) {
-				$mana_booking_variables['room_base'] = true;
-			}
+				for ($i = 0; $i < $duration; $i++) {
+					$current_day = strtotime($check_in) + (86400 * $i);
 
-			// $theme_current_locale = 'en';
-
-			// if (get_locale() !== 'en_US') {
-			// 	if (file_exists(COLOSSEUM_THEMEROOT . '/assets/js/locales/locales.php')) {
-			// 		require COLOSSEUM_THEMEROOT . '/assets/js/locales/locales.php';
-			// 	}
-
-			// 	isset($theme_locales[get_locale()]) ? $theme_current_locale = $theme_locales[get_locale()] : '';
-
-			// 	wp_enqueue_script('bootstrap-datepicker-locale-js', COLOSSEUM_JS_PATH . 'locales/' . $theme_current_locale . '.min.js', array(
-			// 		'jquery',
-			// 		'colosseum-helper-js',
-			// 	), get_bloginfo('version'), true);
-			// }
-
-			// $mana_booking_variables['datePickerLang'] = $theme_current_locale;
-
-			/**
-			 * ------------------------------------------------------------------------------------------
-			 *  Paymill Codes
-			 * ------------------------------------------------------------------------------------------
-			 */
-
-			if (!empty($mana_booking_options['paymill_booking'])) {
-				wp_enqueue_script('paymill-js-code', '//bridge.paymill.com', '', MANA_BOOKING_VERSION, true);
-			}
-
-			/**
-			 * ------------------------------------------------------------------------------------------
-			 *  Stripe Codes
-			 * ------------------------------------------------------------------------------------------
-			 */
-
-			if (!empty($mana_booking_options['stripe_booking'])) {
-				wp_enqueue_script('stripe-js-code', '//js.stripe.com/v3/', '', MANA_BOOKING_VERSION, true);
-			}
-
-			wp_enqueue_script('mana-booking-angular-app', MANA_BOOKING_JS_PATH . 'app.min.js', array('angularjs'), MANA_BOOKING_VERSION, true);
-
-			if ($_POST) {
-				$package_id = !empty($_POST['package-id']) ? intval($_POST['package-id']) : '';
-
-				if (!empty($package_id)) {
-					$mana_booking_variables['package_id'] = $package_id;
-				} else {
-					$check_in        = !empty($_POST['start']) ? sanitize_text_field($_POST['start']) : '';
-					$check_out       = !empty($_POST['end']) ? sanitize_text_field($_POST['end']) : '';
-					$room_count      = !empty($_POST['room-count']) ? intval($_POST['room-count']) : '';
-					$rooms           = !empty($_POST['room']) ? $_POST['room'] : '';
-					$date_diff       = strtotime($check_out) - strtotime($check_in);
-					$duration        = ($date_diff / 86400);
-					$weekend_counter = 0;
-
-					for ($i = 0; $i < $duration; $i++) {
-						$current_day = strtotime($check_in) + (86400 * $i);
-
-						if (date('N', $current_day) >= 6) {
-							$weekend_counter++;
-						}
+					if (date('N', $current_day) >= 6) {
+						$weekend_counter++;
 					}
-
-					$mana_booking_variables['booking_check_in']   = $check_in;
-					$mana_booking_variables['booking_check_out']  = $check_out;
-					$mana_booking_variables['booking_room_count'] = $room_count;
-					$mana_booking_variables['booking_rooms']      = $rooms;
-					$mana_booking_variables['booking_duration']   = $duration;
-					$mana_booking_variables['booking_weekends']   = $weekend_counter;
 				}
+
+				$mana_booking_variables['booking_check_in']   = $check_in;
+				$mana_booking_variables['booking_check_out']  = $check_out;
+				$mana_booking_variables['booking_room_count'] = $room_count;
+				$mana_booking_variables['booking_rooms']      = $rooms;
+				$mana_booking_variables['booking_duration']   = $duration;
+				$mana_booking_variables['booking_weekends']   = $weekend_counter;
 			}
+		}
 
-			$current_user_info                  = wp_get_current_user();
-			$current_user_meta_info             = get_user_meta($current_user_info->ID);
-			$mana_booking_variables['user_id'] = $current_user_info->ID;
+		$current_user_info                  = wp_get_current_user();
+		$current_user_meta_info             = get_user_meta($current_user_info->ID);
+		$mana_booking_variables['user_id'] = $current_user_info->ID;
 
-			if (!empty($current_user_meta_info['membership'])) {
-				$mana_booking_variables['user_membership'] = unserialize($current_user_meta_info['membership'][0]);
-			}
 
-			$mana_booking_variables['security']         = wp_create_nonce('mana-booking-security-str');
-			$mana_booking_variables['coupon_security']  = wp_create_nonce('coupon-security-item');
-			$mana_booking_variables['currency_info']    = $currency_info;
-			$currency_separator_val                      = !empty($mana_booking_options['currency_separator']) ? intval($mana_booking_options['currency_separator']) : 1;
-			$mana_booking_variables['currency_decimal'] = !empty($mana_booking_options['currency_decimal']) ? intval($mana_booking_options['currency_decimal']) : 2;
-			$currency_decimal_separator_val              = !empty($mana_booking_options['currency_decimal_separator']) ? intval($mana_booking_options['currency_decimal_separator']) : 1;
+		$mana_booking_variables['security']         = wp_create_nonce('mana-booking-security-str');
+		$mana_booking_variables['coupon_security']  = wp_create_nonce('coupon-security-item');
 
-			switch ($currency_separator_val) {
-				case 1:
-					$mana_booking_variables['currency_separator'] = ',';
-					break;
-				case 2:
-					$mana_booking_variables['currency_separator'] = '.';
-					break;
-				case 3:
-					$mana_booking_variables['currency_separator'] = ' ';
-					break;
-			}
 
-			switch ($currency_decimal_separator_val) {
-				case 1:
-					$mana_booking_variables['currency_decimal_separator'] = '.';
-					break;
-				case 2:
-					$mana_booking_variables['currency_decimal_separator'] = ',';
-					break;
-			}
+		if (is_user_logged_in()) {
+			$mana_booking_variables['current_user_info']['id']           = $current_user_info->ID;
+			$mana_booking_variables['current_user_info']['display_name'] = $current_user_info->display_name;
+			$mana_booking_variables['current_user_info']['user_login']   = $current_user_info->user_login;
+			$mana_booking_variables['current_user_info']['user_email']   = $current_user_info->user_email;
+			$mana_booking_variables['current_user_info']['nickname']     = !empty($current_user_meta_info['nickname']) ? $current_user_meta_info['nickname'][0] : '';
+			$mana_booking_variables['current_user_info']['first_name']   = !empty($current_user_meta_info['first_name']) ? $current_user_meta_info['first_name'][0] : '';
+			$mana_booking_variables['current_user_info']['last_name']    = !empty($current_user_meta_info['last_name']) ? $current_user_meta_info['last_name'][0] : '';
+			$mana_booking_variables['current_user_info']['phone']        = !empty($current_user_meta_info['phone']) ? $current_user_meta_info['phone'][0] : '';
+			$mana_booking_variables['current_user_info']['address']      = !empty($current_user_meta_info['address']) ? $current_user_meta_info['address'][0] : '';
+		}
 
-			if (is_user_logged_in()) {
-				$mana_booking_variables['current_user_info']['id']           = $current_user_info->ID;
-				$mana_booking_variables['current_user_info']['display_name'] = $current_user_info->display_name;
-				$mana_booking_variables['current_user_info']['user_login']   = $current_user_info->user_login;
-				$mana_booking_variables['current_user_info']['user_email']   = $current_user_info->user_email;
-				$mana_booking_variables['current_user_info']['nickname']     = $current_user_meta_info['nickname'][0];
-				$mana_booking_variables['current_user_info']['first_name']   = $current_user_meta_info['first_name'][0];
-				$mana_booking_variables['current_user_info']['last_name']    = $current_user_meta_info['last_name'][0];
-				$mana_booking_variables['current_user_info']['phone']        = $current_user_meta_info['phone'][0];
-				$mana_booking_variables['current_user_info']['address']      = $current_user_meta_info['address'][0];
-			}
-
-			$mana_booking_variables['user_vat']               = !empty($mana_booking_options['vat']) ? esc_html($mana_booking_options['vat']) : 0;
-			$mana_booking_variables['deposit_status']         = !empty($mana_booking_options['deposit_status']) ? esc_html($mana_booking_options['deposit_status']) : '';
-			$mana_booking_variables['user_deposit']           = !empty($mana_booking_options['deposit']) ? esc_html($mana_booking_options['deposit']) : 20;
-			$mana_booking_variables['email_booking']          = !empty($mana_booking_options['email_booking']) ? esc_html($mana_booking_options['email_booking']) : '';
-			$mana_booking_variables['condition_text']         = sprintf(__('I have read and accept the <a href="%s">terms and conditions</a>', 'mana-booking'), esc_url($condition_page_url));
-			$mana_booking_variables['paypal_booking']         = !empty($mana_booking_options['paypal_booking']) ? esc_html($mana_booking_options['paypal_booking']) : '';
-			$mana_booking_variables['paymill_booking']        = !empty($mana_booking_options['paymill_booking']) ? esc_html($mana_booking_options['paymill_booking']) : '';
-			$mana_booking_variables['stripe_booking']         = !empty($mana_booking_options['stripe_booking']) ? esc_html($mana_booking_options['stripe_booking']) : '';
-			$mana_booking_variables['final_booking_title']    = !empty($mana_booking_options['final_booking_title']) ? esc_html($mana_booking_options['final_booking_title']) : esc_html__('Reservation Complete', 'mana-booking');
-			$mana_booking_variables['final_booking_subtitle'] = !empty($mana_booking_options['final_booking_subtitle']) ? esc_html($mana_booking_options['final_booking_subtitle']) : esc_html__('Details of your reservation request was sent to your email', 'mana-booking');
-			$mana_booking_variables['final_booking_desc']     = !empty($mana_booking_options['final_booking_desc']) ? esc_html($mana_booking_options['final_booking_desc']) : sprintf(__('For more information you can contact us via <a href="%s">contact form</a> of website', 'mana-booking'), !empty($mana_booking_options['contact_url']) ? esc_url($mana_booking_options['contact_url']) : '#');
-
-			// Enable Services in Booking Process
-			$services_args  = array(
-				'post_type'      => 'service',
-				'post_status'    => 'publish',
-				'order'          => 'DESC',
-				'orderby'        => 'date',
-				'posts_per_page' => -1,
-				'meta_query'     => array(
-					array(
-						'key'   => 'mana_booking_service_booking',
-						'value' => 'on',
-					),
+		// Enable Services in Booking Process
+		$services_args  = array(
+			'post_type'      => 'service',
+			'post_status'    => 'publish',
+			'order'          => 'DESC',
+			'orderby'        => 'date',
+			'posts_per_page' => -1,
+			'meta_query'     => array(
+				array(
+					'key'   => 'mana_booking_service_booking',
+					'value' => 'on',
 				),
-			);
-			$services_query = new WP_Query($services_args);
+			),
+		);
+		$services_query = new WP_Query($services_args);
 
-			if ($services_query->have_posts()) {
-				$mana_booking_variables['booking_service'] = true;
-			}
-
-			wp_localize_script('mana-booking-angular-app', 'booking_app', $mana_booking_variables);
-			wp_reset_postdata();
+		if ($services_query->have_posts()) {
+			$mana_booking_variables['booking_service'] = true;
 		}
 
 		wp_enqueue_script('mana-booking-front-js', MANA_BOOKING_JS_PATH . 'front.build.js', array('jquery'), MANA_BOOKING_VERSION, true);
-		wp_localize_script('mana-booking-front-js', 'mana_booking_front', array(
-			'ajaxurl'     => esc_url(admin_url('admin-ajax.php')),
-			'redirecturl' => esc_url(home_url($wp->request)),
-			'plg_base'    => MANA_BOOKING_BASE_URL,
-		));
-
+		wp_localize_script('mana-booking-front-js', 'mana_booking_obj', $mana_booking_variables);
 		wp_enqueue_style('mana-booking-front-style', MANA_BOOKING_CSS_PATH . 'front.build.css');
+		wp_reset_postdata();
 	}
 
 	public function mana_booking_init_meta_boxes()
@@ -757,10 +681,11 @@ class Mana_booking_main
 	{
 		$new_data     = array();
 		$int_fields   = array();
-		$text_fields  = array('main_setting');
+		$text_fields  = array();
 		$html_fields  = array();
 		$email_fields = array();
 		$url_fields   = array();
+		$json_fields  = array('main_setting');
 
 		foreach ($data as $index => $field) {
 			if (in_array($index, $email_fields)) {
@@ -786,7 +711,11 @@ class Mana_booking_main
 				$new_data[$index] = filter_var($field, FILTER_SANITIZE_NUMBER_INT);
 			}
 
-			if (function_exists('icl_get_languages') && $index === 'condition_url') {
+			if (in_array($index, $json_fields)) {
+				$new_data[$index] = $field;
+			}
+
+			if (function_exists('icl_get_languages') && $index === 'termConditionPageUrl') {
 				foreach ($field as $lang => $url) {
 					$new_data[$index][$lang] = filter_var($url, FILTER_SANITIZE_URL);
 				}
