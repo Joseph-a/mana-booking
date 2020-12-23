@@ -363,7 +363,7 @@ class Mana_booking_main
 	public function mana_booking_register_scripts_front()
 	{
 		global $wp;
-		$mana_booking_options = json_decode(get_option('mana-booking-setting')['main_setting']);
+		$mana_booking_options = json_decode(get_option('mana-booking-setting')['main_setting'], true);
 
 		$mana_booking_variables['ajaxurl'] = esc_url(admin_url('admin-ajax.php'));
 		$mana_booking_variables['redirecturl'] = esc_url(home_url($wp->request));
@@ -372,10 +372,15 @@ class Mana_booking_main
 
 		if (defined('ICL_LANGUAGE_CODE')) {
 			$mana_booking_variables['lang'] = ICL_LANGUAGE_CODE;
-			$condition_page_url = !empty($mana_booking_options->termConditionPageUrl[ICL_LANGUAGE_CODE]) ? esc_url($mana_booking_options->termConditionPageUrl[ICL_LANGUAGE_CODE]) : '#';
+			$condition_page_url = !empty($mana_booking_options['termConditionPageUrl'][ICL_LANGUAGE_CODE]) ? esc_url($mana_booking_options['termConditionPageUrl'][ICL_LANGUAGE_CODE]) : '#';
 		} else {
-			$condition_page_url = !empty($mana_booking_options->termConditionPageUrl) ? esc_url($mana_booking_options->termConditionPageUrl) : '#';
+			$condition_page_url = !empty($mana_booking_options['termConditionPageUrl']) ? esc_url($mana_booking_options['termConditionPageUrl']) : '#';
 		}
+
+		$get_info_obj = new Mana_booking_get_info();
+		echo '<pre>';
+		var_dump($get_info_obj->room_info(16));
+		echo '</pre>';
 
 		/**
 		 * ------------------------------------------------------------------------------------------
@@ -383,7 +388,7 @@ class Mana_booking_main
 		 * ------------------------------------------------------------------------------------------
 		 */
 
-		if (!empty($mana_booking_options->bookingByPaymill)) {
+		if (!empty($mana_booking_options['bookingByPaymill'])) {
 			wp_enqueue_script('paymill-js-code', '//bridge.paymill.com', '', MANA_BOOKING_VERSION, true);
 		}
 
@@ -393,7 +398,7 @@ class Mana_booking_main
 		 * ------------------------------------------------------------------------------------------
 		 */
 
-		if (!empty($mana_booking_options->bookingByStripe)) {
+		if (!empty($mana_booking_options['bookingByStripe'])) {
 			wp_enqueue_script('stripe-js-code', '//js.stripe.com/v3/', '', MANA_BOOKING_VERSION, true);
 		}
 
