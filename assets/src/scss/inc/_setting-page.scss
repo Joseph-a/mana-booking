@@ -1,202 +1,247 @@
 #mana-booking-setting-page {
 	i {
-		display        : inline-block;
-		vertical-align : text-bottom;
-		margin-right   : 10px;
+		display: inline-block;
+		vertical-align: text-bottom;
+		margin-right: 10px;
 	}
+
 	h1 {
-		margin-bottom : 20px;
+		margin-bottom: 20px;
 	}
+
 	.ui-widget-content {
-		font-family : -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen-Sans, Ubuntu, Cantarell, "Helvetica Neue", sans-serif;
+		font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen-Sans, Ubuntu, Cantarell, "Helvetica Neue", sans-serif;
 	}
+
 	.tab-title-box {
-		position : relative;
+		position: relative;
+
 		.version {
-			position    : absolute;
-			right       : 15px;
-			top         : -40px;
-			font-weight : bold;
-			color       : $color-3;
+			position: absolute;
+			right: 15px;
+			top: -40px;
+			font-weight: bold;
+			color: $color-3;
 		}
 	}
+
 	.tab-content {
 		@include clearfix;
-		padding : 25px;
-		.l-col, .r-col {
-			float : left;
-		}
-		.l-col {
+		padding: 25px;
 
-		}
+		.l-col,
 		.r-col {
+			float: left;
 		}
+
+		.l-col {}
+
+		.r-col {}
 	}
+
 	.ui-tabs {
-		padding    : 0;
-		background : $color-1;
-		border-radius:0;
+		padding: 0;
+		background: $color-1;
+		border-radius: 0;
+
 		.ui-widget-header {
-			background : $color-3;
-			border-radius:0;
-			border     : 0;
-			padding    : 10px 10px 0;
+			background: $color-3;
+			border-radius: 0;
+			border: 0;
+			padding: 10px 10px 0;
+
 			li {
-				border     : 0;
-				padding    : 0;
-				margin     : 0 1px;
-				border-radius:0;
-				background : rgba($color-1, .3);
+				border: 0;
+				padding: 0;
+				margin: 0 1px;
+				border-radius: 0;
+				background: rgba($color-1, .3);
+
 				a {
-					padding     : 10px;
-					font-size   : 1.1em;
-					font-weight : 400;
-					color       : $color-1;
-					outline     : none;
-					box-shadow:none;
-					&:hover, &:focus {
-						outline : none;
-						box-shadow:none;
+					padding: 10px;
+					font-size: 1.1em;
+					font-weight: 400;
+					color: $color-1;
+					outline: none;
+					box-shadow: none;
+
+					&:hover,
+					&:focus {
+						outline: none;
+						box-shadow: none;
 					}
 				}
+
 				&.ui-tabs-active {
-					background : $color-1;
+					background: $color-1;
+
 					a {
-						color : $color-3;
+						color: $color-3;
 					}
 				}
 			}
 		}
+
 		.ui-widget-content {
-			border     : 0;
-			border-top : 0;
-			border-radius:0;
+			border: 0;
+			border-top: 0;
+			border-radius: 0;
 		}
 	}
-	input[type="text"], input[type="number"], input[type="url"], input[type="email"], textarea, select {
-		background     : $color-1;
-		box-shadow:none;
-		border         : 1px solid darken($color-1, 10%);
-		min-width      : 300px;
-		height         : 40px;
-		vertical-align : middle;
+
+	input[type="text"],
+	input[type="number"],
+	input[type="url"],
+	input[type="email"],
+	textarea,
+	select {
+		background: $color-1;
+		box-shadow: none;
+		border: 1px solid darken($color-1, 10%);
+		min-width: 300px;
+		height: 40px;
+		vertical-align: middle;
 		// padding: 5px;
 	}
+
 	textarea {
-		height : 220px;
-		&#import-mana-booking-setting-field, &#mana-booking-export-data {
-			width         : 100%;
-			margin-bottom : 20px;
-		}
-	}
-	code {
-		max-width     : 100%;
-		display       : block;
-		height        : 200px;
-		overflow      : auto;
-		padding       : 10px;
-		line-height   : 15px;
-		margin-bottom : 20px;
-	}
-	.button:not(.ed_button) {
-		border-radius:0;
-		border         : 0;
-		box-shadow:none;
-		padding        : 4px 25px;
-		height         : auto;
-		display        : inline-block;
-		vertical-align : middle;
-		text-align     : center;
-		min-width      : 120px;
-		text-shadow: none;
-		&.clear-btn {
-			background : darken($color-1, 20%);
-			color      : $color-2;
-		}
-		&.hidden {
-			display : none;
-		}
-		&.remove-image {
-			background : $color-6;
-			color      : $color-1;
+		height: 220px;
+
+		&#import-mana-booking-setting-field,
+		&#mana-booking-export-data {
+			width: 100%;
+			margin-bottom: 20px;
 		}
 	}
 
-	.currency-box, .client-box, .membership-package-box, .season-package-box {
-		border        : 1px solid $color-3;
-		padding       : 20px 40px 20px 20px;
-		margin-bottom : 10px;
-		background    : darken($color-1, .2%);
-		position      : relative;
-		transition : all .3s ease;
+	code {
+		max-width: 100%;
+		display: block;
+		height: 200px;
+		overflow: auto;
+		padding: 10px;
+		line-height: 15px;
+		margin-bottom: 20px;
+	}
+
+	.button:not(.ed_button) {
+		border-radius: 0;
+		border: 0;
+		box-shadow: none;
+		padding: 4px 25px;
+		height: auto;
+		display: inline-block;
+		vertical-align: middle;
+		text-align: center;
+		min-width: 120px;
+		text-shadow: none;
+
+		&.clear-btn {
+			background: darken($color-1, 20%);
+			color: $color-2;
+		}
+
+		&.hidden {
+			display: none;
+		}
+
+		&.remove-image {
+			background: $color-6;
+			color: $color-1;
+		}
+	}
+
+	.currency-box,
+	.client-box,
+	.membership-package-box,
+	.season-package-box {
+		border: 1px solid $color-3;
+		padding: 20px 40px 20px 20px;
+		margin-bottom: 10px;
+		background: darken($color-1, .2%);
+		position: relative;
+		transition: all .3s ease;
+
 		&.default {
-			background : darken($color-1, 7%);
+			background: darken($color-1, 7%);
 			//color: $color-1;
 		}
+
 		.remove-box {
-			cursor     : pointer;
-			position   : absolute;
-			right      : -1px;
-			top        : -1px;
-			background : $color-1;
+			cursor: pointer;
+			position: absolute;
+			right: -1px;
+			top: -1px;
+			background: $color-1;
 			@include square(20px);
-			color      : $color-6;
-			border     : 1px solid $color-6;
+			color: $color-6;
+			border: 1px solid $color-6;
 		}
+
 		.fields {
 			.row {
-				margin-bottom : 10px;
-				padding       : 0;
-				border-bottom : 0;
+				margin-bottom: 10px;
+				padding: 0;
+				border-bottom: 0;
+
 				&:last-child {
-					margin-bottom : 0;
+					margin-bottom: 0;
 				}
+
 				label {
-					display : inline-block !important;
-					width   : 70px !important;
+					display: inline-block !important;
+					width: 70px !important;
 				}
+
 				input {
-					width : calc(100% - 77px) !important;
+					width: calc(100% - 77px) !important;
 				}
 			}
 		}
+
 		.currency-position {
-			margin-top : 10px;
+			margin-top: 10px;
 		}
 	}
+
 	.membership-package-box {
 		.fields {
 			.row {
 				input {
-					min-width : 0;
-					width     : 300px !important;
+					min-width: 0;
+					width: 300px !important;
 				}
+
 				select {
 					&.auto-width {
-						width     : auto;
-						min-width : 0;
+						width: auto;
+						min-width: 0;
 					}
 				}
+
 				&.total-booking-price-item {
 					input {
-						width : 118px !important;
+						width: 118px !important;
 					}
 				}
 			}
 		}
 	}
+
 	.season-package-box {
 		.fields {
 			.row {
 				label {
-					width   : 200px !important;
+					width: 200px !important;
 				}
+
 				input {
-					width : 300px !important;
+					width: 300px !important;
 				}
 			}
 		}
 	}
+
 	//.add-currency-box{
 	//    margin-top: 20px;
 	//}
@@ -209,68 +254,86 @@
 	//}
 	.field-rows {
 		.row {
-			padding-bottom : 30px;
-			margin-bottom  : 30px;
-			border-bottom  : 1px solid darken($color-1, 5%);
+			padding-bottom: 30px;
+			margin-bottom: 30px;
+			border-bottom: 1px solid darken($color-1, 5%);
 			@include clearfix;
+
 			&:last-child {
-				border-bottom  : 0;
-				margin-bottom  : 0;
-				padding-bottom : 0;
+				border-bottom: 0;
+				margin-bottom: 0;
+				padding-bottom: 0;
 			}
-			> label:not(.mana-booking-switch) {
-				display        : inline-block;
-				vertical-align : top;
-				width          : 200px;
-				float          : left;
-				font-weight    : bold;
-				line-height    : 40px;
+
+			>label:not(.mana-booking-switch) {
+				display: inline-block;
+				vertical-align: top;
+				width: 200px;
+				float: left;
+				font-weight: bold;
+				line-height: 40px;
 			}
-			.mana-booking-switch, .wp-editor-wrap, .email-receiver-container, .img-uploader-box, textarea {
-				float : left;
-				width : calc(100% - 210px);
-			}
-			.mana-booking-switch {
-				margin : 10px 0 0;
-			}
+
+			.mana-booking-switch,
+			.wp-editor-wrap,
+			.email-receiver-container,
+			.img-uploader-box,
 			textarea {
-				min-height : 200px;
+				float: left;
+				width: calc(100% - 210px);
+			}
+
+			.mana-booking-switch {
+				margin: 10px 0 0;
+			}
+
+			textarea {
+				min-height: 200px;
+
 				&.wp-editor-area {
-					width : 100%;
+					width: 100%;
 				}
 			}
-			> input {
-				float : left;
+
+			>input {
+				float: left;
 			}
+
 			.email-receiver-container {
 				ul {
 					li {
-						> input, div {
-							display        : inline-block;
-							vertical-align : middle;
+
+						>input,
+						div {
+							display: inline-block;
+							vertical-align: middle;
 						}
-						input {
-						}
+
+						input {}
+
 						.remove-box {
-							color       : $color-6;
+							color: $color-6;
 							@include square(38px);
-							background  : $color-1;
-							border      : 1px solid rgba($color-6, .1);
-							text-align  : center;
-							margin-left : -6px;
-							cursor      : pointer;
+							background: $color-1;
+							border: 1px solid rgba($color-6, .1);
+							text-align: center;
+							margin-left: -6px;
+							cursor: pointer;
+
 							i {
-								line-height : 38px;
-								margin      : 0;
+								line-height: 38px;
+								margin: 0;
 							}
 						}
 					}
 				}
 			}
-			.field-row{
-				
+
+			.field-row {
+
 				margin: 0 5px;
-				.lang-label{
+
+				.lang-label {
 					display: inline-block;
 					margin-right: 10px;
 					min-width: 150px;
@@ -279,106 +342,123 @@
 			}
 		}
 	}
+
 	.red {
-		color : $color-6;
+		color: $color-6;
 	}
+
 	.green {
-		color : $color-7;
+		color: $color-7;
 	}
+
 	.message-box {
-		display     : inline-block;
-		margin-left : 15px;
+		display: inline-block;
+		margin-left: 15px;
 	}
-	.img-uploader, .single-image-uploader {
-		margin-bottom : 10px;
+
+	.img-uploader,
+	.single-image-uploader {
+		margin-bottom: 10px;
+
 		.image-preview-box {
-			float      : left;
-			width      : 155px;
-			margin     : 0 15px 20px 0;
-			background : darken($color-1, 5%);
-			padding    : 5px;
-			position   : relative;
+			float: left;
+			width: 155px;
+			margin: 0 15px 20px 0;
+			background: darken($color-1, 5%);
+			padding: 5px;
+			position: relative;
+
 			img {
-				width   : 100%;
-				height  : auto;
-				display : block;
+				width: 100%;
+				height: auto;
+				display: block;
 			}
+
 			i {
-				position        : absolute;
-				top             : 0;
-				right           : 0;
-				width           : 20px;
-				height          : 20px;
-				background      : darken($color-1, 5%);
-				display         : block;
-				text-align      : center;
-				line-height     : 20px;
-				text-decoration : none;
-				font-weight     : bold;
-				color           : $color-6;
-				margin          : 0;
-				cursor          : pointer;
+				position: absolute;
+				top: 0;
+				right: 0;
+				width: 20px;
+				height: 20px;
+				background: darken($color-1, 5%);
+				display: block;
+				text-align: center;
+				line-height: 20px;
+				text-decoration: none;
+				font-weight: bold;
+				color: $color-6;
+				margin: 0;
+				cursor: pointer;
 			}
 		}
 	}
+
 	.single-image-uploader {
-		display : inline-block;
-		width   : calc(100% - 75px);
+		display: inline-block;
+		width: calc(100% - 75px);
 	}
 }
 
 #currency-update-now {
 	&.loading {
-		position : relative;
+		position: relative;
+
 		&:before {
-			display    : block;
-			content    : '';
-			position   : absolute;
-			left       : 0;
-			top        : 0;
+			display: block;
+			content: '';
+			position: absolute;
+			left: 0;
+			top: 0;
 			@include square(100%);
-			z-index    : 1;
-			cursor     : default;
-			background : rgba($color-1, .3);
+			z-index: 1;
+			cursor: default;
+			background: rgba($color-1, .3);
 		}
-		> a {
+
+		>a {
 			i {
-				animation : spiner 1s linear infinite;
+				animation: spiner 1s linear infinite;
 			}
 		}
 	}
+
 	//> a {
 	//    i{
 	//
 	//    }
 	//}
 	.message {
-		display : none;
-		&.notice-green, &.notice-red {
-			display        : inline-block;
-			text-align     : center;
-			padding        : 8px 40px;
-			vertical-align : middle;
-		}
-		&.notice-green {
-			background : rgba(green, .3);
-			border     : 1px solid rgba(green, .6);
-		}
+		display: none;
+
+		&.notice-green,
 		&.notice-red {
-			background : rgba(red, .3);
-			border     : 1px solid rgba(red, .6);
+			display: inline-block;
+			text-align: center;
+			padding: 8px 40px;
+			vertical-align: middle;
+		}
+
+		&.notice-green {
+			background: rgba(green, .3);
+			border: 1px solid rgba(green, .6);
+		}
+
+		&.notice-red {
+			background: rgba(red, .3);
+			border: 1px solid rgba(red, .6);
 		}
 	}
 }
 
 #import-mana-booking-setting {
 	i {
-		display : none;
+		display: none;
 	}
+
 	&.loading {
 		i {
-			display : inline-block;
-			animation : spiner 1s linear infinite;
+			display: inline-block;
+			animation: spiner 1s linear infinite;
 		}
 	}
 }

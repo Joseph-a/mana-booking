@@ -675,3 +675,16 @@
         }
     }
 }
+
+input[type="text"],
+input[type="number"],
+input[type="url"],
+input[type="email"],
+textarea,
+select,
+textarea {
+    &.invalid-input {
+        border-color: $color-6 !important;
+        color: $color-6 !important;
+    }
+}

@@ -1,141 +1,75 @@
-import React, { Component } from 'react';
+import React, { Component, Fragment } from 'react';
 import ReactDOM from 'react-dom';
 import { __ } from '@wordpress/i18n';
-import 'react-dates/initialize';
-import { DateRangePicker } from 'react-dates';
+
 import moment from 'moment';
+import Step1 from './step-1';
+import Step2 from './step-2';
+import Step3 from './step-3';
 
 export default class ManaSearchForm extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            randId: Math.random() * 100,
-            startDate: moment(),
-            endDate: moment().add(2, 'days'),
+            step: 1,
+            securityNonce: props.securityNonce,
+            checkIn: moment(),
+            checkOut: moment().add(2, 'days'),
             selectedRooms: [{
                 adult: 1,
-                child: 0
-            }
-            ],
-            bookableRooms: 10,
-            focusedInput: null,
+                child: 0,
+                room: null
+            }],
+            services: [],
+            passengerInfo: {},
+            paymentMethod: 'full',
+            coupon: {},
         }
+        this.handleStep1 = this.handleStep1.bind(this);
+        this.handleStep2 = this.handleStep1.bind(this);
+        this.handleStep3 = this.handleStep1.bind(this);
     }
 
-    roomHandle = (index, type, value) => {
-        const { selectedRooms } = this.state;
-        let newRoomArray = [...selectedRooms];
-        newRoomArray[index][type] = value;
+    handleStep1(checkIn, checkOut, selectedRooms) {
         this.setState({
-            selectedRooms: newRoomArray
+            step: 2,
+            checkIn,
+            checkOut,
+            selectedRooms
         })
     }
 
-    submitFormHandle = () => {
-        const { selectedRooms, startDate, endDate } = this.state;
-        console.log(selectedRooms, startDate.format('DD-MM-YYYY'), endDate.format('DD-MM-YYYY'));
+    handleStep2(checkIn, checkOut, selectedRooms) {
+        console.log('Handle Step 2');
+        // this.setState({
+        //     step: 2,
+        //     checkIn,
+        //     checkOut,
+        //     selectedRooms
+        // })
     }
 
     render() {
-        const { randId, selectedRooms, bookableRooms, startDate, endDate } = this.state;
-        return (
-            <div className="mana-booking-search-form">
-                <div className="top-sec">
-                    <div className="date-box">
-                        <DateRangePicker
-                            startDateId={`startDate_${randId}`}
-                            endDateId={`endDate_${randId}`}
-                            startDate={startDate}
-                            endDate={endDate}
-                            onDatesChange={({ startDate, endDate }) => this.setState({ startDate, endDate })}
-                            focusedInput={this.state.focusedInput}
-                            onFocusChange={focusedInput => this.setState({ focusedInput })}
-                            displayFormat="DD-MM-YYYY"
-                            noBorder={true}
-                            small={true}
-                            readOnly={true}
-                        />
-                    </div>
-                    <div className="rooms">
-                        <select
-                            value={selectedRooms.length}
-                            placeholder={__('Rooms', 'mana-booking')}
-                            onChange={e => {
-                                let newVal = [];
-                                for (let i = 0; i < e.target.value; i++) {
-                                    newVal.push({
-                                        adult: 1,
-                                        child: 0
-                                    });
-                                }
-                                this.setState({ selectedRooms: newVal })
-                            }}
-                        >
-                            {
-                                [...Array(bookableRooms).keys()].map((item, i) => <option key={i} value={i + 1}>{i + 1} {i + 1 > 1 ? __('Rooms', 'mana-booking') : __('Room', 'mana-booking')}</option>)
-                            }
-                        </select>
-                    </div>
-                </div>
-                <div className="room-sec">
-                    {
-                        selectedRooms.map((item, i) => (
-                            <div className="room-row" key={i}>
-                                <div className="title">{__('Room', 'mana-booking')} {i + 1}</div>
-                                <div className="adult">
-                                    <label>{__('Adult', 'mana-booking')}:</label>
-                                    <select
-                                        value={item.adult}
-                                        onChange={e => this.roomHandle(i, 'adult', e.target.value)}
-                                    >
-                                        <option value="1">1</option>
-                                        <option value="2">2</option>
-                                        <option value="3">3</option>
-                                        <option value="4">4</option>
-                                        <option value="5">5</option>
-                                        <option value="6">6</option>
-                                        <option value="7">7</option>
-                                        <option value="8">8</option>
-                                        <option value="9">9</option>
-                                        <option value="10">10</option>
-                                    </select>
-                                </div>
-                                <div className="child">
-                                    <label>{__('Child', 'mana-booking')}:</label>
-                                    <select
-                                        value={item.child}
-                                        onChange={e => this.roomHandle(i, 'child', e.target.value)}
-                                    >
-                                        <option value="0">{__('No Child', 'mana-booking')}</option>
-                                        <option value="1">1</option>
-                                        <option value="2">2</option>
-                                        <option value="3">3</option>
-                                        <option value="4">4</option>
-                                        <option value="5">5</option>
-                                        <option value="6">6</option>
-                                        <option value="7">7</option>
-                                        <option value="8">8</option>
-                                        <option value="9">9</option>
-                                        <option value="10">10</option>
-                                    </select>
-                                </div>
-                            </div>
-                        ))
-                    }
-                </div>
-                <div className="btn-sec">
-                    <button
-                        onClick={() => this.submitFormHandle()}
-                    >{__('Book Now', 'mana-booking')}</button>
-                </div>
-            </div>
-        )
+        const { step, checkIn, checkOut, selectedRooms, securityNonce } = this.state;
+        switch (step) {
+            case 2:
+                return (<Step2 security={securityNonce} handleStep2={this.handleStep2} checkIn={checkIn} checkOut={checkOut} selectedRooms={selectedRooms} />)
+                break;
+            case 3:
+                return (<Step3 />)
+                break;
+            default:
+                return (<Step1 security={securityNonce} handleStep1={this.handleStep1} />)
+                break;
+        }
     }
 }
 
 const searchForms = document.getElementsByClassName("mana-booking-search-form-container");
 if (searchForms.length > 0) {
     for (let item of searchForms) {
-        ReactDOM.render(<ManaSearchForm />, item.children[2]);
+        const formContainer = item.children[2];
+        let securityNonce = formContainer.getAttribute('data-security')
+        ReactDOM.render(<ManaSearchForm securityNonce={securityNonce} />, formContainer);
     }
 }
