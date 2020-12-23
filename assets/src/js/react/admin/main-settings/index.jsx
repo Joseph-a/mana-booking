@@ -9,13 +9,19 @@ import {
     manaMainSettings
 } from './settings';
 import Tabs from './tabs';
+import {
+    manaMainSetting
+} from '../../../constant';
 
 
 export default class ManaBookingMainSettings extends Component {
     constructor(props) {
         super(props);
 
-        const savedSetting = document.getElementById('mana_booking_main_setting').value || "{}";
+        let savedSetting = document.getElementById('mana_booking_main_setting').value || "{}";
+        if (typeof savedSetting === 'undefined' || savedSetting === 'undefined') {
+            savedSetting = "{}";
+        }
 
         this.state = {
             savedSetting: JSON.parse(savedSetting),
@@ -24,13 +30,37 @@ export default class ManaBookingMainSettings extends Component {
         }
     }
 
+    componentDidMount() {
+        this.initialSetting();
+    }
+
     onFieldChanged = (fieldIndex, val) => {
         let savedSetting = { ...this.state.savedSetting, [fieldIndex]: val };
         this.setState({
             savedSetting
         })
 
+        /*
+        *  TODO: Validate the inputs and remove Empty Fields
+        */
+
         document.getElementById('mana_booking_main_setting').value = JSON.stringify(savedSetting);
+    }
+
+    initialSetting = () => {
+        const { manaMainSettings, savedSetting } = this.state;
+        let initialValue = {};
+
+        manaMainSettings.map(tab => {
+            (tab.fields).map(field => {
+                if (field.fieldIndex !== manaMainSetting.IMPORT && field.fieldIndex !== manaMainSetting.EXPORT) {
+                    initialValue[field.fieldIndex] = typeof savedSetting[field.fieldIndex] !== 'undefined' ? savedSetting[field.fieldIndex] : field.value;
+                }
+            })
+        });
+
+        this.setState({ savedSetting: initialValue });
+        document.getElementById('mana_booking_main_setting').value = JSON.stringify(initialValue);
     }
 
     getFieldValue = (index) => {
