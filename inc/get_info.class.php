@@ -61,9 +61,6 @@ class Mana_booking_get_info
         $room_info_meta_json = get_post_meta($p_id, 'mana_booking_room_meta_info', true);
         $room_info_meta = json_decode($room_info_meta_json, true);
 
-        echo '<pre>';
-        var_dump($room_info_meta);
-        echo '</pre>';
 
         /**
          * ------------------------------------------------------------------------------------------
@@ -98,7 +95,7 @@ class Mana_booking_get_info
         }
 
         $room_info['room_size']['qnt'] = $room_size['value'];
-        $room_info['room_size']['unit'] = $room_size['unit'] === 'm2' ? 'm<sup>2</sup>' : $room_size['unit'];
+        $room_info['room_size']['unit'] = $room_info_meta['sizeUnit'] === 'm2' ? 'm<sup>2</sup>' : $room_info_meta['sizeUnit'];
         $room_info['room_view'] = $room_info_meta['view'];
         $room_info['facilities'] = $room_info_meta['facility'];
         $room_info['service'] = $room_info_meta['service'];
@@ -108,21 +105,21 @@ class Mana_booking_get_info
          *  Room Gallery
          * ------------------------------------------------------------------------------------------
          */
-        $room_images = $room_info_meta['gallery'];
-        if (!empty($room_images)) {
-            $i = 0;
-            foreach ($room_images as $room_image) {
-                $room_image = trim($room_image);
-                $room_info['gallery']['img'][$i]['id'] = $room_image;
-                $room_info['gallery']['img'][$i]['url'] = wp_get_attachment_url($room_image);
-                $room_info['gallery']['img'][$i]['code']['thumbnail'] = wp_get_attachment_image($room_image, 'thumbnail');
-                $room_info['gallery']['img'][$i]['code']['medium'] = wp_get_attachment_image($room_image, 'medium');
-                $room_info['gallery']['img'][$i]['code']['large'] = wp_get_attachment_image($room_image, 'large');
-                $room_info['gallery']['img'][$i]['code']['full'] = wp_get_attachment_image($room_image, 'full');
-                $i++;
-            }
-        }
-        $room_info['gallery']['count'] = (!empty($room_images) ? count($room_images) : 0);
+        // $room_images = $room_info_meta['gallery'];
+        // if (!empty($room_images)) {
+        //     $i = 0;
+        //     foreach ($room_images as $room_image) {
+        //         $room_image = trim($room_image);
+        //         $room_info['gallery']['img'][$i]['id'] = $room_image;
+        //         $room_info['gallery']['img'][$i]['url'] = wp_get_attachment_url($room_image);
+        //         $room_info['gallery']['img'][$i]['code']['thumbnail'] = wp_get_attachment_image($room_image, 'thumbnail');
+        //         $room_info['gallery']['img'][$i]['code']['medium'] = wp_get_attachment_image($room_image, 'medium');
+        //         $room_info['gallery']['img'][$i]['code']['large'] = wp_get_attachment_image($room_image, 'large');
+        //         $room_info['gallery']['img'][$i]['code']['full'] = wp_get_attachment_image($room_image, 'full');
+        //         $i++;
+        //     }
+        // }
+        // $room_info['gallery']['count'] = (!empty($room_images) ? count($room_images) : 0);
 
         /**
          * ------------------------------------------------------------------------------------------
@@ -130,14 +127,13 @@ class Mana_booking_get_info
          * ------------------------------------------------------------------------------------------
          */
         $currency_info = new Mana_booking_currency();
-        $room_info['price']['unit'] = $currency_info->get_current_currency();
-        $room_price_meta_box_prefix = 'mana_booking_room_price_';
-        $room_info['price_unit'] = $room_info['price']['unit']['symbol'];
-        $init_base_price = get_post_meta($p_id, $room_price_meta_box_prefix . 'base_price', true);
-        $init_extra_price = get_post_meta($p_id, $room_price_meta_box_prefix . 'extra_price', true);
+        $room_info['price'] = $currency_info->get_current_currency();
+        $room_info['price_unit'] = $room_info['price']['symbol'];
+        $init_base_price = $room_info_meta['basePrice'];
+        $init_extra_price = $room_info_meta['extraGuestPrice'];
         $room_info['extra_price'] = $init_extra_price;
-        $room_info['seasonal_price'] = get_post_meta($p_id, $room_price_meta_box_prefix . 'seasonal_price', true);
-        $room_info['discount'] = get_post_meta($p_id, $room_price_meta_box_prefix . 'discount', true);
+        $room_info['seasonal_price'] = $room_info_meta['seasonalPrice'];
+        $room_info['discount'] = $room_info_meta['discount'];
 
         $new_room_base_price = $new_room_extra_price = array();
         foreach ($init_base_price as $age_index => $age_value) {
@@ -271,8 +267,8 @@ class Mana_booking_get_info
         }
 
         // Generate Daily Prices on Bookings
-        $room_info['booking_price'] = array();
         if (!empty($check_in) && !empty($check_out)) {
+            $room_info['booking_price'] = array();
             $check_in_time = new DateTime($check_in);
             $check_out_time = new DateTime($check_out);
             $weekend_count = $weekday_count = 0;

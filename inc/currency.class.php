@@ -6,7 +6,7 @@ class Mana_booking_currency
 
     public function __construct()
     {
-        $this->mana_booking_option = get_option('mana-booking-setting');
+        $this->mana_booking_option = json_decode(get_option('mana-booking-setting')['main_setting'], true);
         add_action('wp_ajax_nopriv_mana_booking_update_currency', array($this, 'update_currency'));
         add_action('wp_ajax_mana_booking_update_currency', array($this, 'update_currency'));
 
@@ -19,7 +19,7 @@ class Mana_booking_currency
     public function update_currency()
     {
         $currency_count = count($this->mana_booking_option['currency']);
-        $default_currency = $this->mana_booking_option['default_currency'];
+        $default_currency = $this->mana_booking_option['defaultCurrency'];
         if ($currency_count > 1) {
             $default_currency_info = $this->mana_booking_option['currency'][$default_currency];
             foreach ($this->mana_booking_option['currency'] as $index => $currency_item) {
@@ -41,12 +41,14 @@ class Mana_booking_currency
 
     public function set_currency_cookie()
     {
-        if (!empty($this->mana_booking_option['currency'])) {
+        if (!empty($this->mana_booking_option['currencyList'])) {
+            $currency_list = $this->mana_booking_option['currencyList'];
+
             $current_currency = !empty($_COOKIE['currencyTitle']) ? $_COOKIE['currencyTitle'] : '';
             $currency_is_valid = false;
 
-            if (!empty($this->mana_booking_option['currency'])) {
-                foreach ($this->mana_booking_option['currency'] as $currency_item) {
+            if (!empty($currency_list['currencyList'])) {
+                foreach ($currency_list['currencyList'] as $currency_item) {
                     if (in_array($current_currency, $currency_item)) {
                         $currency_is_valid = true;
                     }
@@ -54,8 +56,8 @@ class Mana_booking_currency
             }
 
             if ($currency_is_valid == false) {
-                foreach ($this->mana_booking_option['currency'] as $index => $currency_item) {
-                    if ($index == $this->mana_booking_option['default_currency']) {
+                foreach ($currency_list['currencyList'] as $index => $currency_item) {
+                    if ($index == $currency_list['defaultCurrency']) {
                         setcookie('currencyTitle', $currency_item['title'], time() + (86400 * 30), '/');
                         setcookie('currencySymbol', $currency_item['symbol'], time() + (86400 * 30), '/');
                         setcookie('currencyPosition', (!empty($currency_item['position']) ? $currency_item['position'] : 0), time() + (86400 * 30), '/');
@@ -96,24 +98,23 @@ class Mana_booking_currency
 
     public function get_current_currency()
     {
+        $currency_list = $this->mana_booking_option['currencyList'];
         $i = 0;
         if (
             !empty($this->mana_booking_option) &&
-            !empty($this->mana_booking_option['currency']) &&
-            is_array($this->mana_booking_option['currency'])
+            !empty($currency_list) &&
+            is_array($currency_list['currencyList'])
         ) {
-            foreach ($this->mana_booking_option['currency'] as $index => $currency_item) {
-                if (empty($this->mana_booking_option['default_currency'])) {
-                    if ($i === 0) {
-                        $default_currency_item = array(
-                            'title' => $currency_item['title'],
-                            'symbol' => $currency_item['symbol'],
-                            'position' => !empty($currency_item['position']) ? $currency_item['position'] : 0,
-                            'rate' => 1,
-                        );
-                    }
+            foreach ($currency_list['currencyList'] as $index => $currency_item) {
+                if (empty($currency_list['defaultCurrency']) && $i === 0) {
+                    $default_currency_item = array(
+                        'title' => $currency_item['title'],
+                        'symbol' => $currency_item['symbol'],
+                        'position' => !empty($currency_item['position']) ? $currency_item['position'] : 0,
+                        'rate' => 1,
+                    );
                 } else {
-                    if ($index == $this->mana_booking_option['default_currency']) {
+                    if ($index == $currency_list['defaultCurrency']) {
                         $default_currency_item = array(
                             'title' => $currency_item['title'],
                             'symbol' => $currency_item['symbol'],
