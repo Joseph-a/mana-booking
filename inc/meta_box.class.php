@@ -16,12 +16,12 @@ class Mana_booking_meta_boxes
 	function __construct($meta_items, $prefix, $title, $post_type, $context = 'normal', $priority = 'high')
 	{
 		Mana_booking_main::mana_load_plugin_text_domain();
-		$this->meta_box_fields = $meta_items;
-		$this->meta_box_title = $title;
+		$this->meta_box_fields    = $meta_items;
+		$this->meta_box_title     = $title;
 		$this->meta_box_post_type = $post_type;
-		$this->meta_box_context = $context;
-		$this->meta_box_priority = $priority;
-		$this->meta_box_prefix = $prefix;
+		$this->meta_box_context   = $context;
+		$this->meta_box_priority  = $priority;
+		$this->meta_box_prefix    = $prefix;
 		add_action('add_meta_boxes', array($this, 'add_meta_box'));
 		add_action('save_post', array($this, 'save_meta_box'));
 	}
@@ -47,19 +47,20 @@ class Mana_booking_meta_boxes
 		// Use nonce for verification
 		echo '<input type="hidden" name="' . $this->meta_box_post_type . '_meta_box_nonce" value="' . esc_attr(wp_create_nonce(basename(__FILE__))) . '" />';
 
+
+		// Begin the field table and loop
+		echo '<table class="form-table">';
+
 		// Post types with JS meta box generator
 		$new_setting_types = array('room_settings', 'block_date_settings', 'coupon_settings', 'service_settings');
-		if (in_array($this->meta_box_fields[0]['type'], $new_setting_types)) {
-			$field = $this->meta_box_fields[0];
-			$meta = get_post_meta($post->ID, $field['id'], true);
-			echo '
-					<input type="hidden" name="' . esc_attr($field['id']) . '" id="' . esc_attr($field['id']) . '" value="' . esc_attr($meta) . '" size="40" />
-					<div id="mana-' . str_replace('_', '-', $this->meta_box_fields[0]['type']) . '-info-box"></div>
-				';
-		} else {
-			// Begin the field table and loop
-			echo '<table class="form-table">';
-			foreach ($this->meta_box_fields as $field) {
+		foreach ($this->meta_box_fields as $field) {
+			if (in_array($field['type'], $new_setting_types)) {
+				$meta = get_post_meta($post->ID, $field['id'], true);
+				echo '
+						<input type="hidden" name="' . esc_attr($field['id']) . '" id="' . esc_attr($field['id']) . '" value="' . esc_attr($meta) . '" size="40" />
+						<div id="mana-' . str_replace('_', '-', $field['type']) . '-info-box"></div>
+					';
+			} else {
 				// get value of this field if it exists for this post
 				$meta = get_post_meta($post->ID, $field['id'], true);
 				// begin a table row with
@@ -73,6 +74,10 @@ class Mana_booking_meta_boxes
 					case 'text':
 						echo '<input type="text" name="' . esc_attr($field['id']) . '" id="' . esc_attr($field['id']) . '" value="' . esc_attr($meta) . '" size="40" />
 										<br /><span class="description">' . balancetags($field['desc']) . '</span>';
+						break;
+
+					case 'hidden':
+						echo '<input type="hidden" name="' . esc_attr($field['id']) . '" id="' . esc_attr($field['id']) . '" value="' . esc_attr($meta) . '" size="40" />';
 						break;
 
 						// Demo
@@ -117,458 +122,12 @@ class Mana_booking_meta_boxes
 						break;
 
 						// Price
-					case 'price':
-						echo '<input type="number" name="' . esc_attr($field['id']) . '" id="' . esc_attr($field['id']) . '" value="' . esc_attr($meta) . '" size="40" placeholder="' . esc_html__('Price (number only)', 'mana-booking') . '" class="price-field" step="any" />
-							<span class="price-separated-container"><span class="unit">$</span><span class="digit">' . esc_attr(!empty($meta) ? number_format($meta, 2) : '') . '</span></span>';
-						break;
-
-						// Area
-					case 'area':
-						if (gettype($meta) === 'string') {
-							$meta = array(
-								'value' => $meta,
-								'unit' => 'sqft'
-							);
-						}
-						echo '<input type="number" min="0" name="' . esc_attr($field['id']) . '[value]" id="' . esc_attr($field['id']) . '[value]" value="' . esc_attr($meta['value']) . '" size="40" />
-									<select name="' . esc_attr($field['id']) . '[unit]" id="' . esc_attr($field['id']) . '[unit]">
-										<option value="sqft" ' . selected('sqft', $meta['unit'], false) . '>' . esc_html__('Square Foot (sqft)', 'mana-booking') . '</option>
-										<option value="m2" ' . selected('m2', $meta['unit'], false) . '>' . esc_html__('Square Meter (m2)', 'mana-booking') . '</option>
-										<option value="acre" ' . selected('acre', $meta['unit'], false) . '>' . esc_html__('Acre (acre)', 'mana-booking') . '</option>
-										<option value="ha" ' . selected('ha', $meta['unit'], false) . '>' . esc_html__('Hectare (ha)', 'mana-booking') . '</option>
-										<option value="sqkm" ' . selected('sqkm', $meta['unit'], false) . '>' . esc_html__('Square Kilometre (sqkm)', 'mana-booking') . '</option>
-										<option value="sqmi" ' . selected('sqmi', $meta['unit'], false) . '>' . esc_html__('Square Mile (sqmi)', 'mana-booking') . '</option>
-										<option value="sqyd" ' . selected('sqyd', $meta['unit'], false) . '>' . esc_html__('Square Yard (sqyd)', 'mana-booking') . '</option>
-									</select>
-										<br /><span class="description">' . balancetags($field['desc']) . '</span>';
-						break;
-
-						// Repeatable
-					case 'repeatable':
-						echo '
-								<ul id="' . esc_attr($field['id']) . '-repeatable" class="custom_repeatable">';
-						if ($meta) {
-							$i = 0;
-							foreach ($meta as $row) {
-								echo '
-										<li class="single">
-											<div class="input-containers">
-												<div class="input-box"><input type="text" name="' . esc_attr($field['id']) . '[' . esc_attr($i) . '][title]" value="' . esc_attr($row['title']) . '" placeholder="' . esc_html__('Title', 'mana-booking') . '" /></div>
-											</div>
-											<a class="repeatable-remove delete" href="#"><i class="dashicons dashicons-no"></i></a>
-										</li>
-										';
-								$i++;
-							}
-						}
-						echo '</ul>
-							<a class="repeatable-add button button-primary button-large" href="#">' . esc_html__('Add New', 'mana-booking') . '</a>
-							<ul class="li-tpml" style="display:none;">
-								<li class="single">
-									<div class="input-containers">
-										<div class="input-box"><input type="text" name="" id="' . esc_attr($field['id']) . '" data-name="title" value="" placeholder="' . esc_html__('Title', 'mana-booking') . '" /></div>
-									</div>
-									<a class="repeatable-remove delete" href="#"><i class="dashicons dashicons-no"></i></a>
-								</li>
-							</ul>
-							<span class="description">' . esc_html($field['desc']) . '</span>';
-						break;
-
-						// Checkbox Group
-					case 'checkbox_group':
-						echo '
-									<ul class="list-inline">';
-						if ($field['options'] != '') {
-							foreach ($field['options'] as $option) {
-								echo '
-											<li>
-												<input type="checkbox" value="' . esc_attr($option['value']) . '" name="' . esc_attr($field['id']) . '[]" id="' . esc_attr($option['value']) . '"', $meta && in_array($option['value'], $meta) ? esc_attr(' checked="checked"') : '', ' />
-												<label for="' . esc_attr($option['value']) . '">' . esc_html($option['label']) . '</label>
-											</li>';
-							}
-						}
-						echo '</ul><span class="description">' . esc_html($field['desc']) . '</span></div>';
-						break;
-
-						// Date Field
-					case 'date':
-						echo '<input type="text" class="datepicker ' . esc_attr(!empty($field['class']) ? $field['class'] : '') . '" name="' . esc_attr($field['id']) . '" id="' . esc_attr($field['id']) . '" value="' . ($meta ? esc_attr($meta) : "") . '" size="30" />
-											<span class="description">' . esc_html($field['desc']) . '</span>';
-						break;
-
-						// Image
-					case 'image':
-						$img_info = wp_get_attachment_thumb_url($meta);
-						$img_preview = (!empty($img_info) ? '<div class="image-preview-box"><img src="' . esc_url($img_info) . '"/></div>' : '');
-
-						echo '
-								<div class="single-image-uploader">
-									<div class="img-container">' . (!empty($img_preview) ? wp_kses_post($img_preview) : '') . '</div>
-									<a class="add-image button button-primary button-large ' . (!empty($img_preview) ? esc_attr('hidden') : '') . '" href="#">' . esc_html__('Upload Image', 'mana-booking') . '</a>
-									<a class="remove-image button button-primary button-large ' . (empty($img_preview) ? esc_attr('hidden') : '') . '" href="#">' . esc_html__('Remove Image', 'mana-booking') . '</a>
-									<input type="hidden" name="' . esc_attr($field['id']) . '" value="' . esc_attr($meta) . '"/>
-								</div>
-							';
-						break;
-
-						// Gallery
-					case 'gallery':
-
-						echo '
-								<div class="mana_slideshow_wrapper hide-if-no-js">
-									<ul class="slideshow_images clearfix">';
-
-						$slideshow_images = get_post_meta($post->ID, $field['id'], true);
-
-						$attachments = array_filter(explode('---', $slideshow_images));
-
-						if ($attachments) {
-							foreach ($attachments as $attachment_id) {
-								$attachment_id = trim($attachment_id);
-								if (!empty($attachment_id)) {
-									echo '<li class="image" data-attachment_id="' . esc_attr($attachment_id) . '">' . wp_get_attachment_image($attachment_id, 'image') . '<a href="#" class="delete_slide" title="' . esc_attr(esc_html__('Delete image', 'mana-booking')) . '"><i class="dashicons dashicons-no"></i></a></li>';
-								}
-							}
-						}
-						echo '
-									</ul>
-									<input type="hidden" id="' . esc_attr($field['id']) . '" name="' . esc_attr($field['id']) . '" value="' . esc_attr($slideshow_images) . ' " />
-									<a href="#" class="add_slideshow_images button button-primary button-large">' . esc_html__('Add images', 'mana-booking') . '</a>
-								</div>
-								';
-						break;
-
-						// Capacity
-					case 'capacity':
-						echo '
-							<div class="capacity-field-container">
-								<input type="number" min="0" name="' . esc_attr($field['id']) . '[main]" id="' . esc_attr($field['id']) . '" value="' . esc_attr(!empty($meta['main']) ? $meta['main'] : '') . '" size="40" placeholder="' . esc_html__('Main', 'mana-booking') . '" />
-								+
-								<input type="number" min="0" name="' . esc_attr($field['id']) . '[extra]" id="' . esc_attr($field['id']) . '" value="' . esc_attr(!empty($meta['extra']) ? $meta['extra'] : '') . '" size="40" placeholder="' . esc_html__('Extra', 'mana-booking') . '" />
-							</div>
-							<span class="description">' . balancetags($field['desc']) . '</span>';
-						break;
-
-						// ID
 					case 'id':
 						echo '<div class="room-id-box">' . esc_html($post->ID) . '</div>';
 						break;
-
-						// Facility
-					case 'facility':
-						echo '
-								<ul id="' . $field['id'] . '-repeatable" class="custom_repeatable">';
-						if ($meta) {
-							$i = 0;
-							foreach ($meta as $row) {
-								echo '
-										<li class="services">
-											<div class="input-containers">
-												<div class="input-box"><input type="text" name="' . esc_attr($field['id']) . '[' . esc_attr($i) . '][icon]" value="' . esc_attr($row['icon']) . '" placeholder="' . esc_html__('Icon', 'mana-booking') . '" /></div>
-												<div class="input-box"><input type="text" name="' . esc_attr($field['id']) . '[' . esc_attr($i) . '][title]" value="' . esc_attr($row['title']) . '" placeholder="' . esc_html__('Title', 'mana-booking') . '" /></div>
-											</div>
-											<a class="repeatable-remove delete" href="#"><i class="dashicons dashicons-no"></i></a>
-										</li>
-										';
-								$i++;
-							}
-						}
-						echo '</ul>
-							<a class="repeatable-add button button-primary button-large" href="#">' . esc_html__('Add New', 'mana-booking') . '</a>
-							<ul class="li-tpml" style="display:none;">
-								<li class="services">
-									<div class="input-containers">
-										<div class="input-box"><input type="text" name="" id="' . esc_attr($field['id']) . '" data-name="icon" value="" placeholder="' . esc_html__('Icon', 'mana-booking') . '" /></div>
-										<div class="input-box"><input type="text" name="" id="' . esc_attr($field['id']) . '" data-name="title" value="" placeholder="' . esc_html__('Title', 'mana-booking') . '" /></div>
-									</div>
-									<a class="repeatable-remove delete" href="#"><i class="dashicons dashicons-no"></i></a>
-								</li>
-							</ul>
-							<span class="description">' . esc_html($field['desc']) . '</span>';
-						break;
-
-						// Service
-					case 'service':
-						echo '
-								<ul id="' . $field['id'] . '-repeatable" class="custom_repeatable">';
-						if ($meta) {
-							$i = 0;
-							foreach ($meta as $row) {
-								echo '
-										<li class="services">
-											<div class="input-containers">
-												<div class="input-box"><input type="text" name="' . esc_attr($field['id']) . '[' . esc_attr($i) . '][title]" value="' . esc_attr($row['title']) . '" placeholder="' . esc_html__('Title', 'mana-booking') . '" /></div>
-												<div class="input-box"><input type="text" name="' . esc_attr($field['id']) . '[' . esc_attr($i) . '][value]" value="' . esc_attr($row['value']) . '" placeholder="' . esc_html__('Value', 'mana-booking') . '" /></div>
-											</div>
-											<a class="repeatable-remove delete" href="#"><i class="dashicons dashicons-no"></i></a>
-										</li>
-										';
-								$i++;
-							}
-						}
-						echo '</ul>
-							<a class="repeatable-add button button-primary button-large" href="#">' . esc_html__('Add New', 'mana-booking') . '</a>
-							<ul class="li-tpml" style="display:none;">
-								<li class="services">
-									<div class="input-containers">
-										<div class="input-box"><input type="text" name="" id="' . esc_attr($field['id']) . '" data-name="title" value="" placeholder="' . esc_html__('Title', 'mana-booking') . '" /></div>
-										<div class="input-box"><input type="text" name="" id="' . esc_attr($field['id']) . '" data-name="value" value="" placeholder="' . esc_html__('Value', 'mana-booking') . '" /></div>
-									</div>
-									<a class="repeatable-remove delete" href="#"><i class="dashicons dashicons-no"></i></a>
-								</li>
-							</ul>
-							<span class="description">' . esc_attr($field['desc']) . '</span>';
-						break;
-
-						// Room Price
-					case 'room_price':
-						echo '
-								<div class="base-room-price">
-									<div class="row">
-										<div class="price-box">
-											<div class="title">' . esc_html__('Adult Weekday Price', 'mana-booking') . '</div>
-											<div class="input-container">
-												<input type="number" min="0" name="' . esc_attr($field['id']) . '[adult][weekday]" id="' . esc_attr($field['id']) . '" value="' . esc_attr(!empty($meta['adult']['weekday']) ? $meta['adult']['weekday'] : '') . '" size="40" placeholder="' . esc_html__('Price (number only)', 'mana-booking') . '" />
-											</div>
-										</div>
-										<div class="price-box">
-											<div class="title">' . esc_html__('Adult Weekend Price', 'mana-booking') . '</div>
-											<div class="input-container">
-												<input type="number" min="0" name="' . esc_attr($field['id']) . '[adult][weekend]" id="' . esc_attr($field['id']) . '" value="' . esc_attr(!empty($meta['adult']['weekend']) ? $meta['adult']['weekend'] : '') . '" size="40" placeholder="' . esc_html__('Price (number only)', 'mana-booking') . '" />
-											</div>
-										</div>
-									</div>
-									<div class="row">
-										<div class="price-box">
-											<div class="title">' . esc_html__('Child Weekday Price', 'mana-booking') . '</div>
-											<div class="input-container">
-												<input type="number" min="0" name="' . esc_attr($field['id']) . '[child][weekday]" id="' . esc_attr($field['id']) . '" value="' . esc_attr(!empty($meta['child']['weekday']) ? $meta['child']['weekday'] : '') . '" size="40" placeholder="' . esc_html__('Price (number only)', 'mana-booking') . '" />
-											</div>
-										</div>
-										<div class="price-box">
-											<div class="title">' . esc_html__('Child Weekend Price', 'mana-booking') . '</div>
-											<div class="input-container">
-												<input type="number" min="0" name="' . esc_attr($field['id']) . '[child][weekend]" id="' . esc_attr($field['id']) . '" value="' . esc_attr(!empty($meta['child']['weekend']) ? $meta['child']['weekend'] : '') . '" size="40" placeholder="' . esc_html__('Price (number only)', 'mana-booking') . '" />
-											</div>
-										</div>
-									</div>
-									<div class="description">' . balancetags($field['desc']) . '</div>
-								</div>
-							';
-						break;
-
-						// Seasonal Price
-					case 'seasonal_room_price':
-						echo '
-								<ul id="' . $field['id'] . '-repeatable" class="custom_repeatable">';
-						if ($meta) {
-							$i = 0;
-							foreach ($meta as $row) {
-								echo '
-										<li class="seasonal">
-											<div class="base-room-price">
-												<div class="row">
-													<div class="price-box">
-														<div class="title">' . esc_html__('Start Date', 'mana-booking') . '</div>
-														<div class="input-container">
-															<input readonly type="text" name="' . esc_attr($field['id']) . '[' . esc_attr($i) . '][start]" class="datepicker from" data-name="start" id="' . esc_attr($field['id'] . '_' . $i . '_adult_start') . '" value="' . esc_attr(!empty($row['start']) ? $row['start'] : '') . '" size="40" placeholder="' . esc_html__('Start Date', 'mana-booking') . '" />
-														</div>
-													</div>
-													<div class="price-box">
-														<div class="title">' . esc_html__('End Date', 'mana-booking') . '</div>
-														<div class="input-container">
-															<input readonly type="text" name="' . esc_attr($field['id']) . '[' . esc_attr($i) . '][end]" class="datepicker to" data-name="end" id="' . esc_attr($field['id'] . '_' . $i . '_adult_end') . '" value="' . esc_attr(!empty($row['end']) ? $row['end'] : '') . '" size="40" placeholder="' . esc_html__('End Date', 'mana-booking') . '" />
-														</div>
-													</div>
-												</div>
-												<div class="row">
-													<div class="price-box">
-														<div class="title">' . esc_html__('Adult Weekday Price', 'mana-booking') . '</div>
-														<div class="input-container">
-															<input type="number" min="0" name="' . esc_attr($field['id']) . '[' . esc_attr($i) . '][adult][weekday]" class="multiple-name" data-fname="adult" data-sname="weekday" id="' . esc_attr($field['id'] . '_' . $i . '_adult_weekday') . '" value="' . esc_attr(!empty($row['adult']['weekday']) ? $row['adult']['weekday'] : '') . '" size="40" placeholder="' . esc_html__('Price (number only)', 'mana-booking') . '" />
-														</div>
-													</div>
-													<div class="price-box">
-														<div class="title">' . esc_html__('Adult Weekend Price', 'mana-booking') . '</div>
-														<div class="input-container">
-															<input type="number" min="0" name="' . esc_attr($field['id']) . '[' . esc_attr($i) . '][adult][weekend]" class="multiple-name" data-fname="adult" data-sname="weekend" id="' . esc_attr($field['id'] . '_' . $i . '_adult_weekend') . '" value="' . esc_attr(!empty($row['adult']['weekend']) ? $row['adult']['weekend'] : '') . '" size="40" placeholder="' . esc_html__('Price (number only)', 'mana-booking') . '" />
-														</div>
-													</div>
-												</div>
-												<div class="row">
-													<div class="price-box">
-														<div class="title">' . esc_html__('Child Weekday Price', 'mana-booking') . '</div>
-														<div class="input-container">
-															<input type="number" min="0" name="' . esc_attr($field['id']) . '[' . esc_attr($i) . '][child][weekday]" class="multiple-name" data-fname="child" data-sname="weekday" id="' . esc_attr($field['id'] . '_' . $i . '_child_weekday') . '" value="' . esc_attr(!empty($row['child']['weekday']) ? $row['child']['weekday'] : '') . '" size="40" placeholder="' . esc_html__('Price (number only)', 'mana-booking') . '" />
-														</div>
-													</div>
-													<div class="price-box">
-														<div class="title">' . esc_html__('Child Weekend Price', 'mana-booking') . '</div>
-														<div class="input-container">
-															<input type="number" min="0" name="' . esc_attr($field['id']) . '[' . esc_attr($i) . '][child][weekend]" class="multiple-name" data-fname="child" data-sname="weekend" id="' . esc_attr($field['id'] . '_' . $i . '_child_weekend') . '" value="' . esc_attr(!empty($row['child']['weekend']) ? $row['child']['weekend'] : '') . '" size="40" placeholder="' . esc_html__('Price (number only)', 'mana-booking') . '" />
-														</div>
-													</div>
-												</div>
-												<div class="extra-box">
-													<div class="title">' . esc_html__('Extra Guest Price', 'mana-booking') . '</div>
-													<div class="row">
-														<div class="price-box">
-															<div class="title">' . esc_html__('Adult Weekday Price', 'mana-booking') . '</div>
-															<div class="input-container">
-																<input type="number" min="0" name="' . esc_attr($field['id']) . '[' . esc_attr($i) . '][extra][adult][weekday]" class="multiple-name" data-fname="adult" data-sname="weekday" id="' . esc_attr($field['id'] . '_' . $i . '_extra_adult_weekday') . '" value="' . esc_attr(!empty($row['extra']['adult']['weekday']) ? $row['extra']['adult']['weekday'] : '') . '" size="40" placeholder="' . esc_html__('Price (number only)', 'mana-booking') . '" />
-															</div>
-														</div>
-														<div class="price-box">
-															<div class="title">' . esc_html__('Adult Weekend Price', 'mana-booking') . '</div>
-															<div class="input-container">
-																<input type="number" min="0" name="' . esc_attr($field['id']) . '[' . esc_attr($i) . '][extra][adult][weekend]" class="multiple-name" data-fname="adult" data-sname="weekend" id="' . esc_attr($field['id'] . '_' . $i . '_extra_adult_weekend') . '" value="' . esc_attr(!empty($row['extra']['adult']['weekend']) ? $row['extra']['adult']['weekend'] : '') . '" size="40" placeholder="' . esc_html__('Price (number only)', 'mana-booking') . '" />
-															</div>
-														</div>
-													</div>
-													<div class="row">
-														<div class="price-box">
-															<div class="title">' . esc_html__('Child Weekday Price', 'mana-booking') . '</div>
-															<div class="input-container">
-																<input type="number" min="0" name="' . esc_attr($field['id']) . '[' . esc_attr($i) . '][extra][child][weekday]" class="multiple-name" data-fname="child" data-sname="weekday" id="' . esc_attr($field['id'] . '_' . $i . '_extra_child_weekday') . '" value="' . esc_attr(!empty($row['extra']['child']['weekday']) ? $row['extra']['child']['weekday'] : '') . '" size="40" placeholder="' . esc_html__('Price (number only)', 'mana-booking') . '" />
-															</div>
-														</div>
-														<div class="price-box">
-															<div class="title">' . esc_html__('Child Weekend Price', 'mana-booking') . '</div>
-															<div class="input-container">
-																<input type="number" min="0" name="' . esc_attr($field['id']) . '[' . esc_attr($i) . '][extra][child][weekend]" class="multiple-name" data-fname="child" data-sname="weekend" id="' . esc_attr($field['id'] . '_' . $i . '_extra_child_weekend') . '" value="' . esc_attr(!empty($row['extra']['child']['weekend']) ? $row['extra']['child']['weekend'] : '') . '" size="40" placeholder="' . esc_html__('Price (number only)', 'mana-booking') . '" />
-															</div>
-														</div>
-													</div>
-												</div>
-											</div>
-											<a class="repeatable-remove delete" href="#"><i class="dashicons dashicons-no"></i></a>
-										</li>
-										';
-								$i++;
-							}
-						}
-						echo '</ul>
-							<a class="repeatable-add button button-primary button-large" href="#">' . esc_html__('Add New', 'mana-booking') . '</a>
-							<ul class="li-tpml" style="display:none;">
-								<li class="seasonal">
-									<div class="base-room-price">
-										<div class="row">
-											<div class="price-box">
-												<div class="title">' . esc_html__('Start Date', 'mana-booking') . '</div>
-												<div class="input-container">
-													<input readonly type="text" name="" class="from" data-name="start" id="' . esc_attr($field['id']) . '" data-id="' . esc_attr($field['id'] . '_{{id}}_adult_start') . '" value="" size="40" placeholder="' . esc_html__('Start Date', 'mana-booking') . '" />
-												</div>
-											</div>
-											<div class="price-box">
-												<div class="title">' . esc_html__('End Date', 'mana-booking') . '</div>
-												<div class="input-container">
-													<input readonly type="text" name="" class="to" data-name="end" id="' . esc_attr($field['id']) . '" data-id="' . esc_attr($field['id'] . '_{{id}}_adult_end') . '" value="" size="40" placeholder="' . esc_html__('End Date', 'mana-booking') . '" />
-												</div>
-											</div>
-										</div>
-										<div class="row">
-											<div class="price-box">
-												<div class="title">' . esc_html__('Adult Weekday Price', 'mana-booking') . '</div>
-												<div class="input-container">
-													<input type="number" min="0" name="" class="multiple-name" data-fname="adult" data-sname="weekday" id="' . esc_attr($field['id']) . '" value="" size="40" placeholder="' . esc_html__('Price (number only)', 'mana-booking') . '" />
-												</div>
-											</div>
-											<div class="price-box">
-												<div class="title">' . esc_html__('Adult Weekend Price', 'mana-booking') . '</div>
-												<div class="input-container">
-													<input type="number" min="0" name="" class="multiple-name" data-fname="adult" data-sname="weekend" id="' . esc_attr($field['id']) . '" value="" size="40" placeholder="' . esc_html__('Price (number only)', 'mana-booking') . '" />
-												</div>
-											</div>
-										</div>
-										<div class="row">
-											<div class="price-box">
-												<div class="title">' . esc_html__('Child Weekday Price', 'mana-booking') . '</div>
-												<div class="input-container">
-													<input type="number" min="0" name="" class="multiple-name" data-fname="child" data-sname="weekday" id="' . esc_attr($field['id']) . '" value="" size="40" placeholder="' . esc_html__('Price (number only)', 'mana-booking') . '" />
-												</div>
-											</div>
-											<div class="price-box">
-												<div class="title">' . esc_html__('Child Weekend Price', 'mana-booking') . '</div>
-												<div class="input-container">
-													<input type="number" min="0" name="" class="multiple-name" data-fname="child" data-sname="weekend" id="' . esc_attr($field['id']) . '" value="" size="40" placeholder="' . esc_html__('Price (number only)', 'mana-booking') . '" />
-												</div>
-											</div>
-										</div>
-										<div class="extra-box">
-											<div class="title">' . esc_html__('Extra Guest Price', 'mana-booking') . '</div>
-											<div class="row">
-												<div class="price-box">
-													<div class="title">' . esc_html__('Adult Weekday Price', 'mana-booking') . '</div>
-													<div class="input-container">
-														<input type="number" min="0" name="" class="multiple-name" data-prefix="extra" data-fname="adult" data-sname="weekday" id="' . esc_attr($field['id']) . '" value="" size="40" placeholder="' . esc_html__('Price (number only)', 'mana-booking') . '" />
-													</div>
-												</div>
-												<div class="price-box">
-													<div class="title">' . esc_html__('Adult Weekend Price', 'mana-booking') . '</div>
-													<div class="input-container">
-														<input type="number" min="0" name="" class="multiple-name" data-prefix="extra" data-fname="adult" data-sname="weekend" id="' . esc_attr($field['id']) . '" value="" size="40" placeholder="' . esc_html__('Price (number only)', 'mana-booking') . '" />
-													</div>
-												</div>
-											</div>
-											<div class="row">
-												<div class="price-box">
-													<div class="title">' . esc_html__('Child Weekday Price', 'mana-booking') . '</div>
-													<div class="input-container">
-														<input type="number" min="0" name="" class="multiple-name" data-prefix="extra" data-fname="child" data-sname="weekday" id="' . esc_attr($field['id']) . '" value="" size="40" placeholder="' . esc_html__('Price (number only)', 'mana-booking') . '" />
-													</div>
-												</div>
-												<div class="price-box">
-													<div class="title">' . esc_html__('Child Weekend Price', 'mana-booking') . '</div>
-													<div class="input-container">
-														<input type="number" min="0" name="" class="multiple-name" data-prefix="extra" data-fname="child" data-sname="weekend" id="' . esc_attr($field['id']) . '" value="" size="40" placeholder="' . esc_html__('Price (number only)', 'mana-booking') . '" />
-													</div>
-												</div>
-											</div>
-										</div>
-									</div>
-									<a class="repeatable-remove delete" href="#"><i class="dashicons dashicons-no"></i></a>
-								</li>
-							</ul>
-							<span class="description">' . esc_html($field['desc']) . '</span>';
-						break;
-
-						// Price Discount
-					case 'price_discount':
-						echo '
-								<ul id="' . $field['id'] . '-repeatable" class="custom_repeatable">';
-						if ($meta) {
-							$i = 0;
-							foreach ($meta as $row) {
-								echo '
-										<li class="services">
-											<div class="input-containers">
-												<div class="input-box"><input type="text" name="' . esc_attr($field['id']) . '[' . esc_attr($i) . '][night]" value="' . esc_attr($row['night']) . '" placeholder="' . esc_html__('Night', 'mana-booking') . '" /></div>
-												<div class="input-box"><input type="text" name="' . esc_attr($field['id']) . '[' . esc_attr($i) . '][percent]" value="' . esc_attr($row['percent']) . '" placeholder="%" /></div>
-											</div>
-											<a class="repeatable-remove delete" href="#"><i class="dashicons dashicons-no"></i></a>
-										</li>
-										';
-								$i++;
-							}
-						}
-						echo '</ul>
-							<a class="repeatable-add button button-primary button-large" href="#">' . esc_html__('Add New', 'mana-booking') . '</a>
-							<ul class="li-tpml" style="display:none;">
-								<li class="services">
-									<div class="input-containers">
-										<div class="input-box"><input type="text" name="" id="' . esc_attr($field['id']) . '" data-name="night" value="" placeholder="' . esc_html__('Night', 'mana-booking') . '" /></div>
-										<div class="input-box"><input type="text" name="" id="' . esc_attr($field['id']) . '" data-name="percent" value="" placeholder="%" /></div>
-									</div>
-									<a class="repeatable-remove delete" href="#"><i class="dashicons dashicons-no"></i></a>
-								</li>
-							</ul>
-							<span class="description">' . esc_attr($field['desc']) . '</span>';
-						break;
-
-						// Switch
 					case 'switch':
 						$post_status = get_post_status($post->ID);
-						$default = null;
+						$default     = null;
 
 						if ($post_status === 'auto-draft' && !empty($field['default'])) {
 							$default = true;
@@ -582,125 +141,6 @@ class Mana_booking_meta_boxes
 								</label>
 								<span class="description">' . balancetags($field['desc']) . '</span>';
 						break;
-
-						// Menu Items
-					case 'menu_items':
-						echo '
-								<ul id="' . $field['id'] . '-repeatable" class="custom_repeatable">';
-						if ($meta) {
-							$chief_select = !empty($meta['chief_select']) ? $meta['chief_select'] : '';
-
-							$i = 0;
-							foreach ($meta['items'] as $row) {
-								if (!empty($row['title']) || !empty($row['price'])) {
-									echo '
-										<li class="menu-item">
-											<div class="input-containers">
-												<div class="input-box chief-selection">
-													<label>
-														<input type="radio" name="' . esc_attr($field['id']) . '[chief_select]" value="' . esc_attr($i) . '" ' . ($i == $chief_select ? 'checked="checked"' : '') . ' />
-														<span class="bg"><i class="dashicons dashicons-yes"></i></span>
-														<span class="text">' . esc_html__('Chef Selection', 'mana-booking') . '</span>
-													</label>
-												</div>
-												<div class="input-box title-box"><input type="text" name="' . esc_attr($field['id']) . '[items][' . esc_attr($i) . '][title]" value="' . esc_attr($row['title']) . '" placeholder="' . esc_html__('Title', 'mana-booking') . '" /></div>
-												<div class="input-box price-box"><input type="number" name="' . esc_attr($field['id']) . '[items][' . esc_attr($i) . '][price]" value="' . esc_attr($row['price']) . '" placeholder="' . esc_html__('Price (number only)', 'mana-booking') . '" step="any" /></div>
-											</div>
-											<a class="repeatable-remove delete" href="#"><i class="dashicons dashicons-no"></i></a>
-										</li>
-										';
-								}
-								$i++;
-							}
-						}
-						echo '</ul>
-							<a class="menu-item-add button button-primary button-large" href="#">' . esc_html__('Add New', 'mana-booking') . '</a>
-							<ul class="li-tpml" style="display:none;">
-								<li class="menu-item">
-									<div class="input-containers">
-										<div class="input-box chief-selection">
-											<label>
-												<input type="radio" name="' . $field['id'] . '[chief_select]" value="" />
-												<span class="bg"><i class="dashicons dashicons-yes"></i></span>
-												<span class="text">' . esc_html__('Chef Selection', 'mana-booking') . '</span>
-											</label>
-										</div>
-										<div class="input-box title-box"><input type="text" name="" id="' . esc_attr($field['id']) . '" data-name="title" value="" placeholder="' . esc_html__('Title', 'mana-booking') . '" /></div>
-										<div class="input-box price-box"><input type="number" name="" id="' . esc_attr($field['id']) . '" data-name="price" value="" placeholder="' . esc_html__('Price (number only)', 'mana-booking') . '" step="any" /></div>
-									</div>
-									<a class="repeatable-remove delete" href="#"><i class="dashicons dashicons-no"></i></a>
-								</li>
-							</ul>
-							<span class="description">' . esc_html($field['desc']) . '</span>';
-						break;
-
-						// Event Guest List
-					case 'event_guest_list':
-						$table_name = $wpdb->prefix . 'mana_event_booking';
-						$event_bookings = $wpdb->get_results($wpdb->prepare("SELECT * FROM $table_name WHERE event_id = %d", $post->ID));
-						echo '
-								<table id="event-booking-list" class="wp-list-table widefat striped posts">
-									<tr>
-										<th class="num">#</th>
-										<th class="num">' . esc_html__('Guest Name', 'mana-booking') . '</th>
-										<th class="num">' . esc_html__('Guest Phone', 'mana-booking') . '</th>
-										<th class="num">' . esc_html__('Guest Count', 'mana-booking') . '</th>
-										<th class="num">' . esc_html__('Email', 'mana-booking') . '</th>
-										<th class="num">' . esc_html__('Confirm', 'mana-booking') . '</th>
-										<th class="num">' . esc_html__('Delete', 'mana-booking') . '</th>
-									</tr>';
-						$event_booking_i = 1;
-						$total_guest = 0;
-						foreach ($event_bookings as $event_booking_item) {
-							echo '
-								<tr class="num" data-event-booking-id="' . esc_attr($event_booking_item->id) . '">
-									<td>' . esc_html($event_booking_i) . '</td>
-									<td>' . esc_html($event_booking_item->guest_name) . '</td>
-									<td>' . esc_html($event_booking_item->phone) . '</td>
-									<td>' . esc_html($event_booking_item->guest) . '</td>
-									<td>' . esc_html($event_booking_item->email) . '</td>
-									<td><div data-nonce="' . wp_create_nonce('event_metabox_list') . '" class="confirm-item ' . ($event_booking_item->status == 1 ? esc_attr('confirmed') : '') . '" title="' . ($event_booking_item->status == 1 ? esc_html__('Confirmed', 'mana-booking') : esc_html__('Pending', 'mana-booking')) . '"></div></td>
-									<td><div data-nonce="' . wp_create_nonce('event_metabox_list') . '" class="delete-item"><i class="dashicons dashicons-no"></i></div></td>
-								</tr>';
-							$total_guest += $event_booking_item->guest;
-							$event_booking_i++;
-						}
-						echo '
-									<tr>
-										<th></th>
-										<th></th>
-										<th></th>
-										<th class="num">' . esc_html($total_guest) . '</th>
-										<th></th>
-										<th></th>
-										<th></th>
-									</tr>
-								</table>';
-						break;
-
-						// Service Price
-					case 'service_price':
-						echo '
-								<div class="mana-service-price-box">
-									<input type="number" min="0" name="' . esc_attr($field['id']) . '[price]" step="any" id="' . esc_attr($field['id']) . '" value="' . esc_attr(!empty($meta['price']) ? $meta['price'] : '') . '" size="40" placeholder="' . esc_html__('Price ( number only)', 'mana-booking') . '" />
-									' . esc_html__('Per', 'mana-booking') . '
-									<select name="' . esc_attr($field['id']) . '[guest]" id="' . esc_attr($field['id']) . '" class="small">
-										<option value="1" ' . (!empty($meta['guest']) ? selected($meta['guest'], 1, false) : '') . '>' . esc_html__('Guest', 'mana-booking') . '</option>
-										<option value="2" ' . (!empty($meta['guest']) ? selected($meta['guest'], 2, false) : '') . '>' . esc_html__('Booking', 'mana-booking') . '</option>
-										<option value="3" ' . (!empty($meta['guest']) ? selected($meta['guest'], 3, false) : '') . '>' . esc_html__('Room', 'mana-booking') . '</option>
-									</select>
-									<span class="service-price-type">
-										' . esc_html__('Per', 'mana-booking') . '
-										<select name="' . esc_attr($field['id']) . '[night]" id="' . esc_attr($field['id']) . '" class="small">
-											<option value="1" ' . (!empty($meta['night']) ? selected($meta['night'], 1, false) : '') . '>' . esc_html__('Night', 'mana-booking') . '</option>
-											<option value="2" ' . (!empty($meta['night']) ? selected($meta['night'], 2, false) : '') . '>' . esc_html__('Booking', 'mana-booking') . '</option>
-										</select>
-									</span>
-								</div>
-								<span class="description">' . balancetags($field['desc']) . '</span>';
-						break;
-
-						// Booking Overview Calendar
 					case 'overview_calendar':
 						wp_enqueue_script('moment-js', MANA_BOOKING_ASSETS_LIBS . '/js/moment.min.js', array('jquery'), MANA_BOOKING_VERSION, true);
 						wp_enqueue_script('fullcalendar-js', MANA_BOOKING_ASSETS_LIBS . '/js/fullcalendar.min.js', array(
@@ -752,9 +192,9 @@ class Mana_booking_meta_boxes
 												{
 													events: function (start, end, timezone, callback) {
 														var startDate = (start._d.getFullYear()) + \'-\' + (start._d.getMonth() + 1) + \'-\' + (start._d.getDate()),
-															endDate = (end._d.getFullYear()) + \'-\' + (end._d.getMonth() + 1) + \'-\' + (end._d.getDate());
+															endDate   = (end._d.getFullYear()) + \'-\' + (end._d.getMonth() + 1) + \'-\' + (end._d.getDate());
 														jQuery.ajax({
-															url:      mana_booking.ajaxurl,
+															url: mana_booking.ajaxurl,
 															dataType: \'json\',
 															method:   \'post\',
 															data:     {
@@ -767,11 +207,11 @@ class Mana_booking_meta_boxes
 															var events = [];
 															jQuery(dataBooking).each(function () {
 																events.push({
-																	title:     jQuery(this).attr(\'title\'),
-																	start:     jQuery(this).attr(\'start\'),
-																	end:       jQuery(this).attr(\'end\'),
+																	title: jQuery(this).attr(\'title\'),
+																	start: jQuery(this).attr(\'start\'),
+																	end: jQuery(this).attr(\'end\'),
 																	rendering: jQuery(this).attr(\'rendering\'),
-																	color:     jQuery(this).attr(\'color\')
+																	color: jQuery(this).attr(\'color\')
 																});
 															});
 															callback(events);
@@ -809,9 +249,10 @@ class Mana_booking_meta_boxes
 						break;
 				} //end switch
 				echo '</td></tr>';
-			} // end foreach
-			echo '</table>'; // end table
+			}
 		}
+
+		echo '</table>'; // end table
 	}
 
 	// Save the Data
