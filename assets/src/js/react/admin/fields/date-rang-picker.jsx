@@ -27,6 +27,16 @@ export default class ManaDateRangPicker extends Component {
         }
     }
 
+    dateChangeHandle = (startDate, endDate) => {
+        const { affectedIds } = this.props;
+
+        this.setState({ startDate, endDate })
+        if (affectedIds.length > 0) {
+            document.getElementById(affectedIds[0]).value = startDate.format('DD-MM-YYYY');
+            document.getElementById(affectedIds[1]).value = endDate.format('DD-MM-YYYY');
+        }
+    }
+
     render() {
         const { randId } = this.state;
         return (
@@ -35,7 +45,7 @@ export default class ManaDateRangPicker extends Component {
                 endDateId={`endDate_${randId}`}
                 startDate={this.state.startDate}
                 endDate={this.state.endDate}
-                onDatesChange={({ startDate, endDate }) => this.setState({ startDate, endDate })}
+                onDatesChange={({ startDate, endDate }) => this.dateChangeHandle(startDate, endDate)}
                 focusedInput={this.state.focusedInput}
                 onFocusChange={focusedInput => this.setState({ focusedInput })}
                 displayFormat="DD-MM-YYYY"

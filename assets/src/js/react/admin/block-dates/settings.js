@@ -13,7 +13,8 @@ export const blockDatesSettings = [{
 			start: null,
 			end: null
 		},
-		desc: __('Select when the block date starts and ends.', 'mana-booking')
+		desc: __('Select when the block date starts and ends.', 'mana-booking'),
+		affectedIds: ['mana_booking_block_dates_from', 'mana_booking_block_dates_to']
 	},
 	{
 		label: __('Rooms', 'mana-booking'),

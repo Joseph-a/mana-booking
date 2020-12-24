@@ -278,6 +278,7 @@ export default class Fields extends Component {
 							{...this.props}
 							startDate={fieldValue.start}
 							endDate={fieldValue.end}
+							affectedIds={info.affectedIds || []}
 							onDateChange={dateInfo => {
 								const newDate = { start: dateInfo[0], end: dateInfo[1] }
 								this.props.onFieldChanged(info.fieldIndex, newDate);
