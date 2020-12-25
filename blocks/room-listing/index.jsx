@@ -10,20 +10,20 @@ const { registerBlockType } = wp.blocks;
  * Register block
  */
 
-export default registerBlockType(`${wp_mana_booking_php.block_category}/search-form`, {
+export default registerBlockType(`${wp_mana_booking_php.block_category}/room-listing`, {
     category: wp_mana_booking_php.block_category,
-    title: __('Room Search Form', 'mana-booking'),
-    description: __('Search form to check the rooms\' availability.', 'mana-booking'),
-    keywords: ['mana', 'search', 'form'],
+    title: __('Room Listing', 'mana-booking'),
+    description: __('List your room with a bunch of options.', 'mana-booking'),
+    keywords: ['mana', 'room', 'listing'],
     supports: {
         customClassName: !1
     },
-    icon: icons('search'),
+    icon: icons('bed'),
     attributes,
     edit: props => {
         const { attributes, setAttributes } = props;
         return (
-            <div className="mana-booking-search-form-container">
+            <div className="mana-booking-room-listing-container">
                 <RichText
                     tagName="h3"
                     className="text-center"

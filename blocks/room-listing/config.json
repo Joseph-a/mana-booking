@@ -1,0 +1,10 @@
+{
+    "title": {
+        "default": "Our Luxury Rooms",
+        "type": "string"
+    },
+    "desc": {
+        "default": "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Cum deleniti dolorem inventore ipsam laboriosam magnam qui quibusdam recusandae repudiandae tempora. A aperiam dignissimos dolorem ex fugiat harum neque, nesciunt officiis quaerat quo? Debitis earum eum itaque, modi perspiciatis tempore vel!",
+        "type": "string"
+    }
+}

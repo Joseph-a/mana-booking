@@ -18,16 +18,17 @@ $color-10: set-preset-color($preset-id, 10);
 
 @import 'inc/datepicker';
 @import 'inc/quill.snow';
-@import "inc/social-font-icon";
 @import "inc/elements";
 @import "inc/grid";
 @import "inc/meta-boxes";
 @import "inc/spiner";
+@import "inc/font-icon";
 // @import "inc/setting-page";
 @import "inc/event-booking-list";
 @import "inc/booking-archive";
 @import "inc/fullcalendar";
 @import "inc/print";
+@import "inc/block-icons";
 
 @import "sections/main-settings";
 @import "sections/room-settings";

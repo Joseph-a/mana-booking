@@ -1,78 +1,79 @@
 // Responsive Mixins
 
 // Media Generator
-@mixin respond-to($media){
-    @media #{$media}{
+@mixin respond-to($media) {
+    @media #{$media} {
         @content;
     }
 }
 
 // For XX Small Phone ( Portrait )
-@mixin for-xx-small-phone{
-    @include respond-to($xx-small-phone){
+@mixin for-xx-small-phone {
+    @include respond-to($xx-small-phone) {
         @content;
     }
 }
 
 
 // For X Small Phone ( Portrait )
-@mixin for-x-small-phone{
-    @include respond-to($x-small-phone){
+@mixin for-x-small-phone {
+    @include respond-to($x-small-phone) {
         @content;
     }
 }
+
 // For Small Phone ( Portrait )
-@mixin for-small-phone{
-    @include respond-to($small-phone){
+@mixin for-small-phone {
+    @include respond-to($small-phone) {
         @content;
     }
 }
 
 // For Phone ( Portrait and Landscape )
-@mixin for-phone{
-    @include respond-to($phone){
+@mixin for-phone {
+    @include respond-to($phone) {
         @content;
     }
 }
 
 // For Tablet( Portrait Only )
-@mixin for-tablet{
-    @include respond-to($tablet-portrait){
+@mixin for-tablet {
+    @include respond-to($tablet-portrait) {
         @content;
     }
 }
 
 // For Tablet ( Tablet and Portrait Desktop  )
-@mixin for-tablet-land{
-    @include respond-to($tablet-landscape-desktop){
+@mixin for-tablet-land {
+    @include respond-to($tablet-landscape-desktop) {
         @content;
     }
 }
 
 // For All Tablets and Phones
-@mixin for-all-tablet-phone{
-    @include respond-to($all-tablet-phone){
+@mixin for-all-tablet-phone {
+    @include respond-to($all-tablet-phone) {
         @content;
     }
 }
 
 // For Desktop ( Small Desktop  )
-@mixin for-small-desktop{
-    @include respond-to($small-desktop){
+@mixin for-small-desktop {
+    @include respond-to($small-desktop) {
         @content;
     }
 }
 
 // For Desktop ( Large Desktop  )
-@mixin for-desktop{
-    @include respond-to($large-desktop){
+@mixin for-desktop {
+    @include respond-to($large-desktop) {
         @content;
     }
 }
 
 // For Retina Desplay ( Large Desktop  )
-@mixin for-retina{
-    @include respond-to($retina){
+@mixin for-retina {
+    @include respond-to($retina) {
         @content;
     }
 }
@@ -80,9 +81,10 @@
 // Text & Animation
 
 @mixin animate($tran1, $tran2: false, $tran3:false, $tran4:false, $tran5: false) {
-    @include transition($tran1,$tran2,$tran3,$tran4,$tran5);
+    @include transition($tran1, $tran2, $tran3, $tran4, $tran5);
+
     &:hover {
-        @include transition($tran1,$tran2,$tran3,$tran4,$tran5);
+        @include transition($tran1, $tran2, $tran3, $tran4, $tran5);
     }
 }
 
@@ -99,25 +101,27 @@
     -webkit-font-smoothing: antialiased !important;
     text-rendering: optimizeLegibility;
     color: $color;
-    text-shadow:0 0 1px rgba($color,0.4);
+    text-shadow: 0 0 1px rgba($color, 0.4);
 }
 
-@mixin pie-gradient($arg)
-{
+@mixin pie-gradient($arg) {
     -pie-background: linear-gradient($arguments);
     behavior: url(PIE.htc);
 }
 
-@mixin floatChild($element: div){
+@mixin floatChild($element: div) {
     @include clearfix;
-    & > #{$element}{
+
+    &>#{$element} {
         float: left;
     }
 }
 
-@mixin gen-table-col{
+@mixin gen-table-col {
     @for $i from 1 through 25 {
-        &.size-#{$i} { width: 5% * $i; }
+        &.size-#{$i} {
+            width: 5% * $i;
+        }
     }
 }
 
@@ -137,7 +141,7 @@
 
 // Some function
 
-@function getPerc($sub, $main){
+@function getPerc($sub, $main) {
     @return ceil(percentage($sub/$main));
 }
 
@@ -151,11 +155,25 @@
 // Placeholder
 
 @mixin input-placeholder {
-    &.placeholder { @content; }
-    &:-moz-placeholder { @content; }
-    &::-moz-placeholder { @content; }
-    &:-ms-input-placeholder { @content; }
-    &::-webkit-input-placeholder { @content; }
+    &.placeholder {
+        @content;
+    }
+
+    &:-moz-placeholder {
+        @content;
+    }
+
+    &::-moz-placeholder {
+        @content;
+    }
+
+    &:-ms-input-placeholder {
+        @content;
+    }
+
+    &::-webkit-input-placeholder {
+        @content;
+    }
 }
 
 
@@ -171,126 +189,58 @@
             $animations: #{$animations + ", "};
         }
     }
+
     -webkit-animation: $animations;
-    -moz-animation:    $animations;
-    -o-animation:      $animations;
-    animation:         $animations;
+    -moz-animation: $animations;
+    -o-animation: $animations;
+    animation: $animations;
 }
 
 @mixin keyframes($animationName) {
     @-webkit-keyframes #{$animationName} {
         @content;
     }
+
     @-moz-keyframes #{$animationName} {
         @content;
     }
+
     @-o-keyframes #{$animationName} {
         @content;
     }
+
     @keyframes #{$animationName} {
         @content;
     }
 }
 
 @mixin calc($prop, $val, $important: false) {
-    @if $important == true {
+    @if $important==true {
         $important: " !important";
-    } @else {
+    }
+
+    @else {
         $important: "";
     }
-    @each $pre in -webkit-, -moz- {
-        #{$prop}: $pre + calc(#{$val}) + $important;
+
+    @each $pre in -webkit-,
+    -moz- {
+        #{$prop}: $pre+calc(#{$val})+$important;
     }
-    #{$prop}: calc(#{$val}) + $important;
+
+    #{$prop}: calc(#{$val})+$important;
 }
 
 // Set Preset color Function
-@function set-preset-color($presetID: 1 , $colorID: 1){
-    @each $preset in $presets{
+@function set-preset-color($presetID: 1, $colorID: 1) {
+    @each $preset in $presets {
         $i: index($presets, $preset);
-        @if( $i == $presetID ){
-            @return nth($preset,$colorID);
+
+        @if($i==$presetID) {
+            @return nth($preset, $colorID);
         }
     }
 }
-
-// YooNa Button Mixin
-
-@mixin button-effect($bg-color,$color){
-    cursor: pointer;
-    color: $color;
-    display: inline-block;
-    margin-top: 10px;
-    position: relative;
-    z-index: 1;
-    background: none;
-    //    border: 0;
-    //    border:{
-    //        top: 1px solid $color;
-    //        bottom: 1px solid $color;
-    //    }
-    border: 1px solid $bg-color;
-    background: $bg-color;
-    @include transition(all .3s ease);
-    // &:before{
-    //     display: block;
-    //     content: "";
-    //     background: $color;
-    //     position: absolute;
-    //     top: 0;
-    //     left: 0;
-    //     background: $bg-color;
-    //     border: 1px solid $color;
-    //     z-index: -1;
-    //     @include square(100%);
-    //     @include transition(all .5s ease);
-    //     @include border-radius(5px);
-    //     @include transform(skew(-10deg));
-    // }
-    &:hover{
-        color: $bg-color;
-        background: $color;
-        border-color: $bg-color;
-        // &:before{
-        //     background: $color;
-        //     border-color: $bg-color;
-        // }
-    }
-}
-
-@mixin border-styled($color:1){
-    //    border: 0;
-    //    border:{
-    //        top: 1px solid set-preset-color($preset-id,$color);
-    //        bottom: 1px solid set-preset-color($preset-id,$color);
-    //    }
-    border: 1px solid set-preset-color($preset-id,$color);
-}
-
-@mixin make-separator($color-1, $color-2,$type : 'inline', $width : 40){
-    @if($type == 'block'){
-        clear: both;
-    }
-    position: relative;
-    border-bottom: 1px solid $color-1;
-    &:before{
-        display: block;
-        content: "";
-        @include size($width+px,1px);
-        position: absolute;
-        left: 50%;
-        margin-left: -($width/2)+px;
-        background: $color-2;
-        background-size: 35px;
-    }
-    &:before{
-        bottom: -4px;
-    }
-    //    &:after{
-    //        bottom: -3px;
-    //    }
-}
-
 
 
 //==== Simple SCSS mixin to create CSS triangles
@@ -307,12 +257,15 @@
 //Utility function to return the relevant colour depending on what type of arrow it is
 @function setTriangleColor($direction, $side, $color) {
 
-    @if $direction == "left" and $side == "right"
-    or  $direction == "right" and $side == "left"
-    or $direction == "down" and $side == "top"
-    or $direction == "up" and $side == "bottom" {
+    @if $direction=="left"and $side=="right"
+    or $direction=="right"and $side=="left"
+    or $direction=="down"and $side=="top"
+
+    or $direction=="up"and $side=="bottom" {
         @return $color
-    } @else {
+    }
+
+    @else {
         @return "transparent";
     }
 }
@@ -327,12 +280,15 @@
 @mixin square($size) {
     @include size($size, $size);
 }
+
 @mixin clearfix() {
+
     &:before,
     &:after {
         content: " "; // 1
         display: table; // 2
     }
+
     &:after {
         clear: both;
     }
