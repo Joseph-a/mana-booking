@@ -33,7 +33,9 @@ export default class ManaDateRangPicker extends Component {
         this.setState({ startDate, endDate })
         if (affectedIds.length > 0) {
             document.getElementById(affectedIds[0]).value = startDate.format('DD-MM-YYYY');
-            document.getElementById(affectedIds[1]).value = endDate.format('DD-MM-YYYY');
+            if (endDate) {
+                document.getElementById(affectedIds[1]).value = endDate.format('DD-MM-YYYY');
+            }
         }
     }
 

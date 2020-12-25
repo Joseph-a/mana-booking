@@ -496,15 +496,13 @@ class Mana_booking_main
 				'type' => 'block_date_settings',
 			),
 			array(
-				'label' => esc_html__('From', 'mana-booking'),
-				'desc' => esc_html__('Select the block date starting date', 'mana-booking'),
+				'label' => '',
 				'id' => $block_dates_meta_box_prefix . 'from',
 				'type' => 'hidden',
 				'tr_class' => 'hidden'
 			),
 			array(
-				'label' => esc_html__('To', 'mana-booking'),
-				'desc' => esc_html__('Select the block date ending date', 'mana-booking'),
+				'label' => '',
 				'id' => $block_dates_meta_box_prefix . 'to',
 				'type' => 'hidden',
 				'tr_class' => 'hidden'
@@ -568,7 +566,7 @@ class Mana_booking_main
 			array(
 				'id' => $coupon_meta_box_prefix . 'meta_info',
 				'type' => 'coupon_settings',
-			),
+			)
 		);
 		$coupon_meta_box_obj = new Mana_booking_meta_boxes($coupon_meta_box_items, $coupon_meta_box_prefix, $coupon_meta_box_title, 'coupon');
 	}

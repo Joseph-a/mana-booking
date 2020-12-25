@@ -57,8 +57,10 @@ class Mana_booking_meta_boxes
 			if (in_array($field['type'], $new_setting_types)) {
 				$meta = get_post_meta($post->ID, $field['id'], true);
 				echo '
+					<tr><td>
 						<input type="hidden" name="' . esc_attr($field['id']) . '" id="' . esc_attr($field['id']) . '" value="' . esc_attr($meta) . '" size="40" />
 						<div id="mana-' . str_replace('_', '-', $field['type']) . '-info-box"></div>
+					</td></tr>
 					';
 			} else {
 				// get value of this field if it exists for this post
