@@ -9,14 +9,14 @@ export default class ManaDateRangPicker extends Component {
 
         this.state = {
             randId: Math.random() * 100,
-            startDate: props.startDate ? moment(props.startDate, 'DD-MM-YYYY') : null,
-            endDate: props.endDate ? moment(props.endDate, 'DD-MM-YYYY') : null,
+            startDate: props.startDate ? moment(props.startDate, 'YYYY-MM-DD') : null,
+            endDate: props.endDate ? moment(props.endDate, 'YYYY-MM-DD') : null,
             focusedInput: null,
         }
     }
     componentDidUpdate = (prevState) => {
-        const startDate = this.state.startDate ? this.state.startDate.format('DD-MM-YYYY') : null,
-            endDate = this.state.endDate ? this.state.endDate.format('DD-MM-YYYY') : null;
+        const startDate = this.state.startDate ? this.state.startDate.format('YYYY-MM-DD') : null,
+            endDate = this.state.endDate ? this.state.endDate.format('YYYY-MM-DD') : null;
 
         if (startDate !== prevState.startDate || endDate !== prevState.endDate) {
 
@@ -32,9 +32,9 @@ export default class ManaDateRangPicker extends Component {
 
         this.setState({ startDate, endDate })
         if (affectedIds.length > 0) {
-            document.getElementById(affectedIds[0]).value = startDate.format('DD-MM-YYYY');
+            document.getElementById(affectedIds[0]).value = startDate.format('YYYY-MM-DD');
             if (endDate) {
-                document.getElementById(affectedIds[1]).value = endDate.format('DD-MM-YYYY');
+                document.getElementById(affectedIds[1]).value = endDate.format('YYYY-MM-DD');
             }
         }
     }
@@ -50,7 +50,7 @@ export default class ManaDateRangPicker extends Component {
                 onDatesChange={({ startDate, endDate }) => this.dateChangeHandle(startDate, endDate)}
                 focusedInput={this.state.focusedInput}
                 onFocusChange={focusedInput => this.setState({ focusedInput })}
-                displayFormat="DD-MM-YYYY"
+                displayFormat="YYYY-MM-DD"
                 noBorder={true}
                 small={true}
                 readOnly={true}

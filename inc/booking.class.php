@@ -159,6 +159,7 @@ class Mana_booking_booking_process
                     wp_reset_postdata();
                 }
 
+
                 $room_args = array(
                     'post_type' => 'rooms',
                     'post_status' => 'publish',
@@ -191,7 +192,7 @@ class Mana_booking_booking_process
                         if (!empty($block_rooms_info)) {
                             foreach ($block_rooms_info as $block_room_info) {
                                 if (in_array($room_id, $block_room_info)) {
-                                    continue 2;
+                                    continue;
                                 }
                             }
                         }

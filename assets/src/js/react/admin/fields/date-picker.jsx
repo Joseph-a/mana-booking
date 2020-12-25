@@ -9,7 +9,7 @@ export default class ManaDatePicker extends Component {
 
         this.state = {
             randId: Math.random() * 100,
-            date: props.date ? moment(props.date, 'DD-MM-YYYY') : null,
+            date: props.date ? moment(props.date, 'YYYY-MM-DD') : null,
             focusedInput: null,
         }
     }
@@ -21,12 +21,12 @@ export default class ManaDatePicker extends Component {
                 date={this.state.date}
                 onDateChange={date => {
                     this.setState({ date });
-                    this.props.onDateChange(date.format('DD-MM-YYYY'));
+                    this.props.onDateChange(date.format('YYYY-MM-DD'));
                 }}
                 focused={this.state.focused}
                 onFocusChange={({ focused }) => this.setState({ focused })}
                 id={randId + ''}
-                displayFormat="DD-MM-YYYY"
+                displayFormat="YYYY-MM-DD"
                 noBorder={true}
                 small={true}
                 readOnly={true}

@@ -378,9 +378,6 @@ class Mana_booking_main
 		}
 
 		$get_info_obj = new Mana_booking_get_info();
-		echo '<pre>';
-		var_dump($get_info_obj->room_info(16));
-		echo '</pre>';
 
 		/**
 		 * ------------------------------------------------------------------------------------------
