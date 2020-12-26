@@ -12,6 +12,7 @@ class Mana_booking_api
         register_rest_route('mana/v1', 'rooms', array(
             'methods' => 'GET',
             'callback' => array($this, 'room_listing'),
+            'permission_callback' => '__return_true',
         ));
     }
 

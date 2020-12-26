@@ -374,6 +374,7 @@ class Mana_booking_main
 
 		$mana_booking_variables['ajaxurl'] = esc_url(admin_url('admin-ajax.php'));
 		$mana_booking_variables['redirecturl'] = esc_url(home_url($wp->request));
+		$mana_booking_variables['apiUrl'] = esc_url(get_rest_url(null, 'mana/v1/'));
 		$mana_booking_variables['plg_base'] = MANA_BOOKING_BASE_URL;
 		$mana_booking_variables['asset_url'] = MANA_BOOKING_IMG_PATH;
 

@@ -105,21 +105,21 @@ class Mana_booking_get_info
          *  Room Gallery
          * ------------------------------------------------------------------------------------------
          */
-        // $room_images = $room_info_meta['gallery'];
-        // if (!empty($room_images)) {
-        //     $i = 0;
-        //     foreach ($room_images as $room_image) {
-        //         $room_image = trim($room_image);
-        //         $room_info['gallery']['img'][$i]['id'] = $room_image;
-        //         $room_info['gallery']['img'][$i]['url'] = wp_get_attachment_url($room_image);
-        //         $room_info['gallery']['img'][$i]['code']['thumbnail'] = wp_get_attachment_image($room_image, 'thumbnail');
-        //         $room_info['gallery']['img'][$i]['code']['medium'] = wp_get_attachment_image($room_image, 'medium');
-        //         $room_info['gallery']['img'][$i]['code']['large'] = wp_get_attachment_image($room_image, 'large');
-        //         $room_info['gallery']['img'][$i]['code']['full'] = wp_get_attachment_image($room_image, 'full');
-        //         $i++;
-        //     }
-        // }
-        // $room_info['gallery']['count'] = (!empty($room_images) ? count($room_images) : 0);
+        $room_images = $room_info_meta['gallery'];
+        if (!empty($room_images)) {
+            $i = 0;
+            foreach ($room_images as $room_image) {
+                $room_image = trim($room_image);
+                $room_info['gallery']['img'][$i]['id'] = $room_image;
+                $room_info['gallery']['img'][$i]['url'] = wp_get_attachment_url($room_image);
+                $room_info['gallery']['img'][$i]['code']['thumbnail'] = wp_get_attachment_image_url($room_image, 'thumbnail');
+                $room_info['gallery']['img'][$i]['code']['medium'] = wp_get_attachment_image_url($room_image, 'medium');
+                $room_info['gallery']['img'][$i]['code']['large'] = wp_get_attachment_image_url($room_image, 'large');
+                $room_info['gallery']['img'][$i]['code']['full'] = wp_get_attachment_image_url($room_image, 'full');
+                $i++;
+            }
+        }
+        $room_info['gallery']['count'] = (!empty($room_images) ? count($room_images) : 0);
 
         /**
          * ------------------------------------------------------------------------------------------
