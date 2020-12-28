@@ -1,9 +1,10 @@
 import React from 'react'
 import t from 'prop-types'
 import { __ } from '@wordpress/i18n';
+import ImgSlider from "./img-slider";
 
 const RoomBox = props => {
-    const { roomInfo } = props;
+    const { roomInfo, imageSlider } = props;
 
     return (
         <div className="room-box">
@@ -11,10 +12,10 @@ const RoomBox = props => {
                 <div className="t-sec">
                     <div className="gallery-container">
                         {
-                            roomInfo.gallery.count > 0 &&
-                            roomInfo.gallery.img.map(img => {
-                                return <img key={img.id} src={img.code.thumbnail} alt={roomInfo.title} />
-                            })
+                            roomInfo.gallery.count > 0 && imageSlider && <ImgSlider imgList={roomInfo.gallery.img} title={roomInfo.title} />
+                        }
+                        {
+                            roomInfo.gallery.count > 0 && !imageSlider && <div className="single-img-container"><img src={roomInfo.gallery.img[0].code.large} alt={roomInfo.title} /></div>
                         }
                         {
                             roomInfo.gallery.count == 0 && <div className="img-placeholder">No Image</div>
@@ -22,11 +23,16 @@ const RoomBox = props => {
                     </div>
                 </div>
                 <div className="b-sec">
-                    <div className="title">
+                    <h4 className="title">
                         <a href={roomInfo.url}>{roomInfo.title}</a>
-                    </div>
-                    <div className="price">{__('Start from', 'mana-booking')}: {roomInfo.start_price}</div>
+                    </h4>
+                    <div className="price">{__('Start from', 'mana-booking')}: <span className="value">{roomInfo.start_price}</span></div>
                     <div className="desc">{roomInfo.description.short}</div>
+                    <div className="btn-container">
+                        <button>
+                            <a className="button" href={roomInfo.url}>{__('More Info', 'mana-booking')}</a>
+                        </button>
+                    </div>
                 </div>
 
             </div>

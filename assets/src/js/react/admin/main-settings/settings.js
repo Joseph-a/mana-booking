@@ -9,8 +9,8 @@ import initialSetting from './initialSetting.json'
 export const manaMainSettings = [{
         label: __('General', 'mana-booking'),
         fields: [{
-                label: __('Room Archive Page Layout', 'mana-booking'),
-                desc: __('"Room Archive Page Layout" will be used for "Room Archive" page template.', 'mana-booking'),
+                label: __('Room Listing Layout', 'mana-booking'),
+                desc: __('You can choose how the listings will be displayed.', 'mana-booking'),
                 fieldIndex: manaMainSetting.ROOM_ARCHIVE_LAYOUT,
                 type: 'select',
                 options: [{

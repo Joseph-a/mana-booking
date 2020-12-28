@@ -8,7 +8,7 @@ export default class ManaRoomListing extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            type: 'boxed',
+            type: mana_booking_obj.room_listing_layout === '1' ? 'boxed' : '',
             rooms: []
         }
     }
@@ -33,7 +33,7 @@ export default class ManaRoomListing extends Component {
         return (
             <Fragment>
                 {
-                    rooms.map((room, i) => <ComponentTag key={i} roomInfo={room} />)
+                    rooms.map((room, i) => <ComponentTag key={i} roomInfo={room} imageSlider={mana_booking_obj.image_slider_listing} />)
                 }
             </Fragment>
         )
@@ -43,8 +43,10 @@ export default class ManaRoomListing extends Component {
 
 const roomListing = document.getElementsByClassName("mana-booking-room-listing-container");
 if (roomListing.length > 0) {
+    const layout = mana_booking_obj.room_listing_layout === '1' ? 'boxed' : 'list';
     for (let item of roomListing) {
         const roomContainer = item.children[2];
+        roomContainer.classList.add(layout);
         ReactDOM.render(<ManaRoomListing />, roomContainer);
     }
 }

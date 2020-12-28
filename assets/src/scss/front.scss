@@ -15,5 +15,8 @@ $color-7: set-preset-color($preset-id, 7);
 $color-8: set-preset-color($preset-id, 8);
 $color-9: set-preset-color($preset-id, 9);
 $color-10: set-preset-color($preset-id, 10);
+$color-11: set-preset-color($preset-id, 11);
 
 @import 'inc/datepicker';
+@import 'inc/slick';
+@import 'front/listing';

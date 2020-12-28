@@ -1,9 +1,10 @@
 import React from 'react'
 import t from 'prop-types'
 import { __ } from '@wordpress/i18n';
+import ImgSlider from "./img-slider";
 
 const RoomRow = props => {
-    const { roomInfo } = props;
+    const { roomInfo, imageSlider } = props;
 
     return (
         <div className="room-box">
@@ -11,10 +12,10 @@ const RoomRow = props => {
                 <div className="l-sec">
                     <div className="gallery-container">
                         {
-                            roomInfo.gallery.count > 0 &&
-                            roomInfo.gallery.img.map(img => {
-                                return <img key={img.id} src={img.code.thumbnail} alt={roomInfo.title} />
-                            })
+                            roomInfo.gallery.count > 0 && imageSlider && <ImgSlider imgList={roomInfo.gallery.img} title={roomInfo.title} />
+                        }
+                        {
+                            roomInfo.gallery.count > 0 && !imageSlider && <div className="single-img-container"><img src={roomInfo.gallery.img[0].code.large} alt={roomInfo.title} /></div>
                         }
                         {
                             roomInfo.gallery.count == 0 && <div className="img-placeholder">No Image</div>
@@ -23,10 +24,10 @@ const RoomRow = props => {
                 </div>
                 <div className="m-sec">
                     <div className="main-info">
-                        <div className="title">
+                        <h4 className="title">
                             <a href={roomInfo.url}>{roomInfo.title}</a>
-                        </div>
-                        <div className="price">{__('Start from', 'mana-booking')}: {roomInfo.start_price}</div>
+                        </h4>
+                        <div className="price">{__('Start from', 'mana-booking')}: <span className="value">{roomInfo.start_price}</span></div>
                     </div>
                     <div className="extra-info">
                         <ul>
@@ -56,11 +57,13 @@ const RoomRow = props => {
                             }
                             {
                                 roomInfo.service.length > 0 &&
-                                roomInfo.service.map(service => {
-                                    <li>
-                                        <span className="label">{service.title}: </span>
-                                        <span className="value">{service.value}</span>
-                                    </li>
+                                roomInfo.service.map((service, i) => {
+                                    return (
+                                        <li key={i}>
+                                            <span className="label">{service.title}: </span>
+                                            <span className="value">{service.value}</span>
+                                        </li>
+                                    )
                                 })
                             }
                             {
@@ -68,7 +71,7 @@ const RoomRow = props => {
                                 <li>
                                     <span className="label">{__('Facilities', 'mana-booking')}: </span>
                                     <span className="value">{
-                                        roomInfo.facilities.map(service => `${service.title} ,`)
+                                        roomInfo.facilities.map(facility => `${facility.title}, `)
                                     }
                                     </span>
                                 </li>
@@ -76,7 +79,14 @@ const RoomRow = props => {
                         </ul>
                     </div>
                 </div>
-                <div className="r-sec">{roomInfo.description.short}</div>
+                <div className="r-sec">
+                    {roomInfo.description.short}
+                    <div className="btn-container">
+                        <button>
+                            <a className="button" href={roomInfo.url}>{__('More Info', 'mana-booking')}</a>
+                        </button>
+                    </div>
+                </div>
             </div>
         </div>
     )

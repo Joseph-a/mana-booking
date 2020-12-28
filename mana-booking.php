@@ -378,6 +378,9 @@ class Mana_booking_main
 		$mana_booking_variables['plg_base'] = MANA_BOOKING_BASE_URL;
 		$mana_booking_variables['asset_url'] = MANA_BOOKING_IMG_PATH;
 
+		$mana_booking_variables['room_listing_layout'] = !empty($mana_booking_options['roomArchiveLayout']) ? $mana_booking_options['roomArchiveLayout'] : '1';
+		$mana_booking_variables['image_slider_listing'] = !empty($mana_booking_options['roomListingImageSlider']) ? true : false;
+
 		if (defined('ICL_LANGUAGE_CODE')) {
 			$mana_booking_variables['lang'] = ICL_LANGUAGE_CODE;
 			$condition_page_url = !empty($mana_booking_options['termConditionPageUrl'][ICL_LANGUAGE_CODE]) ? esc_url($mana_booking_options['termConditionPageUrl'][ICL_LANGUAGE_CODE]) : '#';
