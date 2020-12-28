@@ -67,7 +67,6 @@ class Mana_booking_get_info
          *  Basic Details
          * ------------------------------------------------------------------------------------------
          */
-        $room_meta_box_prefix = 'mana_booking_room_';
         $room_info['id'] = $p_id;
         $room_info['title'] = get_the_title($p_id);
         $room_info['description']['wp'] = get_extended(get_post_field('post_content', $p_id));
@@ -79,13 +78,13 @@ class Mana_booking_get_info
          *  Room extra information
          * ------------------------------------------------------------------------------------------
          */
-        $room_info['description']['short'] = $room_info_meta['shortDesc'];
-        $room_info['count'] = $room_info_meta['roomCount'];
-        $room_info['capacity']['main'] = $room_info_meta['capacity']['main'];
-        $room_info['capacity']['extra'] = $room_info_meta['capacity']['extra'];
+        $room_info['description']['short'] = $this->check_value($room_info_meta, array('shortDesc'));
+        $room_info['count'] = $this->check_value($room_info_meta, array('roomCount'), 2);
+        $room_info['capacity']['main'] = $this->check_value($room_info_meta, array('capacity', 'main'), 0);
+        $room_info['capacity']['extra'] = $this->check_value($room_info_meta, array('capacity', 'extra'), 0);
         $room_info['max_people'] = intval($room_info['capacity']['main']) + intval($room_info['capacity']['extra']);
-        $room_info['min_stay'] = $room_info_meta['minStay'];
-        $room_size = $room_info_meta['roomSize'];
+        $room_info['min_stay'] = $this->check_value($room_info_meta, array('minStay'), 0);
+        $room_size = $this->check_value($room_info_meta, array('roomSize'), 0);
 
         if (gettype($room_size) === 'string') {
             $room_size = array(
@@ -95,21 +94,20 @@ class Mana_booking_get_info
         }
 
         $room_info['room_size']['qnt'] = $room_size['value'];
-        $room_info['room_size']['unit'] = $room_info_meta['sizeUnit'] === 'm2' ? 'm<sup>2</sup>' : $room_info_meta['sizeUnit'];
-        $room_info['room_view'] = $room_info_meta['view'];
-        $room_info['facilities'] = $room_info_meta['facility'];
-        $room_info['service'] = $room_info_meta['service'];
+        $room_info['room_size']['unit'] = !empty($room_info_meta['sizeUnit']) ? ($room_info_meta['sizeUnit'] === 'm2' ? 'm<sup>2</sup>' : $room_info_meta['sizeUnit']) : '';
+        $room_info['room_view'] = $this->check_value($room_info_meta, array('view'));
+        $room_info['facilities'] = $this->check_value($room_info_meta, array('facility'), array());
+        $room_info['service'] = $this->check_value($room_info_meta, array('service'), array());
 
         /**
          * ------------------------------------------------------------------------------------------
          *  Room Gallery
          * ------------------------------------------------------------------------------------------
          */
-        $room_images = $room_info_meta['gallery'];
+        $room_images = $this->check_value($room_info_meta, array('gallery'), array('count' => 0, 'img' => array()));
         if (!empty($room_images)) {
             $i = 0;
             foreach ($room_images as $room_image) {
-                $room_image = trim($room_image);
                 $room_info['gallery']['img'][$i]['id'] = $room_image;
                 $room_info['gallery']['img'][$i]['url'] = wp_get_attachment_url($room_image);
                 $room_info['gallery']['img'][$i]['code']['thumbnail'] = wp_get_attachment_image_url($room_image, 'thumbnail');
@@ -129,11 +127,11 @@ class Mana_booking_get_info
         $currency_info = new Mana_booking_currency();
         $room_info['price'] = $currency_info->get_current_currency();
         $room_info['price_unit'] = $room_info['price']['symbol'];
-        $init_base_price = $room_info_meta['basePrice'];
-        $init_extra_price = $room_info_meta['extraGuestPrice'];
+        $init_base_price = $this->check_value($room_info_meta, array('basePrice'), array());
+        $init_extra_price = $this->check_value($room_info_meta, array('extraGuestPrice'), array());
         $room_info['extra_price'] = $init_extra_price;
-        $room_info['seasonal_price'] = $room_info_meta['seasonalPrice'];
-        $room_info['discount'] = $room_info_meta['discount'];
+        $room_info['seasonal_price'] = $this->check_value($room_info_meta, array('seasonalPrice'), array());
+        $room_info['discount'] = $this->check_value($room_info_meta, array('discount'), array());
 
         $new_room_base_price = $new_room_extra_price = array();
         foreach ($init_base_price as $age_index => $age_value) {
@@ -683,6 +681,18 @@ class Mana_booking_get_info
         $coupon_info['expire_date'] = get_post_meta($id, 'mana_booking_coupon_expire', true);
 
         return $coupon_info;
+    }
+
+    public function check_value($input, $index, $default_value = '')
+    {
+        $return_value = $default_value;
+        if (count($index) > 1 && !empty($input[$index[0]][$index[1]])) {
+            $return_value = $input[$index[0]][$index[1]];
+        } elseif (count($index) === 1 && !empty($input[$index[0]])) {
+            $return_value = $input[$index[0]];
+        }
+
+        return $return_value;
     }
 }
 
