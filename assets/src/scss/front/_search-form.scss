@@ -65,26 +65,39 @@
                 flex-wrap: wrap;
 
                 >div {
-                    width: 30%;
+                    width: 25%;
                     line-height: 40px;
+                    display: flex;
+                    align-items: center;
 
                     label {
-                        display: inline-block;
-                        vertical-align: middle;
-                        margin-right: 10px;
+                        padding-right: 10px;
                         width: 30%;
                         text-align: right;
                     }
 
                     select,
-                    button {
-                        display: inline-block;
-                        vertical-align: middle;
-                        width: 60%;
+                    button,
+                    .value {
+                        width: 70%;
+                    }
+
+                    .value {
+                        font-weight: bold;
+                        color: $color-11;
+
+                        button {
+                            width: auto;
+                            float: right;
+                        }
                     }
 
                     &:first-child {
                         width: 10%;
+                    }
+
+                    &:last-child {
+                        width: 40%;
                     }
                 }
 
@@ -98,7 +111,35 @@
                 // .child {}
 
                 // .room {}
+
+
+                // &.active {
+                //     background: $color-4;
+                // }
             }
         }
+
+        .btn-sec {
+            margin-top: 20px;
+            text-align: center;
+        }
+    }
+}
+
+.mana-booking-search-result {
+    border: 2px solid $color-11;
+    margin-top: 20px;
+
+    h3 {
+        margin: 0;
+        background-color: $color-11;
+        color: $color-1;
+        text-align: center;
+        font-size: 22px;
+        line-height: 40px;
+    }
+
+    .mana-booking-room-listing {
+        margin: 0 10px;
     }
 }

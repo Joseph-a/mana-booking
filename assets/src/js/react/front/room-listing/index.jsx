@@ -19,21 +19,27 @@ export default class ManaRoomListing extends Component {
     }
 
     componentDidMount() {
-        this.fetchRooms().then(res => {
-            if (res.status) {
-                this.setState({ rooms: res.rooms });
-            }
-        })
+        const { rooms } = this.props;
+        if (!rooms) {
+            this.fetchRooms().then(res => {
+                if (res.status) {
+                    this.setState({ rooms: res.rooms });
+                }
+            })
+        } else {
+            this.setState({ rooms });
+        }
     }
 
     render() {
+        const { inSearch } = this.props;
         const { rooms, type } = this.state;
         const ComponentTag = type === 'boxed' ? RoomBoxed : RoomRow;
 
         return (
             <Fragment>
                 {
-                    rooms.map((room, i) => <ComponentTag key={i} roomInfo={room} imageSlider={mana_booking_obj.image_slider_listing} />)
+                    rooms.map((room, i) => <ComponentTag key={i} roomInfo={room} imageSlider={mana_booking_obj.image_slider_listing} inSearch={inSearch} {...this.props} />)
                 }
             </Fragment>
         )

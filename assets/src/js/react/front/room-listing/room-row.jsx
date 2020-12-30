@@ -4,7 +4,7 @@ import { __ } from '@wordpress/i18n';
 import ImgSlider from "./img-slider";
 
 const RoomRow = props => {
-    const { roomInfo, imageSlider } = props;
+    const { roomInfo, imageSlider, inSearch, activeRoom } = props;
 
     return (
         <div className="room-box">
@@ -83,7 +83,19 @@ const RoomRow = props => {
                     {roomInfo.description.short}
                     <div className="btn-container">
                         <button>
-                            <a className="button" href={roomInfo.url}>{__('More Info', 'mana-booking')}</a>
+                            {
+                                inSearch && <div
+                                    className="button"
+                                    onClick={() => props.roomHandle(activeRoom, 'room', {
+                                        id: roomInfo.id,
+                                        title: roomInfo.title
+                                    })}
+                                >{__('Select This Room', 'mana-booking')}</div>
+                            }
+                            {
+                                !inSearch && <a className="button" href={roomInfo.url}>{__('More Info', 'mana-booking')}</a>
+                            }
+
                         </button>
                     </div>
                 </div>

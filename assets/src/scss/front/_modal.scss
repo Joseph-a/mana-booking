@@ -1,0 +1,29 @@
+.mana-booking-modal {
+    position: fixed;
+    z-index: 1000;
+    top: 0;
+    left: 0;
+    @include square(100%);
+    background: rgba($color-2, .8);
+
+    .inner-content {
+        margin-top: 60px;
+        background: $color-1;
+        padding: 20px;
+        position: relative;
+
+        .close-button {
+            cursor: pointer;
+            @include square(30px);
+            position: absolute;
+            background: $color-11;
+            color: $color-1;
+            right: -30px;
+            line-height: 30px;
+            font-size: 1.1em;
+            font-weight: bold;
+            text-align: center;
+            top: 0;
+        }
+    }
+}

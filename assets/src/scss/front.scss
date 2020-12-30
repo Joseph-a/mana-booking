@@ -20,5 +20,6 @@ $color-11: set-preset-color($preset-id, 11);
 @import 'inc/datepicker';
 @import 'inc/slick';
 
+@import 'front/modal';
 @import 'front/listing';
 @import 'front/search-form';
