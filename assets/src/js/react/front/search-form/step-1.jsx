@@ -6,6 +6,7 @@ import { DateRangePicker } from 'react-dates';
 import moment from 'moment';
 import { __ } from '@wordpress/i18n';
 import ManaRoomListing from "../room-listing";
+import Services from "./services";
 
 const Step1 = (props) => {
     const randId = Math.random() * 100,
@@ -14,6 +15,8 @@ const Step1 = (props) => {
         [modalStatus, setModal] = useState(false),
         [activeRoom, setActiveRoom] = useState(0),
         [availableRoomsArray, setAvailableRooms] = useState([]),
+        [serviceList, setServices] = useState(props.services || []),
+        [serviceModalStatus, setServiceModal] = useState(false),
         [startEndDatesField, setDates] = useState({
             startDate: moment(props.checkIn) || moment(),
             endDate: moment(props.checkOut) || moment().add(2, 'days'),
@@ -91,6 +94,10 @@ const Step1 = (props) => {
         });
     };
 
+    const handleServices = (serviceList) => {
+        setServices(serviceList);
+        props.handleStep1(startEndDatesField.startDate.format('YYYY-MM-DD'), startEndDatesField.endDate.format('YYYY-MM-DD'), selectedRoomsField, serviceList);
+    };
 
     return (
         <Fragment>
@@ -240,12 +247,32 @@ const Step1 = (props) => {
             {
                 stepCompleted &&
                 <div className="btn-sec">
-                    <button
-                        onClick={() => props.handleStep1(startEndDatesField.startDate.format('YYYY-MM-DD'), startEndDatesField.endDate.format('YYYY-MM-DD'), selectedRoomsField)}
-                    >{__('Next Step', 'mana-booking')}</button>
+                    {
+                        mana_booking_obj.booking_service &&
+                        <button
+                            onClick={() => setServiceModal(true)}
+                        >{__('Choose Services', 'mana-booking')}</button>
+                    }
+                    {
+                        !mana_booking_obj.booking_service &&
+                        <button
+                            onClick={() => props.handleStep1(startEndDatesField.startDate.format('YYYY-MM-DD'), startEndDatesField.endDate.format('YYYY-MM-DD'), selectedRoomsField, [])}
+                        >{__('Next Step', 'mana-booking')}</button>
+                    }
                 </div>
             }
 
+            {
+                serviceModalStatus &&
+                <div className="mana-booking-modal">
+                    <div className="main-content site-main">
+                        <div className="close-button" onClick={() => setServiceModal(false)}>X</div>
+                        <div className="inner-content">
+                            <Services checkIn={startEndDatesField.startDate} checkOut={startEndDatesField.endDate} selectedRooms={selectedRoomsField} handleServices={handleServices} serviceList={serviceList} />
+                        </div>
+                    </div>
+                </div>
+            }
             {
                 modalStatus &&
                 <div className="mana-booking-modal">

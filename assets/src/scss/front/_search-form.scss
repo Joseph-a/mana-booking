@@ -154,6 +154,37 @@
             }
         }
     }
+
+    .mana-booking-booking-services {
+        .service-row-container {
+            margin-top: 30px;
+
+            .title {
+                .info {
+                    font-weight: normal;
+                    font-size: .7em;
+                    color: darken($color-4, 30%);
+                    margin-left: 15px;
+                }
+            }
+        }
+
+        .service-row {
+            .title {
+                .info {
+                    font-size: 0.9em;
+                    color: darken($color-4, 30%);
+                }
+            }
+
+            .price {
+                float: right;
+                font-weight: bold;
+                color: $color-11;
+                font-size: 1.1em;
+            }
+        }
+    }
 }
 
 .mana-booking-search-result {

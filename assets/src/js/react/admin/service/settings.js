@@ -27,11 +27,11 @@ export const serviceSettings = [{
 		type: 'select',
 		options: [{
 				label: __('Free', 'mana-booking'),
-				value: 'free'
+				value: '1'
 			},
 			{
 				label: __('Paid', 'mana-booking'),
-				value: 'paid'
+				value: '2'
 			},
 		],
 		value: 'free'
@@ -44,7 +44,7 @@ export const serviceSettings = [{
 		value: '',
 		conditional: {
 			ifField: manaServiceSettings.PRICE_TYPE,
-			ifValue: 'paid'
+			ifValue: '2'
 		}
 	},
 	{
@@ -68,7 +68,7 @@ export const serviceSettings = [{
 		value: 1,
 		conditional: {
 			ifField: manaServiceSettings.PRICE_TYPE,
-			ifValue: 'paid'
+			ifValue: '2'
 		}
 	},
 	{
@@ -88,7 +88,7 @@ export const serviceSettings = [{
 		value: 1,
 		conditional: {
 			ifField: manaServiceSettings.PRICE_TYPE,
-			ifValue: 'paid'
+			ifValue: '2'
 		}
 	},
 	{
