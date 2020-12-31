@@ -5,10 +5,9 @@ import ImgSlider from "./img-slider";
 
 const RoomRow = props => {
     const { roomInfo, imageSlider, inSearch, activeRoom } = props,
-        { total, guest } = roomInfo.booking_price,
-        [priceBreakDown, setPriceBreakDown] = useState(false);
-
-
+        [priceBreakDown, setPriceBreakDown] = useState(false),
+        total = roomInfo.booking_price ? roomInfo.booking_price.total : null,
+        guest = roomInfo.booking_price ? roomInfo.booking_price.guest : null;
 
     return (
         <div className="room-box">
@@ -32,7 +31,16 @@ const RoomRow = props => {
                             <h4 className="title">
                                 <a href={roomInfo.url}>{roomInfo.title}</a>
                             </h4>
-                            <div className="price">{__('Start from', 'mana-booking')}: <span className="value">{roomInfo.start_price}</span></div>
+                            <div className="price">
+                                {__('Start from', 'mana-booking')}: <span className="value">{roomInfo.start_price}</span>
+                                {
+                                    inSearch &&
+                                    <span
+                                        className={`price-breakdown ${priceBreakDown ? 'active' : ''}`}
+                                        onClick={() => setPriceBreakDown(!priceBreakDown)}
+                                    >{__('Price Breakdown', 'mana-booking')}</span>
+                                }
+                            </div>
                         </div>
                         <div className="extra-info">
                             <ul>
@@ -90,13 +98,13 @@ const RoomRow = props => {
                                     className="select-room"
                                     onClick={() => props.roomHandle(activeRoom, 'room', {
                                         id: roomInfo.id,
-                                        title: roomInfo.title
+                                        title: roomInfo.title,
+                                        price: {
+                                            raw: total.payable_raw,
+                                            generated: total.payable
+                                        }
                                     })}
                                 >{__('Select This Room', 'mana-booking')}</button>
-                                <button
-                                    className={`price-breakdown ${priceBreakDown ? 'active' : ''}`}
-                                    onClick={() => setPriceBreakDown(!priceBreakDown)}
-                                >{__('Price Breakdown', 'mana-booking')}</button>
                             </div>
                         }
                     </div>
@@ -112,15 +120,15 @@ const RoomRow = props => {
                 <div className="b-sec">
                     {
                         priceBreakDown &&
-                        <div className="price-break-down">
+                        <div className="price-breakdown-tbl">
                             <table>
                                 <tbody>
                                     {
                                         total.weekday &&
                                         <tr>
-                                            <td>
+                                            <td className="title">
                                                 {__('Weekday', 'mana-booking')}
-                                                <span className="info">X {total.weekday.count} {__('Nights', 'mana-booking')}</span>
+                                                <span className="info">x {total.weekday.count} {__('Nights', 'mana-booking')}</span>
                                             </td>
                                             <td>
                                                 {
@@ -157,9 +165,9 @@ const RoomRow = props => {
                                     {
                                         total.weekend &&
                                         <tr>
-                                            <td>
+                                            <td className="title">
                                                 {__('Weekend', 'mana-booking')}
-                                                <span className="info">X {total.weekend.count} {__('Nights', 'mana-booking')}</span>
+                                                <span className="info">x {total.weekend.count} {__('Nights', 'mana-booking')}</span>
                                             </td>
                                             <td>
                                                 {
@@ -194,21 +202,21 @@ const RoomRow = props => {
                                         </tr>
                                     }
                                     {
-                                        total.discount &&
+                                        total.discount != 0 &&
                                         <tr>
-                                            <td>
+                                            <td className="title">
                                                 {__('Discount', 'mana-booking')}
                                                 <span className="info">{roomInfo.discount_details.percent} {__('% Off', 'mana-booking')}</span>
                                             </td>
-                                            <td>{total.discount}</td>
+                                            <td className="price">{total.discount}</td>
                                         </tr>
                                     }
                                     <tr className="total">
-                                        <td>
+                                        <td className="title">
                                             {__('Total', 'mana-booking')}
                                             <span className="info">{__('vat is not included yet', 'mana-booking')}</span>
                                         </td>
-                                        <td>{total.payable}</td>
+                                        <td className="price">{total.payable}</td>
                                     </tr>
                                 </tbody>
                             </table>

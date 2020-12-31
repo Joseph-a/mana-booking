@@ -140,6 +140,19 @@
                         // }
                         .price {
                             margin-bottom: 10px;
+
+                            .price-breakdown {
+                                font-weight: bold;
+                                float: right;
+                                font-size: 0.9em;
+                                cursor: pointer;
+
+                                &:before {
+                                    color: $color-11;
+                                    content: "→";
+                                    margin-right: 5px;
+                                }
+                            }
                         }
 
                         .extra-info {
@@ -182,6 +195,79 @@
                                 display: block;
                                 width: 100%;
                                 font-size: 14px;
+                            }
+                        }
+                    }
+                }
+
+                .price-breakdown-tbl {
+                    margin-top: 15px;
+
+                    table {}
+
+                    // tbody{}
+                    // tr{}
+                    td {
+                        padding: 10px;
+                        border-color: $color-11;
+                        vertical-align: middle;
+
+                        &.title {
+                            font-weight: bold;
+                            font-size: 1.1em;
+
+                            .info {
+                                font-weight: normal;
+                                font-size: .8em;
+                                color: darken($color-4, 40%);
+                                margin-left: 10px;
+                            }
+                        }
+
+                        &.price {
+                            font-weight: bold;
+                            font-size: 1.1em;
+                            color: $color-11;
+                        }
+
+                        .price-row {
+                            border-bottom: 1px solid $color-4;
+                            line-height: 30px;
+
+                            &:last-child {
+                                border-bottom: 0;
+                            }
+
+                            div {
+                                display: inline-block;
+                                vertical-align: middle;
+                            }
+
+                            .value {
+                                font-weight: bold;
+                                font-size: 1.1em;
+                                color: $color-11;
+                            }
+
+                            .desc {
+                                margin-left: 10px;
+                                font-size: .8em;
+                                color: darken($color-4, 40%);
+                            }
+                        }
+                    }
+
+                    .total {
+                        td {
+                            background: $color-11;
+                            color: $color-1;
+
+                            .info {
+                                color: $color-1;
+                            }
+
+                            &.price {
+                                color: $color-1;
                             }
                         }
                     }

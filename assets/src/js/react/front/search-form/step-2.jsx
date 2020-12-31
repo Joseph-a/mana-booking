@@ -43,8 +43,8 @@ const Step2 = (props) => {
             <table className="booking-info-tbl">
                 <tbody>
                     <tr>
-                        <td colSpan="2">{__('Check In', 'mana-booking')}: <span className="value">{checkIn}</span></td>
-                        <td colSpan="3">{__('Check In', 'mana-booking')}: <span className="value">{checkOut}</span></td>
+                        <td colSpan="3">{__('Check In', 'mana-booking')}: <span className="value">{checkIn}</span></td>
+                        <td colSpan="2">{__('Check In', 'mana-booking')}: <span className="value">{checkOut}</span></td>
                     </tr>
                     {
                         selectedRooms.map((room, i) => {
@@ -55,7 +55,7 @@ const Step2 = (props) => {
                                         <td>{__('Adult', 'mana-booking')}: <span className="value">{room.adult}</span></td>
                                         <td>{__('Child', 'mana-booking')}: <span className="value">{room.child}</span></td>
                                         <td>{__('Room', 'mana-booking')}: <span className="value">{room.room.title}</span></td>
-                                        <td>{__('Price', 'mana-booking')}: <span className="value">{room.room.title}</span></td>
+                                        <td>{__('Price', 'mana-booking')}: <span className="value">{room.room.price.generated}</span></td>
                                     </tr>
                                 </Fragment>
                             )

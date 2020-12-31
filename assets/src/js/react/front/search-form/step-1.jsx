@@ -150,7 +150,7 @@ const Step1 = (props) => {
             <div className="room-sec">
                 {
                     selectedRoomsField.map((item, i) => (
-                        <div className={`room-row ${activeRoom - 1 === i ? 'active' : ''}`} key={i}>
+                        <div className={`room-row ${activeRoom - 1 === i ? 'active' : ''} ${item.room ? 'room-selected' : ''}`} key={i}>
                             <div className="title">{__('Room', 'mana-booking')} {i + 1}</div>
                             <div className="adult">
                                 <label>{__('Adult', 'mana-booking')}:</label>
@@ -202,15 +202,16 @@ const Step1 = (props) => {
                                 }
                             </div>
                             <div className="room">
-                                {item.room && <label>{__('Room', 'mana-booking')}:</label>}
-                                {!item.room && <label></label>}
+                                <label>
+                                    {
+                                        item.room &&
+                                        <Fragment>{__('Room', 'mana-booking')}:</Fragment>
+                                    }
+                                </label>
                                 {
                                     item.room &&
                                     <div className="value">
                                         {item.room.title}
-                                        <button
-                                            onClick={() => resetRoomItem(i)}
-                                        >{__('Edit', 'mana-booking')}</button>
                                     </div>
                                 }
                                 {
@@ -220,6 +221,18 @@ const Step1 = (props) => {
                                     >{__('Check Availability', 'mana-booking')}</button>
                                 }
                             </div>
+                            {
+                                item.room &&
+                                <div className="price">
+                                    <label>{__('Price', 'mana-booking')}:</label>
+                                    <div className="value">
+                                        {item.room.price.generated}
+                                        <button
+                                            onClick={() => resetRoomItem(i)}
+                                        >{__('Edit', 'mana-booking')}</button>
+                                    </div>
+                                </div>
+                            }
                         </div>
                     ))
                 }
@@ -236,20 +249,22 @@ const Step1 = (props) => {
             {
                 modalStatus &&
                 <div className="mana-booking-modal">
-                    <div className="inner-content site-main">
+                    <div className="main-content site-main">
                         <div className="close-button" onClick={() => resetSearchResult()}>X</div>
-                        {
-                            availableRoomsArray.length > 0 &&
-                            <div className="mana-booking-search-result">
-                                <h3>{__('Room', 'mana-booking')} {activeRoom}</h3>
-                                <div className={`mana-booking-room-listing ${mana_booking_obj.room_listing_layout === '1' ? 'boxed' : 'list'}`}>
-                                    <ManaRoomListing rooms={availableRoomsArray} inSearch={true} activeRoom={activeRoom - 1} roomHandle={roomHandle} />
+                        <div className="inner-content">
+                            {
+                                availableRoomsArray.length > 0 &&
+                                <div className="mana-booking-search-result">
+                                    <h3>{__('Room', 'mana-booking')} {activeRoom}</h3>
+                                    <div className={`mana-booking-room-listing ${mana_booking_obj.room_listing_layout === '1' ? 'boxed' : 'list'}`}>
+                                        <ManaRoomListing rooms={availableRoomsArray} inSearch={true} activeRoom={activeRoom - 1} roomHandle={roomHandle} />
+                                    </div>
                                 </div>
-                            </div>
-                        }
-                        {
-                            availableRoomsArray.length === 0 && <div className="no-room">{__('There is no room available!', 'mana-booking')}</div>
-                        }
+                            }
+                            {
+                                availableRoomsArray.length === 0 && <div className="no-room">{__('There is no room available!', 'mana-booking')}</div>
+                            }
+                        </div>
                     </div>
                 </div>
             }
