@@ -26,8 +26,9 @@ export default class ManaSearchForm extends Component {
             coupon: {},
         }
         this.handleStep1 = this.handleStep1.bind(this);
-        this.handleStep2 = this.handleStep1.bind(this);
-        this.handleStep3 = this.handleStep1.bind(this);
+        this.handleStep2 = this.handleStep2.bind(this);
+        // this.handleStep3 = this.handleStep3.bind(this);
+        this.setStep = this.setStep.bind(this);
     }
 
     handleStep1(checkIn, checkOut, selectedRooms) {
@@ -49,17 +50,23 @@ export default class ManaSearchForm extends Component {
         // })
     }
 
+    setStep(step) {
+        this.setState({
+            step
+        })
+    }
+
     render() {
         const { step, checkIn, checkOut, selectedRooms, securityNonce } = this.state;
         switch (step) {
             case 2:
-                return (<Step2 security={securityNonce} handleStep2={this.handleStep2} checkIn={checkIn} checkOut={checkOut} selectedRooms={selectedRooms} />)
+                return (<Step2 security={securityNonce} handleStep2={this.handleStep2} checkIn={checkIn} checkOut={checkOut} selectedRooms={selectedRooms} setStep={this.setStep} />)
                 break;
             case 3:
                 return (<Step3 />)
                 break;
             default:
-                return (<Step1 security={securityNonce} handleStep1={this.handleStep1} />)
+                return (<Step1 security={securityNonce} handleStep1={this.handleStep1} checkIn={checkIn} checkOut={checkOut} selectedRooms={selectedRooms} setStep={this.setStep} />)
                 break;
         }
     }

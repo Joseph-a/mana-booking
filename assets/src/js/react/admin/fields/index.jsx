@@ -191,7 +191,12 @@ export default class Fields extends Component {
 						<input
 							type="checkbox"
 							checked={fieldValue}
-							onChange={e => this.props.onFieldChanged(info.fieldIndex, e.target.checked)}
+							onChange={e => {
+								this.props.onFieldChanged(info.fieldIndex, e.target.checked)
+								if (info.affectedId) {
+									document.getElementById(info.affectedId).value = e.target.checked;
+								}
+							}}
 						/>
 						<span></span>
 					</label>;

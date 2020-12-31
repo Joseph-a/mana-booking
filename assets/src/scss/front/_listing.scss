@@ -92,79 +92,97 @@
     &.list {
         .room-box {
             .in-row {
-                display: flex;
-                flex-wrap: wrap;
                 padding: 20px 0;
                 border-bottom: 1px solid $color-4;
 
-                >div {
-                    // flex-grow: 1;
-                    width: 40%;
+                .t-sec {
+                    display: flex;
+                    flex-wrap: wrap;
 
-                    &:last-child {
-                        width: 20%;
-                    }
-                }
+                    >div {
+                        // flex-grow: 1;
+                        width: 40%;
 
-                // .l-sec {
-                //     .gallery-container {}
-                // }
+                        &:last-child {
+                            width: 20%;
+                        }
 
-                .m-sec {
-                    padding: 0 10px;
-                    line-height: 30px;
+                        &.in-search {
+                            width: 60%;
+                            line-height: 27px;
 
-                    // .main-info {
-                    //     .title {
-                    //         a {}
-                    //     }
+                            .btn-container {
+                                margin-top: 15px;
 
-
-                    // }
-                    .price {
-                        margin-bottom: 10px;
-                    }
-
-                    .extra-info {
-                        font-size: 0.9em;
-
-                        ul {
-                            list-style: none;
-                            margin: 0;
-                            padding: 0;
-                            display: flex;
-                            flex-wrap: wrap;
-
-                            li {
-                                width: 50%;
-                                // .label {}
-
-                                .value {
-                                    color: $color-11;
-                                }
-
-                                &:last-child {
-                                    width: 100%;
+                                button {
+                                    padding: 3px 10px;
+                                    font-size: 14px;
+                                    margin-right: 10px;
                                 }
                             }
-
                         }
                     }
 
-                }
+                    // .l-sec {
+                    //     .gallery-container {}
+                    // }
 
-                .r-sec {
-                    font-size: 0.9em;
+                    .m-sec {
+                        padding: 0 10px;
+                        line-height: 30px;
 
-                    .btn-container {
-                        margin-top: 10px;
-                        text-align: justify;
+                        // .main-info {
+                        //     .title {
+                        //         a {}
+                        //     }
 
-                        button {
-                            padding: 3px 10px;
-                            display: block;
-                            width: 100%;
-                            font-size: 14px;
+
+                        // }
+                        .price {
+                            margin-bottom: 10px;
+                        }
+
+                        .extra-info {
+                            font-size: 0.9em;
+
+                            ul {
+                                list-style: none;
+                                margin: 0;
+                                padding: 0;
+                                display: flex;
+                                flex-wrap: wrap;
+
+                                li {
+                                    width: 50%;
+                                    // .label {}
+
+                                    .value {
+                                        color: $color-11;
+                                    }
+
+                                    &:last-child {
+                                        width: 100%;
+                                    }
+                                }
+
+                            }
+                        }
+
+                    }
+
+                    .r-sec {
+                        font-size: 0.9em;
+
+                        .btn-container {
+                            margin-top: 10px;
+                            text-align: justify;
+
+                            button {
+                                padding: 3px 10px;
+                                display: block;
+                                width: 100%;
+                                font-size: 14px;
+                            }
                         }
                     }
                 }

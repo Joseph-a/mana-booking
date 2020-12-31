@@ -23,10 +23,10 @@ class Mana_booking_ajax
     {
         global $wp_query;
         $get_info_obj = new Mana_booking_get_info();
-        $duration = isset($_REQUEST['duration']) ? intval($_REQUEST['duration']) : '';
-        $room_count = isset($_REQUEST['roomCount']) ? intval($_REQUEST['roomCount']) : '';
-        $total_guest = isset($_REQUEST['totalGuest']) ? intval($_REQUEST['totalGuest']) : '';
-        $language = isset($_REQUEST['lang']) ? intval($_REQUEST['lang']) : '';
+        $duration = isset($_REQUEST['data']['duration']) ? intval($_REQUEST['data']['duration']) : '';
+        $room_count = isset($_REQUEST['data']['roomCount']) ? intval($_REQUEST['data']['roomCount']) : '';
+        $total_guest = isset($_REQUEST['data']['totalGuest']) ? intval($_REQUEST['data']['totalGuest']) : '';
+        $language = isset($_REQUEST['data']['lang']) ? intval($_REQUEST['data']['lang']) : '';
 
         // Enable Services in Booking Process
         $services_args = array(
@@ -38,10 +38,11 @@ class Mana_booking_ajax
             'meta_query' => array(
                 array(
                     'key' => 'mana_booking_service_booking',
-                    'value' => 'on',
+                    'value' => 'true',
                 ),
             )
         );
+
         $services_query = new WP_Query($services_args);
         $services_list = array();
         if ($services_query->have_posts()) {

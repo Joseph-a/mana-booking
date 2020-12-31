@@ -291,12 +291,12 @@ class Mana_booking_get_info
 
             $start_price = array();
             while ($check_in_time < $check_out_time) {
-                $one_day_val = self::check_dates($check_in_time, $init_base_price, $init_extra_price, $room_info['seasonal_price'], $weekend);
                 $weekend = ($check_in_time->format('N') >= 6 ? true : false);
+                $one_day_val = $this->check_dates($check_in_time, $init_base_price, $init_extra_price, $room_info['seasonal_price'], $weekend);
                 $price_details = array();
                 $start_price[] = $one_day_val['start_price'];
 
-                $room_info['booking_price'][$check_in_time->format('Y-m-d')] = $one_day_val;
+                // $room_info['booking_price'][$check_in_time->format('Y-m-d')] = $one_day_val;
 
                 if (!empty($this->mana_options['room_base_price'])) {
                     if (!empty($weekend)) {
@@ -324,7 +324,7 @@ class Mana_booking_get_info
                     }
                 }
 
-                $room_info['booking_price'][$check_in_time->format('Y-m-d')]['price_details'] = $price_details;
+                // $room_info['booking_price'][$check_in_time->format('Y-m-d')]['price_details'] = $price_details;
 
                 if (!empty($weekend)) {
                     $weekend_count++;
@@ -504,24 +504,26 @@ class Mana_booking_get_info
 
         $service_info['has_image'] = has_post_thumbnail($s_id);
         if ($service_info['has_image']) {
-            $service_info['img']['thumbnail'] = get_the_post_thumbnail($s_id, 'thumbnail', 'class=post-img');
-            $service_info['img']['medium'] = get_the_post_thumbnail($s_id, 'medium', 'class=post-img');
-            $service_info['img']['large'] = get_the_post_thumbnail($s_id, 'large', 'class=post-img');
-            $service_info['img']['full'] = get_the_post_thumbnail($s_id, 'full', 'class=post-img');
+            $service_info['img']['thumbnail'] = get_the_post_thumbnail_url($s_id, 'thumbnail');
+            $service_info['img']['medium'] = get_the_post_thumbnail_url($s_id, 'medium');
+            $service_info['img']['large'] = get_the_post_thumbnail_url($s_id, 'large');
+            $service_info['img']['full'] = get_the_post_thumbnail_url($s_id, 'full');
         }
-        $staff_meta_box_prefix = 'mana_booking_service_';
-        $service_info['shortcode'] = get_post_meta($s_id, $staff_meta_box_prefix . 'shortcode', true);
-        $service_info['in_booking'] = get_post_meta($s_id, $staff_meta_box_prefix . 'booking', true);
+
+        $service_info_meta_json = get_post_meta($s_id, 'mana_booking_service_meta_info', true);
+        $service_info_meta = json_decode($service_info_meta_json, true);
+        $service_info['shortcode'] = $service_info_meta['shortcode'];
+        $service_info['in_booking'] = $service_info_meta['booking'];
         if (!empty($service_info['in_booking'])) {
             $currency_info_obj = new Mana_booking_currency();
             $currency_info = $currency_info_obj->get_current_currency();
-            $service_info['price_type'] = get_post_meta($s_id, $staff_meta_box_prefix . 'price_type', true);
+            $service_info['price_type'] = $service_info_meta['priceType'];
             if ($service_info['price_type'] !== '1') {
-                $service_info['price'] = get_post_meta($s_id, $staff_meta_box_prefix . 'price', true);
+                $service_info['price']['price'] = $service_info_meta['price'];
                 $service_info['price']['unit'] = $currency_info['symbol'];
                 $total_price = $currency_info_obj->price_exchanger($service_info['price']['price']);
 
-                switch ($service_info['price']['guest']) {
+                switch ($service_info_meta['priceTypeGuest']) {
                     case ('1'):
                         $price_guest = esc_html__('Guest', 'mana-booking');
                         $total_price = ($total_guest * $total_price);
@@ -534,7 +536,7 @@ class Mana_booking_get_info
                         $total_price = ($room_count * $total_price);
                         break;
                 }
-                if ($service_info['price']['night'] === '2') {
+                if ($service_info_meta['priceTypeNight'] === '2') {
                     $price_night = esc_html__('Booking', 'mana-booking');
                 } else {
                     $price_night = esc_html__('Night', 'mana-booking');
@@ -549,7 +551,7 @@ class Mana_booking_get_info
                 $service_info['total_price']['value'] = 0;
                 $service_info['total_price']['generated'] = esc_html__('Free', 'mana-booking');
             }
-            $service_info['mandatory'] = get_post_meta($s_id, $staff_meta_box_prefix . 'mandatory', true);
+            $service_info['mandatory'] = $service_info_meta['mandatory'];
         }
 
         return $service_info;

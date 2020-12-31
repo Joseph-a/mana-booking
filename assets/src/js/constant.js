@@ -96,6 +96,9 @@ export const manaServiceSettings = {
     SHORTCODE: 'shortcode',
     BOOKING: 'booking',
     PRICE_TYPE: 'priceType',
+    PRICE_TYPE_GUEST: 'priceTypeGuest',
+    PRICE_TYPE_NIGHT: 'priceTypeNight',
+    PRICE_TYPE: 'priceType',
     PRICE: 'price',
     MANDATORY: 'mandatory',
 };

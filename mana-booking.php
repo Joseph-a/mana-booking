@@ -473,7 +473,7 @@ class Mana_booking_main
 			'meta_query' => array(
 				array(
 					'key' => 'mana_booking_service_booking',
-					'value' => 'on',
+					'value' => 'true',
 				),
 			),
 		);
@@ -559,6 +559,12 @@ class Mana_booking_main
 			array(
 				'id' => $service_meta_box_prefix . 'meta_info',
 				'type' => 'service_settings',
+			),
+			array(
+				'label' => '',
+				'id' => $service_meta_box_prefix . 'booking',
+				'type' => 'hidden',
+				'tr_class' => 'hidden'
 			),
 		);
 		$service_meta_box_obj = new Mana_booking_meta_boxes($service_meta_box_items, $service_meta_box_prefix, $service_meta_box_title, 'service');

@@ -15,10 +15,10 @@ const Step1 = (props) => {
         [activeRoom, setActiveRoom] = useState(0),
         [availableRoomsArray, setAvailableRooms] = useState([]),
         [startEndDatesField, setDates] = useState({
-            startDate: moment(),
-            endDate: moment().add(2, 'days'),
+            startDate: moment(props.checkIn) || moment(),
+            endDate: moment(props.checkOut) || moment().add(2, 'days'),
         }),
-        [selectedRoomsField, setRooms] = useState([{
+        [selectedRoomsField, setRooms] = useState(props.selectedRooms || [{
             adult: 1,
             child: 0,
             room: null

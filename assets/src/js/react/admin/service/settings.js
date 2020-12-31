@@ -17,7 +17,8 @@ export const serviceSettings = [{
 		desc: __('Enable this field if you want this service loads in booking process that users can select it as extra services.', 'mana-booking'),
 		fieldIndex: manaServiceSettings.BOOKING,
 		type: 'toggle',
-		value: false
+		value: false,
+		affectedId: 'mana_booking_service_booking'
 	},
 	{
 		label: __('Price Type', 'mana-booking'),
@@ -41,6 +42,50 @@ export const serviceSettings = [{
 		fieldIndex: manaServiceSettings.PRICE,
 		type: 'single-price',
 		value: '',
+		conditional: {
+			ifField: manaServiceSettings.PRICE_TYPE,
+			ifValue: 'paid'
+		}
+	},
+	{
+		label: __('Price Type', 'mana-booking'),
+		desc: __('Set the price type', 'mana-booking'),
+		fieldIndex: manaServiceSettings.PRICE_TYPE_GUEST,
+		type: 'select',
+		options: [{
+				label: __('Per Guest', 'mana-booking'),
+				value: 1
+			},
+			{
+				label: __('Booking', 'mana-booking'),
+				value: 2
+			},
+			{
+				label: __('Per Room', 'mana-booking'),
+				value: 3
+			},
+		],
+		value: 1,
+		conditional: {
+			ifField: manaServiceSettings.PRICE_TYPE,
+			ifValue: 'paid'
+		}
+	},
+	{
+		label: __('Price Period', 'mana-booking'),
+		desc: __('Set the price period', 'mana-booking'),
+		fieldIndex: manaServiceSettings.PRICE_TYPE_NIGHT,
+		type: 'select',
+		options: [{
+				label: __('Per Night', 'mana-booking'),
+				value: 1
+			},
+			{
+				label: __('Booking', 'mana-booking'),
+				value: 2
+			}
+		],
+		value: 1,
 		conditional: {
 			ifField: manaServiceSettings.PRICE_TYPE,
 			ifValue: 'paid'

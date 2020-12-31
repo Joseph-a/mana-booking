@@ -17,6 +17,10 @@ export default class CouponMetaData extends Component {
         }
     }
 
+    componentDidMount() {
+        this.initialSetting();
+    }
+
     onFieldChanged = (fieldIndex, val) => {
         let savedSetting = { ...this.state.savedSetting, [fieldIndex]: val };
         if (JSON.stringify(savedSetting) !== JSON.stringify(this.state.savedSetting)) {
@@ -26,6 +30,18 @@ export default class CouponMetaData extends Component {
         }
 
         document.getElementById('mana_booking_coupon_meta_info').value = JSON.stringify(savedSetting);
+    }
+
+    initialSetting = () => {
+        const { serviceSettings, savedSetting } = this.state;
+        let initialValue = {};
+
+        serviceSettings.map(field => {
+            initialValue[field.fieldIndex] = typeof savedSetting[field.fieldIndex] !== 'undefined' ? savedSetting[field.fieldIndex] : field.value;
+        });
+
+        this.setState({ savedSetting: initialValue });
+        document.getElementById('mana_booking_coupon_meta_info').value = JSON.stringify(initialValue);
     }
 
     render() {
