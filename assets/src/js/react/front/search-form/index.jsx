@@ -61,7 +61,7 @@ export default class ManaSearchForm extends Component {
         const { step, checkIn, checkOut, selectedRooms, services, securityNonce } = this.state;
         switch (step) {
             case 2:
-                return (<Step2 security={securityNonce} handleStep2={this.handleStep2} checkIn={checkIn} checkOut={checkOut} selectedRooms={selectedRooms} setStep={this.setStep} />)
+                return (<Step2 security={securityNonce} handleStep2={this.handleStep2} checkIn={checkIn} checkOut={checkOut} selectedRooms={selectedRooms} services={services} setStep={this.setStep} />)
                 break;
             case 3:
                 return (<Step3 />)

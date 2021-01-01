@@ -2,9 +2,11 @@
     min-width: 170px;
     display: block;
     margin-bottom: 10px;
+
     input {
         display: none;
     }
+
     .switcher {
         @include size(50px, 20px);
         background: $color-1;
@@ -12,6 +14,7 @@
         position: relative;
         display: block;
         transition: all .3s ease;
+
         &:before {
             display: block;
             content: '';
@@ -23,10 +26,12 @@
             transition: all .3s ease;
         }
     }
-    > input {
+
+    >input {
         &:checked {
-            + .switcher {
+            +.switcher {
                 border-color: $color-3;
+
                 &:before {
                     transform: translateX(-23px);
                     background: $color-3;
@@ -34,7 +39,8 @@
             }
         }
     }
-    + .description {
+
+    +.description {
         margin-left: 0 !important;
     }
 }
@@ -44,14 +50,16 @@
     input {
         display: none;
     }
+
     label {
         padding-left: 30px;
         position: relative;
         cursor: pointer;
         line-height: 45px;
         margin: 0;
-        display: block;
+        // display: block;
         font-weight: normal;
+
         //a{
         //    color: $color-3;
         //    transition: all .3s ease;
@@ -66,21 +74,23 @@
             position: absolute;
             left: 1px;
             top: 14px;
+
             &:before {
                 font-family: "dashicons";
                 content: "\f147";
                 position: absolute;
-                left: -4px;
-                top: 0;
+                left: -7px;
+                top: -1px;
                 display: none;
                 color: $color-3;
                 font-size: 1.8em;
                 line-height: 18px;
             }
         }
-        > input {
+
+        >input {
             &:checked {
-                + span:before {
+                +span:before {
                     display: block;
                 }
             }
@@ -93,6 +103,7 @@
     input {
         display: none;
     }
+
     label {
         padding-left: 30px;
         position: relative;
@@ -101,6 +112,7 @@
         margin: 0;
         display: block;
         font-weight: normal;
+
         //a{
         //    color: $color-3;
         //    transition: all .3s ease;
@@ -115,7 +127,8 @@
             position: absolute;
             left: 1px;
             top: 14px;
-            border-radius:50%;
+            border-radius: 50%;
+
             &:before {
                 content: "";
                 position: absolute;
@@ -123,13 +136,14 @@
                 top: 3px;
                 display: none;
                 background: $color-3;
-                border-radius:50%;
+                border-radius: 50%;
                 @include square(11px);
             }
         }
-        > input {
+
+        >input {
             &:checked {
-                + span:before {
+                +span:before {
                     display: block;
                 }
             }
@@ -141,6 +155,7 @@
     border: 1px solid $color-3;
     padding: 30px;
     margin-bottom: 10px;
+
     &:last-child {
         margin-bottom: 0;
     }
@@ -148,6 +163,7 @@
 
 .mana-info-box {
     border: 1px solid $color-3;
+
     .header {
         background: $color-3;
         color: $color-1;
@@ -156,6 +172,7 @@
         font-size: 1.2em;
         text-transform: uppercase;
     }
+
     .content {
         background: $color-1;
         padding: 20px;

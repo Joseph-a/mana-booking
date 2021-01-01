@@ -152,6 +152,11 @@
                 font-weight: bold;
                 color: $color-11;
             }
+
+            .total-price-value {
+                background: $color-11;
+                color: $color-1;
+            }
         }
     }
 
@@ -165,6 +170,24 @@
                     font-size: .7em;
                     color: darken($color-4, 30%);
                     margin-left: 15px;
+                }
+            }
+
+            &.optional {
+                border: 2px solid $color-11;
+                padding: 20px;
+
+                .service-row {
+                    .title {
+                        >span {
+                            display: inline-block;
+                            vertical-align: middle;
+                        }
+                    }
+
+                    .price {
+                        margin-top: 10px;
+                    }
                 }
             }
         }

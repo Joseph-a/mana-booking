@@ -3,8 +3,8 @@ import { serialize } from 'object-to-formdata';
 import { __ } from '@wordpress/i18n';
 
 function Services(props) {
-    const { checkIn, checkOut, selectedRooms } = props,
-        [selectedServices, setSelectedServices] = useState(props.serviceList || []),
+    const { checkIn, checkOut, selectedRooms, serviceList, security } = props,
+        [selectedServices, setSelectedServices] = useState(serviceList || []),
         [servicesList, setServices] = useState(),
         totalGuest = () => {
             let count = 0;
@@ -17,7 +17,7 @@ function Services(props) {
                     method: "POST",
                     body: serialize({
                         action: "mana_booking_services",
-                        security: props.security,
+                        security,
                         data: {
                             totalGuest: totalGuest(),
                             duration,
@@ -27,15 +27,55 @@ function Services(props) {
                 });
             return await roomList.json()
         },
-        serviceListOutput = (list) => {
+        isSelected = (serviceInfo) => {
+            const filteredServices = selectedServices.filter(serviceItem => serviceItem.id === serviceInfo.id);
+            if (filteredServices.length > 0) {
+                return true
+            }
+
+            return false;
+        },
+        handleOptional = (serviceInfo) => {
+            let newServices;
+            if (isSelected(serviceInfo)) {
+                newServices = selectedServices.filter(serviceItem => serviceItem.id !== serviceInfo.id)
+            } else {
+                newServices = [...selectedServices, serviceInfo];
+            }
+            setSelectedServices(newServices);
+        },
+        serviceListOutput = (list, optional = false) => {
+
             return (
                 list.map((service, i) => {
+                    const serviceInfo = {
+                        id: service.id,
+                        title: service.title,
+                        price: service.total_price
+                    };
                     return (
                         <tr key={i}>
                             <td>
                                 <div className="service-row">
                                     <span className="title">
-                                        {service.title}
+                                        {
+                                            optional &&
+                                            <span className="mana-checkbox">
+                                                <label>
+                                                    <input
+                                                        type="checkbox"
+                                                        checked={isSelected(serviceInfo)}
+                                                        onChange={() => handleOptional(serviceInfo)}
+                                                    />
+                                                    <span></span>
+                                                    {service.title}
+                                                </label>
+                                            </span>
+                                        }
+                                        {
+                                            !optional && <Fragment>{service.title}</Fragment>
+                                        }
+
                                         {
                                             service.total_price.value != 0 &&
                                             <span className="info" dangerouslySetInnerHTML={{ __html: service.price.generated }}></span>
@@ -56,17 +96,18 @@ function Services(props) {
         getServices().then(res => {
             setServices(res)
 
-            // Set Mandatory Services
-            res.mandatory.map(service => {
-                mandatoryServices.push({
-                    id: service.id,
-                    title: service.title,
-                    price: service.total_price
-                })
-            });
-            console.log(mandatoryServices);
+            if (selectedServices.length === 0) {
+                // Set Mandatory Services
+                res.mandatory.map(service => {
+                    mandatoryServices.push({
+                        id: service.id,
+                        title: service.title,
+                        price: service.total_price
+                    })
+                });
 
-            setSelectedServices(mandatoryServices);
+                setSelectedServices(mandatoryServices);
+            }
         });
 
     }, []);
@@ -79,14 +120,14 @@ function Services(props) {
                 <div className="mana-booking-booking-services">
                     {
                         servicesList.optional &&
-                        <div className="service-row-container">
+                        <div className="service-row-container optional">
                             <h4 className="title">
                                 {__('Optional Services', 'mana-booking')}
                                 <span className="info">{__('Please select services you want to have in your staying.', 'mana-booking')}</span>
                             </h4>
                             <table>
                                 <tbody>
-                                    {serviceListOutput(servicesList.optional)}
+                                    {serviceListOutput(servicesList.optional, true)}
                                 </tbody>
                             </table>
                         </div>

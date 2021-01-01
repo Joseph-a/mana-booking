@@ -1,63 +1,38 @@
-import React, { Fragment, useEffect, useState } from 'react';
+import React, { Fragment } from 'react';
 import t from 'prop-types';
-import { serialize } from 'object-to-formdata';
-import moment from 'moment';
 import { __ } from '@wordpress/i18n';
 
 const Step2 = (props) => {
-    console.log('Step-2', props);
-    const { checkIn, checkOut, selectedRooms } = props,
-        [servicesList, setServices] = useState(),
-        totalGuest = () => {
-            let count = 0;
-            selectedRooms.map(room => count += (parseInt(room.adult) + parseInt(room.child)));
-            return count;
-        },
-        getServices = async () => {
-            const duration = moment(checkOut).diff(checkIn, 'days'),
-                roomList = await fetch(mana_booking_obj.ajaxurl, {
-                    method: "POST",
-                    body: serialize({
-                        action: "mana_booking_services",
-                        security: props.security,
-                        data: {
-                            totalGuest: totalGuest(),
-                            duration,
-                            roomCount: selectedRooms.length
-                        }
-                    })
-                });
-            return await roomList.json()
-        },
-        serviceListOutput = (list) => {
-            return (
-                list.map((service, i) => {
-                    return (
-                        <tr>
-                            <td>
-                                <div className="service-row">
-                                    <span className="title">
-                                        {service.title}
-                                        {
-                                            service.total_price.value != 0 &&
-                                            <span className="info" dangerouslySetInnerHTML={{ __html: service.price.generated }}></span>
-                                        }
-                                    </span>
-                                    <span className="price">{service.total_price.generated}</span>
-                                </div>
-                            </td>
-                        </tr>
-                    )
-                })
-            )
-        };
+    const { checkIn, checkOut, selectedRooms, services } = props;
+    const totalPrice = () => {
+        let totalValue = 0,
+            currencySymbol = '',
+            symbolPosition = 'left';
 
+        selectedRooms.map((room, i) => {
+            totalValue += room.room.price.raw;
 
-    useEffect(() => {
-        if (mana_booking_obj.booking_service) {
-            getServices().then(res => setServices(res));
+            if (i === 0) {
+                let priceParts = room.room.price.generated.split(room.room.price.raw + '');
+                if (priceParts[1] === '') {
+                    currencySymbol = priceParts[0];
+                } else {
+                    symbolPosition = 'right';
+                    currencySymbol = priceParts[1];
+                }
+            }
+        });
+
+        services.map(service => {
+            totalValue += service.price.value;
+        });
+
+        if (symbolPosition === 'right') {
+            return totalValue + currencySymbol;
         }
-    }, []);
+
+        return currencySymbol + (totalValue + '');
+    };
 
     return (
         <Fragment>
@@ -86,71 +61,29 @@ const Step2 = (props) => {
                         })
                     }
                     {
-                        servicesList &&
+                        services.length > 0 &&
                         <Fragment>
                             <tr>
                                 <th colSpan="5">{__('Services', 'mana-booking')}</th>
                             </tr>
                             {
-                                servicesList.mandatory &&
-                                <tr>
-                                    <th>{__('Mandatory', 'mana-booking')} :</th>
-                                    <td colSpan="4">
-                                        {serviceListOutput(servicesList.mandatory)}
-                                    </td>
-                                </tr>
+                                services.map((service, i) => {
+                                    return (
+                                        <tr className="service-row" key={i}>
+                                            <td colSpan="4">#{i + 1} : <span className="value">{service.title}</span></td>
+                                            <td>{__('Price', 'mana-booking')}: <span className="value">{service.price.generated}</span></td>
+                                        </tr>
+                                    )
+                                })
                             }
-                            {
-                                servicesList.optional &&
-                                <tr>
-                                    <th>{__('Optional', 'mana-booking')} :</th>
-                                    <td colSpan="4">
-                                        {serviceListOutput(servicesList.optional)}
-                                    </td>
-                                </tr>
-                            }
-
                         </Fragment>
                     }
                     <tr>
                         <th colSpan="4">{__('Total Price', 'mana-booking')}:</th>
-                        <th colSpan="1"><span className="value">{checkOut}</span></th>
+                        <th colSpan="1" className="total-price-value">{totalPrice()}</th>
                     </tr>
                 </tbody>
             </table>
-            {
-                servicesList &&
-                <div className="mana-booking-booking-services">
-                    {
-                        servicesList.optional &&
-                        <div className="service-row-container">
-                            <h4 className="title">
-                                {__('Optional Services', 'mana-booking')}
-                                <span className="info">{__('Please select services you want to have in your staying.', 'mana-booking')}</span>
-                            </h4>
-                            <table>
-                                <tbody>
-                                    {serviceListOutput(servicesList.optional)}
-                                </tbody>
-                            </table>
-                        </div>
-                    }
-                    {
-                        servicesList.mandatory &&
-                        <div className="service-row-container">
-                            <h4 className="title">
-                                {__('Mandatory Services', 'mana-booking')}
-                                <span className="info">{__('The below services will be added in your booking automatically.', 'mana-booking')}</span>
-                            </h4>
-                            <table>
-                                <tbody>
-                                    {serviceListOutput(servicesList.mandatory)}
-                                </tbody>
-                            </table>
-                        </div>
-                    }
-                </div>
-            }
             <div className="btn-sec">
                 <button
                     onClick={() => props.setStep(1)}
