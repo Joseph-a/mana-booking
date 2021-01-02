@@ -24,6 +24,7 @@ export default class ManaSearchForm extends Component {
             guestInfo: {},
             paymentMethod: 'full',
             coupon: {},
+            priceDetails: {}
         }
         this.handleStep1 = this.handleStep1.bind(this);
         this.handleStep2 = this.handleStep2.bind(this);
@@ -41,11 +42,12 @@ export default class ManaSearchForm extends Component {
         })
     }
 
-    handleStep2(guestInfo = {}, paymentMethod = 'full', coupon = {}) {
+    handleStep2(guestInfo = {}, priceDetails = {}, coupon = {}, paymentMethod = 'full') {
         this.setState({
             guestInfo,
             paymentMethod,
-            coupon
+            coupon,
+            priceDetails
         })
     }
 
@@ -56,13 +58,14 @@ export default class ManaSearchForm extends Component {
     }
 
     render() {
-        const { step, checkIn, checkOut, selectedRooms, services, securityNonce } = this.state;
+        const { step, checkIn, checkOut, selectedRooms, services, securityNonce, priceDetails } = this.state;
         const componentProps = {
             security: securityNonce,
             checkIn,
             checkOut,
             selectedRooms,
             services,
+            priceDetails,
             setStep: this.setStep
         }
         switch (step) {

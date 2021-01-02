@@ -166,6 +166,59 @@
             }
         }
 
+        .coupon-input-container {
+            padding: 20px;
+            margin: 30px 0;
+            border: 1px solid $color-4;
+            background: darken($color-1, 5%);
+
+            .coupon-row {
+                display: flex;
+
+                input {}
+
+                button {
+                    background-color: $color-1;
+
+                    &:hover {
+                        background-color: $color-11;
+                    }
+                }
+
+                &.has-coupon {
+                    input {
+                        border-right: 0;
+                        border-top-right-radius: 0;
+                        border-bottom-right-radius: 0;
+                    }
+
+                    button {
+                        border-top-left-radius: 0;
+                        border-bottom-left-radius: 0;
+                    }
+                }
+            }
+
+            .message-container {
+                padding: 10px;
+                border: 1px solid transparent;
+                border-radius: 5px;
+                line-height: 30px;
+                background: $color-1;
+
+                &.error {
+                    margin-top: 10px;
+                    border-color: $color-6;
+                    color: $color-6;
+                }
+
+                &.success {
+                    border-color: $color-7;
+                    color: $color-7;
+                }
+            }
+        }
+
         .guest-info-container {
             padding: 20px;
             margin: 30px 0;

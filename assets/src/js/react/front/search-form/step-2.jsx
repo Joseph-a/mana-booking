@@ -1,11 +1,16 @@
 import React, { Fragment, useEffect, useState } from 'react';
 import t from 'prop-types';
+import { serialize } from 'object-to-formdata';
 import { __ } from '@wordpress/i18n';
 import NumberFormat from 'react-number-format';
 
 
 const Step2 = (props) => {
     const { checkIn, checkOut, selectedRooms, services } = props,
+        [coupon, setCoupon] = useState(''),
+        [couponInfo, setCouponInfo] = useState(null),
+        [couponError, setCouponError] = useState(''),
+        [priceDetails, setPriceDetails] = useState({}),
         [guestInfo, setGuestInfo] = useState({
             firstName: '',
             lastName: '',
@@ -29,11 +34,8 @@ const Step2 = (props) => {
                 settings['suffix'] = currencyInfo.symbol :
                 settings['prefix'] = currencyInfo.symbol;
 
-            console.log(settings);
-
             return <NumberFormat {...settings} />;
         },
-
 
         totalPrice = (value = false) => {
             let totalValue = 0;
@@ -73,8 +75,62 @@ const Step2 = (props) => {
         handleInputChange = (value, field) => {
             let newGuestInfo = { ...guestInfo, [field]: value };
             setGuestInfo(newGuestInfo);
-            props.handleStep2(newGuestInfo);
-        }
+            props.handleStep2(newGuestInfo, priceDetails, couponInfo);
+        },
+
+        checkCoupon = async () => {
+            const fetchCoupon = await fetch(mana_booking_obj.ajaxurl, {
+                method: "POST",
+                body: serialize({
+                    action: "mana_booking_check_coupon",
+                    security: mana_booking_obj.coupon_security,
+                    coupon
+                })
+            });
+            return await fetchCoupon.json()
+        },
+
+        couponCalculator = (info) => {
+            let newPriceDetails = { ...priceDetails };
+            if (info.type === 'percent') {
+                let couponValue = Math.round(((totalPrice(true) + vatPrice(true)) * info.percent) / 100);
+                newPriceDetails['coupon'] = couponValue;
+                newPriceDetails['payablePrice'] = newPriceDetails.payablePrice - couponValue;
+            } else {
+                newPriceDetails['coupon'] = info.price;
+                newPriceDetails['payablePrice'] = newPriceDetails.payablePrice - info.price;
+            }
+
+            return newPriceDetails;
+        },
+
+        submitCoupon = () => {
+            setCouponError('');
+            checkCoupon().then(res => {
+                if (!res.status) {
+                    setCouponError(res.message);
+                } else {
+                    setCouponInfo(res.info);
+                    setCouponError(res.message);
+
+                    let newPriceDetails = couponCalculator(res.info);
+                    setPriceDetails(newPriceDetails);
+                    props.handleStep2(guestInfo, newPriceDetails, res.info);
+                }
+            });
+        };
+
+
+
+    useEffect(() => {
+        setPriceDetails({
+            serviceAndRoom: totalPrice(true),
+            vat: vatPrice(true),
+            payablePrice: payablePrice(true),
+            currencyInfo: mana_booking_obj.currency
+        });
+        props.handleStep2(null, priceDetails);
+    }, [])
 
     return (
         <Fragment>
@@ -181,20 +237,64 @@ const Step2 = (props) => {
                 </div>
             </div>
 
+            <div className="coupon-input-container">
+                {
+                    !couponInfo &&
+                    <Fragment>
+                        <div className={`coupon-row ${coupon ? 'has-coupon' : ''}`}>
+                            <input
+                                type="text"
+                                value={coupon}
+                                placeholder={__('Coupon', 'mana-booking')}
+                                onChange={e => setCoupon(e.target.value)}
+                            />
+                            {
+                                coupon !== '' &&
+                                <button
+                                    onClick={() => submitCoupon()}
+                                >{__('Submit', 'mana-booking')}</button>
+                            }
+                        </div>
+                        {
+                            couponError && <div className="message-container error">{couponError}</div>
+                        }
+                    </Fragment>
+                }
+                {
+                    couponInfo && <div className="message-container success">{couponError}</div>
+                }
+            </div>
+
             <table className="booking-info-tbl">
                 <tbody>
-                    <tr>
-                        <th>{__('Rooms & Services', 'mana-booking')}:</th>
-                        <th><span className="value">{totalPrice()}</span></th>
-                    </tr>
-                    <tr>
-                        <th>{__('VAT', 'mana-booking')} %{mana_booking_obj.vat}:</th>
-                        <th><span className="value">{vatPrice()}</span></th>
-                    </tr>
-                    <tr>
-                        <th>{__('Total Price', 'mana-booking')}:</th>
-                        <th className="total-price-value">{payablePrice()}</th>
-                    </tr>
+                    {
+                        priceDetails.serviceAndRoom &&
+                        <tr>
+                            <th>{__('Rooms & Services', 'mana-booking')}:</th>
+                            <th><span className="value">{priceFormatter(priceDetails.serviceAndRoom)}</span></th>
+                        </tr>
+                    }
+                    {
+                        priceDetails.vat &&
+                        <tr>
+                            <th>{__('VAT', 'mana-booking')} %{mana_booking_obj.vat}:</th>
+                            <th><span className="value">{priceFormatter(priceDetails.vat)}</span></th>
+                        </tr>
+                    }
+                    {
+                        priceDetails.coupon &&
+                        <tr>
+                            <th>{__('Coupon', 'mana-booking')}:</th>
+                            <th><span className="value">{priceFormatter(priceDetails.coupon)}</span></th>
+                        </tr>
+                    }
+                    {
+                        priceDetails.payablePrice &&
+                        <tr>
+                            <th>{__('Total Price', 'mana-booking')}:</th>
+                            <th className="total-price-value">{priceFormatter(priceDetails.payablePrice)}</th>
+                        </tr>
+                    }
                 </tbody>
             </table>
             <div className="btn-sec">
