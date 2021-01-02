@@ -338,15 +338,15 @@ export const manaMainSettings = [{
                 type: 'select',
                 options: [{
                         label: ',',
-                        value: '1'
+                        value: ','
                     },
                     {
                         label: '.',
-                        value: '2'
+                        value: '.'
                     },
                     {
                         label: __('Space', 'mana-booking'),
-                        value: '3'
+                        value: 'space'
                     },
                 ],
                 value: initialSetting[manaMainSetting.CURRENCY_SEPARATOR]
@@ -390,11 +390,11 @@ export const manaMainSettings = [{
                 type: 'select',
                 options: [{
                         label: '.',
-                        value: '1'
+                        value: '.'
                     },
                     {
                         label: ',',
-                        value: '2'
+                        value: ','
                     }
                 ],
                 value: initialSetting[manaMainSetting.CURRENCY_DECIMAL_SEPARATOR]

@@ -35,7 +35,7 @@ class Mana_booking_coupon
                     } elseif ($coupon_info['used_coupon'] >= intval($coupon_info['amount'])) {
                         $return_value['message'] = esc_html__('Coupon is finished.', 'mana-booking');
                     } else {
-                        self::update_count($post_info->ID);
+                        $this->update_count($post_info->ID);
                         $return_value['info'] = $coupon_info;
                         $return_value['status'] = true;
                         $return_value['message'] = esc_html__('Coupon is applied.', 'mana-booking');
@@ -61,9 +61,13 @@ class Mana_booking_coupon
      */
     public function update_count($id)
     {
-        $field_id = 'mana_booking_coupon_used';
-        $old = (int) get_post_meta($id, $field_id, true);
-        update_post_meta($id, $field_id, $old + 1);
+        $meta_box_id = 'mana_booking_coupon_meta_info';
+        $meta_json = get_post_meta($id, $meta_box_id, true);
+        $meta = json_decode($meta_json, true);
+        $old = (int) $meta['usedCoupon'];
+        $meta['usedCoupon'] = $old + 1;
+
+        update_post_meta($id, $meta_box_id, json_encode($meta));
     }
 }
 $mana_booking_coupon_obj = new Mana_booking_coupon();

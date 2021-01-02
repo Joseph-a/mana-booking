@@ -10,6 +10,12 @@
             display: none;
         }
 
+        input,
+        textarea,
+        select {
+            border-color: $color-4;
+        }
+
         .top-sec {
             display: flex;
             flex-wrap: wrap;
@@ -156,6 +162,44 @@
             .total-price-value {
                 background: $color-11;
                 color: $color-1;
+                font-size: 1.2em;
+            }
+        }
+
+        .guest-info-container {
+            padding: 20px;
+            margin: 30px 0;
+            border: 1px solid $color-4;
+            background: darken($color-1, 5%);
+
+            .guest-info-row {
+                display: flex;
+
+                .guest-info-field {
+                    margin: 10px 0;
+                    width: 50%;
+
+                    &:first-child {
+                        padding-right: 5px;
+                    }
+
+                    &:last-child {
+                        padding-left: 5px;
+                    }
+
+                    input {}
+
+                    textarea {
+                        min-height: 200px;
+                    }
+                }
+
+                &.single {
+                    .guest-info-field {
+                        width: 100%;
+                        padding: 0;
+                    }
+                }
             }
         }
     }

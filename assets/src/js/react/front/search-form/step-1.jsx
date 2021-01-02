@@ -300,6 +300,18 @@ const Step1 = (props) => {
 }
 
 Step1.propTypes = {
+    security: t.string,
+    checkIn: t.oneOfType([
+        t.string,
+        t.object
+    ]),
+    checkOut: t.oneOfType([
+        t.string,
+        t.object
+    ]),
+    selectedRooms: t.array,
+    services: t.array,
+    setStep: t.func,
     handleStep1: t.func
 };
 

@@ -33,10 +33,10 @@ export default class CouponMetaData extends Component {
     }
 
     initialSetting = () => {
-        const { serviceSettings, savedSetting } = this.state;
+        const { couponSettings, savedSetting } = this.state;
         let initialValue = {};
 
-        serviceSettings.map(field => {
+        couponSettings.map(field => {
             initialValue[field.fieldIndex] = typeof savedSetting[field.fieldIndex] !== 'undefined' ? savedSetting[field.fieldIndex] : field.value;
         });
 

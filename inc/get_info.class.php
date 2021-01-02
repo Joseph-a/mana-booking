@@ -57,7 +57,6 @@ class Mana_booking_get_info
         $room_info = array();
         $p_id = Mana_booking_get_info::translated_post_id($p_id);
 
-
         $room_info_meta_json = get_post_meta($p_id, 'mana_booking_room_meta_info', true);
         $room_info_meta = json_decode($room_info_meta_json, true);
 
@@ -673,14 +672,17 @@ class Mana_booking_get_info
     {
         $coupon_info['id'] = $id;
         $coupon_info['title'] = get_the_title($id);
-        $coupon_info['description'] = get_post_meta($id, 'mana_booking_coupon_desc', true);
-        $coupon_info['type'] = get_post_meta($id, 'mana_booking_coupon_type', true);
-        $coupon_info['percent'] = get_post_meta($id, 'mana_booking_coupon_percent', true);
-        $coupon_info['price'] = get_post_meta($id, 'mana_booking_coupon_price', true);
-        $coupon_info['amount'] = get_post_meta($id, 'mana_booking_coupon_amount', true);
-        $used_coupon = get_post_meta($id, 'mana_booking_coupon_used', true);
-        $coupon_info['used_coupon'] = intval($used_coupon);
-        $coupon_info['expire_date'] = get_post_meta($id, 'mana_booking_coupon_expire', true);
+
+        $coupon_info_meta_json = get_post_meta($id, 'mana_booking_coupon_meta_info', true);
+        $coupon_info_meta = json_decode($coupon_info_meta_json, true);
+
+        $coupon_info['description'] = $coupon_info_meta['desc'];
+        $coupon_info['type'] = $coupon_info_meta['discountType'];
+        $coupon_info['percent'] = $coupon_info_meta['percent'];
+        $coupon_info['price'] = $coupon_info_meta['price'];
+        $coupon_info['amount'] = $coupon_info_meta['couponAmount'];
+        $coupon_info['used_coupon'] = intval($coupon_info_meta['usedCoupon']);
+        $coupon_info['expire_date'] = $coupon_info_meta['expireDate'];
 
         return $coupon_info;
     }

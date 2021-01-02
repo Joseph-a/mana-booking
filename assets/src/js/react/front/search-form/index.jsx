@@ -21,7 +21,7 @@ export default class ManaSearchForm extends Component {
                 room: null
             }],
             services: [],
-            passengerInfo: {},
+            guestInfo: {},
             paymentMethod: 'full',
             coupon: {},
         }
@@ -41,14 +41,12 @@ export default class ManaSearchForm extends Component {
         })
     }
 
-    handleStep2(checkIn, checkOut, selectedRooms) {
-        console.log('Handle Step 2');
-        // this.setState({
-        //     step: 2,
-        //     checkIn,
-        //     checkOut,
-        //     selectedRooms
-        // })
+    handleStep2(guestInfo = {}, paymentMethod = 'full', coupon = {}) {
+        this.setState({
+            guestInfo,
+            paymentMethod,
+            coupon
+        })
     }
 
     setStep(step) {
@@ -59,15 +57,23 @@ export default class ManaSearchForm extends Component {
 
     render() {
         const { step, checkIn, checkOut, selectedRooms, services, securityNonce } = this.state;
+        const componentProps = {
+            security: securityNonce,
+            checkIn,
+            checkOut,
+            selectedRooms,
+            services,
+            setStep: this.setStep
+        }
         switch (step) {
             case 2:
-                return (<Step2 security={securityNonce} handleStep2={this.handleStep2} checkIn={checkIn} checkOut={checkOut} selectedRooms={selectedRooms} services={services} setStep={this.setStep} />)
+                return (<Step2 handleStep2={this.handleStep2} {...componentProps} />)
                 break;
             case 3:
                 return (<Step3 />)
                 break;
             default:
-                return (<Step1 security={securityNonce} handleStep1={this.handleStep1} checkIn={checkIn} checkOut={checkOut} selectedRooms={selectedRooms} services={services} setStep={this.setStep} />)
+                return (<Step1 handleStep1={this.handleStep1} {...componentProps} />)
                 break;
         }
     }
