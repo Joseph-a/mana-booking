@@ -114,7 +114,7 @@ export const manaMainSettings = [{
             },
             {
                 label: __('Deposit (percent)', 'mana-booking'),
-                desc: __('Default value of deposit us 20%, so if you want to use the default value leave it blank.', 'mana-booking'),
+                desc: __('Default value of deposit is 20%, so if you want to use the default value leave it blank.', 'mana-booking'),
                 fieldIndex: manaMainSetting.DEPOSIT,
                 type: 'percent',
                 value: initialSetting[manaMainSetting.DEPOSIT]

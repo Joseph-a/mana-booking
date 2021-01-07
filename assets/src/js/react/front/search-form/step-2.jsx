@@ -11,6 +11,9 @@ const Step2 = (props) => {
         [couponInfo, setCouponInfo] = useState(null),
         [couponError, setCouponError] = useState(''),
         [priceDetails, setPriceDetails] = useState({}),
+        [formError, setFormError] = useState([]),
+        [termsAndCondition, setTermsAndCondition] = useState(false),
+        [paymentOptionSec, setPaymentOptionSec] = useState(false),
         [guestInfo, setGuestInfo] = useState({
             firstName: '',
             lastName: '',
@@ -118,6 +121,28 @@ const Step2 = (props) => {
                     props.handleStep2(guestInfo, newPriceDetails, res.info);
                 }
             });
+        },
+
+        validateForm = () => {
+            const { firstName, lastName, phone, email } = guestInfo;
+            let errorArray = [];
+            if (firstName === '') {
+                errorArray.push('firstName');
+            }
+            if (lastName === '') {
+                errorArray.push('lastName');
+            }
+            if (phone === '') {
+                errorArray.push('phone');
+            }
+            var pattern = new RegExp(/^(("[\w-\s]+")|([\w-]+(?:\.[\w-]+)*)|("[\w-\s]+")([\w-]+(?:\.[\w-]+)*))(@((?:[\w-]+\.)*\w[\w-]{0,66})\.([a-z]{2,6}(?:\.[a-z]{2})?)$)|(@\[?((25[0-5]\.|2[0-4][0-9]\.|1[0-9]{2}\.|[0-9]{1,2}\.))((25[0-5]|2[0-4][0-9]|1[0-9]{2}|[0-9]{1,2})\.){2}(25[0-5]|2[0-4][0-9]|1[0-9]{2}|[0-9]{1,2})\]?$)/i);
+            if (email === '' || !pattern.test(email)) {
+                errorArray.push('email');
+            }
+            if (!termsAndCondition) {
+                errorArray.push('termsAndCondition');
+            }
+            setFormError(errorArray);
         };
 
 
@@ -181,58 +206,100 @@ const Step2 = (props) => {
 
             <div className="guest-info-container">
                 <div className="guest-info-row">
-                    <div className="guest-info-field">
-                        <input
-                            type="text"
-                            onChange={(e) => handleInputChange(e.target.value, 'firstName')}
-                            value={guestInfo.firstName}
-                            placeholder={__('First Name *', 'mana-booking')}
-                        />
+                    <div className={`guest-info-field ${formError.indexOf('firstName') >= 0 ? 'has-error' : ''}`}>
+                        <label>
+                            <div className="title-box">
+                                {__('First Name', 'mana-booking')}
+                                <span className="required-txt">{__('(required)', 'mana-booking')}</span>
+                                {
+                                    formError.indexOf('firstName') >= 0 &&
+
+                                    <span className="error-box">{__('Please fill this field.', 'mana-booking')}</span>
+                                }
+                            </div>
+                            <input
+                                type="text"
+                                onChange={(e) => handleInputChange(e.target.value, 'firstName')}
+                                value={guestInfo.firstName}
+                            />
+                        </label>
                     </div>
-                    <div className="guest-info-field">
-                        <input
-                            type="text"
-                            onChange={(e) => handleInputChange(e.target.value, 'lastName')}
-                            value={guestInfo.lastName}
-                            placeholder={__('Last Name *', 'mana-booking')}
-                        />
+                    <div className={`guest-info-field ${formError.indexOf('lastName') >= 0 ? 'has-error' : ''}`}>
+                        <label>
+                            <div className="title-box">
+                                {__('Last Name', 'mana-booking')}
+                                <span className="required-txt">{__('(required)', 'mana-booking')}</span>
+                                {
+                                    formError.indexOf('lastName') >= 0 &&
+                                    <span className="error-box">{__('Please fill this field.', 'mana-booking')}</span>
+                                }
+                            </div>
+                            <input
+                                type="text"
+                                onChange={(e) => handleInputChange(e.target.value, 'lastName')}
+                                value={guestInfo.lastName}
+                            />
+                        </label>
                     </div>
                 </div>
                 <div className="guest-info-row">
-                    <div className="guest-info-field">
-                        <input
-                            type="text"
-                            onChange={(e) => handleInputChange(e.target.value, 'phone')}
-                            value={guestInfo.phone}
-                            placeholder={__('Phone *', 'mana-booking')}
-                        />
+                    <div className={`guest-info-field ${formError.indexOf('phone') >= 0 ? 'has-error' : ''}`}>
+                        <label>
+                            <div className="title-box">
+                                {__('Phone', 'mana-booking')}
+                                <span className="required-txt">{__('(required)', 'mana-booking')}</span>
+                                {
+                                    formError.indexOf('phone') >= 0 &&
+                                    <span className="error-box">{__('Please fill this field.', 'mana-booking')}</span>
+                                }
+                            </div>
+                            <input
+                                type="text"
+                                onChange={(e) => handleInputChange(e.target.value, 'phone')}
+                                value={guestInfo.phone}
+                            />
+                        </label>
                     </div>
-                    <div className="guest-info-field">
-                        <input
-                            type="email"
-                            onChange={(e) => handleInputChange(e.target.value, 'email')}
-                            value={guestInfo.email}
-                            placeholder={__('Email *', 'mana-booking')}
-                        />
+                    <div className={`guest-info-field ${formError.indexOf('email') >= 0 ? 'has-error' : ''}`}>
+                        <label>
+                            <div className="title-box">
+                                {__('Email', 'mana-booking')}
+                                <span className="required-txt">{__('(required)', 'mana-booking')}</span>
+                                {
+                                    formError.indexOf('email') >= 0 &&
+                                    <span className="error-box">{__('Please fill this field with the correct format.', 'mana-booking')}</span>
+                                }
+                            </div>
+                            <input
+                                type="email"
+                                onChange={(e) => handleInputChange(e.target.value, 'email')}
+                                value={guestInfo.email}
+                            />
+                        </label>
                     </div>
                 </div>
                 <div className="guest-info-row single">
                     <div className="guest-info-field">
-                        <input
-                            type="text"
-                            onChange={(e) => handleInputChange(e.target.value, 'address')}
-                            value={guestInfo.address}
-                            placeholder={__('Address', 'mana-booking')}
-                        />
+                        <label>
+                            <div className="title-box">{__('Address', 'mana-booking')}</div>
+                            <input
+                                type="text"
+                                onChange={(e) => handleInputChange(e.target.value, 'address')}
+                                value={guestInfo.address}
+                                placeholder={__('Address', 'mana-booking')}
+                            />
+                        </label>
                     </div>
                 </div>
                 <div className="guest-info-row single">
                     <div className="guest-info-field">
-                        <textarea
-                            placeholder={__('Special Requirements', 'mana-booking')}
-                            onChange={(e) => handleInputChange(e.target.value, 'requirements')}
-                            value={guestInfo.requirements}
-                        ></textarea>
+                        <label>
+                            <div className="title-box">{__('Special Requirements', 'mana-booking')}</div>
+                            <textarea
+                                onChange={(e) => handleInputChange(e.target.value, 'requirements')}
+                                value={guestInfo.requirements}
+                            ></textarea>
+                        </label>
                     </div>
                 </div>
             </div>
@@ -297,10 +364,35 @@ const Step2 = (props) => {
                     }
                 </tbody>
             </table>
+            <div className={`terms-condition-row ${formError.indexOf('termsAndCondition') >= 0 ? 'has-error' : ''}`}>
+                <span className="mana-checkbox">
+                    <label>
+                        <input
+                            type="checkbox"
+                            checked={termsAndCondition}
+                            onChange={e => setTermsAndCondition(!termsAndCondition)}
+                        />
+                        <span></span>
+                        {__('I have read and accept the terms and conditions.', 'mana-booking')}
+                    </label>
+                    <span className="required-txt">{__('(required)', 'mana-booking')}</span>
+                </span>
+            </div>
             <div className="btn-sec">
+                {
+                    formError.length > 0 &&
+                    <div className="validate-form-error">{__('Please fill all the required fields with valid values.', 'mana-booking')}</div>
+                }
                 <button
+                    className="left"
                     onClick={() => props.setStep(1)}
                 >{__('Previous Step', 'mana-booking')}</button>
+                <button
+                    className="right"
+                    onClick={() => {
+                        validateForm();
+                    }}
+                >{__('Payment Options', 'mana-booking')}</button>
             </div>
         </Fragment >
     )

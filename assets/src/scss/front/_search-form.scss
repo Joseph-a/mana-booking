@@ -16,6 +16,23 @@
             border-color: $color-4;
         }
 
+        .required-txt {
+            display: inline-block;
+            vertical-align: super;
+            color: $color-11;
+            // font-weight: bold;
+            margin-left: 10px;
+            font-size: 0.8em;
+        }
+
+        .validate-form-error {
+            background: $color-11;
+            color: $color-1;
+            line-height: 40px;
+            border-radius: 5px;
+            margin-bottom: 10px;
+        }
+
         .top-sec {
             display: flex;
             flex-wrap: wrap;
@@ -145,7 +162,27 @@
         .btn-sec {
             margin-top: 20px;
             text-align: center;
+            @include clearfix;
+
+            .left {
+                float: left;
+            }
+
+            .right {
+                float: right;
+            }
         }
+
+        .terms-condition-row {
+            &.has-error {
+                color: $color-6;
+
+                span {
+                    border-color: $color-6;
+                }
+            }
+        }
+
 
 
         .booking-info-tbl {
@@ -232,6 +269,21 @@
                     margin: 10px 0;
                     width: 50%;
 
+                    label {
+                        display: block;
+
+                        .title-box {
+                            line-height: 25px;
+
+                            .error-box {
+                                color: $color-6;
+                                font-size: 0.9em;
+                                margin-left: 15px;
+                                font-weight: normal !important;
+                            }
+                        }
+                    }
+
                     &:first-child {
                         padding-right: 5px;
                     }
@@ -244,6 +296,15 @@
 
                     textarea {
                         min-height: 200px;
+                    }
+
+                    &.has-error {
+
+                        input,
+                        textarea {
+                            border-color: $color-6;
+                            color: $color-6;
+                        }
                     }
                 }
 

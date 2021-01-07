@@ -383,6 +383,7 @@ class Mana_booking_main
 		$mana_booking_variables['room_listing_layout'] = !empty($mana_booking_options['roomArchiveLayout']) ? $mana_booking_options['roomArchiveLayout'] : '1';
 		$mana_booking_variables['image_slider_listing'] = !empty($mana_booking_options['roomListingImageSlider']) ? true : false;
 		$mana_booking_variables['vat'] = !empty($mana_booking_options['vat']) ? $mana_booking_options['vat'] : 8;
+		$mana_booking_variables['deposit'] = !empty($mana_booking_options['deposit']) ? $mana_booking_options['deposit'] : 20;
 		$mana_booking_variables['currencySeparator'] = !empty($mana_booking_options['currencySeparator']) ? $mana_booking_options['currencySeparator'] : ',';
 		$mana_booking_variables['currencyDecimal'] = !empty($mana_booking_options['currencyDecimal']) ? $mana_booking_options['currencyDecimal'] : 0;
 		$mana_booking_variables['currencyDecimalSeparator'] = !empty($mana_booking_options['currencyDecimalSeparator']) ? $mana_booking_options['currencyDecimalSeparator'] : '.';
