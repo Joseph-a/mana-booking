@@ -311,8 +311,10 @@ Step1.propTypes = {
     ]),
     selectedRooms: t.array,
     services: t.array,
+    paymentMethod: t.string,
     setStep: t.func,
-    handleStep1: t.func
+    handleStep1: t.func,
+    finalizeBooking: t.func
 };
 
 export default Step1

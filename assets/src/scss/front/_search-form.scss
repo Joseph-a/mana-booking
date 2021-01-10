@@ -31,6 +31,8 @@
             line-height: 40px;
             border-radius: 5px;
             margin-bottom: 10px;
+            display: inline-block;
+            padding: 0 40px;
         }
 
         .top-sec {
@@ -171,6 +173,11 @@
             .right {
                 float: right;
             }
+
+            .active {
+                background: $color-11 !important;
+                color: $color-1 !important;
+            }
         }
 
         .terms-condition-row {
@@ -183,7 +190,85 @@
             }
         }
 
+        .booking-option-section {
+            margin-top: 40px;
+            padding: 30px;
+            background: lighten($color-4, 30%);
+            border: 1px solid $color-4;
+            border-radius: 5px;
 
+            .t-sec {
+                padding-bottom: 30px;
+                text-align: center;
+
+                button {
+                    margin: 0;
+                }
+            }
+
+            .b-sec {
+                border-top: 1px solid $color-4;
+                position: relative;
+                padding-top: 30px;
+
+                &:before {
+                    position: absolute;
+                    left: 50%;
+                    top: -10px;
+                    content: attr(data-prefix);
+                    padding: 0 10px;
+                    transform: translateX(-50%);
+                    background-color: $color-1;
+                    text-transform: uppercase;
+                }
+            }
+
+            .title-box {
+                display: inline-block;
+                vertical-align: middle;
+                margin-right: 30px;
+            }
+
+            button {
+                margin-right: 30px;
+
+                &.paypal {}
+
+                &.paymill {}
+
+                &.stripe {}
+            }
+        }
+
+        .payable-options {
+            text-align: center;
+            margin-bottom: 30px;
+
+            .mana-radiobox {
+                margin: 0 30px;
+                display: inline-block;
+
+                i {
+                    color: $color-11;
+                    font-size: .8em;
+                    font-style: normal;
+                }
+            }
+
+            .price {
+                background: $color-11;
+                color: $color-1;
+                font-size: 1.2em;
+            }
+        }
+
+        .price-box {
+            text-align: center;
+            font-weight: 1.3;
+            font-weight: bold;
+            color: $color-11;
+            line-height: 40px;
+        }
 
         .booking-info-tbl {
 

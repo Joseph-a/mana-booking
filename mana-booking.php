@@ -377,8 +377,12 @@ class Mana_booking_main
 		$mana_booking_variables['apiUrl'] = esc_url(get_rest_url(null, 'mana/v1/'));
 		$mana_booking_variables['plg_base'] = MANA_BOOKING_BASE_URL;
 		$mana_booking_variables['asset_url'] = MANA_BOOKING_IMG_PATH;
-
-
+		$mana_booking_variables['bookingOptions'] = array(
+			'email' => !empty($mana_booking_options['bookingByEmail']),
+			'paypal' => !empty($mana_booking_options['bookingByPaypal']),
+			'paymill' => !empty($mana_booking_options['bookingByPaymill']),
+			'stripe' => !empty($mana_booking_options['bookingByStripe']),
+		);
 
 		$mana_booking_variables['room_listing_layout'] = !empty($mana_booking_options['roomArchiveLayout']) ? $mana_booking_options['roomArchiveLayout'] : '1';
 		$mana_booking_variables['image_slider_listing'] = !empty($mana_booking_options['roomListingImageSlider']) ? true : false;
@@ -495,6 +499,7 @@ class Mana_booking_main
 
 		wp_enqueue_script('mana-booking-front-js', MANA_BOOKING_JS_PATH . 'front.build.js', array('jquery'), MANA_BOOKING_VERSION, true);
 		wp_localize_script('mana-booking-front-js', 'mana_booking_obj', $mana_booking_variables);
+		wp_enqueue_style('dashicons');
 		wp_enqueue_style('mana-booking-front-style', MANA_BOOKING_CSS_PATH . 'front.build.css');
 		wp_reset_postdata();
 	}

@@ -6,7 +6,8 @@ import NumberFormat from 'react-number-format';
 
 
 const Step2 = (props) => {
-    const { checkIn, checkOut, selectedRooms, services } = props,
+    const { checkIn, checkOut, selectedRooms, services, paymentMethod } = props,
+        [init, setInit] = useState(false),
         [coupon, setCoupon] = useState(''),
         [couponInfo, setCouponInfo] = useState(null),
         [couponError, setCouponError] = useState(''),
@@ -14,6 +15,7 @@ const Step2 = (props) => {
         [formError, setFormError] = useState([]),
         [termsAndCondition, setTermsAndCondition] = useState(false),
         [paymentOptionSec, setPaymentOptionSec] = useState(false),
+        [paymentMethodIn, setPaymentMethodIn] = useState(paymentMethod),
         [guestInfo, setGuestInfo] = useState({
             firstName: '',
             lastName: '',
@@ -143,9 +145,14 @@ const Step2 = (props) => {
                 errorArray.push('termsAndCondition');
             }
             setFormError(errorArray);
+
+            errorArray.length === 0 ? setPaymentOptionSec(true) : setPaymentOptionSec(false);
+        },
+
+        handlePaymentMethod = (method) => {
+            setPaymentMethodIn(method);
+            props.handleStep2(guestInfo, priceDetails, couponInfo, method);
         };
-
-
 
     useEffect(() => {
         setPriceDetails({
@@ -155,7 +162,11 @@ const Step2 = (props) => {
             currencyInfo: mana_booking_obj.currency
         });
         props.handleStep2(null, priceDetails);
-    }, [])
+        if (init) {
+            validateForm();
+        }
+        setInit(true);
+    }, [guestInfo, termsAndCondition])
 
     return (
         <Fragment>
@@ -378,22 +389,110 @@ const Step2 = (props) => {
                     <span className="required-txt">{__('(required)', 'mana-booking')}</span>
                 </span>
             </div>
+            {
+                paymentOptionSec &&
+                <div className="booking-option-section">
+                    <div className="t-sec">
+                        {
+                            mana_booking_obj.bookingOptions.email &&
+                            <button
+                                className="email"
+                                onClick={() => props.finalizeBooking('email')}
+                            >{__('Book by Email', 'mana-booking')}</button>
+                        }
+                    </div>
+                    {
+                        (mana_booking_obj.bookingOptions.paypal || mana_booking_obj.bookingOptions.paymill || mana_booking_obj.bookingOptions.stripe) &&
+                        <div className="b-sec" data-prefix={__('Or', 'mana-booking')}>
+                            <div className="payable-options">
+                                <table className="payable-price-tbl">
+                                    <tbody>
+                                        <tr>
+                                            <td colSpan="2">
+                                                <div className="mana-radiobox">
+                                                    <label>
+                                                        <input type="checkbox"
+                                                            checked={paymentMethodIn === 'full'}
+                                                            onChange={() => handlePaymentMethod('full')}
+                                                        />
+                                                        <span></span>
+                                                        {__('Full payment', 'mana-booking')}
+                                                    </label>
+                                                </div>
+                                                <div className="mana-radiobox">
+                                                    <label>
+                                                        <input type="checkbox"
+                                                            checked={paymentMethodIn === 'deposit'}
+                                                            onChange={() => handlePaymentMethod('deposit')}
+                                                        />
+                                                        <span></span>
+                                                        {mana_booking_obj.deposit}% {__('Deposit', 'mana-booking')} <i>{__('Pay the rest on arrival', 'mana-booking')}</i>
+                                                    </label>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <th>{__('Payable Price', 'mana-booking')}:</th>
+                                            <th className="price">
+                                                {
+                                                    paymentMethodIn === 'full' &&
+                                                    <Fragment>{priceFormatter(priceDetails.payablePrice)}</Fragment>
+                                                }
+                                                {
+                                                    paymentMethodIn === 'deposit' &&
+                                                    <Fragment>{priceFormatter(Math.round((priceDetails.payablePrice * mana_booking_obj.deposit) / 100))}</Fragment>
+                                                }
+                                            </th>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                            <div className="btn-container">
+                                <span className="title-box">{__('Book and pay by', 'mana-booking')}:</span>
+                                {
+                                    mana_booking_obj.bookingOptions.paypal &&
+                                    <button
+                                        className="paypal"
+                                        onClick={() => props.finalizeBooking('paypal')}
+                                    >{__('Paypal', 'mana-booking')}</button>
+                                }
+                                {
+                                    mana_booking_obj.bookingOptions.paymill &&
+                                    <button
+                                        className="paymill"
+                                        onClick={() => props.finalizeBooking('paymill')}
+                                    >{__('Paymill', 'mana-booking')}</button>
+                                }
+                                {
+                                    mana_booking_obj.bookingOptions.stripe &&
+                                    <button
+                                        className="stripe"
+                                        onClick={() => props.finalizeBooking('stripe')}
+                                    >{__('Stripe', 'mana-booking')}</button>
+                                }
+                            </div>
+                        </div>
+                    }
+                </div>
+            }
+
             <div className="btn-sec">
                 {
                     formError.length > 0 &&
-                    <div className="validate-form-error">{__('Please fill all the required fields with valid values.', 'mana-booking')}</div>
+                    <span className="validate-form-error">{__('Please fill all the required fields with valid values.', 'mana-booking')}</span>
                 }
                 <button
                     className="left"
                     onClick={() => props.setStep(1)}
                 >{__('Previous Step', 'mana-booking')}</button>
-                <button
-                    className="right"
+                {/* <button
+                    className={`right ${paymentOptionSec ? 'active' : ''}`}
                     onClick={() => {
                         validateForm();
                     }}
-                >{__('Payment Options', 'mana-booking')}</button>
+                >{__('Payment Options', 'mana-booking')}</button> */}
             </div>
+
         </Fragment >
     )
 }
@@ -410,8 +509,10 @@ Step2.propTypes = {
     ]),
     selectedRooms: t.array,
     services: t.array,
+    paymentMethod: t.string,
     setStep: t.func,
-    handleStep2: t.func
+    handleStep2: t.func,
+    finalizeBooking: t.func
 };
 
 export default Step2

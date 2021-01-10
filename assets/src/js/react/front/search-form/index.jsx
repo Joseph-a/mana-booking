@@ -30,6 +30,7 @@ export default class ManaSearchForm extends Component {
         this.handleStep2 = this.handleStep2.bind(this);
         // this.handleStep3 = this.handleStep3.bind(this);
         this.setStep = this.setStep.bind(this);
+        this.finalizeBooking = this.finalizeBooking.bind(this);
     }
 
     handleStep1(checkIn, checkOut, selectedRooms, services) {
@@ -51,6 +52,11 @@ export default class ManaSearchForm extends Component {
         })
     }
 
+    finalizeBooking(type) {
+        const { checkIn, checkOut, selectedRooms, services, securityNonce, priceDetails, paymentMethod } = this.state;
+        console.log(type, checkIn, checkOut, selectedRooms, services, securityNonce, priceDetails, paymentMethod);
+    }
+
     setStep(step) {
         this.setState({
             step
@@ -58,7 +64,7 @@ export default class ManaSearchForm extends Component {
     }
 
     render() {
-        const { step, checkIn, checkOut, selectedRooms, services, securityNonce, priceDetails } = this.state;
+        const { step, checkIn, checkOut, selectedRooms, services, securityNonce, priceDetails, paymentMethod } = this.state;
         const componentProps = {
             security: securityNonce,
             checkIn,
@@ -66,7 +72,9 @@ export default class ManaSearchForm extends Component {
             selectedRooms,
             services,
             priceDetails,
-            setStep: this.setStep
+            paymentMethod,
+            setStep: this.setStep,
+            finalizeBooking: this.finalizeBooking
         }
         switch (step) {
             case 2:
