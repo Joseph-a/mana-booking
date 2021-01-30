@@ -6,7 +6,7 @@ import NumberFormat from 'react-number-format';
 
 
 const Step2 = (props) => {
-    const { checkIn, checkOut, selectedRooms, services, paymentMethod } = props,
+    const { checkIn, checkOut, selectedRooms, services, paymentValue } = props,
         [init, setInit] = useState(false),
         [coupon, setCoupon] = useState(''),
         [couponInfo, setCouponInfo] = useState(null),
@@ -15,7 +15,7 @@ const Step2 = (props) => {
         [formError, setFormError] = useState([]),
         [termsAndCondition, setTermsAndCondition] = useState(false),
         [paymentOptionSec, setPaymentOptionSec] = useState(false),
-        [paymentMethodIn, setPaymentMethodIn] = useState(paymentMethod),
+        [paymentValueIn, setPaymentValueIn] = useState(paymentValue),
         [guestInfo, setGuestInfo] = useState({
             firstName: '',
             lastName: '',
@@ -149,9 +149,9 @@ const Step2 = (props) => {
             errorArray.length === 0 ? setPaymentOptionSec(true) : setPaymentOptionSec(false);
         },
 
-        handlePaymentMethod = (method) => {
-            setPaymentMethodIn(method);
-            props.handleStep2(guestInfo, priceDetails, couponInfo, method);
+        handlePaymentValue = (value) => {
+            setPaymentValueIn(value);
+            props.handleStep2(guestInfo, priceDetails, couponInfo, value);
         };
 
     useEffect(() => {
@@ -397,7 +397,7 @@ const Step2 = (props) => {
                             mana_booking_obj.bookingOptions.email &&
                             <button
                                 className="email"
-                                onClick={() => props.finalizeBooking('email')}
+                                onClick={() => props.finalizeBooking('email', guestInfo)}
                             >{__('Book by Email', 'mana-booking')}</button>
                         }
                     </div>
@@ -412,8 +412,8 @@ const Step2 = (props) => {
                                                 <div className="mana-radiobox">
                                                     <label>
                                                         <input type="checkbox"
-                                                            checked={paymentMethodIn === 'full'}
-                                                            onChange={() => handlePaymentMethod('full')}
+                                                            checked={paymentValueIn === 'full'}
+                                                            onChange={() => handlePaymentValue('full')}
                                                         />
                                                         <span></span>
                                                         {__('Full payment', 'mana-booking')}
@@ -422,8 +422,8 @@ const Step2 = (props) => {
                                                 <div className="mana-radiobox">
                                                     <label>
                                                         <input type="checkbox"
-                                                            checked={paymentMethodIn === 'deposit'}
-                                                            onChange={() => handlePaymentMethod('deposit')}
+                                                            checked={paymentValueIn === 'deposit'}
+                                                            onChange={() => handlePaymentValue('deposit')}
                                                         />
                                                         <span></span>
                                                         {mana_booking_obj.deposit}% {__('Deposit', 'mana-booking')} <i>{__('Pay the rest on arrival', 'mana-booking')}</i>
@@ -435,11 +435,11 @@ const Step2 = (props) => {
                                             <th>{__('Payable Price', 'mana-booking')}:</th>
                                             <th className="price">
                                                 {
-                                                    paymentMethodIn === 'full' &&
+                                                    paymentValueIn === 'full' &&
                                                     <Fragment>{priceFormatter(priceDetails.payablePrice)}</Fragment>
                                                 }
                                                 {
-                                                    paymentMethodIn === 'deposit' &&
+                                                    paymentValueIn === 'deposit' &&
                                                     <Fragment>{priceFormatter(Math.round((priceDetails.payablePrice * mana_booking_obj.deposit) / 100))}</Fragment>
                                                 }
                                             </th>
@@ -453,21 +453,21 @@ const Step2 = (props) => {
                                     mana_booking_obj.bookingOptions.paypal &&
                                     <button
                                         className="paypal"
-                                        onClick={() => props.finalizeBooking('paypal')}
+                                        onClick={() => props.finalizeBooking('paypal', guestInfo)}
                                     >{__('Paypal', 'mana-booking')}</button>
                                 }
                                 {
                                     mana_booking_obj.bookingOptions.paymill &&
                                     <button
                                         className="paymill"
-                                        onClick={() => props.finalizeBooking('paymill')}
+                                        onClick={() => props.finalizeBooking('paymill', guestInfo)}
                                     >{__('Paymill', 'mana-booking')}</button>
                                 }
                                 {
                                     mana_booking_obj.bookingOptions.stripe &&
                                     <button
                                         className="stripe"
-                                        onClick={() => props.finalizeBooking('stripe')}
+                                        onClick={() => props.finalizeBooking('stripe', guestInfo)}
                                     >{__('Stripe', 'mana-booking')}</button>
                                 }
                             </div>
@@ -509,7 +509,7 @@ Step2.propTypes = {
     ]),
     selectedRooms: t.array,
     services: t.array,
-    paymentMethod: t.string,
+    paymentValue: t.string,
     setStep: t.func,
     handleStep2: t.func,
     finalizeBooking: t.func

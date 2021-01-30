@@ -22,7 +22,7 @@ export default class ManaSearchForm extends Component {
             }],
             services: [],
             guestInfo: {},
-            paymentMethod: 'full',
+            paymentValue: 'full',
             coupon: {},
             priceDetails: {}
         }
@@ -43,18 +43,67 @@ export default class ManaSearchForm extends Component {
         })
     }
 
-    handleStep2(guestInfo = {}, priceDetails = {}, coupon = {}, paymentMethod = 'full') {
+    handleStep2(guestInfo = {}, priceDetails = {}, coupon = {}, paymentValue = 'full') {
         this.setState({
             guestInfo,
-            paymentMethod,
+            paymentValue,
             coupon,
             priceDetails
         })
     }
 
-    finalizeBooking(type) {
-        const { checkIn, checkOut, selectedRooms, services, securityNonce, priceDetails, paymentMethod } = this.state;
-        console.log(type, checkIn, checkOut, selectedRooms, services, securityNonce, priceDetails, paymentMethod);
+    finalizeBooking(type, guestInfo) {
+        const { checkIn, checkOut, selectedRooms, services, securityNonce, priceDetails } = this.state,
+            { duration, weekends } = this.daysCalculator(checkIn, checkOut),
+            bookingInfo = {
+                checkIn,
+                checkOut,
+                guestInfo,
+                room: selectedRooms,
+                paymentMethod: type,
+                services,
+                priceDetails,
+                duration,
+                weekends,
+                totalBookingPrice: priceDetails.payablePrice,
+                vat: priceDetails.vat,
+                userID: mana_booking_obj.user_id
+            };
+
+        this.setState({ guestInfo });
+
+        const insertBooking = await fetch(mana_booking_obj.ajaxurl, {
+            method: "POST",
+            body: serialize({
+                action: "mana_booking_insert_booking",
+                security: securityNonce,
+                bookingInfo
+            })
+        });
+        return await insertBooking.json()
+
+    }
+
+    daysCalculator(from, to) {
+        const fromDate = new Date(from),
+            toDate = new Date(to),
+            fromDateTime = fromDate.getTime(),
+            toDateTime = toDate.getTime(),
+            aDay = 24 * 60 * 60 * 1000,
+            daysDiff = parseInt((toDateTime - fromDateTime) / aDay, 10) + 1;
+
+        let weekends = 0;
+        for (var i = fromDateTime; i <= toDateTime; i += aDay) {
+
+            var d = new Date(i);
+            if (d.getDay() == 6 || d.getDay() == 0) {
+                weekends++;
+            }
+        }
+        return {
+            duration: daysDiff,
+            weekends
+        }
     }
 
     setStep(step) {
@@ -64,7 +113,7 @@ export default class ManaSearchForm extends Component {
     }
 
     render() {
-        const { step, checkIn, checkOut, selectedRooms, services, securityNonce, priceDetails, paymentMethod } = this.state;
+        const { step, checkIn, checkOut, selectedRooms, services, securityNonce, priceDetails, paymentValue } = this.state;
         const componentProps = {
             security: securityNonce,
             checkIn,
@@ -72,7 +121,7 @@ export default class ManaSearchForm extends Component {
             selectedRooms,
             services,
             priceDetails,
-            paymentMethod,
+            paymentValue,
             setStep: this.setStep,
             finalizeBooking: this.finalizeBooking
         }
