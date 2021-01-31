@@ -8,7 +8,7 @@ class Mana_booking_user
 
     public function __construct()
     {
-        $this->mana_booking_option = get_option('mana-booking-setting');
+        $this->mana_booking_option = json_decode(get_option('mana-booking-setting')['main_setting'], true);
 
         add_action('init', array($this, 'user_panel'));
         add_action('parse_request', array($this, 'user_panel_request'));
@@ -264,7 +264,7 @@ class Mana_booking_user
 
     public function check_membership($booking_count, $booking_price)
     {
-        $mana_booking_options = get_option('mana-booking-setting');
+        $mana_booking_options = json_decode(get_option('mana-booking-setting')['main_setting'], true);
         $package_info = null;
         if ($mana_booking_options['membership']) {
             $highest_count = 0;

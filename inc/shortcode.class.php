@@ -9,7 +9,7 @@ class Mana_booking_plg_shortcode
 
 	public function __construct()
 	{
-		$this->mana_booking_option = get_option('mana-booking-setting');
+		$this->mana_booking_option = json_decode(get_option('mana-booking-setting')['main_setting'], true);
 		add_action('init', array($this, 'init'));
 	}
 
@@ -610,7 +610,7 @@ class Mana_booking_plg_shortcode
 		$room_id = !empty($mana_booking_room_rating_attr['room_id']) ? Mana_booking_get_info::original_post_id($mana_booking_room_rating_attr['room_id']) : '';
 		$room_info = $get_inf_obj->room_info($room_id);
 
-		$plugin_options = get_option('mana-booking-setting');
+		$plugin_options = json_decode(get_option('mana-booking-setting')['main_setting'], true);
 
 		if (empty($this->mana_booking_option['rating_status'])) {
 			$mana_booking_room_rating_code = esc_html__('Rating system is not enabled. Please check your settings.', 'mana-booking');

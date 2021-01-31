@@ -7,8 +7,8 @@ class Mana_booking_booking_process
 
     public function __construct()
     {
-        $this->mana_booking_option = get_option('mana-booking-setting');
-        $booking_param = (!empty($this->mana_booking_option['booking_url']) ? $this->mana_booking_option['booking_url'] : 'mana-booking');
+        $this->mana_booking_option = json_decode(get_option('mana-booking-setting')['main_setting'], true);
+        $booking_param = (!empty($this->mana_booking_option['bookingUrl']) ? $this->mana_booking_option['bookingUrl'] : 'mana-booking');
         $this->mana_booking_param = $booking_param;
 
         add_filter('body_class', array($this, 'add_body_class'));
@@ -269,37 +269,38 @@ class Mana_booking_booking_process
 
         $room_id_str = '';
         foreach ($booking_info_obj->room as $room_obj) {
-            $room_id_str .= Mana_booking_get_info::original_post_id($room_obj->roomID) . ',';
+            $room_id_str .= Mana_booking_get_info::original_post_id($room_obj->room->id) . ',';
         }
 
         if (check_ajax_referer('mana-booking-security-str', 'security')) {
-            if (!empty($booking_info_obj->fname) && !empty($booking_info_obj->lname) && !empty($booking_info_obj->email) && !empty($booking_info_obj->phone) && !empty($booking_info_obj->terms) && !empty($booking_info_obj->checkIn) && !empty($booking_info_obj->checkOut)) {
+            $guest_info = $booking_info_obj->guestInfo;
+            if (!empty($guest_info->firstName) && !empty($guest_info->lastName) && !empty($guest_info->email) && !empty($guest_info->phone) && !empty($booking_info_obj->checkIn) && !empty($booking_info_obj->checkOut)) {
                 $wpdb->get_row($wpdb->prepare("
-							SELECT * FROM  $table_name
-							WHERE
-							    f_name = %s
-								AND l_name = %s
-								AND phone = %s
-								AND email = %s
-								AND address = %s
-								AND requirements = %s
-								AND rooms = %s
-								AND check_in = %s
-								AND check_out = %s
-								AND total_price = %d
-								AND vat = %d
-								AND duration = %d
-								AND weekends = %d
-								AND booking_info = %s
-								AND user_id = %d
-							", array(
-                    sanitize_text_field($booking_info_obj->fname),
-                    sanitize_text_field($booking_info_obj->lname),
-                    sanitize_text_field($booking_info_obj->phone),
-                    sanitize_email($booking_info_obj->email),
-                    sanitize_text_field($booking_info_obj->address),
-                    sanitize_text_field($booking_info_obj->requirements),
-                    serialize($booking_info_obj->room),
+        					SELECT * FROM  $table_name
+        					WHERE
+        					    f_name = %s
+        						AND l_name = %s
+        						AND phone = %s
+        						AND email = %s
+        						AND address = %s
+        						AND requirements = %s
+        						AND rooms = %s
+        						AND check_in = %s
+        						AND check_out = %s
+        						AND total_price = %d
+        						AND vat = %d
+        						AND duration = %d
+        						AND weekends = %d
+        						AND booking_info = %s
+        						AND user_id = %d
+        					", array(
+                    sanitize_text_field($guest_info->firstName),
+                    sanitize_text_field($guest_info->lastName),
+                    sanitize_text_field($guest_info->phone),
+                    sanitize_email($guest_info->email),
+                    sanitize_text_field($guest_info->address),
+                    sanitize_text_field($guest_info->requirements),
+                    trim($room_id_str, ','),
                     date('Y-m-d', strtotime($booking_info_obj->checkIn)),
                     date('Y-m-d', strtotime($booking_info_obj->checkOut)),
                     filter_var($booking_info_obj->totalBookingPrice, FILTER_SANITIZE_NUMBER_FLOAT, FILTER_FLAG_ALLOW_FRACTION),
@@ -317,22 +318,17 @@ class Mana_booking_booking_process
                     echo json_encode($return_value);
                     die();
                 } else {
-                    if ($booking_info_obj->paymentMethod === 'paypal') {
-                        $payment_method = 1;
-                    } else {
-                        $payment_method = 2;
-                    }
                     $inserted_booking = $wpdb->insert($table_name, array(
-                        'f_name' => sanitize_text_field($booking_info_obj->fname),
-                        'l_name' => sanitize_text_field($booking_info_obj->lname),
-                        'phone' => sanitize_text_field($booking_info_obj->phone),
-                        'email' => sanitize_email($booking_info_obj->email),
-                        'address' => sanitize_text_field($booking_info_obj->address),
-                        'requirements' => sanitize_text_field($booking_info_obj->requirements),
+                        'f_name' => sanitize_text_field($guest_info->firstName),
+                        'l_name' => sanitize_text_field($guest_info->lastName),
+                        'phone' => sanitize_text_field($guest_info->phone),
+                        'email' => sanitize_email($guest_info->email),
+                        'address' => sanitize_text_field($guest_info->address),
+                        'requirements' => sanitize_text_field($guest_info->requirements),
                         'rooms' => trim($room_id_str, ','),
                         'check_in' => date('Y-m-d', strtotime($booking_info_obj->checkIn)),
                         'check_out' => date('Y-m-d', strtotime($booking_info_obj->checkOut)),
-                        'payment_method' => intval($payment_method),
+                        'payment_method' => sanitize_text_field($booking_info_obj->paymentMethod),
                         'total_price' => filter_var($booking_info_obj->totalBookingPrice, FILTER_SANITIZE_NUMBER_FLOAT, FILTER_FLAG_ALLOW_FRACTION),
                         'vat' => filter_var($booking_info_obj->vat, FILTER_SANITIZE_NUMBER_FLOAT, FILTER_FLAG_ALLOW_FRACTION),
                         'duration' => intval($booking_info_obj->duration),
@@ -350,7 +346,7 @@ class Mana_booking_booking_process
                         '%s',
                         '%s',
                         '%s',
-                        '%d',
+                        '%s',
                         '%s',
                         '%s',
                         '%d',
@@ -363,34 +359,25 @@ class Mana_booking_booking_process
                     if ($inserted_booking) {
                         $this->email_notification($booking_info_obj, 'admin');
                         $booking_id = $wpdb->insert_id;
+                        $price = filter_var($booking_info_obj->totalBookingPrice, FILTER_SANITIZE_NUMBER_FLOAT, FILTER_FLAG_ALLOW_FRACTION);
+                        $user_id = intval($booking_info_obj->userID);
+                        $booking_currency = serialize($current_currency);
 
                         switch ($booking_info_obj->paymentMethod) {
                             case 'paypal':
-                                if (!empty($this->mana_booking_option['paypal_booking'])) {
+                                if (!empty($this->mana_booking_option['bookingByPaypal'])) {
                                     $payable_price = $booking_info_obj->totalBookingPrice;
-                                    if ($booking_info_obj->paymentPriceMethod === '2' && !empty($this->mana_booking_option['deposit_status'])) {
+                                    if ($booking_info_obj->paymentPriceMethod === 'deposit' && !empty($this->mana_booking_option['depositInBooking'])) {
                                         $user_deposit = !empty($this->mana_booking_option['deposit']) ? esc_html($this->mana_booking_option['deposit']) : 20;
                                         $payable_price = ($payable_price * $user_deposit) / 100;
                                     }
 
-                                    $invoice_table = $wpdb->prefix . 'mana_invoice';
-                                    $inserted_invoice = $wpdb->insert($invoice_table, array(
-                                        'booking_id' => intval($booking_id),
-                                        'price' => filter_var($payable_price, FILTER_SANITIZE_NUMBER_FLOAT, FILTER_FLAG_ALLOW_FRACTION),
-                                        'user_id' => intval($booking_info_obj->userID),
-                                        'booking_currency' => serialize($current_currency),
-                                    ), array(
-                                        '%d',
-                                        '%s',
-                                        '%d',
-                                        '%s',
-                                    ));
+                                    $inserted_invoice = $this->insert_invoice($booking_id, $price, $user_id, $booking_currency);
 
-                                    if ($inserted_invoice) {
-                                        $invoice_id = $wpdb->insert_id;
-                                        $wpdb->update($table_name, array('invoice_id' => $invoice_id), array('id' => $booking_id), array('%d'), array('%d'));
+                                    if (!empty($inserted_invoice['status'])) {
+                                        $this->_update_invoice($booking_id, $inserted_invoice['invoice_id']);
 
-                                        $paypal_default_currency = $this->mana_booking_option['paypal_default_currency'];
+                                        $paypal_default_currency = $this->mana_booking_option['paypalDefaultCurrency'];
                                         if ($paypal_default_currency !== 'no_item') {
                                             $paypal_default_currency_info = $currency_obj->get_currency_info($paypal_default_currency);
                                             $payable_price = $currency_obj->price_exchanger($payable_price, $paypal_default_currency_info);
@@ -398,15 +385,15 @@ class Mana_booking_booking_process
 
                                         $return_value['status'] = true;
                                         $return_value['paymentForm'] = '
-												<form id="paypal-form" method="post" action="' . (!empty($this->mana_booking_option['paypal_action_url']) ? esc_html($this->mana_booking_option['paypal_action_url']) : '') . '">
-													<input type="hidden" name="business" value="' . (!empty($this->mana_booking_option['paypal_email']) ? esc_html($this->mana_booking_option['paypal_email']) : '') . '">
-													<input type="hidden" name="cmd" value="_xclick">
-													<input type="hidden" name="item_name" value="' . esc_html__('Room Booking Invoice', 'mana-booking') . '">
-													<input type="hidden" name="amount" value="' . esc_html($payable_price) . '">
-													<input type="hidden" name="currency_code" value="' . esc_attr(!empty($paypal_default_currency_info) ? $paypal_default_currency_info['title'] : $current_currency['title']) . '">
-													<input type="hidden" name="cancel_return" value="' . home_url() . '?booking-notification&booking=' . esc_attr($booking_id) . '&invoice=' . esc_attr($invoice_id) . '&status=cancel">
-													<input type="hidden" name="return" value="' . home_url() . '?booking-notification&booking=' . esc_attr($booking_id) . '&invoice=' . esc_attr($invoice_id) . '&status=confirmed">
-												</form>';
+                        						<form id="paypal-form" method="post" action="' . (!empty($this->mana_booking_option['paypal_action_url']) ? esc_html($this->mana_booking_option['paypal_action_url']) : '') . '">
+                        							<input type="hidden" name="business" value="' . (!empty($this->mana_booking_option['paypal_email']) ? esc_html($this->mana_booking_option['paypal_email']) : '') . '">
+                        							<input type="hidden" name="cmd" value="_xclick">
+                        							<input type="hidden" name="item_name" value="' . esc_html__('Room Booking Invoice', 'mana-booking') . '">
+                        							<input type="hidden" name="amount" value="' . esc_html($payable_price) . '">
+                        							<input type="hidden" name="currency_code" value="' . esc_attr(!empty($paypal_default_currency_info) ? $paypal_default_currency_info['title'] : $current_currency['title']) . '">
+                        							<input type="hidden" name="cancel_return" value="' . home_url() . '?booking-notification&booking=' . esc_attr($booking_id) . '&invoice=' . esc_attr($invoice_id) . '&status=cancel">
+                        							<input type="hidden" name="return" value="' . home_url() . '?booking-notification&booking=' . esc_attr($booking_id) . '&invoice=' . esc_attr($invoice_id) . '&status=confirmed">
+                        						</form>';
                                     } else {
                                         $return_value['status'] = false;
                                         $return_value['message'] = esc_html__('Because of some technical issues, your booking was not proceed. Please try again.', 'mana-booking');
@@ -422,69 +409,57 @@ class Mana_booking_booking_process
                                 }
                                 break;
                             case 'paymill':
-                                if (!empty($this->mana_booking_option['paymill_booking'])) {
+                                if (!empty($this->mana_booking_option['bookingByPaymill'])) {
                                     $payable_price = $booking_info_obj->totalBookingPrice;
-                                    if ($booking_info_obj->paymentPriceMethod === '2' && !empty($this->mana_booking_option['deposit_status'])) {
+                                    if ($booking_info_obj->paymentPriceMethod === 'deposit' && !empty($this->mana_booking_option['depositInBooking'])) {
                                         $user_deposit = !empty($this->mana_booking_option['deposit']) ? esc_html($this->mana_booking_option['deposit']) : 20;
                                         $payable_price = ($payable_price * $user_deposit) / 100;
                                     }
 
-                                    $invoice_table = $wpdb->prefix . 'mana_invoice';
-                                    $inserted_invoice = $wpdb->insert($invoice_table, array(
-                                        'booking_id' => intval($booking_id),
-                                        'price' => filter_var($payable_price, FILTER_SANITIZE_NUMBER_FLOAT, FILTER_FLAG_ALLOW_FRACTION),
-                                        'user_id' => intval($booking_info_obj->userID),
-                                        'booking_currency' => serialize($current_currency),
-                                    ), array(
-                                        '%d',
-                                        '%s',
-                                        '%d',
-                                        '%s',
-                                    ));
+                                    $inserted_invoice = $this->insert_invoice($booking_id, $price, $user_id, $booking_currency);
 
-                                    if ($inserted_invoice) {
-                                        $invoice_id = $wpdb->insert_id;
-                                        $wpdb->update($table_name, array('invoice_id' => $invoice_id), array('id' => $booking_id), array('%d'), array('%d'));
+                                    if (!empty($inserted_invoice['status'])) {
+                                        $this->_update_invoice($booking_id, $inserted_invoice['invoice_id']);
 
                                         $return_value['status'] = true;
                                         $return_value['paymentForm'] = '
-												<form id="paymill-form" action="#" method="POST" data-invoice="' . esc_attr($invoice_id) . '" data-ajax-url="' . esc_url(admin_url('admin-ajax.php')) . '">
-													<input class="security-code" type="hidden" value="' . wp_create_nonce('paymill_form_security') . '" />
-													<input class="card-amount-int" type="hidden" value="' . esc_html($payable_price * 100) . '" />
-													<input class="card-currency" type="hidden" value="' . esc_attr($current_currency['title']) . '" />
-													<div class="field-row clearfix">
-														<div class="col-md-12">
-															<input class="card-number" type="text" size="20" placeholder="' . esc_html__('Card number', 'mana-booking') . '"/>
-														</div>
-													</div>
-													<div class="field-row clearfix">
-														<div class="col-md-12">
-															<input class="card-cvc" type="text" size="4" placeholder="' . esc_html__('CVC', 'mana-booking') . '"/>
-														</div>
-													</div>
-													<div class="field-row clearfix">
-													    <div class="col-md-6">
-															<input class="card-expiry-month" type="text" size="2" placeholder="' . esc_html__('Expiry date (MM)', 'mana-booking') . '"/>
-														</div>
-														<div class="col-md-6">
-															<input class="card-expiry-year" type="text" size="4" placeholder="' . esc_html__('Expiry date (YYYY)', 'mana-booking') . '"/>
-														</div>
-													</div>
-													<div class="payment-errors"></div>
-													<div class="field-row btn-container clearfix">
-														<button class="submit-button" type="submit">' . esc_html__('Submit Payment', 'mana-booking') . '</button>
-													</div>
-												</form>
-												<script type="text/javascript">
-													var PAYMILL_PUBLIC_KEY = "' . (!empty($this->mana_booking_option['paymill_public_key']) ? esc_js($this->mana_booking_option['paymill_public_key']) : '') . '";
-													jQuery(function($){
-														$("#paymill-form").on("submit", function(e){
-															e.preventDefault();
-															var $scope = angular.element("#booking-section").scope();
-															$scope.payMillFormSubmit($(this));
-														})
-													})
-												</script>';
+                        						<form id="paymill-form" action="#" method="POST" data-invoice="' . esc_attr($invoice_id) . '" data-ajax-url="' . esc_url(admin_url('admin-ajax.php')) . '">
+                        							<input class="security-code" type="hidden" value="' . wp_create_nonce('paymill_form_security') . '" />
+                        							<input class="card-amount-int" type="hidden" value="' . esc_html($payable_price * 100) . '" />
+                        							<input class="card-currency" type="hidden" value="' . esc_attr($current_currency['title']) . '" />
+                        							<div class="field-row clearfix">
+                        								<div class="col-md-12">
+                        									<input class="card-number" type="text" size="20" placeholder="' . esc_html__('Card number', 'mana-booking') . '"/>
+                        								</div>
+                        							</div>
+                        							<div class="field-row clearfix">
+                        								<div class="col-md-12">
+                        									<input class="card-cvc" type="text" size="4" placeholder="' . esc_html__('CVC', 'mana-booking') . '"/>
+                        								</div>
+                        							</div>
+                        							<div class="field-row clearfix">
+                        							    <div class="col-md-6">
+                        									<input class="card-expiry-month" type="text" size="2" placeholder="' . esc_html__('Expiry date (MM)', 'mana-booking') . '"/>
+                        								</div>
+                        								<div class="col-md-6">
+                        									<input class="card-expiry-year" type="text" size="4" placeholder="' . esc_html__('Expiry date (YYYY)', 'mana-booking') . '"/>
+                        								</div>
+                        							</div>
+                        							<div class="payment-errors"></div>
+                        							<div class="field-row btn-container clearfix">
+                        								<button class="submit-button" type="submit">' . esc_html__('Submit Payment', 'mana-booking') . '</button>
+                        							</div>
+                        						</form>
+                        						<script type="text/javascript">
+                        							var PAYMILL_PUBLIC_KEY = "' . (!empty($this->mana_booking_option['paymillPublicKey']) ? esc_js($this->mana_booking_option['paymillPublicKey']) : '') . '";
+                        							jQuery(function($){
+                        								$("#paymill-form").on("submit", function(e){
+                        									e.preventDefault();
+                        									var $scope = angular.element("#booking-section").scope();
+                        									$scope.payMillFormSubmit($(this));
+                        								})
+                        							})
+                        						</script>';
                                     } else {
                                         $return_value['status'] = false;
                                         $return_value['message'] = esc_html__('Because of some technical issues, your booking was not proceed. Please try again.', 'mana-booking');
@@ -500,83 +475,71 @@ class Mana_booking_booking_process
                                 }
                                 break;
                             case 'stripe':
-                                if (!empty($this->mana_booking_option['stripe_booking'])) {
+                                if (!empty($this->mana_booking_option['bookingByStripe'])) {
                                     $payable_price = $booking_info_obj->totalBookingPrice;
-                                    if ($booking_info_obj->paymentPriceMethod === '2' && !empty($this->mana_booking_option['deposit_status'])) {
+                                    if ($booking_info_obj->paymentPriceMethod === 'deposit' && !empty($this->mana_booking_option['depositInBooking'])) {
                                         $user_deposit = !empty($this->mana_booking_option['deposit']) ? esc_html($this->mana_booking_option['deposit']) : 20;
                                         $payable_price = ($payable_price * $user_deposit) / 100;
                                     }
 
-                                    $invoice_table = $wpdb->prefix . 'mana_invoice';
-                                    $inserted_invoice = $wpdb->insert($invoice_table, array(
-                                        'booking_id' => intval($booking_id),
-                                        'price' => filter_var($payable_price, FILTER_SANITIZE_NUMBER_FLOAT, FILTER_FLAG_ALLOW_FRACTION),
-                                        'user_id' => intval($booking_info_obj->userID),
-                                        'booking_currency' => serialize($current_currency),
-                                    ), array(
-                                        '%d',
-                                        '%s',
-                                        '%d',
-                                        '%s',
-                                    ));
+                                    $inserted_invoice = $this->insert_invoice($booking_id, $price, $user_id, $booking_currency);
 
-                                    if ($inserted_invoice) {
-                                        $invoice_id = $wpdb->insert_id;
-                                        $wpdb->update($table_name, array('invoice_id' => $invoice_id), array('id' => $booking_id), array('%d'), array('%d'));
+                                    if (!empty($inserted_invoice['status'])) {
+                                        $this->_update_invoice($booking_id, $inserted_invoice['invoice_id']);
 
                                         $return_value['status'] = true;
                                         $return_value['paymentForm'] = '
-												<form id="stripe-form" action="#" method="POST" data-invoice="' . esc_attr($invoice_id) . '" data-ajax-url="' . esc_url(admin_url('admin-ajax.php')) . '">
-													<input class="security-code" type="hidden" value="' . wp_create_nonce('stripe_form_security') . '" />
-													<input class="card-amount-int" type="hidden" value="' . esc_html($payable_price * 100) . '" />
-													<input class="card-currency" type="hidden" value="' . esc_attr($current_currency['title']) . '" />
-													<div class="field-row clearfix">
-														<label for="card-element">' . esc_html__('Credit or Debit Card', 'mana-booking') . '</label>
-													    <div id="card-element"></div>
-													</div>
-													<div id="card-errors" class="payment-errors"></div>
-													<div class="field-row btn-container clearfix">
-														<button class="submit-button" type="submit">' . esc_html__('Submit Payment', 'mana-booking') . '</button>
-													</div>
-												</form>
-												<script type="text/javascript">
-													var stripe = Stripe("' . (!empty($this->mana_booking_option['stripe_publish_key']) ? esc_js($this->mana_booking_option['stripe_publish_key']) : '') . '");
-													var elements = stripe.elements();
+                        						<form id="stripe-form" action="#" method="POST" data-invoice="' . esc_attr($inserted_invoice['invoice_id']) . '" data-ajax-url="' . esc_url(admin_url('admin-ajax.php')) . '">
+                        							<input class="security-code" type="hidden" value="' . wp_create_nonce('stripe_form_security') . '" />
+                        							<input class="card-amount-int" type="hidden" value="' . esc_html($payable_price * 100) . '" />
+                        							<input class="card-currency" type="hidden" value="' . esc_attr($current_currency['title']) . '" />
+                        							<div class="field-row clearfix">
+                        								<label for="card-element">' . esc_html__('Credit or Debit Card', 'mana-booking') . '</label>
+                        							    <div id="card-element"></div>
+                        							</div>
+                        							<div id="card-errors" class="payment-errors"></div>
+                        							<div class="field-row btn-container clearfix">
+                        								<button class="submit-button" type="submit">' . esc_html__('Submit Payment', 'mana-booking') . '</button>
+                        							</div>
+                        						</form>
+                        						<script type="text/javascript">
+                        							var stripe = Stripe("' . (!empty($this->mana_booking_option['stripePublishableKey']) ? esc_js($this->mana_booking_option['stripePublishableKey']) : '') . '");
+                        							var elements = stripe.elements();
 
-													var style = {
-														base: {
-															color: "#FFFFFF",
-															lineHeight: "18px",
-															fontFamily: "Open Sans",
-															fontSmoothing: "antialiased",
-															fontSize: "14px",
-															"::placeholder": {
-																color: "#FFFFFF"
-																}
-														},
-														invalid: {
-															color: "#ff0000",
-															iconColor: "#fa755a"
-														}
-													};
-													var card = elements.create("card", {style: style});
-													card.mount("#card-element");
-													card.addEventListener("change", function(event) {
-														var displayError = document.getElementById("card-errors");
-														if (event.error) {
-															displayError.textContent = event.error.message;
-														} else {
-															displayError.textContent = "";
-														}
-													});
-													jQuery(function($){
-														$("#stripe-form").on("submit", function(e){
-															e.preventDefault();
-															var $scope = angular.element("#booking-section").scope();
-															$scope.stripeFormSubmit($(this), card);
-														})
-													})
-												</script>';
+                        							var style = {
+                        								base: {
+                        									color: "#FFFFFF",
+                        									lineHeight: "18px",
+                        									fontFamily: "Open Sans",
+                        									fontSmoothing: "antialiased",
+                        									fontSize: "14px",
+                        									"::placeholder": {
+                        										color: "#FFFFFF"
+                        										}
+                        								},
+                        								invalid: {
+                        									color: "#ff0000",
+                        									iconColor: "#fa755a"
+                        								}
+                        							};
+                        							var card = elements.create("card", {style: style});
+                        							card.mount("#card-element");
+                        							card.addEventListener("change", function(event) {
+                        								var displayError = document.getElementById("card-errors");
+                        								if (event.error) {
+                        									displayError.textContent = event.error.message;
+                        								} else {
+                        									displayError.textContent = "";
+                        								}
+                        							});
+                        							jQuery(function($){
+                        								$("#stripe-form").on("submit", function(e){
+                        									e.preventDefault();
+                        									var $scope = angular.element("#booking-section").scope();
+                        									$scope.stripeFormSubmit($(this), card);
+                        								})
+                        							})
+                        						</script>';
                                     } else {
                                         $return_value['status'] = false;
                                         $return_value['message'] = esc_html__('Because of some technical issues, your booking was not proceed. Please try again.', 'mana-booking');
@@ -628,7 +591,6 @@ class Mana_booking_booking_process
         $status = false;
         if (!empty($this->mana_booking_option['email_notification_status'])) {
             $currency_obj = new Mana_booking_currency();
-            $get_info_obj = new Mana_booking_get_info();
             $user_deposit = $this->mana_booking_option['deposit'];
             $user_deposit_val = ($booking_info_obj->totalBookingPrice * $user_deposit) / 100;
 
@@ -712,13 +674,14 @@ class Mana_booking_booking_process
                 '[guest-booking-total-price]',
                 '[guest-booking-deposit]'
             );
+            $guest_info = $booking_info_obj->guestInfo;
             $link_replace_text = array(
-                $booking_info_obj->fname,
-                $booking_info_obj->lname,
-                $booking_info_obj->email,
-                $booking_info_obj->phone,
-                !empty($booking_info_obj->address) ? $booking_info_obj->address : '',
-                !empty($booking_info_obj->requirements) ? $booking_info_obj->requirements : '',
+                $guest_info->firstName,
+                $guest_info->lastName,
+                $guest_info->email,
+                $guest_info->phone,
+                !empty($guest_info->address) ? $guest_info->address : '',
+                !empty($guest_info->requirements) ? $guest_info->requirements : '',
                 date('Y-m-d', strtotime($booking_info_obj->checkIn)),
                 date('Y-m-d', strtotime($booking_info_obj->checkOut)),
                 $room_tmpl,
@@ -731,15 +694,15 @@ class Mana_booking_booking_process
                 case ('guest'):
                     $body = str_replace($link_shortcodes, $link_replace_text, $this->mana_booking_option['email_user_tmpl']);
                     $subj = esc_html__('Your Booking has been confirmed.', 'mana-booking');
-                    $status = wp_mail($booking_info_obj->email, $subj, $body, $headers);
+                    $status = wp_mail($guest_info->email, $subj, $body, $headers);
                     break;
                 case ('admin'):
                     $body = str_replace($link_shortcodes, $link_replace_text, $this->mana_booking_option['email_admin_tmpl']);
                     $multiple_recipients = (!empty($this->mana_booking_option['email_receiver']) ? $this->mana_booking_option['email_receiver'] : '');
                     $subj = esc_html__('New Booking Information was in your website', 'mana-booking');
 
-                    if (!empty($this->mana_booking_option['guest_receiver']) && !empty($booking_info_obj->email)) {
-                        $multiple_recipients[] = $booking_info_obj->email;
+                    if (!empty($this->mana_booking_option['guest_receiver']) && !empty($guest_info->email)) {
+                        $multiple_recipients[] = $guest_info->email;
                     }
 
                     if (!empty($multiple_recipients)) {
@@ -752,6 +715,37 @@ class Mana_booking_booking_process
         }
 
         return $status;
+    }
+
+    public function insert_invoice($booking_id, $price, $user_id, $booking_currency)
+    {
+        global $wpdb;
+        $table_name = $wpdb->prefix . 'mana_invoice';
+        $inserted_invoice = $wpdb->insert($table_name, array(
+            'booking_id' => intval($booking_id),
+            'price' => $price,
+            'user_id' => $user_id,
+            'booking_currency' => $booking_currency,
+        ), array(
+            '%d',
+            '%s',
+            '%d',
+            '%s',
+        ));
+
+        return array(
+            'status' => $inserted_invoice,
+            'invoice_id' => $wpdb->insert_id
+        );
+    }
+
+    public function _update_invoice($booking_id, $invoice_id)
+    {
+        global $wpdb;
+        $table_name = $wpdb->prefix . 'mana_booking';
+        $updated_rows = $wpdb->update($table_name, array('invoice_id' => $invoice_id), array('id' => $booking_id), array('%d'), array('%d'));
+
+        return $updated_rows;
     }
 
     public function update_status()
@@ -1034,7 +1028,7 @@ class Mana_booking_booking_process
         if (!empty($token) && !empty($invoice_id) && wp_verify_nonce($security, 'stripe_form_security')) {
             require_once 'stripe/init.php';
 
-            \Stripe\Stripe::setApiKey($this->mana_booking_option['stripe_secret_key']);
+            \Stripe\Stripe::setApiKey($this->mana_booking_option['stripeSecretKey']);
             try {
                 \Stripe\Charge::create(array(
                     'amount' => $amount,

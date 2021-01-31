@@ -59,7 +59,7 @@ $current_user_meta = get_user_meta($current_user_info->ID);
 					<?php
 					}
 					if (!empty($current_user_meta['total_booking_price'][0])) {
-						$mana_options = get_option('mana-booking-setting');
+						$mana_options = json_decode(get_option('mana-booking-setting')['main_setting'], true);
 						$default_currency = $mana_options['default_currency'];
 						$default_currency_info = $mana_options['currency'][$default_currency]; ?>
 						<li>

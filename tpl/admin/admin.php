@@ -1,5 +1,5 @@
 <?php
-$options = get_option('mana-booking-setting');
+$options = json_decode(get_option('mana-booking-setting')['main_setting'], true);
 $options_str = wp_json_encode($options);
 ?>
 <div id="mana-booking-main-setting-page">

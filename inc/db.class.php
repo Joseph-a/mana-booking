@@ -28,7 +28,7 @@ class Mana_booking_db_class
 				confirmed tinyint NOT NULL DEFAULT '0',
 				booking_date TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
 				comment text,
-				payment_method tinyint NOT NULL,
+				payment_method text NOT NULL,
 				total_price DECIMAL(15,5) NOT NULL,
 				vat DECIMAL(15,5) NOT NULL,
 				duration int NOT NULL,

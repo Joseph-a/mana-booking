@@ -4,7 +4,7 @@ global $wpdb;
 $get_info_obj = new Mana_booking_get_info();
 $currency_info_obj = new Mana_booking_currency();
 $currency_info = $currency_info_obj->get_current_currency();
-$mana_options = get_option('mana-booking-setting');
+$mana_options = json_decode(get_option('mana-booking-setting')['main_setting'], true);
 $booking_id = !empty($_GET['booking']) ? intval($_GET['booking']) : '';
 $invoice_id = !empty($_GET['invoice']) ? intval($_GET['invoice']) : '';
 $status = !empty($_GET['status']) ? sanitize_text_field($_GET['status']) : '';

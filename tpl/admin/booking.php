@@ -2,7 +2,7 @@
 global $wpdb;
 $table_name = $wpdb->prefix . 'mana_booking';
 $paged = (!empty($_GET['paged']) ? intval($_GET['paged']) : 1);
-$mana_booking_option = get_option('mana-booking-setting');
+$mana_booking_option = json_decode(get_option('mana-booking-setting')['main_setting'], true);
 $per_page = (!empty($mana_booking_option['booking_archive_per_page']) ? intval($mana_booking_option['booking_archive_per_page']) : 10);
 $offset_item = ($paged - 1) * $per_page;
 $total_bookings = $wpdb->get_var('SELECT COUNT(*) FROM ' . $table_name);

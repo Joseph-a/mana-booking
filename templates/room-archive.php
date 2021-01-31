@@ -7,7 +7,7 @@
 global $post, $wp_query;
 get_header();
 
-$options = get_option('mana-booking-setting');
+$options = json_decode(get_option('mana-booking-setting')['main_setting'], true);
 $room_info_obj = new Mana_booking_get_info();
 $archive_pg_template = (!empty($options['archive_page_layout']) ? esc_attr($options['archive_page_layout']) : '1');
 $paged = $wp_query->query_vars['paged'];

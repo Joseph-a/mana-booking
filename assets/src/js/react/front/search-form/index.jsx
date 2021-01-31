@@ -1,8 +1,9 @@
-import React, { Component, Fragment } from 'react';
+import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
 import { __ } from '@wordpress/i18n';
-
+import { serialize } from 'object-to-formdata';
 import moment from 'moment';
+
 import Step1 from './step-1';
 import Step2 from './step-2';
 import Step3 from './step-3';
@@ -53,7 +54,7 @@ export default class ManaSearchForm extends Component {
     }
 
     finalizeBooking(type, guestInfo) {
-        const { checkIn, checkOut, selectedRooms, services, securityNonce, priceDetails } = this.state,
+        const { checkIn, checkOut, selectedRooms, services, priceDetails, paymentValue } = this.state,
             { duration, weekends } = this.daysCalculator(checkIn, checkOut),
             bookingInfo = {
                 checkIn,
@@ -66,22 +67,31 @@ export default class ManaSearchForm extends Component {
                 duration,
                 weekends,
                 totalBookingPrice: priceDetails.payablePrice,
+                paymentPriceMethod: paymentValue,
                 vat: priceDetails.vat,
                 userID: mana_booking_obj.user_id
             };
 
         this.setState({ guestInfo });
+        this.sendBookingInfo(bookingInfo);
+    }
 
-        const insertBooking = await fetch(mana_booking_obj.ajaxurl, {
-            method: "POST",
-            body: serialize({
-                action: "mana_booking_insert_booking",
-                security: securityNonce,
-                bookingInfo
-            })
-        });
+    async sendBookingInfo(bookingInfo) {
+        const { securityNonce } = this.state,
+            options = {
+                indices: true,
+                allowEmptyArrays: false,
+            },
+            insertBooking = await fetch(mana_booking_obj.ajaxurl, {
+                method: "POST",
+                body: serialize({
+                    action: "mana_booking_insert_booking",
+                    security: securityNonce,
+                    bookingInfo
+                }, options)
+            });
+
         return await insertBooking.json()
-
     }
 
     daysCalculator(from, to) {

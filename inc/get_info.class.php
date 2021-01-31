@@ -6,7 +6,7 @@ class Mana_booking_get_info
 
     public function __construct()
     {
-        $this->mana_options = get_option('mana-booking-setting');
+        $this->mana_options = json_decode(get_option('mana-booking-setting')['main_setting'], true);
     }
 
     /**
@@ -36,12 +36,12 @@ class Mana_booking_get_info
      */
     public static function booking_page_url()
     {
-        $plugin_option = get_option('mana-booking-setting');
+        $plugin_option = json_decode(get_option('mana-booking-setting')['main_setting'], true);
 
         if (!empty($plugin_option['external_booking'])) {
             $booking_page_url = (!empty($plugin_option['external_booking_url']) ? $plugin_option['external_booking_url'] : '#');
         } else {
-            $booking_page_url = home_url() . '/?' . (!empty($plugin_option['booking_url']) ? $plugin_option['booking_url'] : 'mana-booking');
+            $booking_page_url = home_url() . '/?' . (!empty($plugin_option['bookingUrl']) ? $plugin_option['bookingUrl'] : 'mana-booking');
         }
 
         return $booking_page_url;
