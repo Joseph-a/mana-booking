@@ -402,7 +402,7 @@ const Step2 = (props) => {
                         }
                     </div>
                     {
-                        (mana_booking_obj.bookingOptions.paypal || mana_booking_obj.bookingOptions.paymill || mana_booking_obj.bookingOptions.stripe) &&
+                        (mana_booking_obj.bookingOptions.bookingByPaypal || mana_booking_obj.bookingOptions.bookingByPaymill || mana_booking_obj.bookingOptions.bookingByStripe) &&
                         <div className="b-sec" data-prefix={__('Or', 'mana-booking')}>
                             <div className="payable-options">
                                 <table className="payable-price-tbl">
@@ -450,21 +450,21 @@ const Step2 = (props) => {
                             <div className="btn-container">
                                 <span className="title-box">{__('Book and pay by', 'mana-booking')}:</span>
                                 {
-                                    mana_booking_obj.bookingOptions.paypal &&
+                                    mana_booking_obj.bookingOptions.bookingByPaypal &&
                                     <button
                                         className="paypal"
                                         onClick={() => props.finalizeBooking('paypal', guestInfo)}
                                     >{__('Paypal', 'mana-booking')}</button>
                                 }
                                 {
-                                    mana_booking_obj.bookingOptions.paymill &&
+                                    mana_booking_obj.bookingOptions.bookingByPaymill &&
                                     <button
                                         className="paymill"
                                         onClick={() => props.finalizeBooking('paymill', guestInfo)}
                                     >{__('Paymill', 'mana-booking')}</button>
                                 }
                                 {
-                                    mana_booking_obj.bookingOptions.stripe &&
+                                    mana_booking_obj.bookingOptions.bookingByStripe &&
                                     <button
                                         className="stripe"
                                         onClick={() => props.finalizeBooking('stripe', guestInfo)}
