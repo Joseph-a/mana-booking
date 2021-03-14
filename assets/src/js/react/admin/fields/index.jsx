@@ -74,7 +74,7 @@ export default class Fields extends Component {
 			case ('currency-select'):
 				let options = [{
 					label: __('Current Currency', 'mana-booking'),
-					value: 'no_item'
+					value: ''
 				}],
 					currencyListValue = this.props.getFieldValue(manaMainSetting.CURRENCY_LIST);
 

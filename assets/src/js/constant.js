@@ -28,6 +28,7 @@ export const manaMainSetting = {
     EXTERNAL_BOOKING_SEND_METHOD: 'externalBookingSendMethod',
 
     BOOKING_BY_PAYPAL: 'bookingByPaypal',
+    PAYPAL_CLIENT_ID: 'paypalClientId',
     PAYPAL_EMAIL: 'paypalEmail',
     PAYPAL_ACTION_URL: 'paypalActionUrl',
     PAYPAL_DEFAULT_CURRENCY: 'paypalDefaultCurrency',

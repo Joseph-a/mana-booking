@@ -185,29 +185,11 @@ class Mana_booking_currency
 
     public function price_formatter($price)
     {
-        $currency_separator_val = !empty($this->mana_booking_option['currency_separator']) ? intval($this->mana_booking_option['currency_separator']) : 1;
-        $currency_decimal = !empty($this->mana_booking_option['currency_decimal']) ? intval($this->mana_booking_option['currency_decimal']) : 0;
-        $currency_decimal_separator_val = !empty($this->mana_booking_option['currency_decimal_separator']) ? intval($this->mana_booking_option['currency_decimal_separator']) : 1;
+        $currency_separator_val = !empty($this->mana_booking_option['currencySeparator']) ? $this->mana_booking_option['currencySeparator'] : 1;
+        $currency_decimal = !empty($this->mana_booking_option['currencyDecimal']) ? $this->mana_booking_option['currencyDecimal'] : 0;
+        $currency_decimal_separator = !empty($this->mana_booking_option['currencyDecimalSeparator']) ? $this->mana_booking_option['currencyDecimalSeparator'] : 1;
 
-        switch ($currency_separator_val) {
-            case 1:
-                $currency_separator = ',';
-                break;
-            case 2:
-                $currency_separator = '.';
-                break;
-            case 3:
-                $currency_separator = ' ';
-                break;
-        }
-        switch ($currency_decimal_separator_val) {
-            case 1:
-                $currency_decimal_separator = '.';
-                break;
-            case 2:
-                $currency_decimal_separator = ',';
-                break;
-        }
+        $currency_separator = $currency_separator_val === 'space' ? ' ' : $currency_separator_val;
 
         $price = is_object($price) ? $price->payable_raw : $price;
         $new_price = number_format($price, $currency_decimal, $currency_decimal_separator, $currency_separator);

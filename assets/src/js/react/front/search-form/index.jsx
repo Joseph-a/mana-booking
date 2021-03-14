@@ -53,7 +53,7 @@ export default class ManaSearchForm extends Component {
         })
     }
 
-    finalizeBooking(type, guestInfo) {
+    finalizeBooking(type, guestInfo, paymentInfo = {}) {
         const { checkIn, checkOut, selectedRooms, services, priceDetails, paymentValue } = this.state,
             { duration, weekends } = this.daysCalculator(checkIn, checkOut),
             bookingInfo = {
@@ -72,6 +72,7 @@ export default class ManaSearchForm extends Component {
                 userID: mana_booking_obj.user_id
             };
 
+        console.log('YoosefHEERRR', paymentInfo);
         this.setState({ guestInfo });
         this.sendBookingInfo(bookingInfo);
     }

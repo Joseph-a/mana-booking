@@ -406,12 +406,22 @@ class Mana_booking_main
 
 		/**
 		 * ------------------------------------------------------------------------------------------
+		 *  PayPal Codes
+		 * ------------------------------------------------------------------------------------------
+		 */
+		if (!empty($mana_booking_options['bookingByPaypal']) && !empty($mana_booking_options['paypalClientId'])) {
+			$paypalCurrency = !empty($mana_booking_options['paypalDefaultCurrency']) ? $mana_booking_options['paypalDefaultCurrency'] : $mana_booking_variables['currency']['title'];
+			wp_enqueue_script('paypal-code', 'https://www.paypal.com/sdk/js?currency=' . $paypalCurrency . '&client-id=' . $mana_booking_options['paypalClientId'], '', null, true);
+		}
+
+		/**
+		 * ------------------------------------------------------------------------------------------
 		 *  Paymill Codes
 		 * ------------------------------------------------------------------------------------------
 		 */
 
 		if (!empty($mana_booking_options['bookingByPaymill'])) {
-			wp_enqueue_script('paymill-js-code', '//bridge.paymill.com', '', MANA_BOOKING_VERSION, true);
+			wp_enqueue_script('paymill-code', '//bridge.paymill.com', '', MANA_BOOKING_VERSION, true);
 		}
 
 		/**
@@ -421,7 +431,7 @@ class Mana_booking_main
 		 */
 
 		if (!empty($mana_booking_options['bookingByStripe'])) {
-			wp_enqueue_script('stripe-js-code', '//js.stripe.com/v3/', '', MANA_BOOKING_VERSION, true);
+			wp_enqueue_script('stripe-code', '//js.stripe.com/v3/', '', MANA_BOOKING_VERSION, true);
 		}
 
 

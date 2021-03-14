@@ -196,6 +196,17 @@ export const manaMainSettings = [{
                 value: initialSetting[manaMainSetting.BOOKING_BY_PAYPAL]
             },
             {
+                label: __('Client ID', 'mana-booking'),
+                desc: __('', 'mana-booking'),
+                fieldIndex: manaMainSetting.PAYPAL_CLIENT_ID,
+                type: 'text',
+                value: initialSetting[manaMainSetting.PAYPAL_CLIENT_ID],
+                conditional: {
+                    ifField: manaMainSetting.BOOKING_BY_PAYPAL,
+                    ifValue: true
+                }
+            },
+            {
                 label: __('Paypal Email', 'mana-booking'),
                 desc: __('', 'mana-booking'),
                 fieldIndex: manaMainSetting.PAYPAL_EMAIL,

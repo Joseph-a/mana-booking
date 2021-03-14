@@ -2,7 +2,8 @@ import React, { Fragment, useEffect, useState } from 'react';
 import t from 'prop-types';
 import { serialize } from 'object-to-formdata';
 import { __ } from '@wordpress/i18n';
-import NumberFormat from 'react-number-format';
+import { priceFormatter } from '../../utils/price';
+import PayPalButton from '../../utils/paypal-btn';
 
 
 const Step2 = (props) => {
@@ -16,6 +17,7 @@ const Step2 = (props) => {
         [termsAndCondition, setTermsAndCondition] = useState(false),
         [paymentOptionSec, setPaymentOptionSec] = useState(false),
         [paymentValueIn, setPaymentValueIn] = useState(paymentValue),
+        [finalPayablePrice, setFinalPayablePrice] = useState(paymentValue),
         [guestInfo, setGuestInfo] = useState({
             firstName: '',
             lastName: '',
@@ -24,23 +26,6 @@ const Step2 = (props) => {
             address: '',
             requirements: '',
         }),
-
-        priceFormatter = value => {
-            let currencyInfo = mana_booking_obj.currency,
-                settings = {
-                    displayType: 'text',
-                    thousandSeparator: mana_booking_obj.currencySeparator,
-                    decimalSeparator: mana_booking_obj.currencyDecimalSeparator,
-                    decimalScale: mana_booking_obj.currencyDecimal,
-                    value
-                };
-
-            currencyInfo.position !== '1' ?
-                settings['suffix'] = currencyInfo.symbol :
-                settings['prefix'] = currencyInfo.symbol;
-
-            return <NumberFormat {...settings} />;
-        },
 
         totalPrice = (value = false) => {
             let totalValue = 0;
@@ -146,12 +131,30 @@ const Step2 = (props) => {
             }
             setFormError(errorArray);
 
-            errorArray.length === 0 ? setPaymentOptionSec(true) : setPaymentOptionSec(false);
+            errorArray.length === 0 ? (setPaymentOptionSec(true), setFinalPayablePrice(priceDetails.payablePrice)) : setPaymentOptionSec(false);
         },
 
         handlePaymentValue = (value) => {
             setPaymentValueIn(value);
             props.handleStep2(guestInfo, priceDetails, couponInfo, value);
+
+            let finalPayablePrice;
+
+            switch (value) {
+                case 'deposit':
+                    finalPayablePrice = Math.round((priceDetails.payablePrice * mana_booking_obj.deposit) / 100);
+                    break;
+
+                default:
+                    finalPayablePrice = priceDetails.payablePrice;
+                    break;
+            }
+
+            setFinalPayablePrice(finalPayablePrice);
+        },
+
+        finalizePaidBooking = paymentInfo => {
+
         };
 
     useEffect(() => {
@@ -392,17 +395,17 @@ const Step2 = (props) => {
             {
                 paymentOptionSec &&
                 <div className="booking-option-section">
-                    <div className="t-sec">
-                        {
-                            mana_booking_obj.bookingOptions.email &&
+                    {
+                        mana_booking_obj.bookingOptions.email &&
+                        <div className="t-sec">
                             <button
                                 className="email"
                                 onClick={() => props.finalizeBooking('email', guestInfo)}
                             >{__('Book by Email', 'mana-booking')}</button>
-                        }
-                    </div>
+                        </div>
+                    }
                     {
-                        (mana_booking_obj.bookingOptions.bookingByPaypal || mana_booking_obj.bookingOptions.bookingByPaymill || mana_booking_obj.bookingOptions.bookingByStripe) &&
+                        (mana_booking_obj.bookingOptions.paypal || mana_booking_obj.bookingOptions.paymill || mana_booking_obj.bookingOptions.stripe) &&
                         <div className="b-sec" data-prefix={__('Or', 'mana-booking')}>
                             <div className="payable-options">
                                 <table className="payable-price-tbl">
@@ -433,16 +436,7 @@ const Step2 = (props) => {
                                         </tr>
                                         <tr>
                                             <th>{__('Payable Price', 'mana-booking')}:</th>
-                                            <th className="price">
-                                                {
-                                                    paymentValueIn === 'full' &&
-                                                    <Fragment>{priceFormatter(priceDetails.payablePrice)}</Fragment>
-                                                }
-                                                {
-                                                    paymentValueIn === 'deposit' &&
-                                                    <Fragment>{priceFormatter(Math.round((priceDetails.payablePrice * mana_booking_obj.deposit) / 100))}</Fragment>
-                                                }
-                                            </th>
+                                            <th className="price">{priceFormatter(finalPayablePrice)}</th>
                                         </tr>
                                     </tbody>
                                 </table>
@@ -450,21 +444,24 @@ const Step2 = (props) => {
                             <div className="btn-container">
                                 <span className="title-box">{__('Book and pay by', 'mana-booking')}:</span>
                                 {
-                                    mana_booking_obj.bookingOptions.bookingByPaypal &&
-                                    <button
-                                        className="paypal"
-                                        onClick={() => props.finalizeBooking('paypal', guestInfo)}
-                                    >{__('Paypal', 'mana-booking')}</button>
+                                    mana_booking_obj.bookingOptions.paypal &&
+                                    <Fragment>
+                                        <PayPalButton finalizeBooking={props.finalizeBooking} guestInfo={guestInfo} price={finalPayablePrice} />
+                                        <button
+                                            className="paypal"
+                                            onClick={() => props.finalizeBooking('paypal', guestInfo)}
+                                        >{__('Paypal', 'mana-booking')}</button>
+                                    </Fragment>
                                 }
                                 {
-                                    mana_booking_obj.bookingOptions.bookingByPaymill &&
+                                    mana_booking_obj.bookingOptions.paymill &&
                                     <button
                                         className="paymill"
                                         onClick={() => props.finalizeBooking('paymill', guestInfo)}
                                     >{__('Paymill', 'mana-booking')}</button>
                                 }
                                 {
-                                    mana_booking_obj.bookingOptions.bookingByStripe &&
+                                    mana_booking_obj.bookingOptions.stripe &&
                                     <button
                                         className="stripe"
                                         onClick={() => props.finalizeBooking('stripe', guestInfo)}
